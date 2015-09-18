@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry", "Gu.Geometry\Gu.Wpf.Geometry.csproj", "{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Demo", "Gu.Geometry.Demo\Gu.Wpf.Geometry.Demo.csproj", "{043391BE-C7A2-4412-9361-8A2023053BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Tests", "Gu.Geometry.Tests\Gu.Wpf.Geometry.Tests.csproj", "{A11832B9-3174-4066-83F0-6C0D4478345D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043391BE-C7A2-4412-9361-8A2023053BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043391BE-C7A2-4412-9361-8A2023053BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043391BE-C7A2-4412-9361-8A2023053BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043391BE-C7A2-4412-9361-8A2023053BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11832B9-3174-4066-83F0-6C0D4478345D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11832B9-3174-4066-83F0-6C0D4478345D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11832B9-3174-4066-83F0-6C0D4478345D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11832B9-3174-4066-83F0-6C0D4478345D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

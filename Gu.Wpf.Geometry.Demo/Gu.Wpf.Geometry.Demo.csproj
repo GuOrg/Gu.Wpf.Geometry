@@ -98,7 +98,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gu.Geometry\Gu.Wpf.Geometry.csproj">
+    <ProjectReference Include="..\Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj">
       <Project>{a9cbadf5-65f8-4a81-858c-ea0cdfeb2e99}</Project>
       <Name>Gu.Wpf.Geometry</Name>
     </ProjectReference>

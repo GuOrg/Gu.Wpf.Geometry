@@ -2,150 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:geometry="http://gu.se/Geometry"
         xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="525"
         Height="350"
         mc:Ignorable="d">
-    <Grid>
-        <StackPanel Margin="12">
-            <StackPanel Margin="6"
-                        Orientation="Horizontal"
-                        RadioButton.Checked="OnGradientModeRadioButtonChecked">
-                <TextBlock Text="Gradient Mode:  " />
-                <RadioButton Content="Perpendicular "
-                             IsChecked="true"
-                             Tag="{x:Static geometry:GradientMode.Perpendicular}" />
-                <RadioButton Content="Parallel"
-                             Tag="{x:Static geometry:GradientMode.Parallel}" />
-            </StackPanel>
-
-            <StackPanel Margin="6"
-                        Orientation="Horizontal"
-                        RadioButton.Checked="OnColorInterpolationModeRadioButtonChecked">
-                <TextBlock Text="Color Interpolation Mode:  " />
-                <RadioButton Content="SRgb "
-                             IsChecked="true"
-                             Tag="{x:Static ColorInterpolationMode.SRgbLinearInterpolation}" />
-                <RadioButton Content="ScRgb "
-                             Tag="{x:Static ColorInterpolationMode.ScRgbLinearInterpolation}" />
-            </StackPanel>
-
-            <StackPanel Margin="6"
-                        Orientation="Horizontal"
-                        RadioButton.Checked="OnStartLineCapRadioButtonChecked">
-                <TextBlock Text="Start Line Cap:  " />
-                <RadioButton Content="Flat "
-                             IsChecked="true"
-                             Tag="{x:Static PenLineCap.Flat}" />
-                <RadioButton Content="Square "
-                             Tag="{x:Static PenLineCap.Square}" />
-                <RadioButton Content="Round "
-                             Tag="{x:Static PenLineCap.Round}" />
-                <RadioButton Content="Triangle "
-                             Tag="{x:Static PenLineCap.Triangle}" />
-            </StackPanel>
-
-            <StackPanel Margin="6"
-                        Orientation="Horizontal"
-                        RadioButton.Checked="OnEndLineCapRadioButtonChecked">
-                <TextBlock Text="Start Line Cap:  " />
-                <RadioButton Content="Flat "
-                             IsChecked="true"
-                             Tag="{x:Static PenLineCap.Flat}" />
-                <RadioButton Content="Square "
-                             Tag="{x:Static PenLineCap.Square}" />
-                <RadioButton Content="Round "
-                             Tag="{x:Static PenLineCap.Round}" />
-                <RadioButton Content="Triangle "
-                             Tag="{x:Static PenLineCap.Triangle}" />
-            </StackPanel>
-
-            <TextBlock Text="{Binding ElementName=scroll, Path=Value, StringFormat='Tolerance = {0}'}" />
-
-            <ScrollBar Name="scroll"
-                       Width="192"
-                       Margin="6 0 0 0"
-                       HorizontalAlignment="Left"
-                       Maximum="20"
-                       Minimum="0.05"
-                       Orientation="Horizontal"
-                       Value="0.25" />
-
-            <TextBlock Text="{Binding ElementName=thickness, Path=Value, StringFormat='Thickness = {0}'}" />
-
-            <ScrollBar x:Name="thickness"
-                       Width="192"
-                       Margin="6 0 0 0"
-                       HorizontalAlignment="Left"
-                       Maximum="300"
-                       Minimum="1"
-                       Orientation="Horizontal"
-                       Value="100" />
-        </StackPanel>
-
-        <geometry:GradientPath x:Name="gradientPath"
-                               StrokeThickness="{Binding Value,
-                                                         ElementName=thickness}"
-                               Tolerance="{Binding ElementName=scroll,
-                                                   Path=Value}"
-                               UseLayoutRounding="True">
-            <geometry:GradientPath.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=linePtBeg, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt0, Path=Center}" />
-                        <BezierSegment Point1="{Binding ElementName=bezPt1,
-                                                        Path=Center}"
-                                       Point2="{Binding ElementName=bezPt2,
-                                                        Path=Center}"
-                                       Point3="{Binding ElementName=bezPt3,
-                                                        Path=Center}" />
-                        <LineSegment Point="{Binding ElementName=linePtEnd, Path=Center}" />
-                    </PathFigure>
-                    <PathFigure StartPoint="200,200">
-                        <LineSegment Point="200,400" />
-                        <LineSegment Point="400,400" />
-                    </PathFigure>
-                </PathGeometry>
-            </geometry:GradientPath.Data>
-            <geometry:GradientPath.GradientStops>
-                <GradientStop Offset="0" Color="#4C0000FF" />
-                <GradientStop Offset="0.5" Color="#4CFF0000" />
-                <GradientStop Offset="1" Color="#4CFFFF00" />
-            </geometry:GradientPath.GradientStops>
-            <!--<gpl:GradientPath.GradientStops>
-                <GradientStop Offset="0" Color="#0C000000"  />
-                <GradientStop Offset="0.5" Color="Black" />
-                <GradientStop Offset="1" Color="#0C000000" />
-            </gpl:GradientPath.GradientStops>-->
-        </geometry:GradientPath>
-
-        <Path Stroke="Black">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=bezPt0, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt1, Path=Center}" />
-                    </PathFigure>
-                    <PathFigure StartPoint="{Binding ElementName=bezPt2, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt3, Path=Center}" />
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
-
-        <local:Dot x:Name="linePtBeg"
-                   Center="35 400" />
-        <local:Dot x:Name="bezPt0"
-                   Center="100 300" />
-        <local:Dot x:Name="bezPt1"
-                   Center="300 10" />
-        <local:Dot x:Name="bezPt2"
-                   Center="500 600" />
-        <local:Dot x:Name="bezPt3"
-                   Center="700 300" />
-        <local:Dot x:Name="linePtEnd"
-                   Center="800 100" />
-    </Grid>
+    <TabControl>
+        <TabItem Header="GradientPaths">
+            <local:PathDebugView />
+        </TabItem>
+    </TabControl>
 </Window>

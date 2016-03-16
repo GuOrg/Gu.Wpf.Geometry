@@ -2,12 +2,10 @@
 {
     using System.Diagnostics;
     using System.Windows;
-    using System.Windows.Media;
 
     [DebuggerDisplay("StartPoint: {StartPoint.ToDebugString()} EndPoint: {EndPoint.ToDebugString()}")]
     internal struct Line
     {
-        private static readonly Matrix Rotate90 = new Matrix();
         public readonly Point StartPoint;
         public readonly Point EndPoint;
 

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Gu.Wpf.Geometry.Demo
 {
@@ -14,6 +16,8 @@ namespace Gu.Wpf.Geometry.Demo
                 typeof(Dot),
                 new PropertyMetadata(new Point(), OnCenterChanged));
 
+        private bool isDragging;
+
         public Dot()
         {
             InitializeComponent();
@@ -25,9 +29,46 @@ namespace Gu.Wpf.Geometry.Demo
             get { return (Point)GetValue(CenterProperty); }
         }
 
-        static void OnCenterChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs args)
         {
-            (obj as Dot).ellipseGeo.Center = (Point)args.NewValue;
+            base.OnMouseLeftButtonDown(args);
+            isDragging = true;
+            CaptureMouse();
+        }
+
+        protected override void OnMouseMove(MouseEventArgs args)
+        {
+            base.OnMouseMove(args);
+            if (!isDragging)
+            {
+                return;
+            }
+            var parent = (IInputElement)VisualTreeHelper.GetParent(this);
+            var pointMouse = args.GetPosition(parent);
+            SetCurrentValue(CenterProperty, pointMouse);
+        }
+
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs args)
+        {
+            base.OnMouseLeftButtonUp(args);
+            if (!isDragging)
+            {
+                return;
+            }
+
+            isDragging = false;
+            ReleaseMouseCapture();
+        }
+
+        protected override void OnLostMouseCapture(MouseEventArgs args)
+        {
+            isDragging = false;
+            base.OnLostMouseCapture(args);
+        }
+
+        private static void OnCenterChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            ((Dot)obj).ellipseGeo.Center = (Point)args.NewValue;
         }
     }
 }

@@ -53,6 +53,9 @@
     <Compile Include="BoundingBoxView.xaml.cs">
       <DependentUpon>BoundingBoxView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PathDebugView.xaml.cs">
+      <DependentUpon>PathDebugView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PathDebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SimpleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

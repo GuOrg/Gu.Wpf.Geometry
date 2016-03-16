@@ -41,12 +41,12 @@
   <ItemGroup>
     <Compile Include="GradientMode.cs" />
     <Compile Include="GradientPath.cs" />
-    <Compile Include="GradientStopCollectionExt.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="PathFigureExt.cs" />
-    <Compile Include="PointExt.cs" />
+    <Compile Include="Internals\GradientStopCollectionExt.cs" />
+    <Compile Include="Internals\Line.cs" />
+    <Compile Include="Internals\PathFigureExt.cs" />
+    <Compile Include="Internals\PointExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VectorExt.cs" />
+    <Compile Include="Internals\VectorExt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

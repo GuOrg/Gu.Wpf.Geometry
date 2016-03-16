@@ -1,6 +1,6 @@
 ﻿namespace Gu.Wpf.Geometry
 {
-    public static class VectorExt
+    internal static class VectorExt
     {
     }
 }

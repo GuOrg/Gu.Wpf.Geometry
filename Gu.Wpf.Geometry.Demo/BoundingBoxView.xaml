@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Gu.Wpf.Geometry.Demo.BoundingBoxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Grid>
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="Red"
+                BorderThickness="1">
+            <Polygon Name="polygon"
+                     Fill="Yellow"
+                     Points="100,75 200,0 200,150 100,75"
+                     Stroke="Black"
+                     StrokeThickness="1" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Windows.Media;
 
-    public static class PathFigureExt
+    internal static class PathFigureExt
     {
-        public static double TotalLength(this PathFigure pathFigure)
+        internal static double TotalLength(this PathFigure pathFigure)
         {
             PolyLineSegment polylineSegment = pathFigure.Segments[0] as PolyLineSegment;
             if (polylineSegment == null)

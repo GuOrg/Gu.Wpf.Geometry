@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Windows;
 
-    public static class PointExt
+    internal static class PointExt
     {
         internal static Point Offset(this Point p, Vector direction, double distance)
         {

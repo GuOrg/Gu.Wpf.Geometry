@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Gu.Wpf.Geometry.Demo.SimpleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:geometry="http://gu.se/Geometry"
+             xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <Grid>
+        <geometry:GradientPath GradientMode="Parallel"
+                               StrokeThickness="10"
+                               UseLayoutRounding="True">
+            <geometry:GradientPath.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="35,400">
+                        <LineSegment Point="100,300" />
+                        <BezierSegment Point1="300,10"
+                                       Point2="500,600"
+                                       Point3="700,300" />
+                        <LineSegment Point="800,100" />
+                    </PathFigure>
+                    <PathFigure StartPoint="200,200">
+                        <LineSegment Point="200,400" />
+                        <LineSegment Point="400,400" />
+                    </PathFigure>
+                </PathGeometry>
+            </geometry:GradientPath.Data>
+            <geometry:GradientPath.GradientStops>
+                <GradientStop Offset="0" Color="#4C0000FF" />
+                <GradientStop Offset="0.5" Color="#4CFF0000" />
+                <GradientStop Offset="1" Color="#4CFFFF00" />
+            </geometry:GradientPath.GradientStops>
+        </geometry:GradientPath>
+    </Grid>
+</UserControl>

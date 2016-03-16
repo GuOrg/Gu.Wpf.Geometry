@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GradientMode.cs" />
+    <Compile Include="GradientPath+FigureGeometry.cs" />
+    <Compile Include="GradientPath+GradientGeometry.cs" />
     <Compile Include="GradientPath.cs" />
     <Compile Include="Internals\GradientStopCollectionExt.cs" />
     <Compile Include="Internals\Line.cs" />

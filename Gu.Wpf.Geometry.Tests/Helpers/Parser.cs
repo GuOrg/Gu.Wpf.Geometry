@@ -15,17 +15,9 @@
             {
                 throw new ArgumentException();
             }
-            return new Line(strings[0].AsPoint(), strings[1].AsPoint());
-        }
-
-        public static Point AsPoint(this string s)
-        {
-            var strings = s.Split(',');
-            if (strings.Length != 2)
-            {
-                throw new ArgumentException();
-            }
-            return new Point(strings[0].AsDouble(), strings[1].AsDouble());
+            var sp = Point.Parse(strings[0]);
+            var ep = Point.Parse(strings[1]);
+            return new Line(sp, ep);
         }
 
         private static double AsDouble(this string s)

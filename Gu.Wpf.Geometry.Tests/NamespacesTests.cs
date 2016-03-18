@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Windows.Markup;
@@ -14,7 +15,7 @@ namespace Gu.Wpf.Geometry.Tests
 
         public NamespacesTests()
         {
-            _assembly = typeof(Gu.Wpf.Geometry.GradientPath).Assembly;
+            this._assembly = typeof(GradientPath).Assembly;
         }
 
         [Fact]
@@ -22,13 +23,13 @@ namespace Gu.Wpf.Geometry.Tests
         {
             string[] skip = { ".Annotations", ".Properties", "XamlGeneratedNamespace" };
 
-            var strings = _assembly.GetTypes()
+            var strings = this._assembly.GetTypes()
                                    .Select(x => x.Namespace)
                                    .Distinct()
                                    .Where(x => !skip.Any(s => x.EndsWith(s)))
                                    .OrderBy(x => x)
                                    .ToArray();
-            var attributes = _assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsDefinitionAttribute))
+            var attributes = this._assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsDefinitionAttribute))
                                       .ToArray();
             var actuals = attributes.Select(a => a.ConstructorArguments[1].Value)
                                     .OrderBy(x => x);
@@ -46,7 +47,7 @@ namespace Gu.Wpf.Geometry.Tests
         [Fact]
         public void XmlnsPrefix()
         {
-            var prefixAttribute = _assembly.CustomAttributes.Single(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
+            var prefixAttribute = this._assembly.CustomAttributes.Single(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
             Assert.Equal(Uri, prefixAttribute.ConstructorArguments[0].Value);
         }
     }

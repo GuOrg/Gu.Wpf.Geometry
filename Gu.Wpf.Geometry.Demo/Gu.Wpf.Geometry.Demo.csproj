@@ -50,8 +50,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BoundingBoxView.xaml.cs">
+    <Compile Include="BalloonControlView.xaml.cs">
+      <DependentUpon>BalloonControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BalloonPopupView.xaml.cs">
+      <DependentUpon>BalloonPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BalloonView.xaml.cs">
+      <DependentUpon>BalloonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DebugViews\BoundingBoxView.xaml.cs">
       <DependentUpon>BoundingBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DebugViews\IntersectionView.xaml.cs">
+      <DependentUpon>IntersectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PathDebugView.xaml.cs">
       <DependentUpon>PathDebugView.xaml</DependentUpon>
@@ -59,11 +71,27 @@
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
-    <Page Include="BoundingBoxView.xaml">
+    <Page Include="BalloonControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BalloonPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BalloonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DebugViews\BoundingBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DebugViews\IntersectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

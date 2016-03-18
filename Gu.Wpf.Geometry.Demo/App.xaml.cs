@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace Gu.Wpf.Geometry.Demo
+﻿namespace Gu.Wpf.Geometry.Demo
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

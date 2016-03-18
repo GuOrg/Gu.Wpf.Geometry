@@ -66,14 +66,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="CircleTests.cs" />
     <Compile Include="FigureGeometryTests.cs" />
     <Compile Include="GradientPathTests.cs" />
     <Compile Include="Helpers\LineComparer.cs" />
+    <Compile Include="Helpers\NullablePointComparer.cs" />
+    <Compile Include="Helpers\VectorComparer.cs" />
     <Compile Include="LineTests.cs" />
     <Compile Include="Helpers\Parser.cs" />
     <Compile Include="Helpers\PointComparer.cs" />
     <Compile Include="NamespacesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VectorExtTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

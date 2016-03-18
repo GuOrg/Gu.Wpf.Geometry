@@ -1,4 +1,6 @@
-﻿namespace Gu.Wpf.Geometry.Demo
+﻿using System.Windows;
+
+namespace Gu.Wpf.Geometry.Demo
 {
     using System.Windows.Controls;
 
@@ -9,7 +11,7 @@
     {
         public BoundingBoxView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

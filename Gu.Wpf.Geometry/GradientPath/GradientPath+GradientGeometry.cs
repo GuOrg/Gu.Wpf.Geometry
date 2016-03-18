@@ -8,19 +8,19 @@
     {
         private class GradientGeometry
         {
-            private System.Windows.Media.Geometry _data;
+            private Geometry _data;
             private double _tolerance;
             private readonly double _strokeThickness;
             public readonly IReadOnlyList<FigureGeometry> FigureGeometries;
 
-            public GradientGeometry(System.Windows.Media.Geometry data, double tolerance, double strokeThickness)
+            public GradientGeometry(Geometry data, double tolerance, double strokeThickness)
             {
-                _data = data;
-                _tolerance = tolerance;
-                _strokeThickness = strokeThickness;
+                this._data = data;
+                this._tolerance = tolerance;
+                this._strokeThickness = strokeThickness;
                 // Flatten the PathGeometry
                 var flattened = data.GetFlattenedPathGeometry(tolerance, ToleranceType.Absolute);
-                FigureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, strokeThickness)).ToArray();
+                this.FigureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, strokeThickness)).ToArray();
             }
         }
     }

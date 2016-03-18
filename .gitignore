@@ -18,7 +18,7 @@ Thumbs.db
 *.ilk
 *.log
 [Bb]in
-[Dd]ebug*/
+[Dd]ebug/
 *.lib
 *.sbr
 obj/
@@ -28,4 +28,6 @@ _ReSharper*/
 *.vssscc
 $tf*/
 _.git/*
+_.vs/*
 packages/*
+published/*

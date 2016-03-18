@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following 
@@ -37,5 +38,6 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Tests", AllInternalsVisible = true)]
 
+[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: XmlnsDefinition("http://gu.se/Geometry", "Gu.Wpf.Geometry")]
 [assembly: XmlnsPrefix("http://gu.se/Geometry", "geometry")]

@@ -3,27 +3,27 @@
     using System.Collections.Generic;
     using System.Windows;
 
-    public class PointComparer : IEqualityComparer<Point>
+    public class VectorComparer : IEqualityComparer<Vector>
     {
         private readonly int digits;
-        public static readonly PointComparer Default = new PointComparer(2);
+        public static readonly VectorComparer Default = new VectorComparer(2);
 
-        public PointComparer(int digits)
+        private VectorComparer(int digits)
         {
             this.digits = digits;
         }
 
-        public bool Equals(Point x, Point y)
+        public bool Equals(Vector x, Vector y)
         {
             return this.Equals(x, y, this.digits);
         }
 
-        public bool Equals(Point x, Point y, int decimalDigits)
+        public bool Equals(Vector x, Vector y, int decimalDigits)
         {
             return x.Round(decimalDigits) == y.Round(decimalDigits);
         }
 
-        public int GetHashCode(Point obj)
+        public int GetHashCode(Vector obj)
         {
             return obj.Round(this.digits).GetHashCode();
         }

@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for SimpleView.xaml
+    /// Interaction logic for BalloonPopupView.xaml
     /// </summary>
-    public partial class SimpleView : UserControl
+    public partial class BalloonPopupView : UserControl
     {
-        public SimpleView()
+        public BalloonPopupView()
         {
             this.InitializeComponent();
         }

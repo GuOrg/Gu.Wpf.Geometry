@@ -64,7 +64,7 @@ namespace Gu.Wpf.Geometry
             typeof (double),
             typeof (GradientPath),
             new FrameworkPropertyMetadata(
-                System.Windows.Media.Geometry.StandardFlatteningTolerance,
+                Geometry.StandardFlatteningTolerance,
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGeometryChanged));
 
@@ -72,60 +72,68 @@ namespace Gu.Wpf.Geometry
 
         public GradientPath()
         {
-            GradientStops = new GradientStopCollection();
+            this.GradientStops = new GradientStopCollection();
         }
 
-        public System.Windows.Media.Geometry Data
+        public Geometry Data
         {
-            set { SetValue(DataProperty, value); }
-            get { return (System.Windows.Media.Geometry) GetValue(DataProperty); }
+            set {
+                this.SetValue(DataProperty, value); }
+            get { return (Geometry)this.GetValue(DataProperty); }
         }
 
         public GradientStopCollection GradientStops
         {
-            set { SetValue(GradientStopsProperty, value); }
-            get { return (GradientStopCollection) GetValue(GradientStopsProperty); }
+            set {
+                this.SetValue(GradientStopsProperty, value); }
+            get { return (GradientStopCollection)this.GetValue(GradientStopsProperty); }
         }
 
         public GradientMode GradientMode
         {
-            set { SetValue(GradientModeProperty, value); }
-            get { return (GradientMode) GetValue(GradientModeProperty); }
+            set {
+                this.SetValue(GradientModeProperty, value); }
+            get { return (GradientMode)this.GetValue(GradientModeProperty); }
         }
 
         public ColorInterpolationMode ColorInterpolationMode
         {
-            set { SetValue(ColorInterpolationModeProperty, value); }
-            get { return (ColorInterpolationMode) GetValue(ColorInterpolationModeProperty); }
+            set {
+                this.SetValue(ColorInterpolationModeProperty, value); }
+            get { return (ColorInterpolationMode)this.GetValue(ColorInterpolationModeProperty); }
         }
 
         public double StrokeThickness
         {
-            set { SetValue(StrokeThicknessProperty, value); }
-            get { return (double) GetValue(StrokeThicknessProperty); }
+            set {
+                this.SetValue(StrokeThicknessProperty, value); }
+            get { return (double)this.GetValue(StrokeThicknessProperty); }
         }
 
         public PenLineCap StrokeStartLineCap
         {
-            set { SetValue(StrokeStartLineCapProperty, value); }
-            get { return (PenLineCap) GetValue(StrokeStartLineCapProperty); }
+            set {
+                this.SetValue(StrokeStartLineCapProperty, value); }
+            get { return (PenLineCap)this.GetValue(StrokeStartLineCapProperty); }
         }
 
         public PenLineCap StrokeEndLineCap
         {
-            set { SetValue(StrokeEndLineCapProperty, value); }
-            get { return (PenLineCap) GetValue(StrokeEndLineCapProperty); }
+            set {
+                this.SetValue(StrokeEndLineCapProperty, value); }
+            get { return (PenLineCap)this.GetValue(StrokeEndLineCapProperty); }
         }
 
         public double Tolerance
         {
-            set { SetValue(ToleranceProperty, value); }
-            get { return (double) GetValue(ToleranceProperty); }
+            set {
+                this.SetValue(ToleranceProperty, value); }
+            get { return (double)this.GetValue(ToleranceProperty); }
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (Data == null)
+            if (this.Data == null)
             {
                 return base.MeasureOverride(availableSize);
             }
@@ -133,23 +141,23 @@ namespace Gu.Wpf.Geometry
             var pen = new Pen()
             {
                 Brush = Brushes.Black,
-                Thickness = StrokeThickness,
-                StartLineCap = StrokeStartLineCap,
-                EndLineCap = StrokeEndLineCap
+                Thickness = this.StrokeThickness,
+                StartLineCap = this.StrokeStartLineCap,
+                EndLineCap = this.StrokeEndLineCap
             };
 
-            var rect = Data.GetRenderBounds(pen);
+            var rect = this.Data.GetRenderBounds(pen);
             return new Size(rect.Right, rect.Bottom);
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (_gradientGeometry == null)
+            if (this._gradientGeometry == null)
             {
                 return;
             }
 
-            foreach (var figure in _gradientGeometry.FigureGeometries)
+            foreach (var figure in this._gradientGeometry.FigureGeometries)
             {
                 for (var i = 0; i < figure.Lines.Count; i++)
                 {
@@ -159,8 +167,8 @@ namespace Gu.Wpf.Geometry
                 }
 
                 // Use that to draw the start line cap
-                DrawLineCap(dc, figure.Lines.First(), StrokeStartLineCap, PenLineCap.Flat);
-                DrawLineCap(dc, figure.Lines.Last(), PenLineCap.Flat, StrokeEndLineCap);
+                this.DrawLineCap(dc, figure.Lines.First(), this.StrokeStartLineCap, PenLineCap.Flat);
+                this.DrawLineCap(dc, figure.Lines.Last(), PenLineCap.Flat, this.StrokeEndLineCap);
             }
         }
 
@@ -176,30 +184,30 @@ namespace Gu.Wpf.Geometry
 
         private void OnGeometryChanged()
         {
-            if (Data == null || StrokeThickness <= 0)
+            if (this.Data == null || this.StrokeThickness <= 0)
             {
-                _gradientGeometry = null;
+                this._gradientGeometry = null;
                 return;
             }
-            _gradientGeometry = new GradientGeometry(Data, Tolerance, StrokeThickness);
-            OnGradientChanged();
+            this._gradientGeometry = new GradientGeometry(this.Data, this.Tolerance, this.StrokeThickness);
+            this.OnGradientChanged();
         }
 
         private void OnGradientChanged()
         {
-            if (_gradientGeometry == null)
+            if (this._gradientGeometry == null)
             {
                 return;
             }
-            foreach (var figure in _gradientGeometry.FigureGeometries)
+            foreach (var figure in this._gradientGeometry.FigureGeometries)
             {
-                var totalLength = GradientMode == GradientMode.Parallel ? figure.TotalLength : 0;
+                var totalLength = this.GradientMode == GradientMode.Parallel ? figure.TotalLength : 0;
                 var accumLength = 0.0;
 
                 for (var i = 0; i < figure.Lines.Count; i++)
                 {
                     var line = figure.Lines[i];
-                    figure.Brushes[i] = CreateBrush(line, totalLength, accumLength);
+                    figure.Brushes[i] = this.CreateBrush(line, totalLength, accumLength);
                     accumLength += line.Length;
                 }
             }
@@ -208,15 +216,15 @@ namespace Gu.Wpf.Geometry
         private LinearGradientBrush CreateBrush(Line line, double totalLength, double accumLength)
         {
             LinearGradientBrush brush;
-            if (GradientMode == GradientMode.Parallel)
+            if (this.GradientMode == GradientMode.Parallel)
             {
-                brush = CreateParallelBrush(GradientStops, accumLength, totalLength, line);
+                brush = CreateParallelBrush(this.GradientStops, accumLength, totalLength, line);
             }
             else
             {
-                brush = CreatePerpendicularBrush(GradientStops, StrokeThickness, line);
+                brush = CreatePerpendicularBrush(this.GradientStops, this.StrokeThickness, line);
             }
-            brush.ColorInterpolationMode = ColorInterpolationMode;
+            brush.ColorInterpolationMode = this.ColorInterpolationMode;
             return brush;
         }
 
@@ -227,8 +235,8 @@ namespace Gu.Wpf.Geometry
         {
             var mp = line.MidPoint;
             var v = line.PerpendicularDirection;
-            var startPoint = mp.Offset(v, strokeThickness/2);
-            var endPoint = mp.Offset(v, -strokeThickness/2);
+            var startPoint = mp.WithOffset(v, strokeThickness/2);
+            var endPoint = mp.WithOffset(v, -strokeThickness/2);
             return new LinearGradientBrush(gradientStops, startPoint, endPoint)
             {
                 MappingMode = BrushMappingMode.Absolute,
@@ -269,7 +277,7 @@ namespace Gu.Wpf.Geometry
             var point2 = rotate.Transform(point + 0.25*line.Direction);
 
             // Construct pen for that line
-            var pen = new Pen() {Thickness = StrokeThickness, StartLineCap = startLineCap, EndLineCap = endLineCap};
+            var pen = new Pen() {Thickness = this.StrokeThickness, StartLineCap = startLineCap, EndLineCap = endLineCap};
 
             // Why don't I just call dc.DrawLine at this point? Well, to avoid gaps between 
             //  the tetragons, I had to draw them with an 'outlinePenWidth' pen based on the 
@@ -280,15 +288,15 @@ namespace Gu.Wpf.Geometry
             var pathGeo = lineGeo.GetWidenedPathGeometry(pen);
             Brush brush = null;
 
-            if (GradientMode == GradientMode.Perpendicular)
+            if (this.GradientMode == GradientMode.Perpendicular)
             {
-                brush = new LinearGradientBrush(GradientStops, new Point(0, 0), new Point(0, 1));
-                (brush as LinearGradientBrush).ColorInterpolationMode = ColorInterpolationMode;
+                brush = new LinearGradientBrush(this.GradientStops, new Point(0, 0), new Point(0, 1));
+                (brush as LinearGradientBrush).ColorInterpolationMode = this.ColorInterpolationMode;
             }
             else
             {
                 double offset = endLineCap == PenLineCap.Flat ? 0 : 1;
-                brush = new SolidColorBrush(GradientStops.GetColorAt(offset, ColorInterpolationMode));
+                brush = new SolidColorBrush(this.GradientStops.GetColorAt(offset, this.ColorInterpolationMode));
             }
 
             pen = new Pen(brush, 0);

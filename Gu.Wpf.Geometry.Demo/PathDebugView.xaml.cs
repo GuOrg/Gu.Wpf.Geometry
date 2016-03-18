@@ -2,7 +2,6 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
     using System.Windows.Media;
 
     /// <summary>
@@ -12,43 +11,43 @@
     {
         public PathDebugView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         void OnGradientModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (gradientPath == null)
+            if (this.gradientPath == null)
                 return;
 
             var radioButton = args.Source as RadioButton;
-            gradientPath.GradientMode = (GradientMode)radioButton.Tag;
+            this.gradientPath.GradientMode = (GradientMode)radioButton.Tag;
         }
 
         void OnStartLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (gradientPath == null)
+            if (this.gradientPath == null)
                 return;
 
             var radioButton = args.Source as RadioButton;
-            gradientPath.StrokeStartLineCap = (PenLineCap)radioButton.Tag;
+            this.gradientPath.StrokeStartLineCap = (PenLineCap)radioButton.Tag;
         }
 
         void OnEndLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (gradientPath == null)
+            if (this.gradientPath == null)
                 return;
 
             var radioButton = args.Source as RadioButton;
-            gradientPath.StrokeEndLineCap = (PenLineCap)radioButton.Tag;
+            this.gradientPath.StrokeEndLineCap = (PenLineCap)radioButton.Tag;
         }
 
         void OnColorInterpolationModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (gradientPath == null)
+            if (this.gradientPath == null)
                 return;
 
             var radioButton = args.Source as RadioButton;
-            gradientPath.ColorInterpolationMode = (ColorInterpolationMode)radioButton.Tag;
+            this.gradientPath.ColorInterpolationMode = (ColorInterpolationMode)radioButton.Tag;
         }
     }
 }

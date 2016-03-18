@@ -2,6 +2,8 @@
 
 //namespace Gu.Geometry.Tests
 //{
+//    using Gu.Wpf.Geometry;
+
 //    public class LineComparer : IEqualityComparer<Line>
 //    {
 //        public static readonly LineComparer Default = new LineComparer();
@@ -14,7 +16,7 @@
 //        {
 //            unchecked
 //            {
-//                return (obj.StartPoint.Round().GetHashCode() * 397) ^obj.EndPoint.Round().GetHashCode();
+//                return (obj.StartPoint.Round().GetHashCode() * 397) ^ obj.EndPoint.Round().GetHashCode();
 //            }
 //        }
 //    }

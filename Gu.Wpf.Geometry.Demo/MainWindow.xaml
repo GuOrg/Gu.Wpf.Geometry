@@ -12,5 +12,17 @@
         <TabItem Header="GradientPaths">
             <local:PathDebugView />
         </TabItem>
+
+        <TabItem Header="ballon control">
+            <local:BalloonControlView />
+        </TabItem>
+
+        <TabItem Header="ballon">
+            <local:BalloonView Margin="100" />
+        </TabItem>
+
+        <TabItem Header="ballon popup">
+            <local:BalloonPopupView />
+        </TabItem>
     </TabControl>
 </Window>

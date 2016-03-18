@@ -8,11 +8,14 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
-        <Border HorizontalAlignment="Center"
+        <Rectangle x:Name="Box"
+                   Stroke="Blue" />
+        <Border x:Name="Border"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 BorderBrush="Red"
                 BorderThickness="1">
-            <Polygon Name="polygon"
+            <Polygon Name="Polygon"
                      Fill="Yellow"
                      Points="100,75 200,0 200,150 100,75"
                      Stroke="Black"

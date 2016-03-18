@@ -23,7 +23,8 @@
                IsOpen="{Binding IsChecked,
                                 ElementName=ShowPopupBox}"
                Placement="Bottom"
-               PlacementTarget="{Binding ElementName=ShowPopupBox}">
+               PlacementTarget="{Binding ElementName=ShowPopupBox}"
+               VerticalOffset="20">
             <geometry:BalloonControl PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>

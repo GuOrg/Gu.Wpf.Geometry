@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Balloon\Balloon.cs" />
     <Compile Include="Balloon\BalloonControl.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="Internals\Constants.cs" />
     <Compile Include="GradientPath\GradientMode.cs" />
     <Compile Include="GradientPath\GradientPath+FigureGeometry.cs" />
     <Compile Include="GradientPath\GradientPath+GradientGeometry.cs" />

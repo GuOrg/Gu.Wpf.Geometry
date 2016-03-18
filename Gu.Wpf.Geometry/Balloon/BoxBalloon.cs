@@ -31,6 +31,7 @@ namespace Gu.Wpf.Geometry
                     }
 
                     var v = tp - ip.Value;
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {
                         v = v - this.PlacementOptions.Offset * v.Normalized();

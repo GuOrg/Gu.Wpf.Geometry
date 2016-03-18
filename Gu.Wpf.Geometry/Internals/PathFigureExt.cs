@@ -17,11 +17,11 @@
 
             var points = polylineSegment.Points;
             var totalLength = 0.0;
-            var ptPrev = pathFigure.StartPoint;
+            var previous = pathFigure.StartPoint;
             foreach (var pt in points)
             {
-                totalLength += (pt - ptPrev).Length;
-                ptPrev = pt;
+                totalLength += (pt - previous).Length;
+                previous = pt;
             }
             return totalLength;
         }

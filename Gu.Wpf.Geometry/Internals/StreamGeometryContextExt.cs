@@ -8,6 +8,7 @@ namespace Gu.Wpf.Geometry
     {
         internal static Point DrawCorner(this StreamGeometryContext context, Point fromPoint, double offsetX, double offsetY)
         {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (offsetX == 0)
             {
                 return fromPoint;

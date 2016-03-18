@@ -68,7 +68,7 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGeometryChanged));
 
-        private GradientGeometry _gradientGeometry;
+        private GradientGeometry gradientGeometry;
 
         public GradientPath()
         {
@@ -152,12 +152,12 @@ namespace Gu.Wpf.Geometry
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this._gradientGeometry == null)
+            if (this.gradientGeometry == null)
             {
                 return;
             }
 
-            foreach (var figure in this._gradientGeometry.FigureGeometries)
+            foreach (var figure in this.gradientGeometry.FigureGeometries)
             {
                 for (var i = 0; i < figure.Lines.Count; i++)
                 {
@@ -186,20 +186,20 @@ namespace Gu.Wpf.Geometry
         {
             if (this.Data == null || this.StrokeThickness <= 0)
             {
-                this._gradientGeometry = null;
+                this.gradientGeometry = null;
                 return;
             }
-            this._gradientGeometry = new GradientGeometry(this.Data, this.Tolerance, this.StrokeThickness);
+            this.gradientGeometry = new GradientGeometry(this.Data, this.Tolerance, this.StrokeThickness);
             this.OnGradientChanged();
         }
 
         private void OnGradientChanged()
         {
-            if (this._gradientGeometry == null)
+            if (this.gradientGeometry == null)
             {
                 return;
             }
-            foreach (var figure in this._gradientGeometry.FigureGeometries)
+            foreach (var figure in this.gradientGeometry.FigureGeometries)
             {
                 var totalLength = this.GradientMode == GradientMode.Parallel ? figure.TotalLength : 0;
                 var accumLength = 0.0;
@@ -215,15 +215,9 @@ namespace Gu.Wpf.Geometry
 
         private LinearGradientBrush CreateBrush(Line line, double totalLength, double accumLength)
         {
-            LinearGradientBrush brush;
-            if (this.GradientMode == GradientMode.Parallel)
-            {
-                brush = CreateParallelBrush(this.GradientStops, accumLength, totalLength, line);
-            }
-            else
-            {
-                brush = CreatePerpendicularBrush(this.GradientStops, this.StrokeThickness, line);
-            }
+            var brush = this.GradientMode == GradientMode.Parallel
+                ? CreateParallelBrush(this.GradientStops, accumLength, totalLength, line) 
+                : CreatePerpendicularBrush(this.GradientStops, this.StrokeThickness, line);
             brush.ColorInterpolationMode = this.ColorInterpolationMode;
             return brush;
         }
@@ -291,7 +285,7 @@ namespace Gu.Wpf.Geometry
             if (this.GradientMode == GradientMode.Perpendicular)
             {
                 brush = new LinearGradientBrush(this.GradientStops, new Point(0, 0), new Point(0, 1));
-                (brush as LinearGradientBrush).ColorInterpolationMode = this.ColorInterpolationMode;
+                ((LinearGradientBrush) brush).ColorInterpolationMode = this.ColorInterpolationMode;
             }
             else
             {

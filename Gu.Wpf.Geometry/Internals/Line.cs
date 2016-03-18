@@ -223,13 +223,8 @@
             return true;
         }
 
-        /// <summary>
-        /// http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()
-        /// </summary>
-        /// <param name="l1"></param>
-        /// <param name="l2"></param>
-        /// <returns></returns>
-        private static Point? IntersectionPoint(Line l1, Line l2, bool mustBeBetweenStartAndEnd = true)
+        // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()
+        private static Point? IntersectionPoint(Line l1, Line l2, bool mustBeBetweenStartAndEnd)
         {
             var u = l1.Direction;
             var v = l2.Direction;

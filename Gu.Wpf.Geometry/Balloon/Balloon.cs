@@ -131,9 +131,9 @@ namespace Gu.Wpf.Geometry
 
         protected abstract Geometry CreateConnectorGeometry(Size renderSize);
 
-        protected virtual Geometry CreateGeometry(Geometry boxGeometry, Geometry connectorGeometry)
+        protected virtual Geometry CreateGeometry(Geometry box, Geometry connector)
         {
-            var ballonGeometry = new CombinedGeometry(GeometryCombineMode.Union, boxGeometry, connectorGeometry);
+            var ballonGeometry = new CombinedGeometry(GeometryCombineMode.Union, box, connector);
             ballonGeometry.Freeze();
             return ballonGeometry;
         }
@@ -192,19 +192,20 @@ namespace Gu.Wpf.Geometry
 
         private class PenCache
         {
-            private Brush brush;
-            private double strokeThickness;
+            private Brush cachedBrush;
+            private double cachedStrokeThickness;
             private Pen pen;
 
             public Pen GetPen(Brush brush, double strokeThickness)
             {
-                if (this.brush == brush && this.strokeThickness == strokeThickness)
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (Equals(this.cachedBrush, brush) && this.cachedStrokeThickness == strokeThickness)
                 {
                     return this.pen;
                 }
 
-                this.brush = brush;
-                this.strokeThickness = strokeThickness;
+                this.cachedBrush = brush;
+                this.cachedStrokeThickness = strokeThickness;
                 this.pen = new Pen(brush, strokeThickness);
                 return this.pen;
             }

@@ -213,16 +213,16 @@ namespace Gu.Wpf.Geometry
 
                 switch (toMid.Value.Direction.Quadrant())
                 {
-                    case Quadrant.TopLeft:
+                    case Quadrant.NegativeXPositiveY:
                         corner = CreateTopRight(rectangle.TopRight, cornerRadius.TopRight);
                         break;
-                    case Quadrant.TopRight:
+                    case Quadrant.PositiveXPositiveY:
                         corner = CreateTopLeft(rectangle.TopLeft, cornerRadius.TopLeft);
                         break;
-                    case Quadrant.BottomRight:
+                    case Quadrant.PositiveXNegativeY:
                         corner = CreateBottomLeft(rectangle.BottomLeft, cornerRadius.BottomLeft);
                         break;
-                    case Quadrant.BottomLeft:
+                    case Quadrant.NegativeXNegativeY:
                         corner = CreateBottomRight(rectangle.BottomRight, cornerRadius.BottomRight);
                         break;
                     default:

@@ -153,16 +153,16 @@
             {
                 switch (this.Direction.Quadrant())
                 {
-                    case Quadrant.TopLeft:
+                    case Quadrant.NegativeXPositiveY:
                         return IntersectionPoint(rectangle.LeftLine(), this, true) ??
                                IntersectionPoint(rectangle.BottomLine(), this, true);
-                    case Quadrant.TopRight:
+                    case Quadrant.PositiveXPositiveY:
                         return IntersectionPoint(rectangle.RightLine(), this, true) ??
                                IntersectionPoint(rectangle.BottomLine(), this, true);
-                    case Quadrant.BottomRight:
+                    case Quadrant.PositiveXNegativeY:
                         return IntersectionPoint(rectangle.RightLine(), this, true) ??
                                IntersectionPoint(rectangle.TopLine(), this, true);
-                    case Quadrant.BottomLeft:
+                    case Quadrant.NegativeXNegativeY:
                         return IntersectionPoint(rectangle.LeftLine(), this, true) ??
                                IntersectionPoint(rectangle.TopLine(), this, true);
                     default:
@@ -172,16 +172,16 @@
 
             switch (this.Direction.Quadrant())
             {
-                case Quadrant.TopLeft:
+                case Quadrant.NegativeXPositiveY:
                     return IntersectionPoint(rectangle.RightLine(), this, true) ??
                            IntersectionPoint(rectangle.TopLine(), this, true);
-                case Quadrant.TopRight:
+                case Quadrant.PositiveXPositiveY:
                     return IntersectionPoint(rectangle.LeftLine(), this, true) ??
                            IntersectionPoint(rectangle.TopLine(), this, true);
-                case Quadrant.BottomRight:
+                case Quadrant.PositiveXNegativeY:
                     return IntersectionPoint(rectangle.LeftLine(), this, true) ??
                            IntersectionPoint(rectangle.BottomLine(), this, true);
-                case Quadrant.BottomLeft:
+                case Quadrant.NegativeXNegativeY:
                     return IntersectionPoint(rectangle.RightLine(), this, true) ??
                            IntersectionPoint(rectangle.BottomLine(), this, true);
                 default:

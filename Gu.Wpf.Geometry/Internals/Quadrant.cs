@@ -2,9 +2,9 @@
 {
     internal enum Quadrant
     {
-        TopLeft,
-        TopRight,
-        BottomRight,
-        BottomLeft
+        NegativeXPositiveY,
+        PositiveXPositiveY,
+        PositiveXNegativeY,
+        NegativeXNegativeY
     }
 }

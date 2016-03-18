@@ -13,13 +13,13 @@
             if (v.X >= 0)
             {
                 return v.Y >= 0
-                           ? Geometry.Quadrant.TopRight
-                           : Geometry.Quadrant.BottomRight;
+                           ? Geometry.Quadrant.PositiveXPositiveY
+                           : Geometry.Quadrant.PositiveXNegativeY;
             }
 
             return v.Y >= 0
-                       ? Geometry.Quadrant.TopLeft
-                       : Geometry.Quadrant.BottomLeft;
+                       ? Geometry.Quadrant.NegativeXPositiveY
+                       : Geometry.Quadrant.NegativeXNegativeY;
         }
 
         internal static Axis? Axis(this Vector v, double tolerance = Constants.Tolerance)

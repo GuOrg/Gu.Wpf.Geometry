@@ -32,7 +32,7 @@
                                  Margin="6"
                                  ConnectorAngle="45"
                                  CornerRadius="10"
-                                 PlacementOptions="Bottom Right"
+                                 PlacementOptions="Bottom Center 10"
                                  PlacementTarget="{Binding ElementName=Target}"
                                  Stroke="HotPink"
                                  StrokeThickness="4" />

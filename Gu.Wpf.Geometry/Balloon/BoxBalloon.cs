@@ -31,11 +31,9 @@ namespace Gu.Wpf.Geometry
                     }
 
                     var v = tp - ip.Value;
-                    if (this.PlacementOptions != null && this.PlacementOptions.Offset != 0)
+                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {
-                        var uv = v.Normalized();
-                        var offset = Vector.Multiply(this.PlacementOptions.Offset, uv);
-                        v = v + offset;
+                        v = v - this.PlacementOptions.Offset * v.Normalized();
                     }
 
                     this.SetCurrentValue(ConnectorOffsetProperty, v);

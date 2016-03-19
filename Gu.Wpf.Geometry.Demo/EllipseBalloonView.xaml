@@ -49,7 +49,6 @@
                                      Grid.Column="1"
                                      ConnectorAngle="45"
                                      ConnectorOffset="-25,-5"
-                                     CornerRadius="10"
                                      Stroke="CornflowerBlue"
                                      StrokeThickness="4" />
 
@@ -57,7 +56,6 @@
                                      Grid.Column="1"
                                      Margin="6"
                                      ConnectorAngle="45"
-                                     CornerRadius="10"
                                      PlacementOptions="{Binding SelectedItem,
                                                                 ElementName=Placements}"
                                      PlacementTarget="{Binding ElementName=Target}"

@@ -31,5 +31,30 @@
                 Math.Max(min, cornerRadius.BottomRight),
                 Math.Max(min, cornerRadius.BottomLeft));
         }
+
+        internal static bool IsZero(this CornerRadius cornerRadius)
+        {
+            return cornerRadius.TopLeft <= 0 &&
+                   cornerRadius.TopRight <= 0 &&
+                   cornerRadius.BottomRight <= 0 &&
+                   cornerRadius.BottomLeft <= 0;
+        }
+
+        internal static bool IsAnyZero(this CornerRadius cornerRadius)
+        {
+            return cornerRadius.TopLeft <= 0 ||
+                   cornerRadius.TopRight <= 0 ||
+                   cornerRadius.BottomRight <= 0 ||
+                   cornerRadius.BottomLeft <= 0;
+        }
+
+        internal static bool IsAllEqual(this CornerRadius cornerRadius)
+        {
+            // ReSharper disable CompareOfFloatsByEqualityOperator
+            return cornerRadius.TopLeft == cornerRadius.TopRight &&
+                   cornerRadius.TopLeft == cornerRadius.BottomLeft &&
+                   cornerRadius.TopLeft == cornerRadius.BottomRight;
+            // ReSharper restore CompareOfFloatsByEqualityOperator
+        }
     }
 }

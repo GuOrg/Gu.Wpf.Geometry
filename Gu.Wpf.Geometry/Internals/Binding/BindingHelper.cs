@@ -64,10 +64,10 @@
                 this.targetProperty = targetProperty;
             }
 
-            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty)
+            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty, IValueConverter converter = null)
             {
                 var sourcePath = GetPath(sourceProperty);
-                return this.OneWayTo(source, sourcePath);
+                return this.OneWayTo(source, sourcePath, converter);
             }
 
             internal BindingExpression TwoWayTo(object source, DependencyProperty sourceProperty)
@@ -95,14 +95,15 @@
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
             }
 
-            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath)
+            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath, IValueConverter converter = null)
             {
                 var binding = new Binding
                 {
                     Path = sourcePath,
                     Source = source,
                     Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                    Converter =  converter
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);

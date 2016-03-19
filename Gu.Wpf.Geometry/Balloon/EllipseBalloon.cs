@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
 
     public class EllipseBalloon : BalloonBase
     {
-        protected override Geometry CreateBoxGeometry(Size renderSize)
+        protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
             var width = renderSize.Width - this.StrokeThickness;
             var height = renderSize.Height - this.StrokeThickness;
@@ -25,7 +25,7 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
-        protected override Geometry CreateConnectorGeometry(Size renderSize)
+        protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
             if (this.ConnectorOffset == default(Vector) || renderSize.IsEmpty)
             {

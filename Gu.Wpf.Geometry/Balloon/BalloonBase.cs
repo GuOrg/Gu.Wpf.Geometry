@@ -44,7 +44,7 @@ namespace Gu.Wpf.Geometry
             "PlacementOptions",
             typeof(PlacementOptions),
             typeof(BalloonBase),
-            new PropertyMetadata(default(PlacementOptions), OnPlacementOptionsChanged));
+            new PropertyMetadata(Wpf.Geometry.PlacementOptions.Auto, OnPlacementOptionsChanged));
 
         private readonly PenCache penCache = new PenCache();
         private Geometry balloonGeometry;

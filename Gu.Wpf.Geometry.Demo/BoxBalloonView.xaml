@@ -24,7 +24,7 @@
                      Grid.Row="0"
                      Grid.RowSpan="3"
                      Grid.Column="2"
-                     SelectedIndex="1">
+                     SelectedIndex="0">
                 <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
                 <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
                 <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
@@ -47,7 +47,7 @@
             <geometry:BoxBalloon Grid.Row="1"
                                  Grid.Column="1"
                                  ConnectorAngle="45"
-                                 ConnectorOffset="-10,-0"
+                                 ConnectorOffset="-25,-5"
                                  CornerRadius="10"
                                  Stroke="CornflowerBlue"
                                  StrokeThickness="4" />

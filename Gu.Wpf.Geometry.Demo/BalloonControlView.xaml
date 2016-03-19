@@ -24,7 +24,7 @@
                               VerticalAlignment="Center"
                               ConnectorAngle="25"
                               CornerRadius="15"
-                              PlacementOptions="Bottom, Center"
+                              PlacementOptions="Bottom, Right"
                               PlacementTarget="{Binding ElementName=Target}">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -50,7 +50,7 @@
         <Canvas>
 
             <Rectangle x:Name="Target"
-                       Canvas.Left="100"
+                       Canvas.Left="50"
                        Canvas.Top="50"
                        Width="100"
                        Height="10"

@@ -13,7 +13,6 @@ namespace Gu.Wpf.Geometry
             {
                 if (this.IsVisible && this.PlacementTarget.IsVisible)
                 {
-                    Debugger.Break();
                     var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
                     var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
                     var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);

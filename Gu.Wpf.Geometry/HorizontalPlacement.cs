@@ -2,6 +2,7 @@
 {
     public enum HorizontalPlacement
     {
+        Auto,
         Left,
         Center,
         Right

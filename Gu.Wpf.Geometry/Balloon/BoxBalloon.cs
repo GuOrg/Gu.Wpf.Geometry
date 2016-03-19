@@ -13,24 +13,25 @@ namespace Gu.Wpf.Geometry
             {
                 if (this.IsVisible && this.PlacementTarget.IsVisible)
                 {
-                    var rect = new Rect(new Point(0, 0), this.RenderSize).ToScreen(this);
-                    var placementRect = new Rect(new Point(0, 0), this.PlacementTarget.RenderSize);
-                    var tp = this.PlacementOptions?.GetPoint(placementRect) ?? new Point(0, 0);
-                    tp = this.PlacementTarget.PointToScreen(tp);
-                    if (rect.Contains(tp))
+                    var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+                    var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                    var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
+                    if (tp == null)
                     {
-                        this.SetCurrentValue(ConnectorOffsetProperty, new Vector(0, 0));
+                        this.InvalidateProperty(ConnectorOffsetProperty);
                         return;
                     }
 
-                    var mp = rect.MidPoint();
-                    var ip = new Line(mp, tp).ClosestIntersection(rect);
+                    var mp = selfRect.MidPoint();
+                    var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
+                    Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
                     if (ip == null)
                     {
-                        throw new InvalidOperationException("Did not find an intersection, bug in the library");
+                        // failing silently in release
+                        this.InvalidateProperty(ConnectorOffsetProperty);
                     }
 
-                    var v = tp - ip.Value;
+                    var v = tp.Value - ip.Value;
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {

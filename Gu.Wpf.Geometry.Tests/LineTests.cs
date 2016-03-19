@@ -29,9 +29,9 @@
         {
             var l1 = l1s.AsLine();
             var l2 = l2s.AsLine();
-            var actual = l1.IntersectWith(l2);
+            var actual = l1.IntersectWith(l2, true);
             Assert.Equal(expected, actual.ToString("F0"));
-            actual = l2.IntersectWith(l1);
+            actual = l2.IntersectWith(l1, true);
             Assert.Equal(expected, actual.ToString("F0"));
         }
 

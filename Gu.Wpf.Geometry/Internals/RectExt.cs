@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Geometry
 {
+    using System;
     using System.Windows;
 
     internal static class RectExt
@@ -11,7 +12,7 @@
 
         internal static Line BottomLine(this Rect rect)
         {
-            return new Line(rect.BottomLeft, rect.BottomRight);
+            return new Line(rect.BottomRight, rect.BottomLeft);
         }
 
         internal static Line LeftLine(this Rect rect)
@@ -21,12 +22,17 @@
 
         internal static Line RightLine(this Rect rect)
         {
-            return new Line(rect.BottomRight, rect.TopRight);
+            return new Line(rect.TopRight, rect.BottomRight);
         }
 
         internal static Point MidPoint(this Rect rect)
         {
             return PointExt.MidPoint(rect.TopLeft, rect.BottomRight);
+        }
+
+        internal static Point ClosestCornerPoint(this Rect rect, Point p)
+        {
+            return p.Closest(rect.TopLeft, rect.TopRight, rect.BottomRight, rect.BottomLeft);
         }
 
         internal static Rect ToScreen(this Rect rect, UIElement element)

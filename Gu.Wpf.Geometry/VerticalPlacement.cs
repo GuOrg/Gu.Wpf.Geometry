@@ -2,6 +2,7 @@
 {
     public enum VerticalPlacement
     {
+        Auto,
         Top,
         Center,
         Bottom

@@ -70,12 +70,13 @@
 
         private static PlacementOptions ParseOne(string arg, string text)
         {
-            if (string.Equals(arg, nameof(HorizontalPlacement.Center), StringComparison.OrdinalIgnoreCase))
+            double offset;
+            if (double.TryParse(arg, out offset))
             {
-                return PlacementOptions.Center;
+                return new PlacementOptions(HorizontalPlacement.Auto, VerticalPlacement.Auto, offset);
             }
 
-            throw FormatException(text);
+            return ParseCenterOrAuto(arg, text);
         }
 
         private static PlacementOptions ParseTwo(string arg1, string arg2, string text)
@@ -83,7 +84,7 @@
             double offset;
             if (double.TryParse(arg2, out offset))
             {
-                var options = ParseOne(arg1, text);
+                var options = ParseCenterOrAuto(arg1, text);
                 return new PlacementOptions(options.Horizontal, options.Vertical, offset);
             }
 
@@ -117,6 +118,20 @@
             }
         }
 
+        private static PlacementOptions ParseCenterOrAuto(string arg, string text)
+        {
+            if (string.Equals(arg, nameof(HorizontalPlacement.Auto), StringComparison.OrdinalIgnoreCase))
+            {
+                return PlacementOptions.Auto;
+            }
+
+            if (string.Equals(arg, nameof(HorizontalPlacement.Center), StringComparison.OrdinalIgnoreCase))
+            {
+                return PlacementOptions.Center;
+            }
+
+            throw FormatException(text);
+        }
 
         private static bool TryParsePlacements(string arg1, string arg2, out HorizontalPlacement horizontal, out VerticalPlacement vertical)
         {

@@ -110,6 +110,32 @@
             return v.Length <= this.Length + Constants.Tolerance;
         }
 
+        internal Point? TrimTo(Point p)
+        {
+            if (this.IsPointOnLine(p))
+            {
+                return p;
+            }
+            var v = this.StartPoint.VectorTo(p);
+            if (Math.Abs(v.AngleTo(this.Direction) % 180) > Constants.Tolerance)
+            {
+                return null;
+            }
+
+            var dp = v.DotProdcut(this.Direction);
+            return dp < 0
+                       ? this.StartPoint
+                       : this.EndPoint;
+        }
+
+        internal Point Project(Point p)
+        {
+            var toPoint = this.StartPoint.VectorTo(p);
+            var dotProdcut = toPoint.DotProdcut(this.Direction);
+            var projected = this.StartPoint + dotProdcut * this.Direction;
+            return projected;
+        }
+
         internal Line? TrimOrExtendEndWith(Line other)
         {
             if (this.EndPoint.DistanceTo(other.StartPoint) < Constants.Tolerance)
@@ -142,7 +168,7 @@
             return new Line(ip.Value, this.EndPoint);
         }
 
-        internal Point? IntersectWith(Line other, bool mustBeBetweenStartAndEnd = true)
+        internal Point? IntersectWith(Line other, bool mustBeBetweenStartAndEnd)
         {
             return IntersectionPoint(this, other, mustBeBetweenStartAndEnd);
         }
@@ -191,6 +217,12 @@
 
         internal double DistanceTo(Point p)
         {
+            return this.Project(p)
+                       .DistanceTo(p);
+        }
+
+        internal double DistanceToPointOnLine(Point p)
+        {
             var toPoint = this.StartPoint.VectorTo(p);
             var dotProdcut = toPoint.DotProdcut(this.Direction);
             var pointOnLine = this.StartPoint + dotProdcut * this.Direction;
@@ -204,9 +236,7 @@
                 return null;
             }
 
-            var toPoint = this.StartPoint.VectorTo(p);
-            var dotProdcut = toPoint.DotProdcut(this.Direction);
-            var startPoint = this.StartPoint + dotProdcut * this.Direction;
+            var startPoint = this.Project(p);
             return new Line(startPoint, p);
         }
 

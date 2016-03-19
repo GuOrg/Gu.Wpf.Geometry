@@ -17,8 +17,32 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <ListBox x:Name="Placements"
+                     Grid.Row="0"
+                     Grid.RowSpan="3"
+                     Grid.Column="2"
+                     SelectedIndex="0">
+                <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center 5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center -5</geometry:PlacementOptions>                
+                <geometry:PlacementOptions>Top Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Top Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Top Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>                
+            </ListBox>
 
             <geometry:BoxBalloon Grid.Row="1"
                                  Grid.Column="1"
@@ -27,12 +51,14 @@
                                  CornerRadius="10"
                                  Stroke="CornflowerBlue"
                                  StrokeThickness="4" />
+
             <geometry:BoxBalloon Grid.Row="1"
                                  Grid.Column="1"
                                  Margin="6"
                                  ConnectorAngle="45"
                                  CornerRadius="10"
-                                 PlacementOptions="Bottom Center 10"
+                                 PlacementOptions="{Binding SelectedItem,
+                                                            ElementName=Placements}"
                                  PlacementTarget="{Binding ElementName=Target}"
                                  Stroke="HotPink"
                                  StrokeThickness="4" />

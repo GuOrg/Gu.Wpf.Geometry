@@ -39,6 +39,10 @@ Note: WPF Popup clips to bounds so the connector will be clipped when used in a 
 ![balloon](http://i.imgur.com/5BLZzJU.png)
 
 ## BoxBalloon
+Draws a border with a connector.
+Note: the connector is drawn outside the bounds of the element.
+
+
 ##### Simple
 ```
 <geometry:BoxBalloon Grid.Row="1"

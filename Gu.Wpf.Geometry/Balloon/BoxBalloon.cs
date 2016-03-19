@@ -72,7 +72,7 @@ namespace Gu.Wpf.Geometry
 
                 p = p.WithOffset(0, -height + cr.TopLeft + cr.BottomLeft);
                 context.LineTo(p, true, true);
-                p = context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
+                context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
             }
 
             geometry.Freeze();
@@ -104,6 +104,7 @@ namespace Gu.Wpf.Geometry
             if (ip == null)
             {
                 Debug.Assert(false, $"Line {line} does not intersect rectangle {rectangle}");
+                // ReSharper disable once HeuristicUnreachableCode
                 return Geometry.Empty;
             }
 

@@ -230,6 +230,11 @@
             var v = l2.Direction;
             var w = l1.StartPoint - l2.StartPoint;
             var d = Perp(u, v);
+            if (Math.Abs(d) < Constants.Tolerance)
+            {
+                // parallel lines
+                return null;
+            }
             var sI = Perp(v, w) / d;
             var p = l1.StartPoint + sI * u;
             if (mustBeBetweenStartAndEnd)

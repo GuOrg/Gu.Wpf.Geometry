@@ -10,13 +10,13 @@
                 <ControlTemplate TargetType="{x:Type local:BalloonControl}">
                     <Grid>
                         <local:BoxBalloon ConnectorAngle="{TemplateBinding ConnectorAngle}"
-                                                ConnectorOffset="{TemplateBinding ConnectorOffset}"
-                                                CornerRadius="{TemplateBinding CornerRadius}"
-                                                PlacementTarget="{TemplateBinding PlacementTarget}"
-                                                PlacementOptions="{TemplateBinding PlacementOptions}"
-                                                Stroke="{TemplateBinding BorderBrush}"
-                                                StrokeThickness="{Binding BorderThickness.Left,
-                                                                          RelativeSource={RelativeSource TemplatedParent}}" />
+                                          ConnectorOffset="{TemplateBinding ConnectorOffset}"
+                                          CornerRadius="{TemplateBinding CornerRadius}"
+                                          PlacementOptions="{TemplateBinding PlacementOptions}"
+                                          PlacementTarget="{TemplateBinding PlacementTarget}"
+                                          Stroke="{TemplateBinding BorderBrush}"
+                                          StrokeThickness="{Binding BorderThickness.Left,
+                                                                    RelativeSource={RelativeSource TemplatedParent}}" />
                         <ContentPresenter x:Name="ContentPresenter"
                                           Margin="{TemplateBinding BorderThickness}" />
                     </Grid>

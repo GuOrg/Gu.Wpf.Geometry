@@ -280,7 +280,7 @@ namespace Gu.Wpf.Geometry
 
             var lineGeo = new LineGeometry(point1, point2);
             var pathGeo = lineGeo.GetWidenedPathGeometry(pen);
-            Brush brush = null;
+            Brush brush;
 
             if (this.GradientMode == GradientMode.Perpendicular)
             {

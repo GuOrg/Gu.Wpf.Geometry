@@ -10,19 +10,17 @@
             public readonly IReadOnlyList<Line> Lines;
             public readonly PathGeometry[] PathGeometries;
 
-            private readonly IReadOnlyList<Line> offsetLines1;
-            private readonly IReadOnlyList<Line> offsetLines2;
 
             public FigureGeometry(PathFigure figure, double strokeThickness)
             {
                 this.Lines = figure.AsLines();
-                this.offsetLines1 = CreateOffsetLines(this.Lines, -strokeThickness / 2);
-                this.offsetLines2 = CreateOffsetLines(this.Lines, strokeThickness / 2);
+                var offsetLines1 = CreateOffsetLines(this.Lines, -strokeThickness / 2);
+                var offsetLines2 = CreateOffsetLines(this.Lines, strokeThickness / 2);
                 var pathGeometries = new PathGeometry[this.Lines.Count];
                 for (var i = 0; i < this.Lines.Count; i++)
                 {
-                    var o1 = this.offsetLines1[i];
-                    var o2 = this.offsetLines2[i];
+                    var o1 = offsetLines1[i];
+                    var o2 = offsetLines2[i];
                     pathGeometries[i] = CreatePath(o1, o2);
                 }
                 this.PathGeometries = pathGeometries;

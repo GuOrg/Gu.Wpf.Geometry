@@ -20,7 +20,7 @@ namespace Gu.Wpf.Geometry.Tests
         {
             var l = Line.Parse(ls);
             var circle = Circle.Parse(cs);
-            var expected = eps == "null" ? (Point?) null : Point.Parse(eps);
+            var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = circle.ClosestIntersection(l);
             Assert.Equal(expected, actual, NullablePointComparer.Default);
         }

@@ -1,18 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Gu.Wpf.Geometry")]
+[assembly: AssemblyTitle("Gu.Wpf.Geometry.Benchmarks")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Gu.Wpf.Geometry")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("Gu.Wpf.Geometry.Benchmarks")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -22,7 +20,7 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a9cbadf5-65f8-4a81-858c-ea0cdfeb2e99")]
+[assembly: Guid("a30d0ad1-e586-4446-830c-75e1520c5b7a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -36,9 +34,3 @@ using System.Windows.Markup;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Tests", AllInternalsVisible = true)]
-[assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Benchmarks", AllInternalsVisible = true)]
-
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-[assembly: XmlnsDefinition("http://gu.se/Geometry", "Gu.Wpf.Geometry")]
-[assembly: XmlnsPrefix("http://gu.se/Geometry", "geometry")]

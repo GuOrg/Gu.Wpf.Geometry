@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Demo", "Gu.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Tests", "Gu.Wpf.Geometry.Tests\Gu.Wpf.Geometry.Tests.csproj", "{A11832B9-3174-4066-83F0-6C0D4478345D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Benchmarks", "Gu.Wpf.Geometry.Benchmarks\Gu.Wpf.Geometry.Benchmarks.csproj", "{A30D0AD1-E586-4446-830C-75E1520C5B7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A11832B9-3174-4066-83F0-6C0D4478345D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A11832B9-3174-4066-83F0-6C0D4478345D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A11832B9-3174-4066-83F0-6C0D4478345D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

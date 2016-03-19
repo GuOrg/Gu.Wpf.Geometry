@@ -7,13 +7,13 @@
     /// <summary>
     /// Interaction logic for BalloonView.xaml
     /// </summary>
-    public partial class BalloonView : UserControl
+    public partial class BoxBalloonView : UserControl
     {
         private bool isDragging;
         private Point mouseDragStart;
         private Point dragStartPos;
 
-        public BalloonView()
+        public BoxBalloonView()
         {
             this.InitializeComponent();
         }

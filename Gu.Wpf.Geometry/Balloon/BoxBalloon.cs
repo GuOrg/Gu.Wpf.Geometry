@@ -206,6 +206,11 @@ namespace Gu.Wpf.Geometry
                 Circle corner;
                 var toMid = line.PerpendicularLineTo(rectangle.MidPoint());
                 Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
+                if (toMid == null)
+                {
+                    // failing silently in release
+                    return rectangle.MidPoint();
+                }
 
                 //Debug.Assert(!rectangle.Contains(toMid.Value.StartPoint), "Cannot find tangent if line intersects rectangle");
                 if (toMid.Value.Direction.Axis() != null)

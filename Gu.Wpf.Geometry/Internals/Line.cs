@@ -210,19 +210,6 @@
             return new Line(startPoint, p);
         }
 
-        internal bool TryFindIntersectionPoint(Line other, out Point intersectionPoint)
-        {
-            var ip = IntersectionPoint(this, other, true);
-            if (ip == null)
-            {
-                intersectionPoint = default(Point);
-                return false;
-            }
-
-            intersectionPoint = ip.Value;
-            return true;
-        }
-
         // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()
         private static Point? IntersectionPoint(Line l1, Line l2, bool mustBeBetweenStartAndEnd)
         {

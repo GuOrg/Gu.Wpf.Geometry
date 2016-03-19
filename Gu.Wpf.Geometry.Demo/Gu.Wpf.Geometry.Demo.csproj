@@ -56,8 +56,8 @@
     <Compile Include="BalloonPopupView.xaml.cs">
       <DependentUpon>BalloonPopupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BalloonView.xaml.cs">
-      <DependentUpon>BalloonView.xaml</DependentUpon>
+    <Compile Include="BoxBalloonView.xaml.cs">
+      <DependentUpon>BoxBalloonView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DebugViews\BoundingBoxView.xaml.cs">
       <DependentUpon>BoundingBoxView.xaml</DependentUpon>
@@ -79,7 +79,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BalloonView.xaml">
+    <Page Include="BoxBalloonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

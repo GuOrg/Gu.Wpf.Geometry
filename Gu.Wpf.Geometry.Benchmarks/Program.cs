@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.Geometry.Benchmarks
+﻿// ReSharper disable All
+namespace Gu.Wpf.Geometry.Benchmarks
 {
     using BenchmarkDotNet.Running;
 

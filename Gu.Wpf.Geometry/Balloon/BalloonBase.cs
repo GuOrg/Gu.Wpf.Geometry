@@ -1,6 +1,8 @@
 namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.Diagnostics;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -44,7 +46,13 @@ namespace Gu.Wpf.Geometry
             "PlacementOptions",
             typeof(PlacementOptions),
             typeof(BalloonBase),
-            new PropertyMetadata(Wpf.Geometry.PlacementOptions.Auto, OnPlacementOptionsChanged));
+            new PropertyMetadata(PlacementOptions.Auto, OnPlacementOptionsChanged));
+
+        public static readonly DependencyProperty ForcePopupToRespectClipToBoundsProperty = DependencyProperty.Register(
+            "ForcePopupToRespectClipToBounds",
+            typeof(bool), 
+            typeof(BalloonBase),
+            new PropertyMetadata(default(bool)));
 
         private readonly PenCache penCache = new PenCache();
         private Geometry balloonGeometry;
@@ -54,7 +62,6 @@ namespace Gu.Wpf.Geometry
         static BalloonBase()
         {
             StretchProperty.OverrideMetadata(typeof(BalloonBase), new FrameworkPropertyMetadata(Stretch.Fill));
-            EventManager.RegisterClassHandler(typeof(BalloonBase), LoadedEvent, new RoutedEventHandler(OnLoaded));
         }
 
         public CornerRadius CornerRadius
@@ -85,6 +92,12 @@ namespace Gu.Wpf.Geometry
         {
             get { return (PlacementOptions)this.GetValue(PlacementOptionsProperty); }
             set { this.SetValue(PlacementOptionsProperty, value); }
+        }
+
+        public bool ForcePopupToRespectClipToBounds
+        {
+            get { return (bool)this.GetValue(ForcePopupToRespectClipToBoundsProperty); }
+            set { this.SetValue(ForcePopupToRespectClipToBoundsProperty, value); }
         }
 
         protected override Geometry DefiningGeometry => this.boxGeometry ?? Geometry.Empty;
@@ -145,11 +158,6 @@ namespace Gu.Wpf.Geometry
             this.UpdateConnectorOffset();
         }
 
-        protected virtual void OnLoaded()
-        {
-            this.UpdateConnectorOffset();
-        }
-
         private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var balloon = (BalloonBase)d;
@@ -192,11 +200,6 @@ namespace Gu.Wpf.Geometry
             {
                 WeakEventManager<UIElement, EventArgs>.AddHandler(newTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
             }
-        }
-
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ((BalloonBase)sender).OnLoaded();
         }
 
         private class PenCache

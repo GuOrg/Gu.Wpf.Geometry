@@ -25,7 +25,8 @@
                Placement="Bottom"
                PlacementTarget="{Binding ElementName=ShowPopupBox}"
                VerticalOffset="20">
-            <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
+            <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}"
+                              ForcePopupToRespectClipToBounds="True">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition />

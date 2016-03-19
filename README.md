@@ -1,6 +1,109 @@
 # Gu.Wpf.Geometry
+Small library with WPF geometries.
 
-Small library based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-Paths-with-Gradient-Colors.html)
+## BoxBalloon
+##### Simple
+```
+<geometry:BoxBalloon Grid.Row="1"
+                     Grid.Column="1"
+                     ConnectorAngle="45"
+                     ConnectorOffset="-10,-0"
+                     CornerRadius="10"
+                     Stroke="CornflowerBlue"
+                     StrokeThickness="4" />
+```
+![simple balloon](http://i.imgur.com/YZDjCvj.png)
+
+##### ConnectorAngle
+![connector angle](http://i.imgur.com/lwViiPI.png)
+
+##### ConnectorOffset
+
+![connector offset](http://i.imgur.com/hT1fFsj.png)
+
+##### With PlacementTarget
+```
+<Canvas>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="Placements"
+                 Grid.Row="0"
+                 Grid.RowSpan="3"
+                 Grid.Column="2"
+                 SelectedIndex="0">
+            <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>
+        </ListBox>
+
+        <geometry:BoxBalloon Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="6"
+                             ConnectorAngle="45"
+                             CornerRadius="10"
+                             PlacementOptions="{Binding SelectedItem,
+                                                        ElementName=Placements}"
+                             PlacementTarget="{Binding ElementName=Target}"
+                             Stroke="HotPink"
+                             StrokeThickness="4" />
+    </Grid>
+    <Rectangle x:Name="Target"
+               Canvas.Left="100"
+               Canvas.Top="50"
+               Width="100"
+               Height="10"
+               Fill="Gainsboro"
+               MouseLeftButtonDown="OnTargetMouseLeftDown" />
+</Canvas>
+```
+
+[connected balloon](http://i.imgur.com/wJBJACc.webm)
+
+##### PlacementTarget
+Thge UIElement to connect the balloon to.
+
+##### PlacementOptions
+Where on the connected element the connector should be attached.
+
+In xaml either input a string `<geometry:BoxBalloon PlacementOptions="Top Left" .../>`
+Or use the `PlacementOptionsExtension`:
+```
+<geometry:BoxBalloon PlacementOptions="{geometry:PlacementOptions Horizontal=Auto,
+                                                                  Vertical=Top,
+                                                                  Offset=5}"
+                     ...
+                      />
+```
+
+
+
+## GradientPath
+
+Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-Paths-with-Gradient-Colors.html)
 
 ```
 <geometry:GradientPath GradientMode="Parallel"

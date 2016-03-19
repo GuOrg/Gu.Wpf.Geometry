@@ -181,8 +181,17 @@ namespace Gu.Wpf.Geometry
             // unsubscribing and subscribing here to have only one subscription
             balloon.LayoutUpdated -= balloon.OnLayoutUpdated;
             balloon.LayoutUpdated += balloon.OnLayoutUpdated;
-            WeakEventManager<UIElement, EventArgs>.RemoveHandler((UIElement)e.OldValue, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
-            WeakEventManager<UIElement, EventArgs>.AddHandler((UIElement)e.NewValue, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
+            var oldTarget = e.OldValue as UIElement;
+            if (oldTarget != null)
+            {
+                WeakEventManager<UIElement, EventArgs>.RemoveHandler(oldTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
+            }
+
+            var newTarget = e.NewValue as UIElement;
+            if (newTarget != null)
+            {
+                WeakEventManager<UIElement, EventArgs>.AddHandler(newTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
+            }
         }
 
         private static void OnLoaded(object sender, RoutedEventArgs e)

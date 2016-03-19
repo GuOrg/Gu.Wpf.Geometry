@@ -122,7 +122,7 @@ Note: the connector is drawn outside the bounds of the element.
 </Canvas>
 ```
 
-[connected balloon](http://i.imgur.com/wJBJACc.webm)
+![connected balloon](http://i.imgur.com/wJBJACc.webm)
 
 ##### PlacementTarget
 Thge UIElement to connect the balloon to.

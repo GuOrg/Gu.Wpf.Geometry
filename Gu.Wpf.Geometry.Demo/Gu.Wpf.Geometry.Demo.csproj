@@ -68,6 +68,9 @@
     <Compile Include="PathDebugView.xaml.cs">
       <DependentUpon>PathDebugView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlacementOptionsExtensionView.xaml.cs">
+      <DependentUpon>PlacementOptionsExtensionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PathDebugView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlacementOptionsExtensionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

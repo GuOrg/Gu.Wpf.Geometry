@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -46,10 +47,27 @@ namespace Gu.Wpf.Geometry
             typeof(BalloonBase),
             new PropertyMetadata(Wpf.Geometry.PlacementOptions.Auto, OnPlacementOptionsChanged));
 
+        protected static readonly DependencyProperty ConnectorVertexPointProperty = DependencyProperty.Register(
+            "ConnectorVertexPoint",
+            typeof(Point),
+            typeof(BalloonBase),
+            new PropertyMetadata(default(Point)));
+
+        protected static readonly DependencyProperty ConnectorPoint1Property = DependencyProperty.Register(
+            "ConnectorPoint1",
+            typeof(Point),
+            typeof(BalloonBase),
+            new PropertyMetadata(default(Point)));
+
+        protected static readonly DependencyProperty ConnectorPoint2Property = DependencyProperty.Register(
+            "ConnectorPoint2",
+            typeof(Point),
+            typeof(BalloonBase),
+            new PropertyMetadata(default(Point)));
+
         private readonly PenCache penCache = new PenCache();
         private Geometry balloonGeometry;
         private Geometry boxGeometry;
-        private Geometry connectorGeometry;
 
         static BalloonBase()
         {
@@ -88,6 +106,8 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry DefiningGeometry => this.boxGeometry ?? Geometry.Empty;
 
+        protected Geometry ConnectorGeometry { get; private set; }
+
         protected override Size MeasureOverride(Size constraint)
         {
             return new Size(this.StrokeThickness, this.StrokeThickness);
@@ -116,14 +136,14 @@ namespace Gu.Wpf.Geometry
             if (this.RenderSize == Size.Empty)
             {
                 this.boxGeometry = Geometry.Empty;
-                this.connectorGeometry = Geometry.Empty;
+                this.ConnectorGeometry = Geometry.Empty;
                 this.balloonGeometry = Geometry.Empty;
                 return;
             }
 
             this.boxGeometry = this.CreateBoxGeometry(this.RenderSize);
-            this.connectorGeometry = this.CreateConnectorGeometry(this.RenderSize);
-            this.balloonGeometry = this.CreateGeometry(this.boxGeometry, this.connectorGeometry);
+            this.ConnectorGeometry = this.CreateConnectorGeometry(this.RenderSize);
+            this.balloonGeometry = this.CreateGeometry(this.boxGeometry, this.ConnectorGeometry);
         }
 
         protected abstract Geometry CreateBoxGeometry(Size renderSize);
@@ -133,11 +153,49 @@ namespace Gu.Wpf.Geometry
         protected virtual Geometry CreateGeometry(Geometry box, Geometry connector)
         {
             var ballonGeometry = new CombinedGeometry(GeometryCombineMode.Union, box, connector);
-            ballonGeometry.Freeze();
+            //ballonGeometry.Freeze();
             return ballonGeometry;
         }
 
-        protected abstract void UpdateConnectorOffset();
+        protected virtual void UpdateConnectorOffset()
+        {
+            if (this.PlacementTarget != null && this.RenderSize.Width > 0)
+            {
+                if (this.IsVisible && this.PlacementTarget.IsVisible)
+                {
+                    var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+                    var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                    var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
+                    if (tp == null)
+                    {
+                        this.InvalidateProperty(ConnectorOffsetProperty);
+                        return;
+                    }
+
+                    var mp = selfRect.MidPoint();
+                    var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
+                    Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
+                    if (ip == null)
+                    {
+                        // failing silently in release
+                        this.InvalidateProperty(ConnectorOffsetProperty);
+                    }
+
+                    var v = tp.Value - ip.Value;
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                    {
+                        v = v - this.PlacementOptions.Offset * v.Normalized();
+                    }
+
+                    this.SetCurrentValue(ConnectorOffsetProperty, v);
+                }
+            }
+            else
+            {
+                this.InvalidateProperty(ConnectorOffsetProperty);
+            }
+        }
 
         protected virtual void OnLayoutUpdated(object _, EventArgs __)
         {

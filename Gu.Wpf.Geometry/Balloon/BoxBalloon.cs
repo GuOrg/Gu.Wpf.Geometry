@@ -7,50 +7,10 @@ namespace Gu.Wpf.Geometry
 
     public class BoxBalloon : BalloonBase
     {
-        protected override void UpdateConnectorOffset()
+        protected override Geometry CreateBoxGeometry(Size renderSize)
         {
-            if (this.PlacementTarget != null && this.RenderSize.Width > 0)
-            {
-                if (this.IsVisible && this.PlacementTarget.IsVisible)
-                {
-                    var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
-                    var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
-                    var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                    if (tp == null)
-                    {
-                        this.InvalidateProperty(ConnectorOffsetProperty);
-                        return;
-                    }
-
-                    var mp = selfRect.MidPoint();
-                    var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
-                    Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
-                    if (ip == null)
-                    {
-                        // failing silently in release
-                        this.InvalidateProperty(ConnectorOffsetProperty);
-                    }
-
-                    var v = tp.Value - ip.Value;
-                    // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
-                    {
-                        v = v - this.PlacementOptions.Offset * v.Normalized();
-                    }
-
-                    this.SetCurrentValue(ConnectorOffsetProperty, v);
-                }
-            }
-            else
-            {
-                this.InvalidateProperty(ConnectorOffsetProperty);
-            }
-        }
-
-        protected override Geometry CreateBoxGeometry(Size size)
-        {
-            var width = size.Width - this.StrokeThickness;
-            var height = size.Height - this.StrokeThickness;
+            var width = renderSize.Width - this.StrokeThickness;
+            var height = renderSize.Height - this.StrokeThickness;
             var geometry = new StreamGeometry();
             using (var context = geometry.Open())
             {
@@ -80,22 +40,22 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
-        protected override Geometry CreateConnectorGeometry(Size size)
+        protected override Geometry CreateConnectorGeometry(Size renderSize)
         {
-            if (this.ConnectorOffset == default(Vector) || size.IsEmpty)
+            if (this.ConnectorOffset == default(Vector) || renderSize.IsEmpty)
             {
                 return Geometry.Empty;
             }
 
-            var rectangle = new Rect(new Point(0, 0), size);
+            var rectangle = new Rect(new Point(0, 0), renderSize);
             rectangle.Inflate(-this.StrokeThickness, -this.StrokeThickness);
             if (rectangle.IsEmpty)
             {
                 return Geometry.Empty;
             }
 
-            var width = size.Width - this.StrokeThickness;
-            var height = size.Height - this.StrokeThickness;
+            var width = renderSize.Width - this.StrokeThickness;
+            var height = renderSize.Height - this.StrokeThickness;
             var mp = new Point(width / 2, height / 2);
             var direction = this.ConnectorOffset.Normalized();
             var length = width * width + height * height;
@@ -110,21 +70,33 @@ namespace Gu.Wpf.Geometry
             }
 
             var cr = this.AdjustedCornerRadius();
-            var sp = ip.Value + this.ConnectorOffset;
-            line = new Line(sp, mp + length * direction.Negated());
+            var vertexPoint = ip.Value + this.ConnectorOffset;
+            line = new Line(vertexPoint, mp + length * direction.Negated());
             var p1 = ConnectorPoint.Find(line, this.ConnectorAngle / 2, rectangle, cr);
             var p2 = ConnectorPoint.Find(line, -this.ConnectorAngle / 2, rectangle, cr);
-
-            var geometry = new StreamGeometry();
-            using (var context = geometry.Open())
+            this.SetValue(ConnectorVertexPointProperty, vertexPoint);
+            this.SetValue(ConnectorPoint1Property, p1);
+            this.SetValue(ConnectorPoint2Property, p2);
+            if (this.ConnectorGeometry == null || this.ConnectorGeometry.IsEmpty())
             {
-                context.BeginFigure(sp, true, true);
-                context.LineTo(p1, true, true);
-                context.LineTo(p2, true, true);
+                var figure = new PathFigure { IsClosed = true };
+                figure.Bind(PathFigure.StartPointProperty)
+                      .OneWayTo(this, ConnectorPoint1Property);
+                var s1 = new LineSegment { IsStroked = true };
+                s1.Bind(LineSegment.PointProperty)
+                  .OneWayTo(this, ConnectorVertexPointProperty);
+
+                var s2 = new LineSegment { IsStroked = true };
+                s2.Bind(LineSegment.PointProperty)
+                  .OneWayTo(this, ConnectorPoint2Property);
+                figure.Segments.Add(s1);
+                figure.Segments.Add(s2);
+                var geometry = new PathGeometry();
+                geometry.Figures.Add(figure);
+                return geometry;
             }
 
-            geometry.Freeze();
-            return geometry;
+            return this.ConnectorGeometry;
         }
 
         protected virtual CornerRadius AdjustedCornerRadius()

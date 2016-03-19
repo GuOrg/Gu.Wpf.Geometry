@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Gu.Wpf.Geometry.Demo.EllipseBalloonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:geometry="http://gu.se/Geometry"
+             xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Canvas>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="Placements"
+                     Grid.Row="0"
+                     Grid.RowSpan="3"
+                     Grid.Column="2"
+                     SelectedIndex="0">
+                <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center 5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Center -5</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Top Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Top Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Top Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Bottom Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Center</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Left</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Right</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
+                <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>
+            </ListBox>
+
+            <geometry:EllipseBalloon Grid.Row="1"
+                                     Grid.Column="1"
+                                     ConnectorAngle="45"
+                                     ConnectorOffset="-25,-5"
+                                     CornerRadius="10"
+                                     Stroke="CornflowerBlue"
+                                     StrokeThickness="4" />
+
+            <geometry:EllipseBalloon Grid.Row="1"
+                                     Grid.Column="1"
+                                     Margin="6"
+                                     ConnectorAngle="45"
+                                     CornerRadius="10"
+                                     PlacementOptions="{Binding SelectedItem,
+                                                                ElementName=Placements}"
+                                     PlacementTarget="{Binding ElementName=Target}"
+                                     Stroke="HotPink"
+                                     StrokeThickness="4" />
+        </Grid>
+        <Rectangle x:Name="Target"
+                   Canvas.Left="100"
+                   Canvas.Top="50"
+                   Width="100"
+                   Height="10"
+                   Fill="Gainsboro"
+                   MouseLeftButtonDown="OnTargetMouseLeftDown" />
+    </Canvas>
+</UserControl>

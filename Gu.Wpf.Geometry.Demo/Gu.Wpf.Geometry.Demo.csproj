@@ -65,6 +65,9 @@
     <Compile Include="DebugViews\IntersectionView.xaml.cs">
       <DependentUpon>IntersectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EllipseBalloonView.xaml.cs">
+      <DependentUpon>EllipseBalloonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PathDebugView.xaml.cs">
       <DependentUpon>PathDebugView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DebugViews\IntersectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EllipseBalloonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

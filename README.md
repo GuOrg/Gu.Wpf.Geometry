@@ -1,6 +1,43 @@
 # Gu.Wpf.Geometry
 Small library with WPF geometries.
 
+## Balloon
+A `ContentControl`for showing balloons.
+
+Note: WPF Popup clips to bounds so the connector will be clipped when used in a popup.
+
+```
+<geometry:Balloon Grid.Row="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  ConnectorAngle="25"
+                  CornerRadius="15"
+                  PlacementOptions="Bottom, Center"
+                  PlacementTarget="{Binding ElementName=Target}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Text, ElementName=TextBox}" />
+        <UniformGrid Grid.Row="1"
+                     Rows="1">
+            <Ellipse Width="20"
+                     Height="20"
+                     Fill="Blue" />
+            <Ellipse Width="20"
+                     Height="20"
+                     Fill="Yellow" />
+            <Ellipse Width="20"
+                     Height="20"
+                     Fill="Red" />
+        </UniformGrid>
+    </Grid>
+</geometry:Balloon>
+```
+
+![balloon](http://i.imgur.com/5BLZzJU.png)
+
 ## BoxBalloon
 ##### Simple
 ```

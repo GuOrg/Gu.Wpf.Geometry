@@ -54,7 +54,6 @@ namespace Gu.Wpf.Geometry
         static BalloonBase()
         {
             StretchProperty.OverrideMetadata(typeof(BalloonBase), new FrameworkPropertyMetadata(Stretch.Fill));
-            EventManager.RegisterClassHandler(typeof(BalloonBase), LoadedEvent, new RoutedEventHandler(OnLoaded));
         }
 
         public CornerRadius CornerRadius
@@ -145,11 +144,6 @@ namespace Gu.Wpf.Geometry
             this.UpdateConnectorOffset();
         }
 
-        protected virtual void OnLoaded()
-        {
-            this.UpdateConnectorOffset();
-        }
-
         private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var balloon = (BalloonBase)d;
@@ -192,11 +186,6 @@ namespace Gu.Wpf.Geometry
             {
                 WeakEventManager<UIElement, EventArgs>.AddHandler(newTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
             }
-        }
-
-        private static void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            ((BalloonBase)sender).OnLoaded();
         }
 
         private class PenCache

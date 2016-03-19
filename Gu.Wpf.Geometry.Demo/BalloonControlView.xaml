@@ -19,13 +19,13 @@
                      Grid.Row="0"
                      Text="Lorem ipsum dolor sit amet" />
 
-            <geometry:BalloonControl Grid.Row="1"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     ConnectorAngle="25"
-                                     CornerRadius="15"
-                                     PlacementOptions="Bottom, Center"
-                                     PlacementTarget="{Binding ElementName=Target}">
+            <geometry:Balloon Grid.Row="1"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              ConnectorAngle="25"
+                              CornerRadius="15"
+                              PlacementOptions="Bottom, Center"
+                              PlacementTarget="{Binding ElementName=Target}">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -45,7 +45,7 @@
                                  Fill="Red" />
                     </UniformGrid>
                 </Grid>
-            </geometry:BalloonControl>
+            </geometry:Balloon>
         </Grid>
         <Canvas>
 

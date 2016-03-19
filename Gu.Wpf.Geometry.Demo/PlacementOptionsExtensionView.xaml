@@ -23,16 +23,16 @@
             </Grid.ColumnDefinitions>
 
             <geometry:BoxBalloon Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="6"
-                            ConnectorAngle="45"
-                            CornerRadius="10"
-                            PlacementOptions="{geometry:PlacementOptions Horizontal=Auto,
-                                                                        Vertical=Top,
-                                                                        Offset=5}"
-                            PlacementTarget="{Binding ElementName=Target}"
-                            Stroke="HotPink"
-                            StrokeThickness="4" />
+                                 Grid.Column="1"
+                                 Margin="6"
+                                 ConnectorAngle="45"
+                                 CornerRadius="10"
+                                 PlacementOptions="{geometry:PlacementOptions Horizontal=Auto,
+                                                                              Vertical=Top,
+                                                                              Offset=5}"
+                                 PlacementTarget="{Binding ElementName=Target}"
+                                 Stroke="HotPink"
+                                 StrokeThickness="4" />
         </Grid>
         <Rectangle x:Name="Target"
                    Canvas.Left="100"

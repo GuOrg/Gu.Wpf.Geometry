@@ -39,8 +39,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Balloon\BalloonBase.cs" />
     <Compile Include="Balloon\Balloon.cs" />
-    <Compile Include="Balloon\BalloonControl.cs" />
     <Compile Include="Balloon\PlacementOptionsExtension.cs" />
     <Compile Include="Internals\Constants.cs" />
     <Compile Include="GradientPath\GradientMode.cs" />

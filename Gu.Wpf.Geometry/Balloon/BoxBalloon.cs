@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Media;
 
-    public class BoxBalloon : Balloon
+    public class BoxBalloon : BalloonBase
     {
         protected override void UpdateConnectorOffset()
         {

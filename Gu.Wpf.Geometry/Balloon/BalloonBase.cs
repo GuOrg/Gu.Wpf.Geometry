@@ -123,6 +123,7 @@ namespace Gu.Wpf.Geometry
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
+            this.UpdateConnectorOffset();
             this.UpdateCachedGeometries();
             this.InvalidateVisual();
         }

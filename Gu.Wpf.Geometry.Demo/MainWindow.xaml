@@ -13,7 +13,7 @@
             <local:PathDebugView />
         </TabItem>
 
-        <TabItem Header="BalloonControl">
+        <!--<TabItem Header="BalloonControl">
             <local:BalloonControlView />
         </TabItem>
 
@@ -27,7 +27,7 @@
 
         <TabItem Header="PlacementOptionsExtension">
             <local:PlacementOptionsExtensionView Margin="100" />
-        </TabItem>
+        </TabItem>-->
 
         <TabItem Header="ballon popup">
             <local:BalloonPopupView />

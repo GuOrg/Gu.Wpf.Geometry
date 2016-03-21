@@ -2,6 +2,7 @@ namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Diagnostics;
+    using System.Runtime.CompilerServices;
     using System.Windows;
     using System.Windows.Data;
     using System.Windows.Media;
@@ -26,6 +27,14 @@ namespace Gu.Wpf.Geometry
                 15.0,
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 OnConnectorChanged));
+
+        public static readonly DependencyProperty DrawConnectorOutsideOfBoundsProperty = DependencyProperty.Register(
+            "DrawConnectorOutsideOfBounds",
+            typeof (bool), 
+            typeof (BalloonBase),
+            new FrameworkPropertyMetadata(
+                true, 
+                FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
             "PlacementTarget",
@@ -81,6 +90,12 @@ namespace Gu.Wpf.Geometry
             set { this.SetValue(ConnectorAngleProperty, value); }
         }
 
+        public bool DrawConnectorOutsideOfBounds
+        {
+            get { return (bool)this.GetValue(DrawConnectorOutsideOfBoundsProperty); }
+            set { this.SetValue(DrawConnectorOutsideOfBoundsProperty, value); }
+        }
+
         public UIElement PlacementTarget
         {
             get { return (UIElement)this.GetValue(PlacementTargetProperty); }
@@ -93,7 +108,7 @@ namespace Gu.Wpf.Geometry
             set { this.SetValue(PlacementOptionsProperty, value); }
         }
 
-        protected override Geometry DefiningGeometry => this.BoxGeometry ?? Geometry.Empty;
+        protected override Geometry DefiningGeometry => null;
 
         protected Geometry ConnectorGeometry { get; private set; }
 
@@ -212,11 +227,14 @@ namespace Gu.Wpf.Geometry
                     {
                         // failing silently in release
                         this.InvalidateProperty(ConnectorOffsetProperty);
+                        return;
                     }
 
                     var v = tp.Value - ip.Value;
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                    if (this.PlacementOptions != null && 
+                        v.Length > 0 && 
+                        this.PlacementOptions.Offset != 0)
                     {
                         v = v - this.PlacementOptions.Offset * v.Normalized();
                     }

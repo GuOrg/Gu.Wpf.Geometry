@@ -53,6 +53,7 @@
                                  ConnectorAngle="45"
                                  ConnectorOffset="-25,-5"
                                  CornerRadius="10"
+                                 DrawConnectorOutsideOfBounds="False"
                                  Stroke="CornflowerBlue"
                                  StrokeThickness="4" />
 

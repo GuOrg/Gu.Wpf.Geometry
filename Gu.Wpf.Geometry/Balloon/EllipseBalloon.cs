@@ -53,8 +53,8 @@ namespace Gu.Wpf.Geometry
             var vertexPoint = ip + this.ConnectorOffset;
             var ray = new Ray(vertexPoint, this.ConnectorOffset.Negated());
 
-            var p1 = ConnectorPoint.Find(ray, this.ConnectorAngle / 2, StrokeThickness, ellipse);
-            var p2 = ConnectorPoint.Find(ray, -this.ConnectorAngle / 2, StrokeThickness, ellipse);
+            var p1 = ConnectorPoint.Find(ray, this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
+            var p2 = ConnectorPoint.Find(ray, -this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
 
             this.SetValue(ConnectorVertexPointProperty, vertexPoint);
             this.SetValue(ConnectorPoint1Property, p1);

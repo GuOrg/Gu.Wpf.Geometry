@@ -30,7 +30,7 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
-            var rect = new Rect(new Point(0, 0), renderSize);
+            var rect = this.CreateRect(renderSize);
             this.SetValue(RectProperty, rect);
             if (rect.Width <= 0 || rect.Height <= 0)
             {
@@ -39,12 +39,12 @@ namespace Gu.Wpf.Geometry
 
             if (this.CornerRadius.IsAllEqual())
             {
-                // using TopLeft here as we have already checked that they are equal
                 if (this.BoxGeometry is RectangleGeometry)
                 {
                     return this.BoxGeometry;
                 }
 
+                // using TopLeft here as we have already checked that they are equal
                 var geometry = new RectangleGeometry();
                 geometry.Bind(RectangleGeometry.RectProperty)
                     .OneWayTo(this, RectProperty);
@@ -96,10 +96,10 @@ namespace Gu.Wpf.Geometry
 
             var fromCenter = new Ray(rectangle.CenterPoint(), this.ConnectorOffset);
             var ip = fromCenter.FirstIntersectionWith(rectangle);
+            Debug.Assert(ip != null, $"Line {fromCenter} does not intersect rectangle {rectangle}");
             if (ip == null)
             {
-                Debug.Assert(false, $"Line {fromCenter} does not intersect rectangle {rectangle}");
-                // ReSharper disable once HeuristicUnreachableCode
+                // failing silently in release, should never happen
                 return Geometry.Empty;
             }
 
@@ -151,6 +151,11 @@ namespace Gu.Wpf.Geometry
             {
                 balloon.UpdateCachedGeometries();
             }
+        }
+
+        private Rect CreateRect(Size renderSize)
+        {
+            return new Rect(new Point(0, 0), renderSize);
         }
 
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
@@ -226,11 +231,10 @@ namespace Gu.Wpf.Geometry
                 Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
                 if (toMid == null)
                 {
-                    // failing silently in release
+                    // failing silently in release, should never happen, returning center not meaning anyhing
                     return rectangle.CenterPoint();
                 }
 
-                //Debug.Assert(!rectangle.Contains(toMid.Value.StartPoint), "Cannot find tangent if line intersects rectangle");
                 if (toMid.Value.Direction.Axis() != null)
                 {
                     return ray.Point.Closest(rectangle.TopLeft, rectangle.TopRight, rectangle.BottomRight, rectangle.BottomLeft);

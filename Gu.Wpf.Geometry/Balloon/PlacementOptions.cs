@@ -30,7 +30,7 @@
 
         public Point? GetPointOnTarget(Rect placed, Rect target)
         {
-            var p = this.GetPointOnTarget(placed.MidPoint(), target);
+            var p = this.GetPointOnTarget(placed.CenterPoint(), target);
             if (p == null)
             {
                 return null;
@@ -46,7 +46,7 @@
 
         private static Line ClosestLine(Rect rect, Point p)
         {
-            var angle = new Vector(1, 1).AngleTo(p.VectorTo(rect.MidPoint()));
+            var angle = new Vector(1, 1).AngleTo(p.VectorTo(rect.CenterPoint()));
             if (0 <= angle && angle <= 90)
             {
                 return rect.TopLine();
@@ -91,14 +91,14 @@
                     {
                         case HorizontalPlacement.Auto:
                             var closestLine = ClosestLine(target, sourceMidPoint);
-                            return AutoPoint(sourceMidPoint.LineTo(target.MidPoint()), closestLine);
+                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), closestLine);
                         case HorizontalPlacement.Left:
-                            return AutoPoint(sourceMidPoint.LineTo(target.MidPoint()), target.LeftLine());
+                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine());
                         case HorizontalPlacement.Center:
                             return sourceMidPoint.Closest(target.BottomLine(), target.TopLine())
                                                  .MidPoint;
                         case HorizontalPlacement.Right:
-                            return AutoPoint(sourceMidPoint.LineTo(target.MidPoint()), target.RightLine());
+                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine());
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
@@ -106,7 +106,7 @@
                     switch (this.Horizontal)
                     {
                         case HorizontalPlacement.Auto:
-                            return AutoPoint(sourceMidPoint.LineTo(target.MidPoint()), target.TopLine());
+                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.TopLine());
                         case HorizontalPlacement.Left:
                             return target.TopLeft;
                         case HorizontalPlacement.Center:
@@ -135,7 +135,7 @@
                     switch (this.Horizontal)
                     {
                         case HorizontalPlacement.Auto:
-                            return AutoPoint(sourceMidPoint.LineTo(target.MidPoint()), target.BottomLine());
+                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.BottomLine());
                         case HorizontalPlacement.Left:
                             return target.BottomLeft;
                         case HorizontalPlacement.Center:

@@ -28,6 +28,7 @@
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
+            base.OnMouseLeftButtonUp(e);
             if (!this.isDragging)
             {
                 return;

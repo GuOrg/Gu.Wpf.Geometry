@@ -21,5 +21,26 @@ namespace Gu.Wpf.Geometry.Tests
             var actual = v1.ProjectOn(v2);
             Assert.Equal(expected, actual, VectorComparer.Default);
         }
+
+        [Theory]
+        [InlineData("2,0", "2,0")]
+        [InlineData("-2,0", "-2,0")]
+        [InlineData("0,2", "0,2")]
+        [InlineData("0,-2", "0,-2")]
+        public void SnapToOrtho(string vs, string evs)
+        {
+            var v = Vector.Parse(vs);
+            var expected = evs == "null" ? (Vector?)null : Vector.Parse(evs);
+            var actual = v.SnapToOrtho();
+            Assert.Equal(expected, actual, NullableVectorComparer.Default);
+
+            var vMinus = v.Rotate(-44);
+            actual = vMinus.SnapToOrtho();
+            Assert.Equal(expected, actual, NullableVectorComparer.Default);
+
+            var vPlus = v.Rotate(44);
+            actual = vPlus.SnapToOrtho();
+            Assert.Equal(expected, actual, NullableVectorComparer.Default);
+        }
     }
 }

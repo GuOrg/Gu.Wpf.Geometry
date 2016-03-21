@@ -30,10 +30,9 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
-            var width = renderSize.Width - this.StrokeThickness;
-            var height = renderSize.Height - this.StrokeThickness;
-            this.SetValue(RectProperty, new Rect(new Point(0, 0), new Point(width, height)));
-            if (width <= 0 || height <= 0)
+            var rect = new Rect(new Point(0, 0), renderSize);
+            this.SetValue(RectProperty, rect);
+            if (rect.Width <= 0 || rect.Height <= 0)
             {
                 return Geometry.Empty;
             }
@@ -46,14 +45,14 @@ namespace Gu.Wpf.Geometry
                     return this.BoxGeometry;
                 }
 
-                var rectangleGeometry = new RectangleGeometry();
-                rectangleGeometry.Bind(RectangleGeometry.RectProperty)
+                var geometry = new RectangleGeometry();
+                geometry.Bind(RectangleGeometry.RectProperty)
                     .OneWayTo(this, RectProperty);
-                rectangleGeometry.Bind(RectangleGeometry.RadiusXProperty)
+                geometry.Bind(RectangleGeometry.RadiusXProperty)
                     .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
-                rectangleGeometry.Bind(RectangleGeometry.RadiusYProperty)
+                geometry.Bind(RectangleGeometry.RadiusYProperty)
                     .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
-                return rectangleGeometry;
+                return geometry;
             }
             else
             {
@@ -65,19 +64,19 @@ namespace Gu.Wpf.Geometry
                         ? new Point(cr.TopLeft + this.StrokeThickness / 2, this.StrokeThickness / 2)
                         : new Point(this.StrokeThickness / 2, this.StrokeThickness / 2);
                     context.BeginFigure(p, true, true);
-                    p = p.WithOffset(width - cr.TopLeft - cr.TopRight, 0);
+                    p = p.WithOffset(rect.Width - cr.TopLeft - cr.TopRight, 0);
                     context.LineTo(p, true, true);
                     p = context.DrawCorner(p, cr.TopRight, cr.TopRight);
 
-                    p = p.WithOffset(0, height - cr.TopRight - cr.BottomRight);
+                    p = p.WithOffset(0, rect.Height - cr.TopRight - cr.BottomRight);
                     context.LineTo(p, true, true);
                     p = context.DrawCorner(p, -cr.BottomRight, cr.BottomRight);
 
-                    p = p.WithOffset(-width + cr.BottomRight + cr.BottomLeft, 0);
+                    p = p.WithOffset(-rect.Width + cr.BottomRight + cr.BottomLeft, 0);
                     context.LineTo(p, true, true);
                     p = context.DrawCorner(p, -cr.BottomLeft, -cr.BottomLeft);
 
-                    p = p.WithOffset(0, -height + cr.TopLeft + cr.BottomLeft);
+                    p = p.WithOffset(0, -rect.Height + cr.TopLeft + cr.BottomLeft);
                     context.LineTo(p, true, true);
                     context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
                 }
@@ -89,42 +88,30 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
-            if (this.ConnectorOffset == default(Vector) || renderSize.IsEmpty)
-            {
-                return Geometry.Empty;
-            }
-
             var rectangle = new Rect(new Point(0, 0), renderSize);
-            rectangle.Inflate(-this.StrokeThickness, -this.StrokeThickness);
-            if (rectangle.IsEmpty)
+            if (rectangle.Width <= 0 || rectangle.Height <= 0)
             {
                 return Geometry.Empty;
             }
 
-            var width = renderSize.Width - this.StrokeThickness;
-            var height = renderSize.Height - this.StrokeThickness;
-            var mp = new Point(width / 2, height / 2);
-            var direction = this.ConnectorOffset.Normalized();
-            var length = width * width + height * height;
-            var line = new Line(mp, mp + length * direction);
-
-            var ip = line.ClosestIntersection(rectangle);
+            var fromCenter = new Ray(rectangle.CenterPoint(), this.ConnectorOffset);
+            var ip = fromCenter.FirstIntersectionWith(rectangle);
             if (ip == null)
             {
-                Debug.Assert(false, $"Line {line} does not intersect rectangle {rectangle}");
+                Debug.Assert(false, $"Line {fromCenter} does not intersect rectangle {rectangle}");
                 // ReSharper disable once HeuristicUnreachableCode
                 return Geometry.Empty;
             }
 
             var cr = this.AdjustedCornerRadius();
             var vertexPoint = ip.Value + this.ConnectorOffset;
-            line = new Line(vertexPoint, mp + length * direction.Negated());
-            var p1 = ConnectorPoint.Find(line, this.ConnectorAngle / 2, rectangle, cr);
-            var p2 = ConnectorPoint.Find(line, -this.ConnectorAngle / 2, rectangle, cr);
+            var toCenter = new Ray(vertexPoint, this.ConnectorOffset.Negated());
+            var p1 = ConnectorPoint.Find(toCenter, this.ConnectorAngle / 2, this.StrokeThickness, rectangle, cr);
+            var p2 = ConnectorPoint.Find(toCenter, -this.ConnectorAngle / 2, this.StrokeThickness, rectangle, cr);
             this.SetValue(ConnectorVertexPointProperty, vertexPoint);
             this.SetValue(ConnectorPoint1Property, p1);
             this.SetValue(ConnectorPoint2Property, p2);
-            if (this.ConnectorGeometry != null && !this.ConnectorGeometry.IsEmpty())
+            if (this.ConnectorGeometry is PathGeometry)
             {
                 return this.ConnectorGeometry;
             }
@@ -139,8 +126,7 @@ namespace Gu.Wpf.Geometry
 
         protected virtual CornerRadius AdjustedCornerRadius()
         {
-            var cr = this.CornerRadius.InflateBy(-this.StrokeThickness / 2)
-                                 .WithMin(0);
+            var cr = this.CornerRadius;
             var left = cr.TopLeft + cr.BottomLeft;
             var right = cr.TopRight + cr.BottomRight;
             var top = cr.TopLeft + cr.TopRight;
@@ -155,9 +141,16 @@ namespace Gu.Wpf.Geometry
 
             var factor = Math.Min(Math.Min(this.ActualWidth / top, this.ActualWidth / bottom),
                                   Math.Min(this.ActualHeight / left, this.ActualHeight / right));
-            return cr.ScaleBy(factor)
-                     .InflateBy(-this.StrokeThickness / 2)
-                     .WithMin(0);
+            return cr.ScaleBy(factor);
+        }
+
+        private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var balloon = (BoxBalloon)d;
+            if (balloon.IsInitialized)
+            {
+                balloon.UpdateCachedGeometries();
+            }
         }
 
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
@@ -178,33 +171,33 @@ namespace Gu.Wpf.Geometry
 
         private static class ConnectorPoint
         {
-            internal static Point Find(Line line, double angle, Rect rectangle, CornerRadius cornerRadius)
+            internal static Point Find(Ray toCenter, double angle, double strokeThickness, Rect rectangle, CornerRadius cornerRadius)
             {
-                var rotated = line.RotateAroundStartPoint(angle);
-                return FindForRotated(rotated, rectangle, cornerRadius);
+                var rotated = toCenter.Rotate(angle);
+                return FindForRotated(rotated, strokeThickness, rectangle, cornerRadius);
             }
 
-            private static Point FindForRotated(Line line, Rect rectangle, CornerRadius cornerRadius)
+            private static Point FindForRotated(Ray ray, double strokeThickness, Rect rectangle, CornerRadius cornerRadius)
             {
-                var ip = line.ClosestIntersection(rectangle);
+                var ip = ray.FirstIntersectionWith(rectangle);
                 if (ip == null)
                 {
-                    return FindTangentPoint(line, rectangle, cornerRadius);
+                    return FindTangentPoint(ray, rectangle, cornerRadius);
                 }
 
                 Circle corner;
                 if (TryGetCorner(ip.Value, rectangle, cornerRadius, out corner))
                 {
-                    ip = corner.ClosestIntersection(line);
+                    ip = ray.FirstIntersectionWith(corner);
                     if (ip == null)
                     {
-                        return FindTangentPoint(line, rectangle, cornerRadius);
+                        return FindTangentPoint(ray, rectangle, cornerRadius);
                     }
 
-                    return ip.Value;
+                    return ip.Value + strokeThickness * ray.Direction;
                 }
 
-                return ip.Value;
+                return ip.Value + strokeThickness * ray.Direction;
             }
 
             private static bool TryGetCorner(Point intersectionPoint, Rect rectangle, CornerRadius cornerRadius, out Circle corner)
@@ -227,23 +220,23 @@ namespace Gu.Wpf.Geometry
                 return false;
             }
 
-            private static Point FindTangentPoint(Line line, Rect rectangle, CornerRadius cornerRadius)
+            private static Point FindTangentPoint(Ray ray, Rect rectangle, CornerRadius cornerRadius)
             {
-                Circle corner;
-                var toMid = line.PerpendicularLineTo(rectangle.MidPoint());
+                var toMid = ray.PerpendicularLineTo(rectangle.CenterPoint());
                 Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
                 if (toMid == null)
                 {
                     // failing silently in release
-                    return rectangle.MidPoint();
+                    return rectangle.CenterPoint();
                 }
 
                 //Debug.Assert(!rectangle.Contains(toMid.Value.StartPoint), "Cannot find tangent if line intersects rectangle");
                 if (toMid.Value.Direction.Axis() != null)
                 {
-                    return line.StartPoint.Closest(rectangle.TopLeft, rectangle.TopRight, rectangle.BottomRight, rectangle.BottomLeft);
+                    return ray.Point.Closest(rectangle.TopLeft, rectangle.TopRight, rectangle.BottomRight, rectangle.BottomLeft);
                 }
 
+                Circle corner;
                 switch (toMid.Value.Direction.Quadrant())
                 {
                     case Quadrant.NegativeXPositiveY:
@@ -268,14 +261,16 @@ namespace Gu.Wpf.Geometry
                     return corner.Center;
                 }
 
-                var toCenterDirection = line.StartPoint.VectorTo(corner.Center)
-                                            .Normalized();
-                var perpDirection = line.Direction.AngleTo(toCenterDirection) > 0
-                                        ? toCenterDirection.Rotate(-90)
-                                        : toCenterDirection.Rotate(90);
-                var perpOffset = corner.Radius * perpDirection;
-                var tangentPoint = corner.Center + perpOffset;
-                return tangentPoint;
+                var lineToCenter = ray.PerpendicularLineTo(corner.Center);
+                Debug.Assert(lineToCenter != null, "Ray cannot go through center here");
+                if (lineToCenter == null)
+                {
+                    // this should never happen but failing silently
+                    // the balloons should not throw much.
+                    return corner.Center;
+                }
+
+                return corner.Center - corner.Radius * lineToCenter.Value.Direction;
             }
 
             private static Circle CreateTopLeft(Point p, double r) => new Circle(p.WithOffset(r, r), r);
@@ -285,15 +280,6 @@ namespace Gu.Wpf.Geometry
             private static Circle CreateBottomRight(Point p, double r) => new Circle(p.WithOffset(-r, -r), r);
 
             private static Circle CreateBottomLeft(Point p, double r) => new Circle(p.WithOffset(r, -r), r);
-        }
-
-        private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var balloon = (BoxBalloon)d;
-            if (balloon.IsInitialized)
-            {
-                balloon.UpdateCachedGeometries();
-            }
         }
     }
 }

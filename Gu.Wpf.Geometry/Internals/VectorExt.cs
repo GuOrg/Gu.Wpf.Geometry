@@ -6,8 +6,6 @@
 
     internal static class VectorExt
     {
-        private const double DegToRad = Math.PI / 180;
-
         internal static Quadrant Quadrant(this Vector v)
         {
             if (v.X >= 0)
@@ -48,7 +46,38 @@
 
         internal static Vector Rotate(this Vector v, double degrees)
         {
-            return v.RotateRadians(degrees * DegToRad);
+            return v.RotateRadians(degrees * Constants.DegToRad);
+        }
+
+        internal static double AngleToPositiveX(this Vector v)
+        {
+            var angle = Math.Atan2(v.Y, v.X) * Constants.RadToDeg;
+            return angle;
+        }
+
+        internal static Vector? SnapToOrtho(this Vector v)
+        {
+            var angle = v.AngleToPositiveX();
+            if (-135 < angle && angle < -45)
+            {
+                return new Vector(0, -v.Length);
+            }
+
+            if (-45 < angle && angle < 45)
+            {
+                return new Vector(v.Length, 0);
+            }
+
+            if (45 < angle && angle < 135)
+            {
+                return new Vector(0, v.Length);
+            }
+
+            if ((-180 <= angle && angle < -135) || (135 < angle && angle <= 180))
+            {
+                return new Vector(-v.Length, 0);
+            }
+            return null;
         }
 
         internal static double DotProdcut(this Vector v, Vector other)

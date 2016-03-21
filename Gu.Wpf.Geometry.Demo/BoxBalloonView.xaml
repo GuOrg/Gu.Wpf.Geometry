@@ -43,6 +43,10 @@
                 <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
                 <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>
             </ListBox>
+            <Rectangle Grid.Row="1"
+                       Grid.Column="1"
+                       Stroke="Yellow"
+                       StrokeThickness="4" />
 
             <geometry:BoxBalloon Grid.Row="1"
                                  Grid.Column="1"

@@ -16,7 +16,7 @@
             this.EndPoint = endPoint;
         }
 
-        public Point MidPoint
+        internal Point MidPoint
         {
             get
             {
@@ -26,9 +26,9 @@
             }
         }
 
-        public double Length => (this.EndPoint - this.StartPoint).Length;
+        internal double Length => (this.EndPoint - this.StartPoint).Length;
 
-        public Vector Direction
+        internal Vector Direction
         {
             get
             {
@@ -38,17 +38,7 @@
             }
         }
 
-        private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length.ToString("F1")}";
-
-        public Line RotateAroundStartPoint(double angleInDegrees)
-        {
-            var v = this.EndPoint - this.StartPoint;
-            v = v.Rotate(angleInDegrees);
-            var ep = this.StartPoint + v;
-            return new Line(this.StartPoint, ep);
-        }
-
-        public Vector PerpendicularDirection
+        internal Vector PerpendicularDirection
         {
             get
             {
@@ -57,15 +47,11 @@
             }
         }
 
-        public override string ToString()
-        {
-            return this.ToString(string.Empty);
-        }
+        private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length.ToString("F1")}";
 
-        public string ToString(string format)
-        {
-            return $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
-        }
+        public override string ToString() => this.ToString(string.Empty);
+
+        public string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
 
         internal static Line Parse(string text)
         {
@@ -78,6 +64,14 @@
             var sp = Point.Parse(strings[0]);
             var ep = Point.Parse(strings[1]);
             return new Line(sp, ep);
+        }
+
+        internal Line RotateAroundStartPoint(double angleInDegrees)
+        {
+            var v = this.EndPoint - this.StartPoint;
+            v = v.Rotate(angleInDegrees);
+            var ep = this.StartPoint + v;
+            return new Line(this.StartPoint, ep);
         }
 
         internal Line Flip()
@@ -175,41 +169,24 @@
 
         internal Point? ClosestIntersection(Rect rectangle)
         {
-            if (rectangle.Contains(this.StartPoint))
-            {
-                switch (this.Direction.Quadrant())
-                {
-                    case Quadrant.NegativeXPositiveY:
-                        return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                               IntersectionPoint(rectangle.BottomLine(), this, true);
-                    case Quadrant.PositiveXPositiveY:
-                        return IntersectionPoint(rectangle.RightLine(), this, true) ??
-                               IntersectionPoint(rectangle.BottomLine(), this, true);
-                    case Quadrant.PositiveXNegativeY:
-                        return IntersectionPoint(rectangle.RightLine(), this, true) ??
-                               IntersectionPoint(rectangle.TopLine(), this, true);
-                    case Quadrant.NegativeXNegativeY:
-                        return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                               IntersectionPoint(rectangle.TopLine(), this, true);
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+            var quadrant = rectangle.Contains(this.StartPoint)
+                ? this.Direction.Quadrant()
+                : this.Direction.Negated().Quadrant();
 
-            switch (this.Direction.Quadrant())
+            switch (quadrant)
             {
                 case Quadrant.NegativeXPositiveY:
-                    return IntersectionPoint(rectangle.RightLine(), this, true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, true);
+                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
+                           IntersectionPoint(rectangle.BottomLine(), this, true);
                 case Quadrant.PositiveXPositiveY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, true);
-                case Quadrant.PositiveXNegativeY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                           IntersectionPoint(rectangle.BottomLine(), this, true);
-                case Quadrant.NegativeXNegativeY:
                     return IntersectionPoint(rectangle.RightLine(), this, true) ??
                            IntersectionPoint(rectangle.BottomLine(), this, true);
+                case Quadrant.PositiveXNegativeY:
+                    return IntersectionPoint(rectangle.RightLine(), this, true) ??
+                           IntersectionPoint(rectangle.TopLine(), this, true);
+                case Quadrant.NegativeXNegativeY:
+                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
+                           IntersectionPoint(rectangle.TopLine(), this, true);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

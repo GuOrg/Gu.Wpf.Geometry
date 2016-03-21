@@ -25,7 +25,7 @@
             return new Line(rect.TopRight, rect.BottomRight);
         }
 
-        internal static Point MidPoint(this Rect rect)
+        internal static Point CenterPoint(this Rect rect)
         {
             return PointExt.MidPoint(rect.TopLeft, rect.BottomRight);
         }

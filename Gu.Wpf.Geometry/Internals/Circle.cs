@@ -48,5 +48,13 @@
             var tangentLength = Math.Sqrt(this.Radius * this.Radius - pl * pl);
             return perp.Value.StartPoint - tangentLength * line.Direction;
         }
+
+        internal Point PointOnCircumference(Vector directionFromCenter)
+        {
+            var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
+            var x = this.Center.X + this.Radius * Math.Cos(a);
+            var y = this.Center.Y + this.Radius * Math.Sin(a);
+            return new Point(x, y);
+        }
     }
 }

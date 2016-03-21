@@ -31,13 +31,17 @@ namespace Gu.Wpf.Geometry
             "PlacementTarget",
             typeof(UIElement),
             typeof(BalloonBase),
-            new PropertyMetadata(default(UIElement), OnPlacementTargetChanged));
+            new PropertyMetadata(
+                default(UIElement),
+                OnPlacementTargetChanged));
 
         public static readonly DependencyProperty PlacementOptionsProperty = DependencyProperty.Register(
             "PlacementOptions",
             typeof(PlacementOptions),
             typeof(BalloonBase),
-            new PropertyMetadata(Wpf.Geometry.PlacementOptions.Auto, OnPlacementOptionsChanged));
+            new PropertyMetadata(
+                PlacementOptions.Auto, 
+                OnPlacementOptionsChanged));
 
         protected static readonly DependencyProperty ConnectorVertexPointProperty = DependencyProperty.Register(
             "ConnectorVertexPoint",
@@ -102,6 +106,11 @@ namespace Gu.Wpf.Geometry
 
         protected override Size ArrangeOverride(Size finalSize)
         {
+            if (finalSize.Width > this.StrokeThickness && finalSize.Height > this.StrokeThickness)
+            {
+                finalSize = new Size(finalSize.Width - this.StrokeThickness, finalSize.Height - this.StrokeThickness);
+            }
+
             return finalSize;
         }
 
@@ -139,8 +148,10 @@ namespace Gu.Wpf.Geometry
             }
 
             var boxGeometry = this.GetOrCreateBoxGeometry(this.RenderSize);
-            var connectorGeometry = this.GetOrCreateConnectorGeometry(this.RenderSize);
-            if (ReferenceEquals(boxGeometry, this.BoxGeometry) && 
+            var connectorGeometry = this.CanCreateConnectorGeometry()
+                    ? this.GetOrCreateConnectorGeometry(this.RenderSize)
+                    : Geometry.Empty;
+            if (ReferenceEquals(boxGeometry, this.BoxGeometry) &&
                 ReferenceEquals(connectorGeometry, this.ConnectorGeometry))
             {
                 return;
@@ -159,6 +170,13 @@ namespace Gu.Wpf.Geometry
 
             this.ConnectorGeometry = connectorGeometry;
             this.balloonGeometry = this.CreateGeometry(this.BoxGeometry, this.ConnectorGeometry);
+        }
+
+        private bool CanCreateConnectorGeometry()
+        {
+            return this.ConnectorOffset != default(Vector) &&
+                   this.RenderSize.Width > 0 &&
+                   this.RenderSize.Height > 0;
         }
 
         protected abstract Geometry GetOrCreateBoxGeometry(Size renderSize);
@@ -187,7 +205,7 @@ namespace Gu.Wpf.Geometry
                         return;
                     }
 
-                    var mp = selfRect.MidPoint();
+                    var mp = selfRect.CenterPoint();
                     var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
                     Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
                     if (ip == null)

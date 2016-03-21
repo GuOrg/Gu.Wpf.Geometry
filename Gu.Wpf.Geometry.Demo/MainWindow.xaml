@@ -21,10 +21,14 @@
             <local:BoxBalloonView Margin="100" />
         </TabItem>
 
+        <TabItem Header="EllipseBalloon">
+            <local:EllipseBalloonView Margin="100" />
+        </TabItem>
+
         <TabItem Header="PlacementOptionsExtension">
             <local:PlacementOptionsExtensionView Margin="100" />
         </TabItem>
-        
+
         <TabItem Header="ballon popup">
             <local:BalloonPopupView />
         </TabItem>

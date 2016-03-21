@@ -37,6 +37,7 @@ using System.Windows.Markup;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Tests", AllInternalsVisible = true)]
+[assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Demo", AllInternalsVisible = true)]
 [assembly: InternalsVisibleTo("Gu.Wpf.Geometry.Benchmarks", AllInternalsVisible = true)]
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]

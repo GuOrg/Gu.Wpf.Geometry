@@ -40,6 +40,6 @@
                    Width="100"
                    Height="10"
                    Fill="Gainsboro"
-                   MouseLeftButtonDown="OnTargetMouseLeftDown" />
+                   local:Drag.WithMouse="True"/>
     </Canvas>
 </UserControl>

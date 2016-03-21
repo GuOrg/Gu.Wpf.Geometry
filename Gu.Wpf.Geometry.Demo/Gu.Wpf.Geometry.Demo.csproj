@@ -50,6 +50,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AttachedProperties\Drag.cs" />
     <Compile Include="BalloonControlView.xaml.cs">
       <DependentUpon>BalloonControlView.xaml</DependentUpon>
     </Compile>

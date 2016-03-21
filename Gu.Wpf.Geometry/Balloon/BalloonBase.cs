@@ -40,7 +40,7 @@ namespace Gu.Wpf.Geometry
             typeof(PlacementOptions),
             typeof(BalloonBase),
             new PropertyMetadata(
-                PlacementOptions.Auto, 
+                PlacementOptions.Auto,
                 OnPlacementOptionsChanged));
 
         protected static readonly DependencyProperty ConnectorVertexPointProperty = DependencyProperty.Register(
@@ -192,37 +192,34 @@ namespace Gu.Wpf.Geometry
 
         protected virtual void UpdateConnectorOffset()
         {
-            if (this.PlacementTarget != null && this.RenderSize.Width > 0)
+            if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
             {
-                if (this.IsVisible && this.PlacementTarget.IsVisible)
+                var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+                var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
+                if (tp == null)
                 {
-                    var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
-                    var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
-                    var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                    if (tp == null)
-                    {
-                        this.InvalidateProperty(ConnectorOffsetProperty);
-                        return;
-                    }
-
-                    var mp = selfRect.CenterPoint();
-                    var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
-                    Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
-                    if (ip == null)
-                    {
-                        // failing silently in release
-                        this.InvalidateProperty(ConnectorOffsetProperty);
-                    }
-
-                    var v = tp.Value - ip.Value;
-                    // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
-                    {
-                        v = v - this.PlacementOptions.Offset * v.Normalized();
-                    }
-
-                    this.SetCurrentValue(ConnectorOffsetProperty, v);
+                    this.InvalidateProperty(ConnectorOffsetProperty);
+                    return;
                 }
+
+                var mp = selfRect.CenterPoint();
+                var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
+                Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
+                if (ip == null)
+                {
+                    // failing silently in release
+                    this.InvalidateProperty(ConnectorOffsetProperty);
+                }
+
+                var v = tp.Value - ip.Value;
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                {
+                    v = v - this.PlacementOptions.Offset * v.Normalized();
+                }
+
+                this.SetCurrentValue(ConnectorOffsetProperty, v);
             }
             else
             {

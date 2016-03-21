@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <CheckBox x:Name="ShowPopupBox"
                   HorizontalAlignment="Center"
-                  IsChecked="True" />
+                  IsChecked="False" />
         <Popup Grid.Row="0"
                AllowsTransparency="True"
                ClipToBounds="False"
@@ -23,34 +23,35 @@
                IsOpen="{Binding IsChecked,
                                 ElementName=ShowPopupBox}"
                Placement="Bottom"
-               PlacementTarget="{Binding ElementName=ShowPopupBox}"
-               VerticalOffset="20">
-            <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
-                <Grid Margin="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <GroupBox Header="Stuff">
-                        <TextBlock Text="random long text" />
-                    </GroupBox>
-                    <GroupBox Grid.Row="1"
-                              Header="More Stuff">
-                        <UniformGrid Grid.Row="1"
-                                     Rows="1">
-                            <Ellipse Width="20"
-                                     Height="20"
-                                     Fill="Blue" />
-                            <Ellipse Width="20"
-                                     Height="20"
-                                     Fill="Yellow" />
-                            <Ellipse Width="20"
-                                     Height="20"
-                                     Fill="Red" />
-                        </UniformGrid>
-                    </GroupBox>
-                </Grid>
-            </geometry:Balloon>
+               PlacementTarget="{Binding ElementName=ShowPopupBox}">
+            <Border Padding="0,30,0,0">
+                <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <GroupBox Header="Stuff">
+                            <TextBlock Text="random long text" />
+                        </GroupBox>
+                        <GroupBox Grid.Row="1"
+                                  Header="More Stuff">
+                            <UniformGrid Grid.Row="1"
+                                         Rows="1">
+                                <Ellipse Width="20"
+                                         Height="20"
+                                         Fill="Blue" />
+                                <Ellipse Width="20"
+                                         Height="20"
+                                         Fill="Yellow" />
+                                <Ellipse Width="20"
+                                         Height="20"
+                                         Fill="Red" />
+                            </UniformGrid>
+                        </GroupBox>
+                    </Grid>
+                </geometry:Balloon>
+            </Border>
         </Popup>
     </Grid>
 </UserControl>

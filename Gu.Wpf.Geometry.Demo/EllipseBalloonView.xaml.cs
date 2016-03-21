@@ -1,8 +1,6 @@
 ﻿namespace Gu.Wpf.Geometry.Demo
 {
-    using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
 
     /// <summary>
     /// Interaction logic for EllipseBalloonView.xaml
@@ -11,7 +9,7 @@
     {
         public EllipseBalloonView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

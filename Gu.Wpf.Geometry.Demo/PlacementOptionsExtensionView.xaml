@@ -40,6 +40,6 @@
                    Width="100"
                    Height="10"
                    Fill="Gainsboro"
-                   local:Drag.WithMouse="True"/>
+                   local:Drag.WithMouse="True" />
     </Canvas>
 </UserControl>

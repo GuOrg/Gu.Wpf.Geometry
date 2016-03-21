@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Geometry
 {
-    using System;
     using System.Windows;
 
     internal static class RectExt

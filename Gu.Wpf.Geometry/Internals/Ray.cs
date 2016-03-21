@@ -126,9 +126,9 @@
             var nx2 = nx * nx;
             var ny = this.Direction.Y;
             var ny2 = ny * ny;
-            var x0 = this.Point.X - ellipse.Center.X;
+            var x0 = this.Point.X - ellipse.CenterPoint.X;
             var x02 = x0 * x0;
-            var y0 = this.Point.Y - ellipse.Center.Y;
+            var y0 = this.Point.Y - ellipse.CenterPoint.Y;
             var y02 = y0 * y0;
             var a = ellipse.RadiusX;
             var a2 = a * a;
@@ -154,11 +154,11 @@
             {
                 s = (-B + sqrt) / (2 * A);
                 return s > 0
-                    ? new Point(x0,y0) + s * this.Direction + new Vector(ellipse.Center.X, ellipse.Center.Y)
+                    ? new Point(x0,y0) + s * this.Direction + new Vector(ellipse.CenterPoint.X, ellipse.CenterPoint.Y)
                     : (Point?)null;
             }
 
-            return new Point(x0, y0) + s * this.Direction + new Vector(ellipse.Center.X, ellipse.Center.Y);
+            return new Point(x0, y0) + s * this.Direction + new Vector(ellipse.CenterPoint.X, ellipse.CenterPoint.Y);
         }
 
         // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()

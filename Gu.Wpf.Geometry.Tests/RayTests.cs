@@ -98,7 +98,7 @@
             {
                 var direction = xv.Rotate(i);
                 var pointOnCircumference = ellipse.PointOnCircumference(direction);
-                var ray = new Ray(ellipse.Center, direction);
+                var ray = new Ray(ellipse.CenterPoint, direction);
                 var actual = ray.FirstIntersectionWith(ellipse);
                 Assert.Equal(pointOnCircumference, actual, NullablePointComparer.Default);
             }

@@ -72,6 +72,50 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
+        protected override void UpdateConnectorOffset()
+        {
+            if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
+            {
+                var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+                var ellipse = new Ellipse(selfRect);
+                var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
+                if (tp == null)
+                {
+                    this.InvalidateProperty(ConnectorOffsetProperty);
+                    return;
+                }
+
+                if (ellipse.Contains(tp.Value))
+                {
+                    this.SetCurrentValue(ConnectorOffsetProperty, new Vector(0, 0));
+                    return;
+                }
+
+                var mp = ellipse.CenterPoint;
+                var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
+                Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
+                if (ip == null)
+                {
+                    // failing silently in release
+                    this.InvalidateProperty(ConnectorOffsetProperty);
+                }
+
+                var v = tp.Value - ip.Value;
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                {
+                    v = v - this.PlacementOptions.Offset * v.Normalized();
+                }
+
+                this.SetCurrentValue(ConnectorOffsetProperty, v);
+            }
+            else
+            {
+                this.InvalidateProperty(ConnectorOffsetProperty);
+            }
+        }
+
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
         {
             var figure = new PathFigure { IsClosed = true };
@@ -108,13 +152,13 @@ namespace Gu.Wpf.Geometry
 
             private static Point FindTangentPoint(Ray toCenter, Ellipse ellipse)
             {
-                var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.Center);
+                var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
                 Debug.Assert(toEllipseCenter != null, "Ray should not go through ellipse center here");
                 if (toEllipseCenter == null)
                 {
                     // this should never happen but failing silently
                     // the balloons should not throw much returning random point.
-                    return ellipse.Center;
+                    return ellipse.CenterPoint;
                 }
 
                 return ellipse.PointOnCircumference(toEllipseCenter.Value.Direction.Negated());
@@ -131,7 +175,7 @@ namespace Gu.Wpf.Geometry
 
             public object Convert(object value, Type _, object __, CultureInfo ___)
             {
-                return ((Ellipse)value).Center;
+                return ((Ellipse)value).CenterPoint;
             }
 
             public object ConvertBack(object _, Type __, object ___, CultureInfo ____)

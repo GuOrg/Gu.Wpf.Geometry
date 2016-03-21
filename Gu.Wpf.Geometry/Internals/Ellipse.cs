@@ -7,7 +7,7 @@
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     internal struct Ellipse
     {
-        internal readonly Point Center;
+        internal readonly Point CenterPoint;
         internal readonly double RadiusX;
         internal readonly double RadiusY;
 
@@ -16,19 +16,19 @@
             Debug.Assert(!rect.IsEmpty, "!rect.IsEmpty");
             this.RadiusX = (rect.Right - rect.X) * 0.5;
             this.RadiusY = (rect.Bottom - rect.Y) * 0.5;
-            this.Center = new Point(rect.X + this.RadiusX, rect.Y + this.RadiusY);
+            this.CenterPoint = new Point(rect.X + this.RadiusX, rect.Y + this.RadiusY);
         }
 
-        internal Ellipse(Point center, double radiusX, double radiusY)
+        internal Ellipse(Point centerPoint, double radiusX, double radiusY)
         {
-            this.Center = center;
+            this.CenterPoint = centerPoint;
             this.RadiusX = radiusX;
             this.RadiusY = radiusY;
         }
 
         internal bool IsZero => this.RadiusX <= 0 || this.RadiusY <= 0;
 
-        private string DebuggerDisplay => $"{this.Center.ToString("F1")} rx: {this.RadiusX.ToString("F1")} ry: {this.RadiusY.ToString("F1")}";
+        private string DebuggerDisplay => $"{this.CenterPoint.ToString("F1")} rx: {this.RadiusX.ToString("F1")} ry: {this.RadiusY.ToString("F1")}";
 
         internal static Ellipse CreateFromSize(Size renderSize)
         {
@@ -65,9 +65,16 @@
         internal Point PointOnCircumference(Vector directionFromCenter)
         {
             var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
-            var x = this.Center.X + this.RadiusX * Math.Cos(a);
-            var y = this.Center.Y + this.RadiusY * Math.Sin(a);
+            var x = this.CenterPoint.X + this.RadiusX * Math.Cos(a);
+            var y = this.CenterPoint.Y + this.RadiusY * Math.Sin(a);
             return new Point(x, y);
+        }
+
+        internal bool Contains(Point p)
+        {
+            var v = this.CenterPoint.VectorTo(p);
+            var r = this.RadiusInDirection(v);
+            return this.CenterPoint.DistanceTo(p) <= r;
         }
     }
 }

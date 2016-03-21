@@ -51,7 +51,7 @@
             <geometry:BoxBalloon Grid.Row="1"
                                  Grid.Column="1"
                                  ConnectorAngle="45"
-                                 ConnectorOffset="-25,-5"
+                                 ConnectorOffset="-15,15"
                                  CornerRadius="10"
                                  DrawConnectorOutsideOfBounds="False"
                                  Stroke="CornflowerBlue"

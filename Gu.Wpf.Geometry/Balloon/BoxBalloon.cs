@@ -88,7 +88,7 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
-            var rectangle = new Rect(new Point(0, 0), renderSize);
+            var rectangle = this.CreateRect(renderSize);
             if (rectangle.Width <= 0 || rectangle.Height <= 0)
             {
                 return Geometry.Empty;
@@ -144,6 +144,31 @@ namespace Gu.Wpf.Geometry
             return cr.ScaleBy(factor);
         }
 
+        protected virtual Rect CreateRect(Size renderSize)
+        {
+            var co = this.ConnectorOffset;
+            if (!this.DrawConnectorOutsideOfBounds && co.Length > 0)
+            {
+                var width = renderSize.Width - Math.Abs(co.X);
+                var height = renderSize.Height - Math.Abs(co.Y);
+                switch (co.Quadrant())
+                {
+                    case Quadrant.NegativeXPositiveY:
+                        return new Rect(new Point(-co.X, 0), new Size(width, height));
+                    case Quadrant.PositiveXPositiveY:
+                        return new Rect(new Point(0, co.Y), new Size(width, height));
+                    case Quadrant.PositiveXNegativeY:
+                        return new Rect(new Point(0, -co.Y), new Size(width, height));
+                    case Quadrant.NegativeXNegativeY:
+                        return new Rect(new Point(-co.X, -co.Y), new Size(width, height));
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            return new Rect(new Point(0, 0), renderSize);
+        }
+
         private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var balloon = (BoxBalloon)d;
@@ -153,24 +178,17 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private Rect CreateRect(Size renderSize)
-        {
-            return new Rect(new Point(0, 0), renderSize);
-        }
-
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
         {
             var figure = new PathFigure { IsClosed = true };
-            figure.Bind(PathFigure.StartPointProperty)
-                .OneWayTo(this, property);
+            figure.Bind(PathFigure.StartPointProperty).OneWayTo(this, property);
             return figure;
         }
 
         private LineSegment CreateLineSegmentTo(DependencyProperty property)
         {
             var lineSegment = new LineSegment { IsStroked = true };
-            lineSegment.Bind(LineSegment.PointProperty)
-                .OneWayTo(this, property);
+            lineSegment.Bind(LineSegment.PointProperty).OneWayTo(this, property);
             return lineSegment;
         }
 
@@ -207,10 +225,7 @@ namespace Gu.Wpf.Geometry
 
             private static bool TryGetCorner(Point intersectionPoint, Rect rectangle, CornerRadius cornerRadius, out Circle corner)
             {
-                return TryGetCorner(intersectionPoint, rectangle.TopLeft, cornerRadius.TopLeft, CreateTopLeft, out corner) ||
-                       TryGetCorner(intersectionPoint, rectangle.TopRight, cornerRadius.TopRight, CreateTopRight, out corner) ||
-                       TryGetCorner(intersectionPoint, rectangle.BottomRight, cornerRadius.BottomRight, CreateBottomRight, out corner) ||
-                       TryGetCorner(intersectionPoint, rectangle.BottomLeft, cornerRadius.BottomLeft, CreateBottomLeft, out corner);
+                return TryGetCorner(intersectionPoint, rectangle.TopLeft, cornerRadius.TopLeft, CreateTopLeft, out corner) || TryGetCorner(intersectionPoint, rectangle.TopRight, cornerRadius.TopRight, CreateTopRight, out corner) || TryGetCorner(intersectionPoint, rectangle.BottomRight, cornerRadius.BottomRight, CreateBottomRight, out corner) || TryGetCorner(intersectionPoint, rectangle.BottomLeft, cornerRadius.BottomLeft, CreateBottomLeft, out corner);
             }
 
             private static bool TryGetCorner(Point intersectionPoint, Point cornerPoint, double radius, Func<Point, double, Circle> factory, out Circle corner)

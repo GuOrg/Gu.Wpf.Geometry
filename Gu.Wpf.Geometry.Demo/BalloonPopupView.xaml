@@ -25,14 +25,15 @@
                Placement="Bottom"
                PlacementTarget="{Binding ElementName=ShowPopupBox}">
             <Border Padding="0,30,0,0">
-                <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
+                <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}"
+                                  CornerRadius="10">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <GroupBox Header="Stuff">
-                            <TextBlock Text="random long text" />
+                            <TextBlock Text="Lorem ipsum dolor sit amet" />
                         </GroupBox>
                         <GroupBox Grid.Row="1"
                                   Header="More Stuff">

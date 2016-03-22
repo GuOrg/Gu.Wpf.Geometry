@@ -6,6 +6,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Data;
     using System.Windows.Media;
+    using System.Windows.Threading;
 
     public class EllipseBalloon : BalloonBase
     {
@@ -76,6 +77,12 @@ namespace Gu.Wpf.Geometry
         {
             if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
             {
+                if (!this.IsLoaded)
+                {
+                    this.Dispatcher.Invoke(this.UpdateConnectorOffset, DispatcherPriority.Loaded);
+                    return;
+                }
+
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
                 var ellipse = new Ellipse(selfRect);
                 var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);

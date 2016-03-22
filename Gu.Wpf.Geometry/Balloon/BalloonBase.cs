@@ -6,6 +6,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Data;
     using System.Windows.Media;
     using System.Windows.Shapes;
+    using System.Windows.Threading;
 
     public abstract class BalloonBase : Shape
     {
@@ -195,6 +196,12 @@ namespace Gu.Wpf.Geometry
         {
             if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
             {
+                if (!this.IsLoaded)
+                {
+                    this.Dispatcher.Invoke(this.UpdateConnectorOffset, DispatcherPriority.Loaded);
+                    return;
+                }
+
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
                 var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);

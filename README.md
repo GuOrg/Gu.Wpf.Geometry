@@ -1,4 +1,6 @@
 # Gu.Wpf.Geometry
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.Geometry.svg)](https://www.nuget.org/packages/Gu.Wpf.Geometry/)
+
 Small library with WPF geometries.
 
 ## Balloon

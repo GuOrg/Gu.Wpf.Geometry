@@ -140,7 +140,11 @@ Or use the `PlacementOptionsExtension`:
                       />
 ```
 
+## EllipseBalloon
 
+Same API as BoxBalloon but renders:
+
+![EllipseBallon](http://i.imgur.com/2yMYmfR.png)
 
 ## GradientPath
 

@@ -8,9 +8,9 @@ using System.Windows.Markup;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Gu.Wpf.Geometry")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Geometries for WPF.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Johan Larsson")]
 [assembly: AssemblyProduct("Gu.Wpf.Geometry")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]

@@ -1,4 +1,3 @@
-source C:\Tfs\Coromatic\Common\GuGet
 source http://www.nuget.org/api/v2/
 
 nuget BenchmarkDotNet 0.9.3 framework: >= net45

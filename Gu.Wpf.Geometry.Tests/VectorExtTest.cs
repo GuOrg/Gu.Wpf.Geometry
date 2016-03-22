@@ -42,5 +42,20 @@ namespace Gu.Wpf.Geometry.Tests
             actual = vPlus.SnapToOrtho();
             Assert.Equal(expected, actual, NullableVectorComparer.Default);
         }
+
+        [Theory]
+        [InlineData("1,0", 90, "0,1")]
+        [InlineData("2,0", 90, "0,2")]
+        [InlineData("2,3", 90, "-3,2")]
+        public void Rotate(string vs, double angle, string evs)
+        {
+            var vector = Vector.Parse(vs);
+            var expected = Vector.Parse(evs);
+            var actual = vector.Rotate(angle);
+            Assert.Equal(expected, actual, VectorComparer.Default);
+
+            var roundtrip = actual.Rotate(-angle);
+            Assert.Equal(vector, roundtrip, VectorComparer.Default);
+        }
     }
 }

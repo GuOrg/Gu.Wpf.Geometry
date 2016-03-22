@@ -102,14 +102,6 @@
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
             Assert.Equal(expected, actual, NullablePointComparer.Default);
-
-            var l2 = l.RotateAroundStartPoint(0.01);
-            actual = l2.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
-
-            var l3 = l.RotateAroundStartPoint(-0.01);
-            actual = l3.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
         }
     }
 }

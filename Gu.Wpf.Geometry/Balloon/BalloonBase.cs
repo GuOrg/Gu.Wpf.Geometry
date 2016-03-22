@@ -198,7 +198,7 @@ namespace Gu.Wpf.Geometry
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
                 var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                if (tp == null)
+                if (tp == null || selfRect.Contains(tp.Value))
                 {
                     this.InvalidateProperty(ConnectorOffsetProperty);
                     return;

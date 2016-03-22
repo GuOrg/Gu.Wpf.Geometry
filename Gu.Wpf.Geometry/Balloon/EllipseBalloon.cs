@@ -80,7 +80,7 @@ namespace Gu.Wpf.Geometry
                 var ellipse = new Ellipse(selfRect);
                 var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                if (tp == null)
+                if (tp == null || ellipse.Contains(tp.Value))
                 {
                     this.InvalidateProperty(ConnectorOffsetProperty);
                     return;

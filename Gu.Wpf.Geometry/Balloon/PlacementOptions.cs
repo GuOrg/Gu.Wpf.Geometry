@@ -31,15 +31,6 @@
         public Point? GetPointOnTarget(Rect placed, Rect target)
         {
             var p = this.GetPointOnTarget(placed.CenterPoint(), target);
-            if (p == null)
-            {
-                return null;
-            }
-
-            if (placed.Contains(p.Value))
-            {
-                return null;
-            }
 
             return p;
         }

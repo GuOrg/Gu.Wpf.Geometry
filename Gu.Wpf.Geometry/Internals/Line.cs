@@ -140,7 +140,7 @@
             var ip = IntersectionPoint(this, other, false);
             if (ip == null)
             {
-                return null;
+                return this;
             }
 
             return new Line(this.StartPoint, ip.Value);

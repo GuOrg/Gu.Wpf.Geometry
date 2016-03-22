@@ -122,17 +122,27 @@
         // http://www.mare.ee/indrek/misc/2d.pdf
         internal Point? FirstIntersectionWith(Ellipse ellipse)
         {
-            var nx = this.Direction.X;
+            if (Math.Abs(ellipse.CenterPoint.X) < Constants.Tolerance && Math.Abs(ellipse.CenterPoint.Y) < Constants.Tolerance)
+            {
+                return FirstIntersectionWithEllipseCenteredAtOrigin(this.Point, this.Direction, ellipse.RadiusX, ellipse.RadiusY);
+            }
+
+            var offset = new Point(0, 0).VectorTo(ellipse.CenterPoint);
+            var ip = FirstIntersectionWithEllipseCenteredAtOrigin(this.Point - offset, this.Direction, ellipse.RadiusX, ellipse.RadiusY);
+            return ip + offset;
+        }
+
+        internal static Point? FirstIntersectionWithEllipseCenteredAtOrigin(Point startPoint, Vector direction, double a, double b)
+        {
+            var nx = direction.X;
             var nx2 = nx * nx;
-            var ny = this.Direction.Y;
+            var ny = direction.Y;
             var ny2 = ny * ny;
-            var x0 = this.Point.X - ellipse.CenterPoint.X;
+            var x0 = startPoint.X;
             var x02 = x0 * x0;
-            var y0 = this.Point.Y - ellipse.CenterPoint.Y;
+            var y0 = startPoint.Y;
             var y02 = y0 * y0;
-            var a = ellipse.RadiusX;
             var a2 = a * a;
-            var b = ellipse.RadiusY;
             var b2 = b * b;
             var A = nx2 * b2 + ny2 * a2;
             if (Math.Abs(A) < Constants.Tolerance)
@@ -154,11 +164,11 @@
             {
                 s = (-B + sqrt) / (2 * A);
                 return s > 0
-                    ? new Point(x0,y0) + s * this.Direction + new Vector(ellipse.CenterPoint.X, ellipse.CenterPoint.Y)
+                    ? new Point(x0, y0) + s * direction
                     : (Point?)null;
             }
 
-            return new Point(x0, y0) + s * this.Direction + new Vector(ellipse.CenterPoint.X, ellipse.CenterPoint.Y);
+            return new Point(x0, y0) + s * direction;
         }
 
         // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()

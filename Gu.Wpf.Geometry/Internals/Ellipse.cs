@@ -50,24 +50,26 @@
             var cp = Point.Parse(strings[0]);
             var rx = double.Parse(strings[1]);
             var ry = double.Parse(strings[2]);
-            return new Ellipse(cp, rx,ry);
+            return new Ellipse(cp, rx, ry);
         }
 
         // Not sure if radius makes any sense here, not very important since internal
+        // http://math.stackexchange.com/a/687384/47614
         internal double RadiusInDirection(Vector directionFromCenter)
         {
-            var a = new Vector(1, 0).AngleTo(directionFromCenter) * Constants.DegToRad;
-            var rx = this.RadiusX * Math.Cos(a);
-            var ry = this.RadiusY * Math.Sin(a);
-            return Math.Sqrt(rx * rx + ry * ry);
+            var angle = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
+            var cos = Math.Cos(angle);
+            var sin = Math.Sin(angle);
+            var a = this.RadiusX;
+            var b = this.RadiusY;
+            var r2 = 1 / (cos * cos / (a * a) + sin * sin / (b * b));
+            return Math.Sqrt(r2);
         }
 
         internal Point PointOnCircumference(Vector directionFromCenter)
         {
-            var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
-            var x = this.CenterPoint.X + this.RadiusX * Math.Cos(a);
-            var y = this.CenterPoint.Y + this.RadiusY * Math.Sin(a);
-            return new Point(x, y);
+            var r = this.RadiusInDirection(directionFromCenter);
+            return this.CenterPoint + r * directionFromCenter.Normalized();
         }
 
         internal bool Contains(Point p)

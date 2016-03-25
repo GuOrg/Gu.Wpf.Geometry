@@ -2,8 +2,15 @@ version: 1.0.{build}
 configuration: Release
 platform: Any CPU
 before_build:
-- ps: >-
-    .paket/paket.bootstrapper.exe
-    .paket/paket.exe restore
+- cmd: >-
+    .paket\paket.bootstrapper.exe
+    if errorlevel 1 (
+      exit /b %errorlevel%
+    )
+
+    .paket\paket.exe restore
+    if errorlevel 1 (
+      exit /b %errorlevel%
+    )
 build:
   verbosity: minimal

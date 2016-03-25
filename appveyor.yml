@@ -1,0 +1,9 @@
+version: 1.0.{build}
+configuration: Release
+platform: Any CPU
+before_build:
+- ps: >-
+    .paket/paket.bootstrapper.exe
+    .paket/paket.exe restore
+build:
+  verbosity: minimal

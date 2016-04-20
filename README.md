@@ -4,6 +4,18 @@
 
 Small library with WPF geometries.
 
+## Contents
+- [Balloon](#balloon)
+- [BoxBalloon](#boxballoon)
+      - [Simple](#simple)
+      - [ConnectorAngle](#connectorangle)
+      - [ConnectorOffset](#connectoroffset)
+      - [With PlacementTarget](#with-placementtarget)
+      - [PlacementTarget](#placementtarget)
+      - [PlacementOptions](#placementoptions)
+- [EllipseBalloon](#ellipseballoon)
+- [GradientPath](#gradientpath)
+
 ## Balloon
 A `ContentControl`for showing balloons.
 

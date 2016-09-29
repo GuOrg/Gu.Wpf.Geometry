@@ -1,1 +1,2 @@
-xunit
+group Test
+  xunit

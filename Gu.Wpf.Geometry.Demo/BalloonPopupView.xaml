@@ -19,13 +19,16 @@
         <Popup Grid.Row="0"
                AllowsTransparency="True"
                ClipToBounds="False"
-               HorizontalOffset="60"
+               HorizontalOffset="-20"
                IsOpen="{Binding IsChecked,
                                 ElementName=ShowPopupBox}"
                Placement="Bottom"
                PlacementTarget="{Binding ElementName=ShowPopupBox}">
-            <Border Padding="0,30,0,0">
-                <geometry:Balloon CornerRadius="10" PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
+            <Border Padding="0,30,0,0" ClipToBounds="False">
+                <geometry:Balloon 
+                                  CornerRadius="10"
+                                  PlacementTarget="{Binding PlacementTarget,
+                                                            RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition />

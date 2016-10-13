@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Windows.Media;
 
-    partial class GradientPath
+    public partial class GradientPath
     {
         private class GradientGeometry
         {
-            public readonly IReadOnlyList<FigureGeometry> FigureGeometries;
+            internal readonly IReadOnlyList<FigureGeometry> FigureGeometries;
 
             public GradientGeometry(Geometry data, double tolerance, double strokeThickness)
             {

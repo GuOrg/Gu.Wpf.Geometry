@@ -23,6 +23,7 @@
                 totalLength += (pt - previous).Length;
                 previous = pt;
             }
+
             return totalLength;
         }
 
@@ -40,8 +41,10 @@
                     lines[i] = new Line(sp, ep);
                     sp = ep;
                 }
+
                 return lines;
             }
+
             throw new NotSupportedException("Segment is not PolylineSegment in flattened PathFigure");
         }
     }

@@ -174,7 +174,7 @@ namespace Gu.Wpf.Geometry
             this.balloonGeometry = this.CreateGeometry(this.BoxGeometry, this.ConnectorGeometry);
         }
 
-        private bool CanCreateConnectorGeometry()
+        protected bool CanCreateConnectorGeometry()
         {
             return this.ConnectorOffset != default(Vector) &&
                    this.RenderSize.Width > 0 &&
@@ -188,7 +188,8 @@ namespace Gu.Wpf.Geometry
         protected virtual Geometry CreateGeometry(Geometry box, Geometry connector)
         {
             var ballonGeometry = new CombinedGeometry(GeometryCombineMode.Union, box, connector);
-            //ballonGeometry.Freeze();
+
+            // ballonGeometry.Freeze();
             return ballonGeometry;
         }
 
@@ -219,15 +220,18 @@ namespace Gu.Wpf.Geometry
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
                 }
-
-                var v = tp.Value - ip.Value;
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                else
                 {
-                    v = v - this.PlacementOptions.Offset * v.Normalized();
-                }
+                    var v = tp.Value - ip.Value;
 
-                this.SetCurrentValue(ConnectorOffsetProperty, v);
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                    {
+                        v = v - this.PlacementOptions.Offset * v.Normalized();
+                    }
+
+                    this.SetCurrentValue(ConnectorOffsetProperty, v);
+                }
             }
             else
             {
@@ -259,6 +263,7 @@ namespace Gu.Wpf.Geometry
         {
             var balloon = (BalloonBase)d;
             balloon.UpdateConnectorOffset();
+
             // unsubscribing and subscribing here to have only one subscription
             balloon.LayoutUpdated -= balloon.OnLayoutUpdated;
             balloon.LayoutUpdated += balloon.OnLayoutUpdated;

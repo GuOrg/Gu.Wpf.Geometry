@@ -110,6 +110,7 @@
             {
                 return p;
             }
+
             var v = this.StartPoint.VectorTo(p);
             if (Math.Abs(v.AngleTo(this.Direction) % 180) > Constants.Tolerance)
             {
@@ -229,6 +230,7 @@
                 // parallel lines
                 return null;
             }
+
             var sI = Perp(v, w) / d;
             var p = l1.StartPoint + sI * u;
             if (mustBeBetweenStartAndEnd)

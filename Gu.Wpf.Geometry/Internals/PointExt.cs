@@ -66,7 +66,7 @@
             return self.DistanceTo(p1) < self.DistanceTo(p2) ? p1 : p2;
         }
 
-        public static Point Closest(this Point self, Point p1, Point p2, Point p3, Point p4)
+        internal static Point Closest(this Point self, Point p1, Point p2, Point p3, Point p4)
         {
             return self.Closest(self.Closest(p1, p2), self.Closest(p3, p4));
         }
@@ -76,7 +76,7 @@
             return l1.DistanceTo(self) < l2.DistanceTo(self) ? l1 : l2;
         }
 
-        public static Line Closest(this Point self, Line l1, Line l2, Line l3, Line l4)
+        internal static Line Closest(this Point self, Line l1, Line l2, Line l3, Line l4)
         {
             return self.Closest(self.Closest(l1, l2), self.Closest(l3, l4));
         }

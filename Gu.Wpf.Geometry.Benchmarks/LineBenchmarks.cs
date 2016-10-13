@@ -1,8 +1,10 @@
 namespace Gu.Wpf.Geometry.Benchmarks
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using BenchmarkDotNet.Attributes;
 
+    [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField")]
     public class LineBenchmarks
     {
         private static readonly Rect Rect = new Rect(0, 0, 10, 10);
@@ -17,7 +19,7 @@ namespace Gu.Wpf.Geometry.Benchmarks
         [Benchmark()]
         public double IntersectWithRectangle()
         {
-            return Line.ClosestIntersection(Rect).Value.X;
+            return Line.ClosestIntersection(Rect).GetValueOrDefault().X;
         }
     }
 }

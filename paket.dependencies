@@ -3,13 +3,13 @@ framework: net45
 
 group Analyzers
   source http://www.nuget.org/api/v2/
-  framework: net45
+  framework: >= net45
   nuget StyleCop.Analyzers
-  nuget WpfAnalyzers prerelease
+  nuget WpfAnalyzers
   nuget JetBrains.Annotations
 
 group Test
   source http://www.nuget.org/api/v2/
-  framework >= net45
+  framework: >= net45
   nuget BenchmarkDotNet
   nuget xunit

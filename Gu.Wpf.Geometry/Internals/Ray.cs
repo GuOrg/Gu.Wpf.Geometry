@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -132,7 +133,9 @@
             return ip + offset;
         }
 
-        internal static Point? FirstIntersectionWithEllipseCenteredAtOrigin(Point startPoint, Vector direction, double a, double b)
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        [SuppressMessage("StyleCop", "SA1312")]
+        private static Point? FirstIntersectionWithEllipseCenteredAtOrigin(Point startPoint, Vector direction, double a, double b)
         {
             var nx = direction.X;
             var nx2 = nx * nx;
@@ -183,6 +186,7 @@
                 // parallel lines
                 return null;
             }
+
             var sI = Perp(v, w) / d;
             var p = ray.Point + sI * u;
             if (mustBeBetweenStartAndEnd)

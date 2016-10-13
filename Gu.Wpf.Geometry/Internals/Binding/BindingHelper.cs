@@ -103,7 +103,7 @@
                     Source = source,
                     Mode = BindingMode.OneWay,
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                    Converter =  converter
+                    Converter = converter
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);

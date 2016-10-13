@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Geometry.Tests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
 
@@ -20,6 +21,7 @@
             return new Line(sp, ep);
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static double AsDouble(this string s)
         {
             return double.Parse(s, CultureInfo.InvariantCulture);

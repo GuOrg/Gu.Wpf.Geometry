@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     internal static class CornerRadiusExt
@@ -48,13 +49,12 @@
                    cornerRadius.BottomLeft <= 0;
         }
 
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         internal static bool IsAllEqual(this CornerRadius cornerRadius)
         {
-            // ReSharper disable CompareOfFloatsByEqualityOperator
             return cornerRadius.TopLeft == cornerRadius.TopRight &&
                    cornerRadius.TopLeft == cornerRadius.BottomLeft &&
                    cornerRadius.TopLeft == cornerRadius.BottomRight;
-            // ReSharper restore CompareOfFloatsByEqualityOperator
         }
     }
 }

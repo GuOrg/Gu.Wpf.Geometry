@@ -9,7 +9,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return this.GetRadius((CornerRadius) value);
+            return this.GetRadius((CornerRadius)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

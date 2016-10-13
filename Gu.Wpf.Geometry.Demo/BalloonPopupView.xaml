@@ -25,8 +25,7 @@
                Placement="Bottom"
                PlacementTarget="{Binding ElementName=ShowPopupBox}">
             <Border Padding="0,30,0,0">
-                <geometry:Balloon PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}"
-                                  CornerRadius="10">
+                <geometry:Balloon CornerRadius="10" PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -35,10 +34,8 @@
                         <GroupBox Header="Stuff">
                             <TextBlock Text="Lorem ipsum dolor sit amet" />
                         </GroupBox>
-                        <GroupBox Grid.Row="1"
-                                  Header="More Stuff">
-                            <UniformGrid Grid.Row="1"
-                                         Rows="1">
+                        <GroupBox Grid.Row="1" Header="More Stuff">
+                            <UniformGrid Rows="1">
                                 <Ellipse Width="20"
                                          Height="20"
                                          Fill="Blue" />

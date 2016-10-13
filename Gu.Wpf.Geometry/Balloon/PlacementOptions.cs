@@ -38,22 +38,22 @@
         private static Line ClosestLine(Rect rect, Point p)
         {
             var angle = new Vector(1, 1).AngleTo(p.VectorTo(rect.CenterPoint()));
-            if (0 <= angle && angle <= 90)
+            if (angle >= 0 && angle <= 90)
             {
                 return rect.TopLine();
             }
 
-            if (90 <= angle && angle <= 180)
+            if (angle >= 90 && angle <= 180)
             {
                 return rect.RightLine();
             }
 
-            if (-90 <= angle && angle <= 0)
+            if (angle >= -90 && angle <= 0)
             {
                 return rect.LeftLine();
             }
 
-            if (-180 <= angle && angle <= -90)
+            if (angle >= -180 && angle <= -90)
             {
                 return rect.BottomLine();
             }
@@ -93,6 +93,7 @@
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                 case VerticalPlacement.Top:
                     switch (this.Horizontal)
                     {
@@ -107,6 +108,7 @@
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                 case VerticalPlacement.Center:
                     switch (this.Horizontal)
                     {
@@ -122,6 +124,7 @@
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                 case VerticalPlacement.Bottom:
                     switch (this.Horizontal)
                     {
@@ -136,6 +139,7 @@
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }

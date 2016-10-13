@@ -49,7 +49,6 @@
                     default:
                         throw FormatException(text);
                 }
-
             }
             catch (Exception e)
             {

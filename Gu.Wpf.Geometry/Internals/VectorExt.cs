@@ -58,25 +58,26 @@
         internal static Vector? SnapToOrtho(this Vector v)
         {
             var angle = v.AngleToPositiveX();
-            if (-135 < angle && angle < -45)
+            if (angle > -135 && angle < -45)
             {
                 return new Vector(0, -v.Length);
             }
 
-            if (-45 < angle && angle < 45)
+            if (angle > -45 && angle < 45)
             {
                 return new Vector(v.Length, 0);
             }
 
-            if (45 < angle && angle < 135)
+            if (angle > 45 && angle < 135)
             {
                 return new Vector(0, v.Length);
             }
 
-            if ((-180 <= angle && angle < -135) || (135 < angle && angle <= 180))
+            if ((angle >= -180 && angle < -135) || (angle > 135 && angle <= 180))
             {
                 return new Vector(-v.Length, 0);
             }
+
             return null;
         }
 

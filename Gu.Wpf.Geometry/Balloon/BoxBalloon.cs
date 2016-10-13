@@ -31,7 +31,7 @@ namespace Gu.Wpf.Geometry
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
             var rect = new Rect(new Point(0, 0), renderSize);
-            this.SetValue(RectProperty, rect);
+            this.SetCurrentValue(RectProperty, rect);
             if (rect.Width <= 0 || rect.Height <= 0)
             {
                 return Geometry.Empty;
@@ -99,6 +99,7 @@ namespace Gu.Wpf.Geometry
             if (ip == null)
             {
                 Debug.Assert(false, $"Line {fromCenter} does not intersect rectangle {rectangle}");
+
                 // ReSharper disable once HeuristicUnreachableCode
                 return Geometry.Empty;
             }
@@ -108,9 +109,9 @@ namespace Gu.Wpf.Geometry
             var toCenter = new Ray(vertexPoint, this.ConnectorOffset.Negated());
             var p1 = ConnectorPoint.Find(toCenter, this.ConnectorAngle / 2, this.StrokeThickness, rectangle, cr);
             var p2 = ConnectorPoint.Find(toCenter, -this.ConnectorAngle / 2, this.StrokeThickness, rectangle, cr);
-            this.SetValue(ConnectorVertexPointProperty, vertexPoint);
-            this.SetValue(ConnectorPoint1Property, p1);
-            this.SetValue(ConnectorPoint2Property, p2);
+            this.SetCurrentValue(ConnectorVertexPointProperty, vertexPoint);
+            this.SetCurrentValue(ConnectorPoint1Property, p1);
+            this.SetCurrentValue(ConnectorPoint2Property, p2);
             if (this.ConnectorGeometry is PathGeometry)
             {
                 return this.ConnectorGeometry;
@@ -139,7 +140,8 @@ namespace Gu.Wpf.Geometry
                 return cr;
             }
 
-            var factor = Math.Min(Math.Min(this.ActualWidth / top, this.ActualWidth / bottom),
+            var factor = Math.Min(
+                Math.Min(this.ActualWidth / top, this.ActualWidth / bottom),
                                   Math.Min(this.ActualHeight / left, this.ActualHeight / right));
             return cr.ScaleBy(factor);
         }
@@ -230,7 +232,7 @@ namespace Gu.Wpf.Geometry
                     return rectangle.CenterPoint();
                 }
 
-                //Debug.Assert(!rectangle.Contains(toMid.Value.StartPoint), "Cannot find tangent if line intersects rectangle");
+                // Debug.Assert(!rectangle.Contains(toMid.Value.StartPoint), "Cannot find tangent if line intersects rectangle");
                 if (toMid.Value.Direction.Axis() != null)
                 {
                     return ray.Point.Closest(rectangle.TopLeft, rectangle.TopRight, rectangle.BottomRight, rectangle.BottomLeft);

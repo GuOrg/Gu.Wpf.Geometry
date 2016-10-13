@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="10.0">
+<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="14.0">
   <Localization ResourceAssembly="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.dll" ResourceBaseName="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.Localized">
     <Name Resource="MinimumRecommendedRules_Name" />
     <Description Resource="MinimumRecommendedRules_Description" />
@@ -68,18 +68,27 @@
     <Rule Id="CA2241" Action="Warning" />
     <Rule Id="CA2242" Action="Warning" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <Rule Id="CS1591" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1118" Action="None" />
+    <Rule Id="SA1313" Action="None" />
+    <Rule Id="SA1401" Action="None" />
+    <Rule Id="SA1404" Action="None" />
+    <Rule Id="SA1407" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
+    <Rule Id="SA1602" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+  </Rules>
   <Rules AnalyzerId="WpfAnalyzers.Analyzers" RuleNamespace="WpfAnalyzers.Analyzers">
-    <Rule Id="WA1101" Action="Error" />
-    <Rule Id="WA1200" Action="Error" />
-    <Rule Id="WA1201" Action="Error" />
-    <Rule Id="WA1202" Action="Error" />
-    <Rule Id="WA1204" Action="Error" />
-    <Rule Id="WA1205" Action="Error" />
-    <Rule Id="WA1210" Action="Error" />
-    <Rule Id="WA1211" Action="Error" />
-    <Rule Id="WA1212" Action="Error" />
-    <Rule Id="WA1220" Action="Error" />
-    <Rule Id="WA1230" Action="Error" />
-    <Rule Id="WA1231" Action="Error" />
+    <Rule Id="WPF0001" Action="Error" />
+    <Rule Id="WPF0002" Action="Error" />
+    <Rule Id="WPF0003" Action="Error" />
+    <Rule Id="WPF0004" Action="Error" />
+    <Rule Id="WPF0011" Action="Error" />
+    <Rule Id="WPF0012" Action="Error" />
+    <Rule Id="WPF0030" Action="Error" />
   </Rules>
 </RuleSet>

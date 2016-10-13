@@ -19,7 +19,7 @@ namespace Gu.Wpf.Geometry
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
             var ellipse = Ellipse.CreateFromSize(renderSize);
-            this.SetValue(EllipseProperty, ellipse);
+            this.SetCurrentValue(EllipseProperty, ellipse);
             if (ellipse.RadiusX <= 0 || ellipse.RadiusY <= 0)
             {
                 return Geometry.Empty;
@@ -43,7 +43,7 @@ namespace Gu.Wpf.Geometry
         protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
             var ellipse = Ellipse.CreateFromSize(renderSize);
-            this.SetValue(EllipseProperty, ellipse);
+            this.SetCurrentValue(EllipseProperty, ellipse);
             if (ellipse.IsZero)
             {
                 return Geometry.Empty;
@@ -57,9 +57,9 @@ namespace Gu.Wpf.Geometry
             var p1 = ConnectorPoint.Find(ray, this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
             var p2 = ConnectorPoint.Find(ray, -this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
 
-            this.SetValue(ConnectorVertexPointProperty, vertexPoint);
-            this.SetValue(ConnectorPoint1Property, p1);
-            this.SetValue(ConnectorPoint2Property, p2);
+            this.SetCurrentValue(ConnectorVertexPointProperty, vertexPoint);
+            this.SetCurrentValue(ConnectorPoint1Property, p1);
+            this.SetCurrentValue(ConnectorPoint2Property, p2);
             if (this.ConnectorGeometry is PathGeometry)
             {
                 return this.ConnectorGeometry;
@@ -107,15 +107,18 @@ namespace Gu.Wpf.Geometry
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
                 }
-
-                var v = tp.Value - ip.Value;
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                else
                 {
-                    v = v - this.PlacementOptions.Offset * v.Normalized();
-                }
+                    var v = tp.Value - ip.Value;
 
-                this.SetCurrentValue(ConnectorOffsetProperty, v);
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
+                    {
+                        v = v - this.PlacementOptions.Offset * v.Normalized();
+                    }
+
+                    this.SetCurrentValue(ConnectorOffsetProperty, v);
+                }
             }
             else
             {

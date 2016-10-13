@@ -148,7 +148,7 @@
             {
                 var direction = xAxis.Rotate(i);
                 var fromCenter = new Ray(rect.CenterPoint(), direction);
-                var pointOnRect = fromCenter.FirstIntersectionWith(rect).Value;
+                var pointOnRect = fromCenter.FirstIntersectionWith(rect).GetValueOrDefault();
                 var ray = new Ray(pointOnRect + direction, direction.Negated());
                 var actual = ray.FirstIntersectionWith(rect);
                 Assert.Equal(pointOnRect, actual, NullablePointComparer.Default);

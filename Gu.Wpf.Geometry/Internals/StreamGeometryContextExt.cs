@@ -4,7 +4,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Media;
 
-    internal static  class StreamGeometryContextExt
+    internal static class StreamGeometryContextExt
     {
         internal static Point DrawCorner(this StreamGeometryContext context, Point fromPoint, double offsetX, double offsetY)
         {

@@ -19,7 +19,7 @@
             if (this.gradientPath == null)
                 return;
 
-            var radioButton = args.Source as RadioButton;
+            var radioButton = (RadioButton)args.Source;
             this.gradientPath.GradientMode = (GradientMode)radioButton.Tag;
         }
 
@@ -28,7 +28,7 @@
             if (this.gradientPath == null)
                 return;
 
-            var radioButton = args.Source as RadioButton;
+            var radioButton = (RadioButton)args.Source;
             this.gradientPath.StrokeStartLineCap = (PenLineCap)radioButton.Tag;
         }
 
@@ -37,7 +37,7 @@
             if (this.gradientPath == null)
                 return;
 
-            var radioButton = args.Source as RadioButton;
+            var radioButton = (RadioButton)args.Source;
             this.gradientPath.StrokeEndLineCap = (PenLineCap)radioButton.Tag;
         }
 
@@ -46,7 +46,7 @@
             if (this.gradientPath == null)
                 return;
 
-            var radioButton = args.Source as RadioButton;
+            var radioButton = (RadioButton)args.Source;
             this.gradientPath.ColorInterpolationMode = (ColorInterpolationMode)radioButton.Tag;
         }
     }

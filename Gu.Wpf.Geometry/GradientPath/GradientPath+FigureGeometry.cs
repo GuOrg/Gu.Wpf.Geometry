@@ -3,13 +3,12 @@
     using System.Collections.Generic;
     using System.Windows.Media;
 
-    partial class GradientPath
+    public partial class GradientPath
     {
         internal class FigureGeometry
         {
             public readonly IReadOnlyList<Line> Lines;
             public readonly PathGeometry[] PathGeometries;
-
 
             public FigureGeometry(PathFigure figure, double strokeThickness)
             {
@@ -23,6 +22,7 @@
                     var o2 = offsetLines2[i];
                     pathGeometries[i] = CreatePath(o1, o2);
                 }
+
                 this.PathGeometries = pathGeometries;
                 this.TotalLength = figure.TotalLength();
                 this.Brushes = new Brush[this.Lines.Count];
@@ -54,6 +54,7 @@
 
                     result[i] = line;
                 }
+
                 return result;
             }
 

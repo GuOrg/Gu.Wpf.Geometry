@@ -311,10 +311,19 @@
     </When>
   </Choose>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.2'">
       <ItemGroup>
         <Reference Include="System.Runtime.InteropServices">
           <HintPath>..\packages\test\System.Runtime.InteropServices\ref\net462\System.Runtime.InteropServices.dll</HintPath>
+          <Private>False</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.3'">
+      <ItemGroup>
+        <Reference Include="System.Runtime.InteropServices">
+          <HintPath>..\packages\test\System.Runtime.InteropServices\ref\net463\System.Runtime.InteropServices.dll</HintPath>
           <Private>False</Private>
           <Paket>True</Paket>
         </Reference>
@@ -428,6 +437,17 @@
       <ItemGroup>
         <Reference Include="System.Threading.Thread">
           <HintPath>..\packages\test\System.Threading.Thread\ref\net46\System.Threading.Thread.dll</HintPath>
+          <Private>False</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
+      <ItemGroup>
+        <Reference Include="System.Xml.ReaderWriter">
+          <HintPath>..\packages\test\System.Xml.ReaderWriter\ref\net46\System.Xml.ReaderWriter.dll</HintPath>
           <Private>False</Private>
           <Paket>True</Paket>
         </Reference>

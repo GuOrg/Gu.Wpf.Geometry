@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.Geometry
+﻿#pragma warning disable WPF1011 // Implement INotifyPropertyChanged.
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Windows.Markup;

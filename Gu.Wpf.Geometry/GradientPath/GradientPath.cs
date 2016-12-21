@@ -1,3 +1,4 @@
+#pragma warning disable WPF0005 // Name of PropertyChangedCallback should match registered name.
 namespace Gu.Wpf.Geometry
 {
     using System;

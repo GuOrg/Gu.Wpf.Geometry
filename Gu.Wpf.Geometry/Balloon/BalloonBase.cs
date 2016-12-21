@@ -17,7 +17,9 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 default(Vector),
                 FrameworkPropertyMetadataOptions.AffectsRender,
+#pragma warning disable WPF0005 // Name of PropertyChangedCallback should match registered name.
                 OnConnectorChanged));
+#pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
         public static readonly DependencyProperty ConnectorAngleProperty = DependencyProperty.Register(
             "ConnectorAngle",
@@ -26,7 +28,9 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 15.0,
                 FrameworkPropertyMetadataOptions.AffectsRender,
+#pragma warning disable WPF0005 // Name of PropertyChangedCallback should match registered name.
                 OnConnectorChanged));
+#pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
             "PlacementTarget",

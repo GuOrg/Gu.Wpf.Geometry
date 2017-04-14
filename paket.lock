@@ -7,7 +7,7 @@ NUGET
     Gu.Analyzers (0.1.11.20-dev)
     JetBrains.Annotations (10.2.1)
     StyleCop.Analyzers (1.0)
-    WpfAnalyzers (0.2.7.9-dev)
+    WpfAnalyzers (0.2.7.9)
 
 GROUP Test
 FRAMEWORK: >= NET45

@@ -14,7 +14,7 @@
             "Strength",
             typeof(double),
             typeof(Desaturate),
-            new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
+            new UIPropertyMetadata(1.0, PixelShaderConstantCallback(0)));
 
         private static readonly PixelShader Shader = new PixelShader { UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/Desaturate.ps", UriKind.Absolute) };
 

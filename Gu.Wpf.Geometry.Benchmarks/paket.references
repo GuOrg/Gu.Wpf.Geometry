@@ -1,2 +1,2 @@
-group Test
+group Benchmark
   BenchmarkDotNet

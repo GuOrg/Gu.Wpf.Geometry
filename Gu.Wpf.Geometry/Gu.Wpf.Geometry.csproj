@@ -47,6 +47,7 @@
     <Compile Include="Balloon\Balloon.cs" />
     <Compile Include="Balloon\EllipseBalloon.cs" />
     <Compile Include="Balloon\PlacementOptionsExtension.cs" />
+    <Compile Include="Effects\AngularGradient.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomRightConverter.cs" />
@@ -89,6 +90,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Effects\AngularGradient.ps">
+      <DependentUpon>AngularGradient.cs</DependentUpon>
+    </Resource>
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
@@ -110,6 +114,11 @@
     </None>
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
+  <ItemGroup>
+    <Content Include="Effects\AngularGradient.fx">
+      <DependentUpon>AngularGradient.cs</DependentUpon>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>

@@ -52,6 +52,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AngularGradientView.xaml.cs">
+      <DependentUpon>AngularGradientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AttachedProperties\Drag.cs" />
     <Compile Include="BalloonControlView.xaml.cs">
       <DependentUpon>BalloonControlView.xaml</DependentUpon>
@@ -83,6 +86,10 @@
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
+    <Page Include="AngularGradientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BalloonControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

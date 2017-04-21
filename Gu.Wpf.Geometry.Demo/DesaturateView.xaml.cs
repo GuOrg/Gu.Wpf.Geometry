@@ -6,7 +6,7 @@
     {
         public DesaturateView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

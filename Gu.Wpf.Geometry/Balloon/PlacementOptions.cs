@@ -66,7 +66,7 @@
             var angleTo = toMid.Direction.AngleTo(edge.Direction);
             if (angleTo < 0)
             {
-                return toMid.IntersectWith(edge, false)
+                return toMid.IntersectWith(edge, mustBeBetweenStartAndEnd: false)
                     ?.TrimToLine(edge);
             }
 

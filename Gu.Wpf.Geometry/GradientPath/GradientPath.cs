@@ -77,50 +77,50 @@ namespace Gu.Wpf.Geometry
 
         public Geometry Data
         {
-            get { return (Geometry)this.GetValue(DataProperty); }
-            set { this.SetValue(DataProperty, value); }
+            get => (Geometry)this.GetValue(DataProperty);
+            set => this.SetValue(DataProperty, value);
         }
 
         public GradientStopCollection GradientStops
         {
-            get { return (GradientStopCollection)this.GetValue(GradientStopsProperty); }
-            set { this.SetValue(GradientStopsProperty, value); }
+            get => (GradientStopCollection)this.GetValue(GradientStopsProperty);
+            set => this.SetValue(GradientStopsProperty, value);
         }
 
         public GradientMode GradientMode
         {
-            get { return (GradientMode)this.GetValue(GradientModeProperty); }
-            set { this.SetValue(GradientModeProperty, value); }
+            get => (GradientMode)this.GetValue(GradientModeProperty);
+            set => this.SetValue(GradientModeProperty, value);
         }
 
         public ColorInterpolationMode ColorInterpolationMode
         {
-            get { return (ColorInterpolationMode)this.GetValue(ColorInterpolationModeProperty); }
-            set { this.SetValue(ColorInterpolationModeProperty, value); }
+            get => (ColorInterpolationMode)this.GetValue(ColorInterpolationModeProperty);
+            set => this.SetValue(ColorInterpolationModeProperty, value);
         }
 
         public double StrokeThickness
         {
-            get { return (double)this.GetValue(StrokeThicknessProperty); }
-            set { this.SetValue(StrokeThicknessProperty, value); }
+            get => (double)this.GetValue(StrokeThicknessProperty);
+            set => this.SetValue(StrokeThicknessProperty, value);
         }
 
         public PenLineCap StrokeStartLineCap
         {
-            get { return (PenLineCap)this.GetValue(StrokeStartLineCapProperty); }
-            set { this.SetValue(StrokeStartLineCapProperty, value); }
+            get => (PenLineCap)this.GetValue(StrokeStartLineCapProperty);
+            set => this.SetValue(StrokeStartLineCapProperty, value);
         }
 
         public PenLineCap StrokeEndLineCap
         {
-            get { return (PenLineCap)this.GetValue(StrokeEndLineCapProperty); }
-            set { this.SetValue(StrokeEndLineCapProperty, value); }
+            get => (PenLineCap)this.GetValue(StrokeEndLineCapProperty);
+            set => this.SetValue(StrokeEndLineCapProperty, value);
         }
 
         public double Tolerance
         {
-            get { return (double)this.GetValue(ToleranceProperty); }
-            set { this.SetValue(ToleranceProperty, value); }
+            get => (double)this.GetValue(ToleranceProperty);
+            set => this.SetValue(ToleranceProperty, value);
         }
 
         internal static LinearGradientBrush CreatePerpendicularBrush(

@@ -17,7 +17,7 @@
             var direction = Vector.Parse(vs);
             var expected = Point.Parse(eps);
             var actual = ellipse.PointOnCircumference(direction);
-            Assert.Equal(expected, actual, PointComparer.Default);
+            Assert.Equal(expected, actual, PointComparer.TwoDigits);
         }
 
         [Theory]
@@ -31,7 +31,7 @@
             var expected = Point.Parse(eps);
             var direction = new Vector(1, 0).Rotate(angle);
             var actual = ellipse.PointOnCircumference(direction);
-            Assert.Equal(expected, actual, PointComparer.Default);
+            Assert.Equal(expected, actual, PointComparer.TwoDigits);
             Assert.Equal(ellipse.CenterPoint.DistanceTo(actual), ellipse.RadiusInDirection(direction), 3);
         }
     }

@@ -185,6 +185,7 @@ namespace Gu.Wpf.Geometry
 
             public object Convert(object value, Type _, object __, CultureInfo ___)
             {
+                // ReSharper disable once PossibleNullReferenceException
                 return ((Ellipse)value).CenterPoint;
             }
 
@@ -204,6 +205,7 @@ namespace Gu.Wpf.Geometry
 
             public object Convert(object value, Type _, object __, CultureInfo ___)
             {
+                // ReSharper disable once PossibleNullReferenceException
                 return ((Ellipse)value).RadiusX;
             }
 
@@ -223,6 +225,7 @@ namespace Gu.Wpf.Geometry
 
             public object Convert(object value, Type _, object __, CultureInfo ___)
             {
+                // ReSharper disable once PossibleNullReferenceException
                 return ((Ellipse)value).RadiusY;
             }
 

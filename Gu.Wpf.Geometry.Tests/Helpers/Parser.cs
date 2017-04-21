@@ -16,6 +16,7 @@
             {
                 throw new ArgumentException();
             }
+
             var sp = Point.Parse(strings[0]);
             var ep = Point.Parse(strings[1]);
             return new Line(sp, ep);

@@ -54,8 +54,7 @@
 
         private static void OnMouseLeftUp(object sender, MouseEventArgs e)
         {
-            UIElement element;
-            if (DraggedItem.TryGetTarget(out element))
+            if (DraggedItem.TryGetTarget(out UIElement element))
             {
                 DraggedItem.SetTarget(null);
                 element.ReleaseMouseCapture();
@@ -64,14 +63,13 @@
 
         private static void OnMouseMove(object sender, MouseEventArgs e)
         {
-            UIElement element;
-            if (DraggedItem.TryGetTarget(out element))
+            if (DraggedItem.TryGetTarget(out UIElement element))
             {
                 var window = Window.GetWindow(element);
                 var pos = e.GetPosition(window);
                 var offset = pos - mousePreviousPosition;
                 var newPos = elementPosition + offset;
-                //Debug.WriteLine($"Pos: {pos.ToString("F1")} mouseStart: {mousePreviousPosition.ToString("F1")} offset: {offset.ToString("F1")} newPos: {newPos.ToString("F1")}");
+                ////Debug.WriteLine($"Pos: {pos.ToString("F1")} mouseStart: {mousePreviousPosition.ToString("F1")} offset: {offset.ToString("F1")} newPos: {newPos.ToString("F1")}");
                 element.SetCurrentValue(Canvas.LeftProperty, newPos.X);
                 element.SetCurrentValue(Canvas.TopProperty, newPos.Y);
             }
@@ -79,11 +77,10 @@
 
         private static void OnLostMouseCapture(object sender, RoutedEventArgs e)
         {
-            UIElement element;
-            if (DraggedItem.TryGetTarget(out element))
+            if (DraggedItem.TryGetTarget(out UIElement _))
             {
                 DraggedItem.SetTarget(null);
-                //element.ReleaseMouseCapture();
+                ////element.ReleaseMouseCapture();
             }
         }
     }

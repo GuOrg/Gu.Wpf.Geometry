@@ -22,7 +22,7 @@ namespace Gu.Wpf.Geometry.Tests
             var circle = Circle.Parse(cs);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = circle.ClosestIntersection(l);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
     }
 }

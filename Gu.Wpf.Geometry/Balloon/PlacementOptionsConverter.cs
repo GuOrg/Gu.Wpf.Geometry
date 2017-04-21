@@ -135,10 +135,10 @@
         private static bool TryParsePlacements(string arg1, string arg2, out HorizontalPlacement horizontal, out VerticalPlacement vertical)
         {
             vertical = default(VerticalPlacement);
-            return (Enum.TryParse(arg1, true, out horizontal) &&
-                    Enum.TryParse(arg2, true, out vertical)) ||
-                   (Enum.TryParse(arg2, true, out horizontal) &&
-                    Enum.TryParse(arg1, true, out vertical));
+            return (Enum.TryParse(arg1, ignoreCase: true, result: out horizontal) &&
+                    Enum.TryParse(arg2, ignoreCase: true, result: out vertical)) ||
+                   (Enum.TryParse(arg2, ignoreCase: true, result: out horizontal) &&
+                    Enum.TryParse(arg1, ignoreCase: true, result: out vertical));
         }
 
         private static FormatException FormatException(string text, Exception inner = null)

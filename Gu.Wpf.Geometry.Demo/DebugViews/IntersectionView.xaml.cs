@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace Gu.Wpf.Geometry.Demo
+﻿namespace Gu.Wpf.Geometry.Demo
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for IntersectionView.xaml
     /// </summary>

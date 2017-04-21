@@ -5,8 +5,9 @@ namespace Gu.Wpf.Geometry.Tests
 
     public class NullableVectorComparer : IEqualityComparer<Vector?>
     {
+        public static readonly NullableVectorComparer TwoDigits = new NullableVectorComparer(2);
+
         private readonly int digits;
-        public static readonly NullableVectorComparer Default = new NullableVectorComparer(2);
 
         public NullableVectorComparer(int digits)
         {
@@ -25,7 +26,7 @@ namespace Gu.Wpf.Geometry.Tests
                 return false;
             }
 
-            return VectorComparer.Default.Equals(x.Value, y.Value, this.digits);
+            return VectorComparer.TwoDigits.Equals(x.Value, y.Value, this.digits);
         }
 
         public int GetHashCode(Vector? obj)

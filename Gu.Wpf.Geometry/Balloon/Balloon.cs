@@ -22,32 +22,32 @@ namespace Gu.Wpf.Geometry
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius)this.GetValue(CornerRadiusProperty); }
-            set { this.SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius)this.GetValue(CornerRadiusProperty);
+            set => this.SetValue(CornerRadiusProperty, value);
         }
 
         public Vector ConnectorOffset
         {
-            get { return (Vector)this.GetValue(ConnectorOffsetProperty); }
-            set { this.SetValue(ConnectorOffsetProperty, value); }
+            get => (Vector)this.GetValue(ConnectorOffsetProperty);
+            set => this.SetValue(ConnectorOffsetProperty, value);
         }
 
         public double ConnectorAngle
         {
-            get { return (double)this.GetValue(ConnectorAngleProperty); }
-            set { this.SetValue(ConnectorAngleProperty, value); }
+            get => (double)this.GetValue(ConnectorAngleProperty);
+            set => this.SetValue(ConnectorAngleProperty, value);
         }
 
         public UIElement PlacementTarget
         {
-            get { return (UIElement)this.GetValue(PlacementTargetProperty); }
-            set { this.SetValue(PlacementTargetProperty, value); }
+            get => (UIElement)this.GetValue(PlacementTargetProperty);
+            set => this.SetValue(PlacementTargetProperty, value);
         }
 
         public PlacementOptions PlacementOptions
         {
-            get { return (PlacementOptions)this.GetValue(PlacementOptionsProperty); }
-            set { this.SetValue(PlacementOptionsProperty, value); }
+            get => (PlacementOptions)this.GetValue(PlacementOptionsProperty);
+            set => this.SetValue(PlacementOptionsProperty, value);
         }
     }
 }

@@ -5,8 +5,9 @@
 
     public class NullablePointComparer : IEqualityComparer<Point?>
     {
+        public static readonly NullablePointComparer TwoDigits = new NullablePointComparer(2);
+
         private readonly int digits;
-        public static readonly NullablePointComparer Default = new NullablePointComparer(2);
 
         public NullablePointComparer(int digits)
         {
@@ -25,7 +26,7 @@
                 return false;
             }
 
-            return PointComparer.Default.Equals(x.Value, y.Value, this.digits);
+            return PointComparer.TwoDigits.Equals(x.Value, y.Value, this.digits);
         }
 
         public int GetHashCode(Point? obj)

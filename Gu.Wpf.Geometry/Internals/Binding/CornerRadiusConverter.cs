@@ -9,6 +9,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // ReSharper disable once PossibleNullReferenceException
             return this.GetRadius((CornerRadius)value);
         }
 

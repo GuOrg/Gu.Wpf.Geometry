@@ -20,7 +20,7 @@
             var circle = Circle.Parse(cs);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(circle);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
 
         [Theory]
@@ -37,7 +37,7 @@
                 var pointOnCircumference = circle.PointOnCircumference(direction);
                 var ray = new Ray(circle.Center, direction);
                 var actual = ray.FirstIntersectionWith(circle);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.Default);
+                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
             }
         }
 
@@ -56,7 +56,7 @@
                 var pointOnCircumference = circle.PointOnCircumference(direction);
                 var ray = new Ray(pointOnCircumference + direction, direction.Negated());
                 var actual = ray.FirstIntersectionWith(circle);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.Default);
+                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
             }
         }
 
@@ -86,7 +86,7 @@
             var ellipse = Ellipse.Parse(es);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(ellipse);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
 
         [Theory]
@@ -104,7 +104,7 @@
                 var expected = ellipse.PointOnCircumference(direction);
                 var ray = new Ray(ellipse.CenterPoint, direction);
                 var actual = ray.FirstIntersectionWith(ellipse);
-                Assert.Equal(expected, actual, NullablePointComparer.Default);
+                Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
             }
         }
 
@@ -122,17 +122,13 @@
                 var pointOnCircumference = ellipse.PointOnCircumference(fromCenterDirection);
                 var ray = new Ray(pointOnCircumference + fromCenterDirection, fromCenterDirection.Negated());
                 var actual = ray.FirstIntersectionWith(ellipse);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.Default);
+                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
                 for (var j = -70; j < 70; j++)
                 {
                     var direction = fromCenterDirection.Rotate(j);
                     ray = new Ray(pointOnCircumference + direction, direction.Negated());
                     actual = ray.FirstIntersectionWith(ellipse);
-                    //if (!NullablePointComparer.Default.Equals(pointOnCircumference, actual))
-                    //{
-                    //    Debugger.Break();
-                    //}
-                    Assert.Equal(pointOnCircumference, actual, NullablePointComparer.Default);
+                    Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
                 }
             }
         }
@@ -151,7 +147,7 @@
                 var pointOnRect = fromCenter.FirstIntersectionWith(rect).GetValueOrDefault();
                 var ray = new Ray(pointOnRect + direction, direction.Negated());
                 var actual = ray.FirstIntersectionWith(rect);
-                Assert.Equal(pointOnRect, actual, NullablePointComparer.Default);
+                Assert.Equal(pointOnRect, actual, NullablePointComparer.TwoDigits);
 
                 if (rect.ClosestCornerPoint(pointOnRect)
                         .DistanceTo(pointOnRect) < 0.01)
@@ -165,7 +161,7 @@
                 {
                     wallNormal = new Vector(-1, 0);
                 }
-                else if(Math.Abs(pointOnRect.X - rect.Right) < Constants.Tolerance)
+                else if (Math.Abs(pointOnRect.X - rect.Right) < Constants.Tolerance)
                 {
                     wallNormal = new Vector(1, 0);
                 }
@@ -173,7 +169,7 @@
                 {
                     wallNormal = new Vector(0, 1);
                 }
-                else // if (pointOnRect.Y == rect.Top)
+                else
                 {
                     wallNormal = new Vector(0, -1);
                 }
@@ -183,12 +179,12 @@
                     var rayDirection = wallNormal.Rotate(j);
                     ray = new Ray(pointOnRect + rayDirection, rayDirection.Negated());
                     actual = ray.FirstIntersectionWith(rect);
-                    if (!NullablePointComparer.Default.Equals(pointOnRect, actual))
+                    if (!NullablePointComparer.TwoDigits.Equals(pointOnRect, actual))
                     {
                         Debugger.Break();
                     }
 
-                    Assert.Equal(pointOnRect, actual, NullablePointComparer.Default);
+                    Assert.Equal(pointOnRect, actual, NullablePointComparer.TwoDigits);
                 }
             }
         }

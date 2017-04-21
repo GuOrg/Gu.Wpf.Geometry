@@ -3,5 +3,3 @@ group Analyzers
   WpfAnalyzers
   Gu.Analyzers
 
-group Test
-  xunit

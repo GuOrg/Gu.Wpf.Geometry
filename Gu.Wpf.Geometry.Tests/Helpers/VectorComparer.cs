@@ -5,8 +5,9 @@
 
     public class VectorComparer : IEqualityComparer<Vector>
     {
+        public static readonly VectorComparer TwoDigits = new VectorComparer(2);
+
         private readonly int digits;
-        public static readonly VectorComparer Default = new VectorComparer(2);
 
         private VectorComparer(int digits)
         {

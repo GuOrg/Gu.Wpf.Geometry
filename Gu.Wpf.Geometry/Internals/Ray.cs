@@ -81,17 +81,17 @@
             switch (quadrant)
             {
                 case Quadrant.NegativeXPositiveY:
-                    return IntersectionPoint(this, rectangle.LeftLine(), true) ??
-                           IntersectionPoint(this, rectangle.BottomLine(), true);
+                    return IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true);
                 case Quadrant.PositiveXPositiveY:
-                    return IntersectionPoint(this, rectangle.RightLine(), true) ??
-                           IntersectionPoint(this, rectangle.BottomLine(), true);
+                    return IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true);
                 case Quadrant.PositiveXNegativeY:
-                    return IntersectionPoint(this, rectangle.RightLine(), true) ??
-                           IntersectionPoint(this, rectangle.TopLine(), true);
+                    return IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true);
                 case Quadrant.NegativeXNegativeY:
-                    return IntersectionPoint(this, rectangle.LeftLine(), true) ??
-                           IntersectionPoint(this, rectangle.TopLine(), true);
+                    return IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

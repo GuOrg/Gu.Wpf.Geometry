@@ -10,10 +10,10 @@
         [InlineData("1,1; 1,2", "0,3; -1,3", "1,1; 1,3")]
         [InlineData("0,0; 1,0", "1,0; 1,1", "0,0; 1,0")]
         [InlineData("0,0; 1,0", "2,0; 2,1", "0,0; 2,0")]
-        public void TrimOrExtendEndWith(string l1s, string l2s, string expected)
+        public void TrimOrExtendEndWith(string l1S, string l2S, string expected)
         {
-            var l1 = l1s.AsLine();
-            var l2 = l2s.AsLine();
+            var l1 = l1S.AsLine();
+            var l2 = l2S.AsLine();
             var trimmed = l1.TrimOrExtendEndWith(l2);
             Assert.Equal(expected, trimmed.ToString("F0"));
         }
@@ -21,10 +21,10 @@
         [Theory]
         [InlineData("1,0; 2,0", "0,0; 1,0", "1,0; 2,0")]
         [InlineData("0,0; 1,0", "1,0; 2,0", "0,0; 1,0")]
-        public void TrimOrExtendEndWithCollinear(string l1s, string l2s, string expected)
+        public void TrimOrExtendEndWithCollinear(string l1S, string l2S, string expected)
         {
-            var l1 = l1s.AsLine();
-            var l2 = l2s.AsLine();
+            var l1 = l1S.AsLine();
+            var l2 = l2S.AsLine();
             var trimmed = l1.TrimOrExtendEndWith(l2);
             Assert.Equal(expected, trimmed.ToString("F0"));
         }
@@ -36,13 +36,13 @@
         [InlineData("-1,0; 0,0", "0,-1; 0,0", "0,0")]
         [InlineData("-1,0; 0,0", "0,0; 0,1", "0,0")]
         [InlineData("1,1; 1,2", "0,3; -1,3", "null")]
-        public void IntersectionPoint(string l1s, string l2s, string expected)
+        public void IntersectionPoint(string l1S, string l2S, string expected)
         {
-            var l1 = l1s.AsLine();
-            var l2 = l2s.AsLine();
-            var actual = l1.IntersectWith(l2, true);
+            var l1 = l1S.AsLine();
+            var l2 = l2S.AsLine();
+            var actual = l1.IntersectWith(l2, mustBeBetweenStartAndEnd: true);
             Assert.Equal(expected, actual.ToString("F0"));
-            actual = l2.IntersectWith(l1, true);
+            actual = l2.IntersectWith(l1, mustBeBetweenStartAndEnd: true);
             Assert.Equal(expected, actual.ToString("F0"));
         }
 
@@ -58,18 +58,18 @@
             var rect = Rect.Parse(rs);
             var expected = Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
 
             actual = l.Flip().ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
 
             var l2 = l.RotateAroundStartPoint(0.01);
             actual = l2.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
 
             var l3 = l.RotateAroundStartPoint(-0.01);
             actual = l3.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
 
         [Theory]
@@ -84,7 +84,7 @@
             var rect = Rect.Parse(rs);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
 
         [Theory]
@@ -101,7 +101,7 @@
             var rect = Rect.Parse(rs);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
-            Assert.Equal(expected, actual, NullablePointComparer.Default);
+            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
         }
     }
 }

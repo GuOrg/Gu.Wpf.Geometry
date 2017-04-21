@@ -24,8 +24,8 @@ namespace Gu.Wpf.Geometry
 
         public CornerRadius CornerRadius
         {
-            get { return (CornerRadius)this.GetValue(CornerRadiusProperty); }
-            set { this.SetValue(CornerRadiusProperty, value); }
+            get => (CornerRadius)this.GetValue(CornerRadiusProperty);
+            set => this.SetValue(CornerRadiusProperty, value);
         }
 
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
@@ -63,21 +63,21 @@ namespace Gu.Wpf.Geometry
                     var p = cr.TopLeft > 0
                         ? new Point(cr.TopLeft + this.StrokeThickness / 2, this.StrokeThickness / 2)
                         : new Point(this.StrokeThickness / 2, this.StrokeThickness / 2);
-                    context.BeginFigure(p, true, true);
+                    context.BeginFigure(p, isFilled: true, isClosed: true);
                     p = p.WithOffset(rect.Width - cr.TopLeft - cr.TopRight, 0);
-                    context.LineTo(p, true, true);
+                    context.LineTo(p, isStroked: true, isSmoothJoin: true);
                     p = context.DrawCorner(p, cr.TopRight, cr.TopRight);
 
                     p = p.WithOffset(0, rect.Height - cr.TopRight - cr.BottomRight);
-                    context.LineTo(p, true, true);
+                    context.LineTo(p, isStroked: true, isSmoothJoin: true);
                     p = context.DrawCorner(p, -cr.BottomRight, cr.BottomRight);
 
                     p = p.WithOffset(-rect.Width + cr.BottomRight + cr.BottomLeft, 0);
-                    context.LineTo(p, true, true);
+                    context.LineTo(p, isStroked: true, isSmoothJoin: true);
                     p = context.DrawCorner(p, -cr.BottomLeft, -cr.BottomLeft);
 
                     p = p.WithOffset(0, -rect.Height + cr.TopLeft + cr.BottomLeft);
-                    context.LineTo(p, true, true);
+                    context.LineTo(p, isStroked: true, isSmoothJoin: true);
                     context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
                 }
 
@@ -98,7 +98,7 @@ namespace Gu.Wpf.Geometry
             var ip = fromCenter.FirstIntersectionWith(rectangle);
             if (ip == null)
             {
-                Debug.Assert(false, $"Line {fromCenter} does not intersect rectangle {rectangle}");
+                Debug.Assert(condition: false, message: $"Line {fromCenter} does not intersect rectangle {rectangle}");
 
                 // ReSharper disable once HeuristicUnreachableCode
                 return Geometry.Empty;
@@ -226,6 +226,7 @@ namespace Gu.Wpf.Geometry
             {
                 var toMid = ray.PerpendicularLineTo(rectangle.CenterPoint());
                 Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
+                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (toMid == null)
                 {
                     // failing silently in release

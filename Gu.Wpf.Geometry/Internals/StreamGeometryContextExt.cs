@@ -16,7 +16,14 @@ namespace Gu.Wpf.Geometry
 
             var p = fromPoint.WithOffset(offsetX, offsetY);
             var size = new Size(Math.Abs(offsetX), Math.Abs(offsetY));
-            context.ArcTo(p, size, 90, false, SweepDirection.Clockwise, true, true);
+            context.ArcTo(
+                point: p,
+                size: size,
+                rotationAngle: 90,
+                isLargeArc: false,
+                sweepDirection: SweepDirection.Clockwise,
+                isStroked: true,
+                isSmoothJoin: true);
             return p;
         }
     }

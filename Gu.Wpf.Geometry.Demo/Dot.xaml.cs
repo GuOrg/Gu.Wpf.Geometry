@@ -4,16 +4,13 @@
     using System.Windows.Controls;
     using System.Windows.Input;
 
-    /// <summary>
-    /// Interaction logic for Dot.xaml
-    /// </summary>
     public partial class Dot : UserControl
     {
-        public static readonly DependencyProperty CenterProperty =
-            DependencyProperty.Register("Center",
-                typeof(Point),
-                typeof(Dot),
-                new PropertyMetadata(new Point(), OnCenterChanged));
+        public static readonly DependencyProperty CenterProperty = DependencyProperty.Register(
+            "Center",
+            typeof(Point),
+            typeof(Dot),
+            new PropertyMetadata(default(Point), OnCenterChanged));
 
         private bool isDragging;
         private Point mouseDragStart;
@@ -26,8 +23,8 @@
 
         public Point Center
         {
-            set { this.SetValue(CenterProperty, value); }
-            get { return (Point)this.GetValue(CenterProperty); }
+            get => (Point)this.GetValue(CenterProperty);
+            set => this.SetValue(CenterProperty, value);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs args)
@@ -73,7 +70,7 @@
 
         private static void OnCenterChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            ((Dot)obj).ellipseGeo.Center = (Point)args.NewValue;
+            ((Dot)obj).ellipseGeo.SetCurrentValue(System.Windows.Media.EllipseGeometry.CenterProperty, (Point)args.NewValue);
         }
     }
 }

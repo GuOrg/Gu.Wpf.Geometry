@@ -9,12 +9,13 @@ namespace Gu.Wpf.Geometry.Tests
 
     public class NamespacesTests
     {
-        private Assembly _assembly;
-        private const string Uri = @"http://gu.se/Geometry";
+        private const string Uri = "http://gu.se/Geometry";
+
+        private readonly Assembly assembly;
 
         public NamespacesTests()
         {
-            this._assembly = typeof(GradientPath).Assembly;
+            this.assembly = typeof(GradientPath).Assembly;
         }
 
         [Fact]
@@ -22,13 +23,13 @@ namespace Gu.Wpf.Geometry.Tests
         {
             string[] skip = { ".Annotations", ".Properties", "XamlGeneratedNamespace" };
 
-            var strings = this._assembly.GetTypes()
+            var strings = this.assembly.GetTypes()
                                    .Select(x => x.Namespace)
                                    .Distinct()
-                                   .Where(x => !skip.Any(s => x.EndsWith(s)))
+                                   .Where(x => !skip.Any(x.EndsWith))
                                    .OrderBy(x => x)
                                    .ToArray();
-            var attributes = this._assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsDefinitionAttribute))
+            var attributes = this.assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsDefinitionAttribute))
                                       .ToArray();
             var actuals = attributes.Select(a => a.ConstructorArguments[1].Value)
                                     .OrderBy(x => x);
@@ -36,6 +37,7 @@ namespace Gu.Wpf.Geometry.Tests
             {
                 Console.WriteLine(@"[assembly: XmlnsDefinition(""{0}"", ""{1}"")]", Uri, s);
             }
+
             Assert.Equal(strings, actuals);
             foreach (var attribute in attributes)
             {
@@ -46,7 +48,7 @@ namespace Gu.Wpf.Geometry.Tests
         [Fact]
         public void XmlnsPrefix()
         {
-            var prefixAttribute = this._assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
+            var prefixAttribute = this.assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
             Assert.All(prefixAttribute.Select(a => a.ConstructorArguments[0].Value), x => Assert.Equal(Uri, x));
         }
     }

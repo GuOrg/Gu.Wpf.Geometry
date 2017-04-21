@@ -47,7 +47,7 @@
             }
         }
 
-        private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length.ToString("F1")}";
+        private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length:F1}";
 
         public override string ToString() => this.ToString(string.Empty);
 
@@ -138,7 +138,7 @@
                 return this;
             }
 
-            var ip = IntersectionPoint(this, other, false);
+            var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
             if (ip == null)
             {
                 return this;
@@ -154,7 +154,7 @@
                 return this;
             }
 
-            var ip = IntersectionPoint(this, other, false);
+            var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
             if (ip == null)
             {
                 return null;
@@ -177,17 +177,17 @@
             switch (quadrant)
             {
                 case Quadrant.NegativeXPositiveY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                           IntersectionPoint(rectangle.BottomLine(), this, true);
+                    return IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true);
                 case Quadrant.PositiveXPositiveY:
-                    return IntersectionPoint(rectangle.RightLine(), this, true) ??
-                           IntersectionPoint(rectangle.BottomLine(), this, true);
+                    return IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true);
                 case Quadrant.PositiveXNegativeY:
-                    return IntersectionPoint(rectangle.RightLine(), this, true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, true);
+                    return IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true);
                 case Quadrant.NegativeXNegativeY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, true);
+                    return IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+                           IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

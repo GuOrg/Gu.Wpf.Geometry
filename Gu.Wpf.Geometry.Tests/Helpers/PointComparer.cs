@@ -5,8 +5,9 @@
 
     public class PointComparer : IEqualityComparer<Point>
     {
+        public static readonly PointComparer TwoDigits = new PointComparer(2);
+
         private readonly int digits;
-        public static readonly PointComparer Default = new PointComparer(2);
 
         public PointComparer(int digits)
         {

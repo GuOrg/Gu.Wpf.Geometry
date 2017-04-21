@@ -46,8 +46,8 @@ namespace Gu.Wpf.Geometry.Tests
         [Fact]
         public void XmlnsPrefix()
         {
-            var prefixAttribute = this._assembly.CustomAttributes.Single(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
-            Assert.Equal(Uri, prefixAttribute.ConstructorArguments[0].Value);
+            var prefixAttribute = this._assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
+            Assert.All(prefixAttribute.Select(a => a.ConstructorArguments[0].Value), x => Assert.Equal(Uri, x));
         }
     }
 }

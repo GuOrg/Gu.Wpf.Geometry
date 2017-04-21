@@ -174,7 +174,6 @@
       <Name>Gu.Wpf.Geometry</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Hustler.jpg" />
   </ItemGroup>

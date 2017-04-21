@@ -78,6 +78,7 @@
     <Compile Include="Internals\VectorExt.cs" />
     <Compile Include="Internals\Sign.cs" />
     <Compile Include="Balloon\BoxBalloon.cs" />
+    <Compile Include="Effects\Desaturate.cs" />
     <Compile Include="VerticalPlacement.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,9 @@
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
+    <Resource Include="Effects\Desaturate.ps">
+      <DependentUpon>Desaturate.cs</DependentUpon>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -137,5 +141,11 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Effects\Desaturate.fx">
+      <DependentUpon>Desaturate.cs</DependentUpon>
+    </None>
   </ItemGroup>
 </Project>

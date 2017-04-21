@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{691FDBA9-F293-4FC4-AE73-9031638BDEE5}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Tests", "Gu.Wpf.Geometry.Tests\Gu.Wpf.Geometry.Tests.csproj", "{A11832B9-3174-4066-83F0-6C0D4478345D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Benchmarks", "Gu.Wpf.Geometry.Benchmarks\Gu.Wpf.Geometry.Benchmarks.csproj", "{A30D0AD1-E586-4446-830C-75E1520C5B7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A8270AFD-43FE-407C-A9BD-3834B88C1A87}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

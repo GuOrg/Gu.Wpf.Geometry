@@ -66,6 +66,9 @@
     <Compile Include="DebugViews\IntersectionView.xaml.cs">
       <DependentUpon>IntersectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesaturateView.xaml.cs">
+      <DependentUpon>DesaturateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EllipseBalloonView.xaml.cs">
       <DependentUpon>EllipseBalloonView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DebugViews\BoundingBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DesaturateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +173,10 @@
       <Project>{a9cbadf5-65f8-4a81-858c-ea0cdfeb2e99}</Project>
       <Name>Gu.Wpf.Geometry</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Hustler.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

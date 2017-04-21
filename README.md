@@ -59,7 +59,8 @@ Note: the connector is drawn outside the bounds of the element.
 
 
 ##### Simple
-```
+
+```xaml
 <geometry:BoxBalloon Grid.Row="1"
                      Grid.Column="1"
                      ConnectorAngle="45"
@@ -78,7 +79,7 @@ Note: the connector is drawn outside the bounds of the element.
 ![connector offset](http://i.imgur.com/hT1fFsj.png)
 
 ##### With PlacementTarget
-```
+```xaml
 <Canvas>
     <Grid>
         <Grid.RowDefinitions>
@@ -147,7 +148,7 @@ Where on the connected element the connector should be attached.
 
 In xaml either input a string `<geometry:BoxBalloon PlacementOptions="Top Left" .../>`
 Or use the `PlacementOptionsExtension`:
-```
+```xaml
 <geometry:BoxBalloon PlacementOptions="{geometry:PlacementOptions Horizontal=Auto,
                                                                   Vertical=Top,
                                                                   Offset=5}"
@@ -165,7 +166,7 @@ Same API as BoxBalloon but renders:
 
 Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-Paths-with-Gradient-Colors.html)
 
-```
+```xaml
 <geometry:GradientPath GradientMode="Parallel"
                         StrokeThickness="10"
                         UseLayoutRounding="True">
@@ -192,3 +193,29 @@ Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-P
 </geometry:GradientPath>
 ```
 ![screenie](http://i.imgur.com/YxNoS87.gif)
+
+
+# Effects
+A collection of pixel shaders.
+
+# Desaturate
+Desaturate an image, brush or WPF controls. It has only one property `Strength` 0 means the effect does nothing and 1 means a grayscale image is returned.
+
+```xaml
+<UserControl
+    ...
+    xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Image Source="Images/Hustler.jpg">
+            <Image.Effect>
+                <effects:Desaturate Strength="{Binding ElementName=StrangthSlider, Path=Value}" />
+            </Image.Effect>
+        </Image>
+        <Slider
+            x:Name="StrangthSlider"
+            VerticalAlignment="Bottom"
+            Maximum="1"
+            Minimum="0" />
+    </Grid>
+</UserControl>
+```

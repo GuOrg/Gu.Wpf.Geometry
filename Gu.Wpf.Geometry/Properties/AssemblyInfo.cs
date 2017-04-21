@@ -22,4 +22,6 @@ using System.Windows.Markup;
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: XmlnsDefinition("http://gu.se/Geometry", "Gu.Wpf.Geometry")]
+[assembly: XmlnsDefinition("http://gu.se/Geometry", "Gu.Wpf.Geometry.Effects")]
 [assembly: XmlnsPrefix("http://gu.se/Geometry", "geometry")]
+[assembly: XmlnsPrefix("http://gu.se/Geometry", "effects")]

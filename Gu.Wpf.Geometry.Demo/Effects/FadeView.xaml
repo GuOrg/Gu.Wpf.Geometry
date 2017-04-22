@@ -1,23 +1,22 @@
-﻿<UserControl
-    x:Class="Gu.Wpf.Geometry.Demo.Effects.FadeView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:effects="http://gu.se/Geometry"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
-    mc:Ignorable="d">
+﻿<UserControl x:Class="Gu.Wpf.Geometry.Demo.Effects.FadeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:effects="http://gu.se/Geometry"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
     <Grid>
         <Image Source="../Images/Hustler.jpg">
             <Image.Effect>
-                <effects:Fade Strength="{Binding ElementName=StrengthSlider, Path=Value}" To="Black" />
+                <effects:Fade Strength="{Binding ElementName=StrengthSlider, Path=Value}"
+                              To="Black" />
             </Image.Effect>
         </Image>
-        <Slider
-            x:Name="StrengthSlider"
-            VerticalAlignment="Bottom"
-            Maximum="1"
-            Minimum="0" />
+        <Slider x:Name="StrengthSlider"
+                VerticalAlignment="Bottom"
+                Maximum="1"
+                Minimum="0" />
     </Grid>
 </UserControl>

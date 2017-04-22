@@ -5,6 +5,7 @@
     using System.Windows.Media;
     using System.Windows.Media.Effects;
 
+    /// <summary>A gradient that changes value with angle.</summary>
     public class AngularGradient : ShaderEffect
     {
         public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradient), 0);

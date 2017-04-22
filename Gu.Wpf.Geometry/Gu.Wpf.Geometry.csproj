@@ -49,6 +49,7 @@
     <Compile Include="Balloon\PlacementOptionsExtension.cs" />
     <Compile Include="Effects\AngularGradient.cs" />
     <Compile Include="Effects\Fade.cs" />
+    <Compile Include="Effects\HsvWheel.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomRightConverter.cs" />
@@ -103,6 +104,9 @@
     <Resource Include="Effects\Desaturate.ps">
       <DependentUpon>Desaturate.cs</DependentUpon>
     </Resource>
+    <Resource Include="Effects\HsvWheel.ps">
+      <DependentUpon>HsvWheel.cs</DependentUpon>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -124,6 +128,9 @@
     </Content>
     <Content Include="Effects\Fade.fx">
       <DependentUpon>Fade.cs</DependentUpon>
+    </Content>
+    <Content Include="Effects\HsvWheel.fx">
+      <DependentUpon>HsvWheel.cs</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

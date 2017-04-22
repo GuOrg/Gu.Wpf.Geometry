@@ -249,7 +249,7 @@ Fade an image to a colour.
 ```
 
 ## AngularGradient
-A gradient that changes value along the anlge. Perhaps useful for spinners.
+A gradient that changes value along the angle. Perhaps useful for spinners.
 
 ```xaml
 <UserControl ...
@@ -298,4 +298,56 @@ A gradient that changes value along the anlge. Perhaps useful for spinners.
                 Value="360" />
     </Grid>
 </UserControl>
+```
+
+## HsvWheel
+A gradient that changes value along the angle. Perhaps useful for colour pickers.
+Note that the element must have a background or fill. The brush can be any colour.
+
+```xaml
+<UserControl ...
+             xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Ellipse Grid.ColumnSpan="2"
+                 Width="300"
+                 Height="300"
+                 HorizontalAlignment="Center"
+                 Fill="White">
+            <Ellipse.Effect>
+                <effects:HsvWheel InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
+                                  InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}" />
+            </Ellipse.Effect>
+        </Ellipse>
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Content="Inner radius:" />
+        <Slider x:Name="InnerRadius"
+                Grid.Row="1"
+                Grid.Column="1"
+                Maximum="1"
+                Minimum="0"
+                Value="0" />
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Content="Inner saturation:" />
+        <Slider x:Name="InnerSaturation"
+                Grid.Row="2"
+                Grid.Column="1"
+                Maximum="1"
+                Minimum="0"
+                Value="0" />
+    </Grid>
+</UserControl>
+
 ```

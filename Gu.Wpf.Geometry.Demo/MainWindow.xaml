@@ -45,5 +45,9 @@
         <TabItem Header="Angular gradient">
             <effects:AngularGradientView />
         </TabItem>
+
+        <TabItem Header="HSV Wheel">
+            <effects:HsvWheelView />
+        </TabItem>
     </TabControl>
 </Window>

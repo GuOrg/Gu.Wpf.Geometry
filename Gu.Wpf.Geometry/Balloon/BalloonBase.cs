@@ -221,7 +221,6 @@ namespace Gu.Wpf.Geometry
                 Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse I think we want it weird like this.
                 if (ip == null)
-                //// ReSharper disable once HeuristicUnreachableCode
                 {
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
@@ -229,7 +228,6 @@ namespace Gu.Wpf.Geometry
                 else
                 {
                     var v = tp.Value - ip.Value;
-
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {

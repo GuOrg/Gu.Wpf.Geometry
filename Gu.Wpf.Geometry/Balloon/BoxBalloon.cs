@@ -266,6 +266,7 @@ namespace Gu.Wpf.Geometry
 
                 var lineToCenter = ray.PerpendicularLineTo(corner.Center);
                 Debug.Assert(lineToCenter != null, "Ray cannot go through center here");
+                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (lineToCenter == null)
                 {
                     // this should never happen but failing silently

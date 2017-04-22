@@ -102,6 +102,7 @@ namespace Gu.Wpf.Geometry
                 var mp = ellipse.CenterPoint;
                 var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
                 Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
+                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (ip == null)
                 {
                     // failing silently in release
@@ -164,6 +165,7 @@ namespace Gu.Wpf.Geometry
             {
                 var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
                 Debug.Assert(toEllipseCenter != null, "Ray should not go through ellipse center here");
+                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (toEllipseCenter == null)
                 {
                     // this should never happen but failing silently

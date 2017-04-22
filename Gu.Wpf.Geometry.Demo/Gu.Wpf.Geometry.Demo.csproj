@@ -52,7 +52,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AngularGradientView.xaml.cs">
+    <Compile Include="Effects\AngularGradientView.xaml.cs">
       <DependentUpon>AngularGradientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AttachedProperties\Drag.cs" />
@@ -71,8 +71,11 @@
     <Compile Include="DebugViews\IntersectionView.xaml.cs">
       <DependentUpon>IntersectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DesaturateView.xaml.cs">
+    <Compile Include="Effects\DesaturateView.xaml.cs">
       <DependentUpon>DesaturateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\FadeView.xaml.cs">
+      <DependentUpon>FadeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="EllipseBalloonView.xaml.cs">
       <DependentUpon>EllipseBalloonView.xaml</DependentUpon>
@@ -86,7 +89,7 @@
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AngularGradientView.xaml">
+    <Page Include="Effects\AngularGradientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DesaturateView.xaml">
+    <Page Include="Effects\DesaturateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DebugViews\IntersectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Effects\FadeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

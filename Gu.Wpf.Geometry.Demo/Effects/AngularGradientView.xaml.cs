@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Demo
+﻿namespace Gu.Wpf.Geometry.Demo.Effects
 {
     using System.Windows.Controls;
 

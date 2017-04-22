@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:effects="clr-namespace:Gu.Wpf.Geometry.Demo.Effects"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -34,11 +35,15 @@
         </TabItem>
 
         <TabItem Header="Desaturate">
-            <local:DesaturateView />
+            <effects:DesaturateView />
         </TabItem>
 
+        <TabItem Header="Fade">
+            <effects:FadeView />
+        </TabItem>
+        
         <TabItem Header="Angular gradient">
-            <local:AngularGradientView />
+            <effects:AngularGradientView />
         </TabItem>
     </TabControl>
 </Window>

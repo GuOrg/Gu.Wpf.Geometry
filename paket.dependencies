@@ -11,7 +11,7 @@ group Analyzers
 
 group Test
   source http://www.nuget.org/api/v2/
-  framework: >= net45
+  framework: net452
   nuget NUnit
   nuget FlaUI.UIA3
 

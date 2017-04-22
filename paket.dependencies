@@ -13,6 +13,7 @@ group Test
   source http://www.nuget.org/api/v2/
   framework: >= net45
   nuget NUnit
+  nuget FlaUI.UIA3
 
 group Benchmark
   redirects: on

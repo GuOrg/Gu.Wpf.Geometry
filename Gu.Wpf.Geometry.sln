@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A8270AFD-4
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.UiTests", "Gu.Wpf.Geometry.UiTests\Gu.Wpf.Geometry.UiTests.csproj", "{B95B1B42-CD04-4A57-AE03-0C9E170EC968}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30D0AD1-E586-4446-830C-75E1520C5B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95B1B42-CD04-4A57-AE03-0C9E170EC968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95B1B42-CD04-4A57-AE03-0C9E170EC968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95B1B42-CD04-4A57-AE03-0C9E170EC968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95B1B42-CD04-4A57-AE03-0C9E170EC968}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

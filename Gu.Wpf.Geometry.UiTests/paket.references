@@ -1,0 +1,8 @@
+group Analyzers
+  StyleCop.Analyzers
+  WpfAnalyzers
+  Gu.Analyzers
+
+group Test
+  NUnit
+  FlaUI.UIA3

@@ -122,6 +122,25 @@
   -->
   <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
+    <None Include="Effects\HslWheelEffect.fx">
+      <DependentUpon>HslWheelEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\FadeEffect.fx">
+      <DependentUpon>FadeEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\DesaturateEffect.fx">
+      <DependentUpon>DesaturateEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\AngularGradientEffect.fx">
+      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Effects\HsvWheelEffect.fx">
+      <DependentUpon>HsvWheelEffect.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -158,24 +177,5 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Effects\HslWheelEffect.fx">
-      <DependentUpon>HslWheelEffect.cs</DependentUpon>
-    </None>
-    <None Include="Effects\FadeEffect.fx">
-      <DependentUpon>FadeEffect.cs</DependentUpon>
-    </None>
-    <None Include="Effects\DesaturateEffect.fx">
-      <DependentUpon>DesaturateEffect.cs</DependentUpon>
-    </None>
-    <None Include="Effects\AngularGradientEffect.fx">
-      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Effects\HsvWheelEffect.fx">
-      <DependentUpon>HsvWheelEffect.cs</DependentUpon>
-    </None>
   </ItemGroup>
 </Project>

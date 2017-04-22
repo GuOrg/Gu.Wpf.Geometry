@@ -123,6 +123,9 @@ GROUP Test
 FRAMEWORK: >= NET45
 NUGET
   remote: http://www.nuget.org/api/v2
+    FlaUI.Core (1.0)
+    FlaUI.UIA3 (1.0)
+      FlaUI.Core (>= 1.0)
     Microsoft.Win32.Primitives (4.3) - framework: >= net463
     NETStandard.Library (1.6.1) - framework: >= net463
       Microsoft.Win32.Primitives (>= 4.3) - framework: >= net46

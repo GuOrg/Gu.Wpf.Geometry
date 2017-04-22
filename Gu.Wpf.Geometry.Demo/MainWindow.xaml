@@ -49,5 +49,9 @@
         <TabItem Header="HSV Wheel">
             <effects:HsvWheelView />
         </TabItem>
+
+        <TabItem Header="HSL Wheel">
+            <effects:HslWheelView />
+        </TabItem>
     </TabControl>
 </Window>

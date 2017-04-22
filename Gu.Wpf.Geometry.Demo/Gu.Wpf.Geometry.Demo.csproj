@@ -77,6 +77,9 @@
     <Compile Include="Effects\FadeView.xaml.cs">
       <DependentUpon>FadeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Effects\HslWheelView.xaml.cs">
+      <DependentUpon>HslWheelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Effects\HsvWheelView.xaml.cs">
       <DependentUpon>HsvWheelView.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Effects\FadeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Effects\HslWheelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

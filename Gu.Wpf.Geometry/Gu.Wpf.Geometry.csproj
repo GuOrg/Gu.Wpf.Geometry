@@ -49,6 +49,7 @@
     <Compile Include="Balloon\PlacementOptionsExtension.cs" />
     <Compile Include="Effects\AngularGradient.cs" />
     <Compile Include="Effects\Fade.cs" />
+    <Compile Include="Effects\HslWheel.cs" />
     <Compile Include="Effects\HsvWheel.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
@@ -104,6 +105,9 @@
     <Resource Include="Effects\Desaturate.ps">
       <DependentUpon>Desaturate.cs</DependentUpon>
     </Resource>
+    <Resource Include="Effects\HslWheel.ps">
+      <DependentUpon>HslWheel.cs</DependentUpon>
+    </Resource>
     <Resource Include="Effects\HsvWheel.ps">
       <DependentUpon>HsvWheel.cs</DependentUpon>
     </Resource>
@@ -128,6 +132,9 @@
     </Content>
     <Content Include="Effects\Fade.fx">
       <DependentUpon>Fade.cs</DependentUpon>
+    </Content>
+    <Content Include="Effects\HslWheel.fx">
+      <DependentUpon>HslWheel.cs</DependentUpon>
     </Content>
     <Content Include="Effects\HsvWheel.fx">
       <DependentUpon>HsvWheel.cs</DependentUpon>

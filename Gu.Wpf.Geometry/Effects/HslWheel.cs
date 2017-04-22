@@ -6,45 +6,46 @@
     using System.Windows.Media.Effects;
 
     /// <summary>
-    /// An effect that renders a HSV colour wheel.
+    /// An effect that renders a HSL colour wheel.
     /// </summary>
-    public class HsvWheel : ShaderEffect
+    public class HslWheel : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(HsvWheel), 0);
+        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(HslWheel), 0);
 
         public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register(
             "InnerRadius",
             typeof(double),
-            typeof(HsvWheel),
+            typeof(HslWheel),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
         public static readonly DependencyProperty InnerSaturationProperty = DependencyProperty.Register(
             "InnerSaturation",
             typeof(double),
-            typeof(HsvWheel),
+            typeof(HslWheel),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(1)));
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value",
+        public static readonly DependencyProperty LightnessProperty = DependencyProperty.Register(
+            "Lightness",
             typeof(double),
-            typeof(HsvWheel),
-            new UIPropertyMetadata(1D, PixelShaderConstantCallback(2)));
-
-        private static readonly PixelShader Shader = new PixelShader
-        {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheel.ps",UriKind.Absolute)
-        };
+            typeof(HslWheel),
+            new UIPropertyMetadata(0.5D, PixelShaderConstantCallback(2)));
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HsvWheel"/> class.
+        /// The uri should be something like pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HslWheelEffect.ps
+        /// The file HslWheelEffect.ps should have BuildAction: Resource
         /// </summary>
-        public HsvWheel()
+        private static readonly PixelShader Shader = new PixelShader
+        {
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HslWheel.ps", UriKind.Absolute)
+        };
+
+        public HslWheel()
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);
             this.UpdateShaderValue(InnerRadiusProperty);
             this.UpdateShaderValue(InnerSaturationProperty);
-            this.UpdateShaderValue(ValueProperty);
+            this.UpdateShaderValue(LightnessProperty);
         }
 
         /// <summary>
@@ -71,10 +72,10 @@
         }
 
         /// <summary>The value.</summary>
-        public double Value
+        public double Lightness
         {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
+            get => (double)this.GetValue(LightnessProperty);
+            set => this.SetValue(LightnessProperty, value);
         }
     }
 }

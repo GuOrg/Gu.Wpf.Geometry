@@ -4,17 +4,24 @@
 
 Small library with WPF geometries.
 
-## Contents
-- [Balloon](#balloon)
-- [BoxBalloon](#boxballoon)
-      - [Simple](#simple)
-      - [ConnectorAngle](#connectorangle)
-      - [ConnectorOffset](#connectoroffset)
-      - [With PlacementTarget](#with-placementtarget)
-      - [PlacementTarget](#placementtarget)
-      - [PlacementOptions](#placementoptions)
-- [EllipseBalloon](#ellipseballoon)
-- [GradientPath](#gradientpath)
+# Contents
+- [Geometries](#geometries)
+  - [Balloon](#balloon)
+  - [BoxBalloon](#boxballoon)
+        - [Simple](#simple)
+        - [ConnectorAngle](#connectorangle)
+        - [ConnectorOffset](#connectoroffset)
+        - [With PlacementTarget](#with-placementtarget)
+        - [PlacementTarget](#placementtarget)
+        - [PlacementOptions](#placementoptions)
+  - [EllipseBalloon](#ellipseballoon)
+  - [GradientPath](#gradientpath)
+- [Effects](#effects)
+  - [Desaturate](#desaturate)
+  - [Fade](#fade)
+  - [AngularGradient](#angulargradient)
+
+# Geometries
 
 ## Balloon
 A `ContentControl`for showing balloons.
@@ -198,7 +205,7 @@ Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-P
 # Effects
 A collection of pixel shaders.
 
-# Desaturate
+## Desaturate
 Desaturate an image, brush or WPF controls. It has only one property `Strength` 0 means the effect does nothing and 1 means a grayscale image is returned.
 
 ```xaml
@@ -216,6 +223,79 @@ Desaturate an image, brush or WPF controls. It has only one property `Strength` 
             VerticalAlignment="Bottom"
             Maximum="1"
             Minimum="0" />
+    </Grid>
+</UserControl>
+```
+
+## Fade
+Fade an image to a colour.
+
+```xaml
+<UserControl ...
+             xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Image Source="../Images/Hustler.jpg">
+            <Image.Effect>
+                <effects:Fade To="Black" Strength="{Binding ElementName=StrengthSlider, Path=Value}" />
+            </Image.Effect>
+        </Image>
+        <Slider
+            x:Name="StrengthSlider"
+            VerticalAlignment="Bottom"
+            Maximum="1"
+            Minimum="0" />
+    </Grid>
+</UserControl>
+```
+
+## AngularGradient
+A gradient that changes value along the anlge. Perhaps useful for spinners.
+
+```xaml
+<UserControl ...
+             xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Ellipse Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Stroke="Red"
+                 StrokeThickness="15">
+            <Ellipse.Effect>
+                <effects:AngularGradient ArcLength="{Binding ElementName=EndAngle,
+                                                             Path=Value}"
+                                         EndColor="Transparent"
+                                         StartAngle="{Binding ElementName=StartAngle,
+                                                              Path=Value}"
+                                         StartColor="Red" />
+            </Ellipse.Effect>
+        </Ellipse>
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Content="Start angle:" />
+        <Slider x:Name="StartAngle"
+                Grid.Row="1"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="0" />
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Content="End angle:" />
+        <Slider x:Name="EndAngle"
+                Grid.Row="2"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="-360"
+                Value="360" />
     </Grid>
 </UserControl>
 ```

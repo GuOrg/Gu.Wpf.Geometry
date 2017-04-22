@@ -53,10 +53,11 @@ float4 main(float2 uv : TEXCOORD) : COLOR
 {
     float2 rv = uv - cp;
     float r = length(rv);
-    if (r >= InnerRadius && r <= 0.5)
+    float ir = InnerRadius / 2;
+    if (r >= ir && r <= 0.5)
     {
         float h = angle(rv, xv, false) / (2 * Pi);
-        float s = lerp(InnerSaturation, 1, smoothstep(InnerRadius, 0.5, r));
+        float s = lerp(InnerSaturation, 1, smoothstep(ir, 0.5, r));
         float v = Value;
         return float4(HSVtoRGB(float3(h, s, v)), 1);
     }

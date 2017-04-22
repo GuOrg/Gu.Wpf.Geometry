@@ -32,7 +32,7 @@
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheelEffectEffect.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheelEffect.ps", UriKind.Absolute)
         };
 
         /// <summary>

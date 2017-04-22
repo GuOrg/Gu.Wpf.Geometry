@@ -94,9 +94,9 @@
     <Resource Include="Effects\AngularGradient.ps">
       <DependentUpon>AngularGradient.cs</DependentUpon>
     </Resource>
-    <None Include="Effects\Fade.ps">
+    <Resource Include="Effects\Fade.ps">
       <DependentUpon>Fade.cs</DependentUpon>
-    </None>
+    </Resource>
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />

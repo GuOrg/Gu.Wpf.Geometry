@@ -26,7 +26,7 @@
                 return false;
             }
 
-            return PointComparer.TwoDigits.Equals(x.Value, y.Value, this.digits);
+            return PointComparer.Equals(x.Value, y.Value, this.digits);
         }
 
         public int GetHashCode(Point? obj)

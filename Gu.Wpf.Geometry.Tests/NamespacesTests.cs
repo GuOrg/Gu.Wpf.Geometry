@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.Tests
     using System.Reflection;
     using System.Windows.Markup;
 
-    using Xunit;
+    using NUnit.Framework;
 
     public class NamespacesTests
     {
@@ -18,7 +18,7 @@ namespace Gu.Wpf.Geometry.Tests
             this.assembly = typeof(GradientPath).Assembly;
         }
 
-        [Fact]
+        [Test]
         public void XmlnsDefinitions()
         {
             string[] skip = { ".Annotations", ".Properties", "XamlGeneratedNamespace" };
@@ -38,18 +38,21 @@ namespace Gu.Wpf.Geometry.Tests
                 Console.WriteLine(@"[assembly: XmlnsDefinition(""{0}"", ""{1}"")]", Uri, s);
             }
 
-            Assert.Equal(strings, actuals);
+            Assert.AreEqual(strings, actuals);
             foreach (var attribute in attributes)
             {
-                Assert.Equal(Uri, attribute.ConstructorArguments[0].Value);
+                Assert.AreEqual(Uri, attribute.ConstructorArguments[0].Value);
             }
         }
 
-        [Fact]
+        [Test]
         public void XmlnsPrefix()
         {
-            var prefixAttribute = this.assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
-            Assert.All(prefixAttribute.Select(a => a.ConstructorArguments[0].Value), x => Assert.Equal(Uri, x));
+            var attributes = this.assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
+            foreach (var attribute in attributes)
+            {
+                Assert.AreEqual(Uri, attribute.ConstructorArguments[0].Value);
+            }
         }
     }
 }

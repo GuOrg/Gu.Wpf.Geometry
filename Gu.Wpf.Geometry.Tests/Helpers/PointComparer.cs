@@ -14,14 +14,14 @@
             this.digits = digits;
         }
 
-        public bool Equals(Point x, Point y)
-        {
-            return this.Equals(x, y, this.digits);
-        }
-
-        public bool Equals(Point x, Point y, int decimalDigits)
+        public static bool Equals(Point x, Point y, int decimalDigits)
         {
             return x.Round(decimalDigits) == y.Round(decimalDigits);
+        }
+
+        public bool Equals(Point x, Point y)
+        {
+            return Equals(x, y, this.digits);
         }
 
         public int GetHashCode(Point obj)

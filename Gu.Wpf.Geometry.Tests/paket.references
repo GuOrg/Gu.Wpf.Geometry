@@ -4,4 +4,4 @@ group Analyzers
   Gu.Analyzers
 
 group Test
-  xunit
+  NUnit

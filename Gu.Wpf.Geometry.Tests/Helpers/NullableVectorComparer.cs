@@ -26,7 +26,7 @@ namespace Gu.Wpf.Geometry.Tests
                 return false;
             }
 
-            return VectorComparer.TwoDigits.Equals(x.Value, y.Value, this.digits);
+            return VectorComparer.Equals(x.Value, y.Value, this.digits);
         }
 
         public int GetHashCode(Vector? obj)

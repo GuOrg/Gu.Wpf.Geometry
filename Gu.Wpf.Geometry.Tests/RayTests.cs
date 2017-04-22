@@ -4,29 +4,27 @@
     using System.Diagnostics;
     using System.Windows;
 
-    using Xunit;
+    using NUnit.Framework;
 
     public class RayTests
     {
-        [Theory]
-        [InlineData("-2,0; 1,0", "0,0; 1", "-1,0")]
-        [InlineData("2,0; -1,0", "0,0; 1", "1,0")]
-        [InlineData("0,2; 0,-1", "0,0; 1", "0,1")]
-        [InlineData("0,-2; 0,1", "0,0; 1", "0,-1")]
-        [InlineData("-2,0; -1,0", "0,0; 1", "null")]
+        [TestCase("-2,0; 1,0", "0,0; 1", "-1,0")]
+        [TestCase("2,0; -1,0", "0,0; 1", "1,0")]
+        [TestCase("0,2; 0,-1", "0,0; 1", "0,1")]
+        [TestCase("0,-2; 0,1", "0,0; 1", "0,-1")]
+        [TestCase("-2,0; -1,0", "0,0; 1", "null")]
         public void FirstIntersectionWithCircle(string ls, string cs, string eps)
         {
             var ray = Ray.Parse(ls);
             var circle = Circle.Parse(cs);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(circle);
-            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
+            PointAssert.AreEqual(expected, actual, 2);
         }
 
-        [Theory]
-        [InlineData("0,0; 1")]
-        [InlineData("1,2; 3")]
-        [InlineData("-1,-2; 3")]
+        [TestCase("0,0; 1")]
+        [TestCase("1,2; 3")]
+        [TestCase("-1,-2; 3")]
         public void FirstIntersectionWithCircleFromInsideRoundtrips(string cs)
         {
             var circle = Circle.Parse(cs);
@@ -37,15 +35,14 @@
                 var pointOnCircumference = circle.PointOnCircumference(direction);
                 var ray = new Ray(circle.Center, direction);
                 var actual = ray.FirstIntersectionWith(circle);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
+                PointAssert.AreEqual(pointOnCircumference, actual, 2);
             }
         }
 
-        [Theory]
-        [InlineData("0,0; 1")]
-        [InlineData("1,2; 3")]
-        [InlineData("-1,2; 3")]
-        [InlineData("-1,-2; 3")]
+        [TestCase("0,0; 1")]
+        [TestCase("1,2; 3")]
+        [TestCase("-1,2; 3")]
+        [TestCase("-1,-2; 3")]
         public void FirstIntersectionWithCircleFromOutsideRoundtrips(string cs)
         {
             var circle = Circle.Parse(cs);
@@ -56,44 +53,42 @@
                 var pointOnCircumference = circle.PointOnCircumference(direction);
                 var ray = new Ray(pointOnCircumference + direction, direction.Negated());
                 var actual = ray.FirstIntersectionWith(circle);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
+                PointAssert.AreEqual(pointOnCircumference, actual, 2);
             }
         }
 
-        [Theory]
-        [InlineData("-2,0; 1,0", "0,0; 1; 1", "-1,0")]
-        [InlineData("0,0; 1,0", "0,0; 1; 1", "1,0")]
-        [InlineData("0,0; 1,0", "0,0; 3; 5", "3,0")]
-        [InlineData("0,0; -1,0", "0,0; 3; 5", "-3,0")]
-        [InlineData("0,0; -1,0", "0,0; 1; 1", "-1,0")]
-        [InlineData("-2,1; 1,0", "0,0; 1; 1", "0,1")]
-        [InlineData("2,0; -1,0", "0,0; 1; 1", "1,0")]
-        [InlineData("0,2; 0,-1", "0,0; 1; 1", "0,1")]
-        [InlineData("0,-2; 0,1", "0,0; 1; 1", "0,-1")]
-        [InlineData("0,0; 0,1", "0,0; 1; 1", "0,1")]
-        [InlineData("0,0; 0,1", "0,0; 2; 3", "0,3")]
-        [InlineData("0,0; 0,-1", "0,0; 1; 1", "0,-1")]
-        [InlineData("0,0; 0,-1", "0,0; 2; 3", "0,-3")]
-        [InlineData("-5,8; 1,-1", "1,2; 3; 4", "-1.4,4.4")] // got this from CAD
-        [InlineData("-2,1; 1,0", "0,1; 1; 1", "-1,1")]
-        [InlineData("0,3; 0,-1", "0,1; 1; 1", "0,2")]
-        [InlineData("0,-1; 0,1", "0,1; 1; 1", "0,0")]
-        [InlineData("-2,0; -1,0", "0,0; 1; 1", "null")]
-        [InlineData("-2,2; 1,0", "0,0; 1; 1", "null")]
+        [TestCase("-2,0; 1,0", "0,0; 1; 1", "-1,0")]
+        [TestCase("0,0; 1,0", "0,0; 1; 1", "1,0")]
+        [TestCase("0,0; 1,0", "0,0; 3; 5", "3,0")]
+        [TestCase("0,0; -1,0", "0,0; 3; 5", "-3,0")]
+        [TestCase("0,0; -1,0", "0,0; 1; 1", "-1,0")]
+        [TestCase("-2,1; 1,0", "0,0; 1; 1", "0,1")]
+        [TestCase("2,0; -1,0", "0,0; 1; 1", "1,0")]
+        [TestCase("0,2; 0,-1", "0,0; 1; 1", "0,1")]
+        [TestCase("0,-2; 0,1", "0,0; 1; 1", "0,-1")]
+        [TestCase("0,0; 0,1", "0,0; 1; 1", "0,1")]
+        [TestCase("0,0; 0,1", "0,0; 2; 3", "0,3")]
+        [TestCase("0,0; 0,-1", "0,0; 1; 1", "0,-1")]
+        [TestCase("0,0; 0,-1", "0,0; 2; 3", "0,-3")]
+        [TestCase("-5,8; 1,-1", "1,2; 3; 4", "-1.4,4.4")] // got this from CAD
+        [TestCase("-2,1; 1,0", "0,1; 1; 1", "-1,1")]
+        [TestCase("0,3; 0,-1", "0,1; 1; 1", "0,2")]
+        [TestCase("0,-1; 0,1", "0,1; 1; 1", "0,0")]
+        [TestCase("-2,0; -1,0", "0,0; 1; 1", "null")]
+        [TestCase("-2,2; 1,0", "0,0; 1; 1", "null")]
         public void FirstIntersectionWithEllipse(string rs, string es, string eps)
         {
             var ray = Ray.Parse(rs);
             var ellipse = Ellipse.Parse(es);
             var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(ellipse);
-            Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
+            PointAssert.AreEqual(expected, actual, 2);
         }
 
-        [Theory]
-        [InlineData("0,0; 1; 1")]
-        [InlineData("0,0; 2; 3")]
-        [InlineData("1,2; 3; 4")]
-        [InlineData("-1,-2; 3; 4")]
+        [TestCase("0,0; 1; 1")]
+        [TestCase("0,0; 2; 3")]
+        [TestCase("1,2; 3; 4")]
+        [TestCase("-1,-2; 3; 4")]
         public void FirstIntersectionWithEllipseFromInsideRoundtrips(string es)
         {
             var ellipse = Ellipse.Parse(es);
@@ -104,14 +99,13 @@
                 var expected = ellipse.PointOnCircumference(direction);
                 var ray = new Ray(ellipse.CenterPoint, direction);
                 var actual = ray.FirstIntersectionWith(ellipse);
-                Assert.Equal(expected, actual, NullablePointComparer.TwoDigits);
+                PointAssert.AreEqual(expected, actual, 2);
             }
         }
 
-        [Theory]
-        [InlineData("0,0; 1; 1")]
-        [InlineData("1,2; 3; 4")]
-        [InlineData("-1,-2; 3; 4")]
+        [TestCase("0,0; 1; 1")]
+        [TestCase("1,2; 3; 4")]
+        [TestCase("-1,-2; 3; 4")]
         public void FirstIntersectionWithEllipseFromOutsideRoundtrips(string es)
         {
             var ellipse = Ellipse.Parse(es);
@@ -122,20 +116,19 @@
                 var pointOnCircumference = ellipse.PointOnCircumference(fromCenterDirection);
                 var ray = new Ray(pointOnCircumference + fromCenterDirection, fromCenterDirection.Negated());
                 var actual = ray.FirstIntersectionWith(ellipse);
-                Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
+                PointAssert.AreEqual(pointOnCircumference, actual, 2);
                 for (var j = -70; j < 70; j++)
                 {
                     var direction = fromCenterDirection.Rotate(j);
                     ray = new Ray(pointOnCircumference + direction, direction.Negated());
                     actual = ray.FirstIntersectionWith(ellipse);
-                    Assert.Equal(pointOnCircumference, actual, NullablePointComparer.TwoDigits);
+                    PointAssert.AreEqual(pointOnCircumference, actual, 2);
                 }
             }
         }
 
-        [Theory]
-        [InlineData("0 0 1 1")]
-        [InlineData("1 2 3 4")]
+        [TestCase("0 0 1 1")]
+        [TestCase("1 2 3 4")]
         public void FirstIntersectionWithRectFromOutsideRoundtrips(string rs)
         {
             var rect = Rect.Parse(rs);
@@ -147,7 +140,7 @@
                 var pointOnRect = fromCenter.FirstIntersectionWith(rect).GetValueOrDefault();
                 var ray = new Ray(pointOnRect + direction, direction.Negated());
                 var actual = ray.FirstIntersectionWith(rect);
-                Assert.Equal(pointOnRect, actual, NullablePointComparer.TwoDigits);
+                PointAssert.AreEqual(pointOnRect, actual, 2);
 
                 if (rect.ClosestCornerPoint(pointOnRect)
                         .DistanceTo(pointOnRect) < 0.01)
@@ -156,7 +149,6 @@
                 }
 
                 Vector wallNormal;
-
                 if (Math.Abs(pointOnRect.X - rect.Left) < Constants.Tolerance)
                 {
                     wallNormal = new Vector(-1, 0);
@@ -184,7 +176,7 @@
                         Debugger.Break();
                     }
 
-                    Assert.Equal(pointOnRect, actual, NullablePointComparer.TwoDigits);
+                    PointAssert.AreEqual(pointOnRect, actual, 2);
                 }
             }
         }

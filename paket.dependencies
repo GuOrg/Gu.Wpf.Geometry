@@ -12,7 +12,7 @@ group Analyzers
 group Test
   source http://www.nuget.org/api/v2/
   framework: >= net45
-  nuget xunit
+  nuget NUnit
 
 group Benchmark
   source http://www.nuget.org/api/v2/

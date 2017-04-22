@@ -2,9 +2,6 @@
 {
     using System.Windows.Controls;
 
-    /// <summary>
-    /// Interaction logic for HslWheelView.xaml
-    /// </summary>
     public partial class HsvWheelView : UserControl
     {
         public HsvWheelView()

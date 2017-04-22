@@ -15,6 +15,7 @@ group Test
   nuget NUnit
 
 group Benchmark
+  redirects: on
   source http://www.nuget.org/api/v2/
   framework: net461
   nuget BenchmarkDotNet

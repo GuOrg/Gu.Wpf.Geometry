@@ -10,6 +10,7 @@ NUGET
     WpfAnalyzers (0.2.7.10)
 
 GROUP Benchmark
+REDIRECTS: ON
 FRAMEWORK: NET461
 NUGET
   remote: http://www.nuget.org/api/v2

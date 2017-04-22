@@ -6,24 +6,20 @@
     using System.Windows.Media.Effects;
 
     /// <summary>Fade to a colour by animating the strength.</summary>
-    public class Fade : ShaderEffect
+    public class FadeEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(Fade), 0);
+        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(FadeEffect), 0);
 
-        public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register("Strength", typeof(double), typeof(Fade), new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
+        public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register("Strength", typeof(double), typeof(FadeEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
-        public static readonly DependencyProperty ToProperty = DependencyProperty.Register("To", typeof(Color), typeof(Fade), new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
+        public static readonly DependencyProperty ToProperty = DependencyProperty.Register("To", typeof(Color), typeof(FadeEffect), new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
 
-        /// <summary>
-        /// The uri should be something like pack://application:,,,/Gu.Wpf.Geometry;component/Effects/Fade.ps
-        /// The file Fade.ps should have BuildAction: Resource
-        /// </summary>
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/Fade.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/FadeEffect.ps", UriKind.Absolute)
         };
 
-        public Fade()
+        public FadeEffect()
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);

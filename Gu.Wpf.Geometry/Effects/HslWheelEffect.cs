@@ -6,45 +6,42 @@
     using System.Windows.Media.Effects;
 
     /// <summary>
-    /// An effect that renders a HSV colour wheel.
+    /// An effect that renders a HSL colour wheel.
     /// </summary>
-    public class HsvWheel : ShaderEffect
+    public class HslWheelEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(HsvWheel), 0);
+        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(HslWheelEffect), 0);
 
         public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register(
             "InnerRadius",
             typeof(double),
-            typeof(HsvWheel),
+            typeof(HslWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
         public static readonly DependencyProperty InnerSaturationProperty = DependencyProperty.Register(
             "InnerSaturation",
             typeof(double),
-            typeof(HsvWheel),
+            typeof(HslWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(1)));
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value",
+        public static readonly DependencyProperty LightnessProperty = DependencyProperty.Register(
+            "Lightness",
             typeof(double),
-            typeof(HsvWheel),
-            new UIPropertyMetadata(1D, PixelShaderConstantCallback(2)));
+            typeof(HslWheelEffect),
+            new UIPropertyMetadata(0.5D, PixelShaderConstantCallback(2)));
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheel.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HslWheelEffect.ps", UriKind.Absolute)
         };
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HsvWheel"/> class.
-        /// </summary>
-        public HsvWheel()
+        public HslWheelEffect()
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);
             this.UpdateShaderValue(InnerRadiusProperty);
             this.UpdateShaderValue(InnerSaturationProperty);
-            this.UpdateShaderValue(ValueProperty);
+            this.UpdateShaderValue(LightnessProperty);
         }
 
         /// <summary>
@@ -71,10 +68,10 @@
         }
 
         /// <summary>The value.</summary>
-        public double Value
+        public double Lightness
         {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
+            get => (double)this.GetValue(LightnessProperty);
+            set => this.SetValue(LightnessProperty, value);
         }
     }
 }

@@ -6,25 +6,25 @@
     using System.Windows.Media.Effects;
 
     /// <summary>An effect that turns the input into shades of a single color.</summary>
-    public class Desaturate : ShaderEffect
+    public class DesaturateEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(Desaturate), 0);
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(DesaturateEffect), 0);
 
         public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register(
             "Strength",
             typeof(double),
-            typeof(Desaturate),
+            typeof(DesaturateEffect),
             new UIPropertyMetadata(1.0, PixelShaderConstantCallback(0)));
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/Desaturate.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/DesaturateEffect.ps", UriKind.Absolute)
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Desaturate"/> class.
+        /// Initializes a new instance of the <see cref="DesaturateEffect"/> class.
         /// </summary>
-        public Desaturate()
+        public DesaturateEffect()
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);

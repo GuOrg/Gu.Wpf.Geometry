@@ -6,49 +6,49 @@
     using System.Windows.Media.Effects;
 
     /// <summary>A gradient that changes value with angle.</summary>
-    public class AngularGradient : ShaderEffect
+    public class AngularGradientEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradient), 0);
+        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradientEffect), 0);
 
         public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(
             "CenterPoint",
             typeof(Point),
-            typeof(AngularGradient),
+            typeof(AngularGradientEffect),
             new UIPropertyMetadata(new Point(0.5D, 0.5D), PixelShaderConstantCallback(0)));
 
         public static readonly DependencyProperty StartColorProperty = DependencyProperty.Register(
             "StartColor",
             typeof(Color),
-            typeof(AngularGradient),
+            typeof(AngularGradientEffect),
             new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 255), PixelShaderConstantCallback(1)));
 
         public static readonly DependencyProperty EndColorProperty = DependencyProperty.Register(
             "EndColor",
             typeof(Color),
-            typeof(AngularGradient),
+            typeof(AngularGradientEffect),
             new UIPropertyMetadata(Color.FromArgb(255, 255, 0, 0), PixelShaderConstantCallback(2)));
 
         public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register(
             "StartAngle",
             typeof(double),
-            typeof(AngularGradient),
+            typeof(AngularGradientEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(3)));
 
         public static readonly DependencyProperty ArcLengthProperty = DependencyProperty.Register(
             "ArcLength",
             typeof(double),
-            typeof(AngularGradient),
+            typeof(AngularGradientEffect),
             new UIPropertyMetadata(360D, PixelShaderConstantCallback(4)));
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/AngularGradient.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/AngularGradientEffect.ps", UriKind.Absolute)
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AngularGradient"/> class.
+        /// Initializes a new instance of the <see cref="AngularGradientEffect"/> class.
         /// </summary>
-        public AngularGradient()
+        public AngularGradientEffect()
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);

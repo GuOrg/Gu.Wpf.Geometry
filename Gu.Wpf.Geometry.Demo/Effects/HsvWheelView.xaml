@@ -22,9 +22,9 @@
                  HorizontalAlignment="Center"
                  Fill="White">
             <Ellipse.Effect>
-                <effects:HsvWheel InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
-                                  InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
-                                  Value="{Binding ElementName=Value, Path=Value}" />
+                <effects:HsvWheelEffect InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
+                                        InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
+                                        Value="{Binding ElementName=Value, Path=Value}" />
             </Ellipse.Effect>
         </Ellipse>
 

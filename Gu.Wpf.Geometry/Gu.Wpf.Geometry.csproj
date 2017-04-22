@@ -47,10 +47,10 @@
     <Compile Include="Balloon\Balloon.cs" />
     <Compile Include="Balloon\EllipseBalloon.cs" />
     <Compile Include="Balloon\PlacementOptionsExtension.cs" />
-    <Compile Include="Effects\AngularGradient.cs" />
-    <Compile Include="Effects\Fade.cs" />
-    <Compile Include="Effects\HslWheel.cs" />
-    <Compile Include="Effects\HsvWheel.cs" />
+    <Compile Include="Effects\AngularGradientEffect.cs" />
+    <Compile Include="Effects\FadeEffect.cs" />
+    <Compile Include="Effects\HslWheelEffect.cs" />
+    <Compile Include="Effects\HsvWheelEffect.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomRightConverter.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Internals\VectorExt.cs" />
     <Compile Include="Internals\Sign.cs" />
     <Compile Include="Balloon\BoxBalloon.cs" />
-    <Compile Include="Effects\Desaturate.cs" />
+    <Compile Include="Effects\DesaturateEffect.cs" />
     <Compile Include="VerticalPlacement.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,24 +93,24 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Effects\AngularGradient.ps">
-      <DependentUpon>AngularGradient.cs</DependentUpon>
+    <Resource Include="Effects\AngularGradientEffect.ps">
+      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
     </Resource>
-    <Resource Include="Effects\Fade.ps">
-      <DependentUpon>Fade.cs</DependentUpon>
+    <Resource Include="Effects\DesaturateEffect.ps">
+      <DependentUpon>DesaturateEffect.cs</DependentUpon>
+    </Resource>
+    <Resource Include="Effects\FadeEffect.ps">
+      <DependentUpon>FadeEffect.cs</DependentUpon>
+    </Resource>
+    <Resource Include="Effects\HslWheelEffect.ps">
+      <DependentUpon>HslWheelEffect.cs</DependentUpon>
+    </Resource>
+    <Resource Include="Effects\HsvWheelEffect.ps">
+      <DependentUpon>HsvWheelEffect.cs</DependentUpon>
     </Resource>
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
-    <Resource Include="Effects\Desaturate.ps">
-      <DependentUpon>Desaturate.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\HslWheel.ps">
-      <DependentUpon>HslWheel.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\HsvWheel.ps">
-      <DependentUpon>HsvWheel.cs</DependentUpon>
-    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -120,26 +120,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="Effects\Desaturate.fx">
-      <DependentUpon>Desaturate.cs</DependentUpon>
-    </None>
-  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
-  <ItemGroup>
-    <Content Include="Effects\AngularGradient.fx">
-      <DependentUpon>AngularGradient.cs</DependentUpon>
-    </Content>
-    <Content Include="Effects\Fade.fx">
-      <DependentUpon>Fade.cs</DependentUpon>
-    </Content>
-    <Content Include="Effects\HslWheel.fx">
-      <DependentUpon>HslWheel.cs</DependentUpon>
-    </Content>
-    <Content Include="Effects\HsvWheel.fx">
-      <DependentUpon>HsvWheel.cs</DependentUpon>
-    </Content>
-  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
@@ -177,5 +158,24 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Effects\HslWheelEffect.fx">
+      <DependentUpon>HslWheelEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\FadeEffect.fx">
+      <DependentUpon>FadeEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\DesaturateEffect.fx">
+      <DependentUpon>DesaturateEffect.cs</DependentUpon>
+    </None>
+    <None Include="Effects\AngularGradientEffect.fx">
+      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Effects\HsvWheelEffect.fx">
+      <DependentUpon>HsvWheelEffect.cs</DependentUpon>
+    </None>
   </ItemGroup>
 </Project>

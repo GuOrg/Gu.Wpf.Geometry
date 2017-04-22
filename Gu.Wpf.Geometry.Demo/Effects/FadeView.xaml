@@ -10,8 +10,8 @@
     <Grid>
         <Image Source="../Images/Hustler.jpg">
             <Image.Effect>
-                <effects:Fade Strength="{Binding ElementName=StrengthSlider, Path=Value}"
-                              To="Black" />
+                <effects:FadeEffect Strength="{Binding ElementName=StrengthSlider, Path=Value}"
+                                    To="Black" />
             </Image.Effect>
         </Image>
         <Slider x:Name="StrengthSlider"

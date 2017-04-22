@@ -23,10 +23,10 @@
                  Stroke="Red"
                  StrokeThickness="15">
             <Ellipse.Effect>
-                <effects:AngularGradient ArcLength="{Binding ElementName=EndAngle, Path=Value}"
-                                         EndColor="Transparent"
-                                         StartAngle="{Binding ElementName=StartAngle, Path=Value}"
-                                         StartColor="Red" />
+                <effects:AngularGradientEffect ArcLength="{Binding ElementName=EndAngle, Path=Value}"
+                                               EndColor="Transparent"
+                                               StartAngle="{Binding ElementName=StartAngle, Path=Value}"
+                                               StartColor="Red" />
             </Ellipse.Effect>
         </Ellipse>
         <Label Grid.Row="1"

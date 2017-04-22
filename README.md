@@ -17,9 +17,10 @@ Small library with WPF geometries.
   - [EllipseBalloon](#ellipseballoon)
   - [GradientPath](#gradientpath)
 - [Effects](#effects)
-  - [Desaturate](#desaturate)
-  - [Fade](#fade)
-  - [AngularGradient](#angulargradient)
+  - [DesaturateEffect](#desaturateeffect)
+  - [FadeEffect](#fadeeffect)
+  - [AngularGradientEffect](#angulargradienteffect)
+  - [HsvWheelEffect](#hsvwheeleffect)
 
 # Geometries
 
@@ -205,7 +206,7 @@ Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-P
 # Effects
 A collection of pixel shaders.
 
-## Desaturate
+## DesaturateEffect
 Desaturate an image, brush or WPF controls. It has only one property `Strength` 0 means the effect does nothing and 1 means a grayscale image is returned.
 
 ```xaml
@@ -215,7 +216,7 @@ Desaturate an image, brush or WPF controls. It has only one property `Strength` 
     <Grid>
         <Image Source="Images/Hustler.jpg">
             <Image.Effect>
-                <effects:Desaturate Strength="{Binding ElementName=StrangthSlider, Path=Value}" />
+                <effects:DesaturateEffect Strength="{Binding ElementName=StrangthSlider, Path=Value}" />
             </Image.Effect>
         </Image>
         <Slider
@@ -227,7 +228,7 @@ Desaturate an image, brush or WPF controls. It has only one property `Strength` 
 </UserControl>
 ```
 
-## Fade
+## FadeEffect
 Fade an image to a colour.
 
 ```xaml
@@ -236,7 +237,7 @@ Fade an image to a colour.
     <Grid>
         <Image Source="../Images/Hustler.jpg">
             <Image.Effect>
-                <effects:Fade To="Black" Strength="{Binding ElementName=StrengthSlider, Path=Value}" />
+                <effects:FadeEffect To="Black" Strength="{Binding ElementName=StrengthSlider, Path=Value}" />
             </Image.Effect>
         </Image>
         <Slider
@@ -248,7 +249,7 @@ Fade an image to a colour.
 </UserControl>
 ```
 
-## AngularGradient
+## AngularGradientEffect
 A gradient that changes value along the angle. Perhaps useful for spinners.
 
 ```xaml
@@ -270,7 +271,7 @@ A gradient that changes value along the angle. Perhaps useful for spinners.
                  Stroke="Red"
                  StrokeThickness="15">
             <Ellipse.Effect>
-                <effects:AngularGradient ArcLength="{Binding ElementName=EndAngle,
+                <effects:AngularGradientEffect ArcLength="{Binding ElementName=EndAngle,
                                                              Path=Value}"
                                          EndColor="Transparent"
                                          StartAngle="{Binding ElementName=StartAngle,
@@ -300,7 +301,7 @@ A gradient that changes value along the angle. Perhaps useful for spinners.
 </UserControl>
 ```
 
-## HsvWheel
+## HsvWheelEffect
 A gradient that changes value along the angle. Perhaps useful for colour pickers.
 Note that the element must have a background or fill. The brush can be any colour.
 
@@ -323,8 +324,8 @@ Note that the element must have a background or fill. The brush can be any colou
                  HorizontalAlignment="Center"
                  Fill="White">
             <Ellipse.Effect>
-                <effects:HsvWheel InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
-                                  InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}" />
+                <effects:HsvWheelEffect InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
+                                        InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}" />
             </Ellipse.Effect>
         </Ellipse>
 
@@ -349,5 +350,9 @@ Note that the element must have a background or fill. The brush can be any colou
                 Value="0" />
     </Grid>
 </UserControl>
-
 ```
+
+## HslWheelEffect
+A gradient that changes value along the angle. Perhaps useful for colour pickers.
+Note that the element must have a background or fill. The brush can be any colour.
+Same API as HsvWheelEffect

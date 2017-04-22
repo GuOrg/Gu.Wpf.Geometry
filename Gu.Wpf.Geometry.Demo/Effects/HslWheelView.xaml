@@ -25,9 +25,9 @@
                  Fill="White">
 
             <Ellipse.Effect>
-                <effects:HslWheel InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
-                                  InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
-                                  Lightness="{Binding ElementName=Lightness, Path=Value}" />
+                <effects:HslWheelEffect InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
+                                        InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
+                                        Lightness="{Binding ElementName=Lightness, Path=Value}" />
             </Ellipse.Effect>
 
         </Ellipse>

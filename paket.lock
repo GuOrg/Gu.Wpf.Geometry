@@ -4,7 +4,7 @@ GROUP Analyzers
 FRAMEWORK: >= NET45
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Analyzers (0.1.11.23-dev)
+    Gu.Analyzers (0.1.11.24-dev)
     JetBrains.Annotations (10.4)
     StyleCop.Analyzers (1.0)
     WpfAnalyzers (0.2.7.10)

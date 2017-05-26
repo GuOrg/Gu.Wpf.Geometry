@@ -145,6 +145,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Effects\Mask.fx">
+      <DependentUpon>MaskEffect.cs</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -181,10 +186,5 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Effects\Mask.fx">
-      <DependentUpon>MaskEffect.cs</DependentUpon>
-    </Content>
   </ItemGroup>
 </Project>

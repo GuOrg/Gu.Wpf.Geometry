@@ -208,6 +208,9 @@
   -->
   <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
+    <Resource Include="Images\Circles.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -233,8 +236,5 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Circles.png" />
   </ItemGroup>
 </Project>

@@ -19,8 +19,10 @@ Small library with WPF geometries.
 - [Effects](#effects)
   - [DesaturateEffect](#desaturateeffect)
   - [FadeEffect](#fadeeffect)
+  - [MaskEffect](#maskeffect)
   - [AngularGradientEffect](#angulargradienteffect)
   - [HsvWheelEffect](#hsvwheeleffect)
+  - [HslWheelEffect](#hslwheeleffect)
 
 # Geometries
 

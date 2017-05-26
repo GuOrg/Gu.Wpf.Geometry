@@ -41,6 +41,10 @@
         <TabItem Header="Fade">
             <effects:FadeView />
         </TabItem>
+
+        <TabItem Header="Mask">
+            <effects:MaskEffectView />
+        </TabItem>
         
         <TabItem Header="Angular gradient">
             <effects:AngularGradientView />

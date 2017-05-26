@@ -22,7 +22,7 @@
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(Wpf.Geometry.GradientPath.GradientModeProperty, radioButton.Tag);
+            this.gradientPath.SetCurrentValue(GradientPath.GradientModeProperty, radioButton.Tag);
         }
 
         private void OnStartLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
@@ -33,7 +33,7 @@
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(Wpf.Geometry.GradientPath.StrokeStartLineCapProperty, (PenLineCap)radioButton.Tag);
+            this.gradientPath.SetCurrentValue(GradientPath.StrokeStartLineCapProperty, (PenLineCap)radioButton.Tag);
         }
 
         private void OnEndLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
@@ -44,7 +44,7 @@
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(Wpf.Geometry.GradientPath.StrokeEndLineCapProperty, (PenLineCap)radioButton.Tag);
+            this.gradientPath.SetCurrentValue(GradientPath.StrokeEndLineCapProperty, (PenLineCap)radioButton.Tag);
         }
 
         private void OnColorInterpolationModeRadioButtonChecked(object sender, RoutedEventArgs args)
@@ -55,7 +55,7 @@
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(Wpf.Geometry.GradientPath.ColorInterpolationModeProperty, (ColorInterpolationMode)radioButton.Tag);
+            this.gradientPath.SetCurrentValue(GradientPath.ColorInterpolationModeProperty, (ColorInterpolationMode)radioButton.Tag);
         }
     }
 }

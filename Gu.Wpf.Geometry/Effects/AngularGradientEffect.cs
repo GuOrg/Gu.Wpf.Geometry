@@ -8,7 +8,7 @@
     /// <summary>A gradient that changes value with angle.</summary>
     public class AngularGradientEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradientEffect), 0);
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradientEffect), 0);
 
         public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(
             "CenterPoint",

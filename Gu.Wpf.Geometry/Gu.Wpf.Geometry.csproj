@@ -51,6 +51,7 @@
     <Compile Include="Effects\FadeEffect.cs" />
     <Compile Include="Effects\HslWheelEffect.cs" />
     <Compile Include="Effects\HsvWheelEffect.cs" />
+    <Compile Include="Effects\MaskEffect.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomRightConverter.cs" />
@@ -107,6 +108,9 @@
     </Resource>
     <Resource Include="Effects\HsvWheelEffect.ps">
       <DependentUpon>HsvWheelEffect.cs</DependentUpon>
+    </Resource>
+    <Resource Include="Effects\MaskEffect.ps">
+      <DependentUpon>MaskEffect.cs</DependentUpon>
     </Resource>
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
@@ -177,5 +181,10 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Effects\Mask.fx">
+      <DependentUpon>MaskEffect.cs</DependentUpon>
+    </Content>
   </ItemGroup>
 </Project>

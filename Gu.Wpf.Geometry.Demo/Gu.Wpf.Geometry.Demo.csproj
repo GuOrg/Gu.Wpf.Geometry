@@ -83,6 +83,9 @@
     <Compile Include="Effects\HsvWheelView.xaml.cs">
       <DependentUpon>HsvWheelView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Effects\MaskEffectView.xaml.cs">
+      <DependentUpon>MaskEffectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EllipseBalloonView.xaml.cs">
       <DependentUpon>EllipseBalloonView.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Effects\HsvWheelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Effects\MaskEffectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,5 +233,8 @@
     <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Circles.png" />
   </ItemGroup>
 </Project>

@@ -249,6 +249,22 @@ Fade an image to a colour.
 </UserControl>
 ```
 
+## MaskEffect
+Fade an image to a colour.
+
+```xaml
+<UserControl ...
+             xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Image Source="../Images/Circle.png">
+            <Image.Effect>
+                <effects:MaskEffect  />
+            </Image.Effect>
+        </Image>
+    </Grid>
+</UserControl>
+```
+
 ## AngularGradientEffect
 A gradient that changes value along the angle. Perhaps useful for spinners.
 

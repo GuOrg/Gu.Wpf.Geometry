@@ -8,7 +8,7 @@
     /// <summary>Fade to a colour by animating the strength.</summary>
     public class FadeEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(FadeEffect), 0);
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(FadeEffect), 0);
 
         public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register("Strength", typeof(double), typeof(FadeEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 

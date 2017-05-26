@@ -252,7 +252,7 @@ Fade an image to a colour.
 ```
 
 ## MaskEffect
-Fade an image to a colour.
+Render an image as a selection mask.
 
 ```xaml
 <UserControl ...

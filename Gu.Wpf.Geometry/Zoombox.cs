@@ -15,6 +15,18 @@ namespace Gu.Wpf.Geometry
             typeof(Zoombox),
             new PropertyMetadata(1.05));
 
+        public static readonly DependencyProperty MinZoomProperty = DependencyProperty.Register(
+            "MinZoom",
+            typeof(double),
+            typeof(Zoombox),
+            new PropertyMetadata(double.NegativeInfinity));
+
+        public static readonly DependencyProperty MaxZoomProperty = DependencyProperty.Register(
+            "MaxZoom",
+            typeof(double),
+            typeof(Zoombox),
+            new PropertyMetadata(double.PositiveInfinity));
+
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
 
@@ -28,6 +40,33 @@ namespace Gu.Wpf.Geometry
                 new PropertyMetadata(
                     true,
                     ClipToBoundsProperty.GetMetadata(typeof(Decorator)).PropertyChangedCallback));
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    NavigationCommands.IncreaseZoom,
+                    OnIncreaseZoom,
+                    OnCanIncreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Increase,
+                    OnIncreaseZoom,
+                    OnCanIncreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    NavigationCommands.DecreaseZoom,
+                    OnDecreaseZoom,
+                    OnCanDecreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Decrease,
+                    OnDecreaseZoom,
+                    OnCanDecreaseZoom));
         }
 
         /// <summary>
@@ -37,6 +76,24 @@ namespace Gu.Wpf.Geometry
         {
             get => (double)this.GetValue(ZoomFactorProperty);
             set => this.SetValue(ZoomFactorProperty, value);
+        }
+
+        /// <summary>
+        /// The minimum zoom allowed.
+        /// </summary>
+        public double MinZoom
+        {
+            get => (double) this.GetValue(MinZoomProperty);
+            set => this.SetValue(MinZoomProperty, value);
+        }
+
+        /// <summary>
+        /// The maximum zoom allowed.
+        /// </summary>
+        public double MaxZoom
+        {
+            get => (double) this.GetValue(MaxZoomProperty);
+            set => this.SetValue(MaxZoomProperty, value);
         }
 
         /// <inheritdoc />
@@ -176,6 +233,7 @@ namespace Gu.Wpf.Geometry
                 ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, delta.Scale.Y);
                 this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
             }
+
             if (delta.Translation.LengthSquared > 0)
             {
                 TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.Translation.X);
@@ -232,6 +290,34 @@ namespace Gu.Wpf.Geometry
             }
 
             base.OnMouseMove(e);
+        }
+
+        private static void OnCanDecreaseZoom(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            e.CanExecute = box.CanIncreaseZoom();
+            e.Handled = true;
+        }
+
+        private bool CanIncreaseZoom()
+        {
+            return this.InternalTransform.Value.M11 < this.MaxZoom &&
+                   this.InternalTransform.Value.M22 < this.MaxZoom;
+        }
+
+        private static void OnDecreaseZoom(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void OnCanIncreaseZoom(object sender, CanExecuteRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void OnIncreaseZoom(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

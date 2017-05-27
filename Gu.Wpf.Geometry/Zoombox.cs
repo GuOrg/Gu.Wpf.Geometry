@@ -21,6 +21,15 @@ namespace Gu.Wpf.Geometry
         private ContainerVisual internalVisual;
         private Point position;
 
+        static Zoombox()
+        {
+            ClipToBoundsProperty.OverrideMetadata(
+                typeof(Zoombox),
+                new PropertyMetadata(
+                    true,
+                    ClipToBoundsProperty.GetMetadata(typeof(Decorator)).PropertyChangedCallback));
+        }
+
         /// <summary>
         /// The increment zoom is changed on each mouse wheel.
         /// </summary>
@@ -153,6 +162,28 @@ namespace Gu.Wpf.Geometry
         protected override void OnRender(DrawingContext dc)
         {
             dc.DrawRectangle(Brushes.Transparent, null, new Rect(this.RenderSize));
+        }
+
+        protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
+        {
+            var delta = e.DeltaManipulation;
+            if (delta.Scale.LengthSquared > 0)
+            {
+                var p = ((FrameworkElement)e.ManipulationContainer).TranslatePoint(e.ManipulationOrigin, this);
+                ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, p.X);
+                ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, p.Y);
+                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, delta.Scale.X);
+                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, delta.Scale.Y);
+                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+            }
+            if (delta.Translation.LengthSquared > 0)
+            {
+                TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.Translation.X);
+                TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, delta.Translation.Y);
+                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, TranslateTransform.Value));
+            }
+
+            base.OnManipulationDelta(e);
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)

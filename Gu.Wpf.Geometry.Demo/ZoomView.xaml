@@ -13,17 +13,23 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Border BorderBrush="Red" BorderThickness="1">
-            <effects:ZoomViewer ClipToBounds="True">
+            <effects:Zoombox IsManipulationEnabled="True">
                 <Image Source="Images/Circles.png" />
-            </effects:ZoomViewer>
+            </effects:Zoombox>
         </Border>
 
-        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-            <effects:ZoomViewer ClipToBounds="True">
-                <Canvas Height="200" Width="200" Background="Blue">
-                    <Rectangle Fill="Yellow" Height="100" Width="100"></Rectangle>
+        <Border Grid.Column="1"
+                BorderBrush="Gray"
+                BorderThickness="1">
+            <effects:Zoombox>
+                <Canvas Width="200"
+                        Height="200"
+                        Background="Blue">
+                    <Rectangle Width="100"
+                               Height="100"
+                               Fill="Yellow" />
                 </Canvas>
-            </effects:ZoomViewer>
+            </effects:Zoombox>
         </Border>
     </Grid>
 </UserControl>

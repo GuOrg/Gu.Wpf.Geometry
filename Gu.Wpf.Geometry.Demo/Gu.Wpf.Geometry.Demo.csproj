@@ -98,6 +98,9 @@
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZoomView.xaml.cs">
+      <DependentUpon>ZoomView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Effects\AngularGradientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZoomView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

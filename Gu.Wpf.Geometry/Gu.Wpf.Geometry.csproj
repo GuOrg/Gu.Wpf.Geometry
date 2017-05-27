@@ -68,6 +68,7 @@
     <Compile Include="Internals\Circle.cs" />
     <Compile Include="Internals\CornerRadiusExt.cs" />
     <Compile Include="Internals\Ellipse.cs" />
+    <Compile Include="Internals\EmptyEnumerator.cs" />
     <Compile Include="Internals\GradientStopCollectionExt.cs" />
     <Compile Include="Internals\Line.cs" />
     <Compile Include="Internals\LineExt.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Internals\Quadrant.cs" />
     <Compile Include="Internals\Ray.cs" />
     <Compile Include="Internals\RectExt.cs" />
+    <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\SizeExt.cs" />
     <Compile Include="Internals\StreamGeometryContextExt.cs" />
     <Compile Include="Balloon\PlacementOptions.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Balloon\BoxBalloon.cs" />
     <Compile Include="Effects\DesaturateEffect.cs" />
     <Compile Include="VerticalPlacement.cs" />
+    <Compile Include="Zoombox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

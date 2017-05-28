@@ -83,6 +83,13 @@ namespace Gu.Wpf.Geometry
                     ZoomCommands.None,
                     OnZoomNone,
                     OnCanZoomNone));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Uniform,
+                    OnZoomUniform,
+                    OnCanZoomUniform));
         }
 
         /// <summary>
@@ -374,6 +381,7 @@ namespace Gu.Wpf.Geometry
                 ? new Vector(1 / scale.X, 1 / scale.Y)
                 : scale;
             box.Zoom(scale);
+            e.Handled = true;
         }
 
         private static void OnCanIncreaseZoom(object sender, CanExecuteRoutedEventArgs e)
@@ -389,6 +397,7 @@ namespace Gu.Wpf.Geometry
             var box = (Zoombox)e.Source;
             var scale = GetScale(e.Parameter);
             box.Zoom(scale);
+            e.Handled = true;
         }
 
         private static void OnCanZoomNone(object sender, CanExecuteRoutedEventArgs e)
@@ -402,6 +411,45 @@ namespace Gu.Wpf.Geometry
         {
             var box = (Zoombox)e.Source;
             box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Identity);
+            e.Handled = true;
+        }
+
+        private static void OnCanZoomUniform(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+
+            e.Handled = true;
+        }
+
+        private static void OnZoomUniform(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                return;
+            }
+
+            var scaleX = box.ActualWidth / size.Width;
+            var scaleY = box.ActualHeight / size.Height;
+            var scale = Math.Min(scaleX, scaleY);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, size.Width / 2);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, size.Height / 2);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, ScaleTransform.Value);
+            e.Handled = true;
         }
 
         private static double Clamp(double min, double value, double max)

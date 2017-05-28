@@ -83,7 +83,7 @@ namespace Gu.Wpf.Geometry
         /// </summary>
         public double MinZoom
         {
-            get => (double) this.GetValue(MinZoomProperty);
+            get => (double)this.GetValue(MinZoomProperty);
             set => this.SetValue(MinZoomProperty, value);
         }
 
@@ -92,7 +92,7 @@ namespace Gu.Wpf.Geometry
         /// </summary>
         public double MaxZoom
         {
-            get => (double) this.GetValue(MaxZoomProperty);
+            get => (double)this.GetValue(MaxZoomProperty);
             set => this.SetValue(MaxZoomProperty, value);
         }
 
@@ -189,6 +189,20 @@ namespace Gu.Wpf.Geometry
             }
         }
 
+        /// <summary>
+        /// Zoom around a point.
+        /// </summary>
+        /// <param name="center">The point to zoom about</param>
+        /// <param name="scales">The factors to update the zoom with.</param>
+        public void Zoom(Point center, Vector scales)
+        {
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, center.X);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, center.Y);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scales.X);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scales.Y);
+            this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+        }
+
         /// <inheritdoc />
         protected override Visual GetVisualChild(int index)
         {
@@ -227,11 +241,7 @@ namespace Gu.Wpf.Geometry
             if (delta.Scale.LengthSquared > 0)
             {
                 var p = ((FrameworkElement)e.ManipulationContainer).TranslatePoint(e.ManipulationOrigin, this);
-                ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, p.X);
-                ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, p.Y);
-                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, delta.Scale.X);
-                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, delta.Scale.Y);
-                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+                this.Zoom(p, delta.Scale);
             }
 
             if (delta.Translation.LengthSquared > 0)
@@ -256,11 +266,7 @@ namespace Gu.Wpf.Geometry
                 ? this.ZoomFactor
                 : 1.0 / this.ZoomFactor;
             var p = e.GetPosition(this);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, p.X);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, p.Y);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
-            this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+            this.Zoom(p, new Vector(scale, scale));
             base.OnMouseWheel(e);
         }
 

@@ -38,21 +38,21 @@
         /// </summary>
         public Brush Input
         {
-            get => ((Brush)(this.GetValue(InputProperty)));
+            get => (Brush)this.GetValue(InputProperty);
             set => this.SetValue(InputProperty, value);
         }
 
         /// <summary>The color to use for non-black pixels.</summary>
         public Color Color
         {
-            get => ((Color)(this.GetValue(ColorProperty)));
+            get => (Color)this.GetValue(ColorProperty);
             set => this.SetValue(ColorProperty, value);
         }
 
         /// <summary>The tolerance for what to treat as black.</summary>
         public double Tolerance
         {
-            get => ((double)(this.GetValue(ToleranceProperty)));
+            get => (double)this.GetValue(ToleranceProperty);
             set => this.SetValue(ToleranceProperty, value);
         }
     }

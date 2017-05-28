@@ -4,19 +4,34 @@ namespace Gu.Wpf.Geometry
     using System.Collections;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using System.Windows.Media;
 
     public class Zoombox : Decorator
     {
-        public static readonly DependencyProperty ZoomFactorProperty = DependencyProperty.Register(
-            "ZoomFactor",
+        public static readonly DependencyProperty WheelZoomFactorProperty = DependencyProperty.Register(
+            "WheelZoomFactor",
             typeof(double),
             typeof(Zoombox),
             new PropertyMetadata(1.05));
 
+        public static readonly DependencyProperty MinZoomProperty = DependencyProperty.Register(
+            "MinZoom",
+            typeof(double),
+            typeof(Zoombox),
+            new PropertyMetadata(double.NegativeInfinity));
+
+        public static readonly DependencyProperty MaxZoomProperty = DependencyProperty.Register(
+            "MaxZoom",
+            typeof(double),
+            typeof(Zoombox),
+            new PropertyMetadata(double.PositiveInfinity));
+
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
+        private static readonly double DefaultScaleIncrement = 2.0;
+        private static readonly double MinScaleDelta = 1E-6;
 
         private ContainerVisual internalVisual;
         private Point position;
@@ -28,15 +43,81 @@ namespace Gu.Wpf.Geometry
                 new PropertyMetadata(
                     true,
                     ClipToBoundsProperty.GetMetadata(typeof(Decorator)).PropertyChangedCallback));
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    NavigationCommands.IncreaseZoom,
+                    OnIncreaseZoom,
+                    OnCanIncreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Increase,
+                    OnIncreaseZoom,
+                    OnCanIncreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    NavigationCommands.DecreaseZoom,
+                    OnDecreaseZoom,
+                    OnCanDecreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Decrease,
+                    OnDecreaseZoom,
+                    OnCanDecreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.None,
+                    OnZoomNone,
+                    OnCanZoomNone));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.Uniform,
+                    OnZoomUniform,
+                    OnCanZoomUniform));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.UniformToFill,
+                    OnZoomUniformToFill,
+                    OnCanZoomUniformToFill));
         }
 
         /// <summary>
         /// The increment zoom is changed on each mouse wheel.
         /// </summary>
-        public double ZoomFactor
+        public double WheelZoomFactor
         {
-            get => (double)this.GetValue(ZoomFactorProperty);
-            set => this.SetValue(ZoomFactorProperty, value);
+            get => (double)this.GetValue(WheelZoomFactorProperty);
+            set => this.SetValue(WheelZoomFactorProperty, value);
+        }
+
+        /// <summary>
+        /// The minimum zoom allowed.
+        /// </summary>
+        public double MinZoom
+        {
+            get => (double)this.GetValue(MinZoomProperty);
+            set => this.SetValue(MinZoomProperty, value);
+        }
+
+        /// <summary>
+        /// The maximum zoom allowed.
+        /// </summary>
+        public double MaxZoom
+        {
+            get => (double)this.GetValue(MaxZoomProperty);
+            set => this.SetValue(MaxZoomProperty, value);
         }
 
         /// <inheritdoc />
@@ -66,6 +147,8 @@ namespace Gu.Wpf.Geometry
                 }
             }
         }
+
+        internal MatrixTransform ContentTransform => (MatrixTransform)this.InternalVisual.Transform;
 
         /// <inheritdoc />
         protected override int VisualChildrenCount => 1;
@@ -103,8 +186,6 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private MatrixTransform InternalTransform => (MatrixTransform)this.internalVisual.Transform;
-
         private UIElement InternalChild
         {
             get
@@ -130,6 +211,42 @@ namespace Gu.Wpf.Geometry
 
                 vc.Add(value);
             }
+        }
+
+        private Vector CurrentZoom => new Vector(this.ContentTransform.Matrix.M11, this.ContentTransform.Matrix.M22);
+
+        /// <summary>
+        /// Zoom around a the center of the currently visible part.
+        /// </summary>
+        /// <param name="scale">The amount to resize as a multiplier.</param>
+        public void Zoom(double scale)
+        {
+            this.Zoom(new Vector(scale, scale));
+        }
+
+        /// <summary>
+        /// Zoom around a the center of the currently visible part.
+        /// </summary>
+        /// <param name="scale">The amount to resize as a multipliers.</param>
+        public void Zoom(Vector scale)
+        {
+            var point = LayoutInformation.GetLayoutClip(this)?.Bounds.CenterPoint();
+            this.Zoom(point ?? new Point(0, 0), scale);
+        }
+
+        /// <summary>
+        /// Zoom around a point.
+        /// </summary>
+        /// <param name="center">The point to zoom about</param>
+        /// <param name="scale">The amount to resize as a multipliers.</param>
+        public void Zoom(Point center, Vector scale)
+        {
+            scale = this.CoerceScale(scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, center.X);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, center.Y);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale.X);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale.Y);
+            this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, ScaleTransform.Value));
         }
 
         /// <inheritdoc />
@@ -167,42 +284,37 @@ namespace Gu.Wpf.Geometry
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
         {
             var delta = e.DeltaManipulation;
-            if (delta.Scale.LengthSquared > 0)
+            if (Math.Abs(delta.Scale.LengthSquared - 2) > MinScaleDelta)
             {
                 var p = ((FrameworkElement)e.ManipulationContainer).TranslatePoint(e.ManipulationOrigin, this);
-                ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, p.X);
-                ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, p.Y);
-                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, delta.Scale.X);
-                ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, delta.Scale.Y);
-                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+                this.Zoom(p, delta.Scale);
             }
+
             if (delta.Translation.LengthSquared > 0)
             {
                 TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.Translation.X);
                 TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, delta.Translation.Y);
-                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, TranslateTransform.Value));
+                this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, TranslateTransform.Value));
             }
 
+            CommandManager.InvalidateRequerySuggested();
             base.OnManipulationDelta(e);
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (e.Delta == 0 || this.ZoomFactor == 1)
+            if (e.Delta == 0 || this.WheelZoomFactor == 1)
             {
                 return;
             }
 
             var scale = e.Delta > 0
-                ? this.ZoomFactor
-                : 1.0 / this.ZoomFactor;
+                ? this.WheelZoomFactor
+                : 1.0 / this.WheelZoomFactor;
             var p = e.GetPosition(this);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, p.X);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, p.Y);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
-            this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, ScaleTransform.Value));
+            this.Zoom(p, new Vector(scale, scale));
+            CommandManager.InvalidateRequerySuggested();
             base.OnMouseWheel(e);
         }
 
@@ -227,11 +339,186 @@ namespace Gu.Wpf.Geometry
                 var delta = newPos - this.position;
                 TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.X);
                 TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, delta.Y);
-                this.InternalTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.InternalTransform.Value, TranslateTransform.Value));
+                this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, TranslateTransform.Value));
                 this.position = newPos;
             }
 
             base.OnMouseMove(e);
+        }
+
+        private static void OnCanDecreaseZoom(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var scale = GetScale(e.Parameter);
+            scale = scale.LengthSquared > 2
+                ? new Vector(1 / scale.X, 1 / scale.Y)
+                : scale;
+            e.CanExecute = Math.Abs(box.CoerceScale(scale).LengthSquared - 2) > MinScaleDelta;
+            e.Handled = true;
+        }
+
+        private static void OnDecreaseZoom(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var scale = GetScale(e.Parameter);
+            scale = scale.LengthSquared > 2
+                ? new Vector(1 / scale.X, 1 / scale.Y)
+                : scale;
+            box.Zoom(scale);
+            e.Handled = true;
+        }
+
+        private static void OnCanIncreaseZoom(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var scale = GetScale(e.Parameter);
+            e.CanExecute = Math.Abs(box.CoerceScale(scale).LengthSquared - 2) > MinScaleDelta;
+            e.Handled = true;
+        }
+
+        private static void OnIncreaseZoom(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var scale = GetScale(e.Parameter);
+            box.Zoom(scale);
+            e.Handled = true;
+        }
+
+        private static void OnCanZoomNone(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            e.CanExecute = !box.ContentTransform.Matrix.IsIdentity;
+            e.Handled = true;
+        }
+
+        private static void OnZoomNone(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Identity);
+            e.Handled = true;
+        }
+
+        private static void OnCanZoomUniform(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+
+            e.Handled = true;
+        }
+
+        private static void OnZoomUniform(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                return;
+            }
+
+            var scaleX = box.ActualWidth / size.Width;
+            var scaleY = box.ActualHeight / size.Height;
+            var scale = Math.Min(scaleX, scaleY);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
+            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
+            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            e.Handled = true;
+        }
+
+        private static void OnCanZoomUniformToFill(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+
+            e.Handled = true;
+        }
+
+        private static void OnZoomUniformToFill(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                return;
+            }
+
+            var scaleX = box.ActualWidth / size.Width;
+            var scaleY = box.ActualHeight / size.Height;
+            var scale = Math.Max(scaleX, scaleY);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
+            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
+            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            e.Handled = true;
+        }
+
+        private static double Clamp(double min, double value, double max)
+        {
+            if (value < min)
+            {
+                return min;
+            }
+
+            if (value > max)
+            {
+                return max;
+            }
+
+            return value;
+        }
+
+        private static Vector GetScale(object parameter)
+        {
+            if (parameter is int i)
+            {
+                return new Vector(i, i);
+            }
+
+            if (parameter is double d)
+            {
+                return new Vector(d, d);
+            }
+
+            if (parameter is Vector v)
+            {
+                return v;
+            }
+
+            return new Vector(DefaultScaleIncrement, DefaultScaleIncrement);
+        }
+
+        private Vector CoerceScale(Vector scale)
+        {
+            var zoom = this.CurrentZoom;
+            return new Vector(
+                Clamp(this.MinZoom / zoom.X, scale.X, this.MaxZoom / zoom.X),
+                Clamp(this.MinZoom / zoom.Y, scale.Y, this.MaxZoom / zoom.X));
         }
     }
 }

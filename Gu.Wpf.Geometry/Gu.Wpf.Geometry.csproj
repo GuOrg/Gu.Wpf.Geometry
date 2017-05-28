@@ -89,6 +89,7 @@
     <Compile Include="Effects\DesaturateEffect.cs" />
     <Compile Include="VerticalPlacement.cs" />
     <Compile Include="Zoombox.cs" />
+    <Compile Include="ZoomCommands.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

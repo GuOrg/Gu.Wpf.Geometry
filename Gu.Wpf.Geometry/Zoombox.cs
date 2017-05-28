@@ -28,12 +28,6 @@ namespace Gu.Wpf.Geometry
             typeof(Zoombox),
             new PropertyMetadata(double.PositiveInfinity));
 
-        public static readonly DependencyProperty MaintainAspectRatioProperty = DependencyProperty.Register(
-            "MaintainAspectRatio",
-            typeof(bool),
-            typeof(Zoombox),
-            new PropertyMetadata(true));
-
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
         private static readonly double DefaultScaleIncrement = 2.0;
@@ -117,15 +111,6 @@ namespace Gu.Wpf.Geometry
         {
             get => (double)this.GetValue(MaxZoomProperty);
             set => this.SetValue(MaxZoomProperty, value);
-        }
-
-        /// <summary>
-        /// If pinch zooming shoul maintain aspect ratio
-        /// </summary>
-        public bool MaintainAspectRatio
-        {
-            get => (bool)this.GetValue(MaintainAspectRatioProperty);
-            set => this.SetValue(MaintainAspectRatioProperty, value);
         }
 
         /// <inheritdoc />
@@ -292,18 +277,10 @@ namespace Gu.Wpf.Geometry
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
         {
             var delta = e.DeltaManipulation;
-            if (delta.Scale.LengthSquared > 0)
+            if (Math.Abs(delta.Scale.LengthSquared - 2) > MinScaleDelta)
             {
                 var p = ((FrameworkElement)e.ManipulationContainer).TranslatePoint(e.ManipulationOrigin, this);
-                if (this.MaintainAspectRatio)
-                {
-                    var scale = Math.Sqrt(delta.Scale.LengthSquared);
-                    this.Zoom(p, new Vector(scale, scale));
-                }
-                else
-                {
-                    this.Zoom(p, delta.Scale);
-                }
+                this.Zoom(p, delta.Scale);
             }
 
             if (delta.Translation.LengthSquared > 0)

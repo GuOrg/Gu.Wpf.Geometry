@@ -19,9 +19,10 @@
         /// The file MaskEffect.ps should have BuildAction: Resource
         /// </summary>
         private static readonly PixelShader Shader = new PixelShader
-                                                     {
-                                                         UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/MaskEffect.ps", UriKind.Absolute)
-                                                     };
+        {
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/MaskEffect.ps", UriKind.Absolute)
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MaskEffect"/> class.
         /// </summary>

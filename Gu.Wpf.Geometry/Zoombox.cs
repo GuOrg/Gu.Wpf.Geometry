@@ -70,6 +70,13 @@ namespace Gu.Wpf.Geometry
                     ZoomCommands.Decrease,
                     OnDecreaseZoom,
                     OnCanDecreaseZoom));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.None,
+                    OnZoomNone,
+                    OnCanZoomNone));
         }
 
         /// <summary>
@@ -221,6 +228,12 @@ namespace Gu.Wpf.Geometry
         public void Zoom(Point center, Vector scale)
         {
             scale = this.CoerceScale(scale);
+            if (Math.Abs(scale.LengthSquared - 2) < MinScaleDelta)
+            {
+                CommandManager.InvalidateRequerySuggested();
+                return;
+            }
+
             ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, center.X);
             ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, center.Y);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale.X);
@@ -357,6 +370,19 @@ namespace Gu.Wpf.Geometry
             var box = (Zoombox)e.Source;
             var scale = GetScale(e.Parameter);
             box.Zoom(scale);
+        }
+
+        private static void OnCanZoomNone(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            e.CanExecute = !box.ContentTransform.Matrix.IsIdentity;
+            e.Handled = true;
+        }
+
+        private static void OnZoomNone(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Identity);
         }
 
         private static double Clamp(double min, double value, double max)

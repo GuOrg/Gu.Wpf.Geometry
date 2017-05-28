@@ -50,6 +50,10 @@
                     CommandParameter="2.0"
                     CommandTarget="{Binding ElementName=ImageBox}"
                     Content="Decrease" />
+
+            <Button Command="effects:ZoomCommands.None"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="None" />
         </UniformGrid>
     </Grid>
 </UserControl>

@@ -16,6 +16,8 @@ Small library with WPF geometries.
         - [PlacementOptions](#placementoptions)
   - [EllipseBalloon](#ellipseballoon)
   - [GradientPath](#gradientpath)
+- [Controls](#controls)
+  - [Zoombox](#zoombox)
 - [Effects](#effects)
   - [DesaturateEffect](#desaturateeffect)
   - [FadeEffect](#fadeeffect)
@@ -204,6 +206,52 @@ Based on [this blog post](http://www.charlespetzold.com/blog/2009/02/Graphical-P
 ```
 ![screenie](http://i.imgur.com/YxNoS87.gif)
 
+# Controls
+
+## Zoombox
+
+Panel for zooming & panning. Handles touch but IsManipulationEnabled has default value `false` meaning no touch.
+
+```xaml
+<UserControl ...
+             xmlns:effects="http://gu.se/Geometry">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <effects:Zoombox x:Name="ImageBox"
+                         IsManipulationEnabled="True"
+                         MaxZoom="10"
+                         MinZoom="0.1">
+            <Image Source="Images/Circles.png" />
+        </effects:Zoombox>
+        <UniformGrid Grid.Row="1" Rows="1">
+            <Button Command="effects:ZoomCommands.Increase"
+                    CommandParameter="2.0"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="Increase" />
+
+            <Button Command="effects:ZoomCommands.Decrease"
+                    CommandParameter="2.0"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="Decrease" />
+
+            <Button Command="effects:ZoomCommands.None"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="None" />
+
+            <Button Command="effects:ZoomCommands.Uniform"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="Uniform" />
+
+            <Button Command="effects:ZoomCommands.UniformToFill"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="UniformToFill" />
+        </UniformGrid>
+    </Grid>
+</UserControl>
+```
 
 # Effects
 A collection of pixel shaders.

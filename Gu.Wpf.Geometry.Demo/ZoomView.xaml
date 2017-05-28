@@ -58,6 +58,10 @@
             <Button Command="effects:ZoomCommands.Uniform"
                     CommandTarget="{Binding ElementName=ImageBox}"
                     Content="Uniform" />
+
+            <Button Command="effects:ZoomCommands.UniformToFill"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="UniformToFill" />
         </UniformGrid>
     </Grid>
 </UserControl>

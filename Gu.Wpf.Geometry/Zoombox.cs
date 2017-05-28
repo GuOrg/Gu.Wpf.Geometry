@@ -84,6 +84,13 @@ namespace Gu.Wpf.Geometry
                     ZoomCommands.Uniform,
                     OnZoomUniform,
                     OnCanZoomUniform));
+
+            CommandManager.RegisterClassCommandBinding(
+                typeof(Zoombox),
+                new CommandBinding(
+                    ZoomCommands.UniformToFill,
+                    OnZoomUniformToFill,
+                    OnCanZoomUniformToFill));
         }
 
         /// <summary>
@@ -421,6 +428,46 @@ namespace Gu.Wpf.Geometry
             var scaleX = box.ActualWidth / size.Width;
             var scaleY = box.ActualHeight / size.Height;
             var scale = Math.Min(scaleX, scaleY);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
+            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
+            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            e.Handled = true;
+        }
+
+        private static void OnCanZoomUniformToFill(object sender, CanExecuteRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
+
+            e.Handled = true;
+        }
+
+        private static void OnZoomUniformToFill(object sender, ExecutedRoutedEventArgs e)
+        {
+            var box = (Zoombox)e.Source;
+            var size = box.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                return;
+            }
+
+            var scaleX = box.ActualWidth / size.Width;
+            var scaleY = box.ActualHeight / size.Height;
+            var scale = Math.Max(scaleX, scaleY);
             ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
             ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);

@@ -5,10 +5,10 @@ namespace Gu.Wpf.Geometry
 
     public static class ZoomCommands
     {
-        /// <summary>
-        /// The content is resized to fill the destination dimensions. The aspect ratio is not preserved.
-        /// </summary>
-        public static RoutedUICommand Fill { get; } = Create();
+        /////// <summary>
+        /////// The content is resized to fill the destination dimensions. The aspect ratio is not preserved.
+        /////// </summary>
+        ////public static RoutedUICommand Fill { get; } = Create();
 
         /// <summary>
         /// The content preserves its original size.

@@ -444,11 +444,13 @@ namespace Gu.Wpf.Geometry
             var scaleX = box.ActualWidth / size.Width;
             var scaleY = box.ActualHeight / size.Height;
             var scale = Math.Min(scaleX, scaleY);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, size.Width / 2);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, size.Height / 2);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
-            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, ScaleTransform.Value);
+            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
+            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
+            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
             e.Handled = true;
         }
 

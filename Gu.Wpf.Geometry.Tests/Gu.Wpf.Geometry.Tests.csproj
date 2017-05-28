@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RayTests.cs" />
     <Compile Include="VectorExtTest.cs" />
+    <Compile Include="ZoomboxTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Geometry.Tests.ruleset" />

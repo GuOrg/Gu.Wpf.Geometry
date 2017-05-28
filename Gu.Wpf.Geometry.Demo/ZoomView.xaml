@@ -8,29 +8,49 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Border BorderBrush="Red" BorderThickness="1">
-            <effects:Zoombox IsManipulationEnabled="True">
-                <Image Source="Images/Circles.png" />
-            </effects:Zoombox>
-        </Border>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Red" BorderThickness="1">
+                <effects:Zoombox x:Name="ImageBox"
+                                 IsManipulationEnabled="True"
+                                 MaxZoom="10"
+                                 MinZoom="0.1">
+                    <Image Source="Images/Circles.png" />
+                </effects:Zoombox>
+            </Border>
 
-        <Border Grid.Column="1"
-                BorderBrush="Gray"
-                BorderThickness="1">
-            <effects:Zoombox>
-                <Canvas Width="200"
-                        Height="200"
-                        Background="Blue">
-                    <Rectangle Width="100"
-                               Height="100"
-                               Fill="Yellow" />
-                </Canvas>
-            </effects:Zoombox>
-        </Border>
+            <Border Grid.Column="1"
+                    BorderBrush="Gray"
+                    BorderThickness="1">
+                <effects:Zoombox>
+                    <Canvas Width="200"
+                            Height="200"
+                            Background="Blue">
+                        <Rectangle Width="100"
+                                   Height="100"
+                                   Fill="Yellow" />
+                    </Canvas>
+                </effects:Zoombox>
+            </Border>
+        </Grid>
+        <UniformGrid Grid.Row="1" Rows="1">
+            <Button Command="effects:ZoomCommands.Increase"
+                    CommandParameter="2.0"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="Increase" />
+
+            <Button Command="effects:ZoomCommands.Decrease"
+                    CommandParameter="2.0"
+                    CommandTarget="{Binding ElementName=ImageBox}"
+                    Content="Decrease" />
+        </UniformGrid>
     </Grid>
 </UserControl>
 

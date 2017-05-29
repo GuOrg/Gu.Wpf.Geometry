@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -22,7 +23,7 @@
                                  IsManipulationEnabled="True"
                                  MaxZoom="10"
                                  MinZoom="0.1">
-                    <Image Source="Images/Circles.png" />
+                    <Image Source="Images/Crosshair.png" />
                 </effects:Zoombox>
             </Border>
 
@@ -40,6 +41,7 @@
                 </effects:Zoombox>
             </Border>
         </Grid>
+
         <UniformGrid Grid.Row="1" Rows="1">
             <Button Command="effects:ZoomCommands.Increase"
                     CommandParameter="2.0"
@@ -63,6 +65,24 @@
                     CommandTarget="{Binding ElementName=ImageBox}"
                     Content="UniformToFill" />
         </UniformGrid>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock x:Name="RenderSize" TextWrapping="NoWrap">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}, {1}">
+                        <Binding ElementName="ImageBox"
+                                 Mode="OneWay"
+                                 Path="ActualWidth" />
+                        <Binding ElementName="ImageBox"
+                                 Mode="OneWay"
+                                 Path="ActualHeight" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock x:Name="ContentMatrix"
+                       Text="{Binding ElementName=ImageBox, Path=ContentMatrix}"
+                       TextWrapping="NoWrap" />
+        </StackPanel>
     </Grid>
 </UserControl>
 

@@ -47,8 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Info.cs" />
-    <Compile Include="MainWindoTests.cs" />
+    <Compile Include="MainWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZoomViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Geometry.UiTests.ruleset" />

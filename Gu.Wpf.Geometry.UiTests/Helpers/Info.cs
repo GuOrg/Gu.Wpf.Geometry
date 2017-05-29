@@ -49,7 +49,6 @@
             //// ReSharper disable once PossibleNullReferenceException
             var exeDirectory = testDirestory.Replace(assemblyName, exeDirectoryName);
             var fileName = Path.Combine(exeDirectory, "Gu.Wpf.Geometry.Demo.exe");
-
             return fileName;
         }
     }

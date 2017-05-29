@@ -244,4 +244,7 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Crosshair.png" />
+  </ItemGroup>
 </Project>

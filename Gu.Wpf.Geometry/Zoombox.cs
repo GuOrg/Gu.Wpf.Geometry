@@ -282,7 +282,9 @@ namespace Gu.Wpf.Geometry
         protected override Size MeasureOverride(Size constraint)
         {
             this.InternalChild?.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            return constraint;
+            return double.IsPositiveInfinity(constraint.Width) || double.IsPositiveInfinity(constraint.Height)
+                ? default(Size)
+                : constraint;
         }
 
         /// <inheritdoc />

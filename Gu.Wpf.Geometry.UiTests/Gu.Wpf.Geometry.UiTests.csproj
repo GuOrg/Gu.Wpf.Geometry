@@ -49,6 +49,7 @@
     <Compile Include="Helpers\Info.cs" />
     <Compile Include="MainWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RectangleExt.cs" />
     <Compile Include="ZoomViewTests.cs" />
   </ItemGroup>
   <ItemGroup>

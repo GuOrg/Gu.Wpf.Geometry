@@ -67,7 +67,7 @@
         </UniformGrid>
 
         <StackPanel Grid.Row="2">
-            <TextBlock x:Name="RenderSize" TextWrapping="NoWrap">
+            <TextBlock x:Name="Size" TextWrapping="NoWrap">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0}, {1}">
                         <Binding ElementName="ImageBox"

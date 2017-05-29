@@ -6,7 +6,7 @@
     {
         public ZoomboxInfiniteView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

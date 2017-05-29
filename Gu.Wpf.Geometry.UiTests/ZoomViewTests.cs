@@ -88,6 +88,7 @@
 
             Mouse.Scroll(1);
             this.app.WaitWhileBusy();
+            this.app.WaitWhileBusy();
             var matrix = Matrix.Parse(contentMatrix.Text);
             Assert.AreEqual(1.05, matrix.M11, 1E-3);
             Assert.AreEqual(1.05, matrix.M22, 1E-3);
@@ -107,6 +108,7 @@
             var size = Size.Parse(renderSize.Text);
             Mouse.Click(MouseButton.Left, new FlaUI.Core.Shapes.Point(topLeft.X + size.Width, topLeft.Y + size.Height));
             Mouse.Scroll(1);
+            this.app.WaitWhileBusy();
             this.app.WaitWhileBusy();
             var matrix = Matrix.Parse(contentMatrix.Text);
             Assert.AreEqual(1.05, matrix.M11, 1E-3);

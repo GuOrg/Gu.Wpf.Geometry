@@ -3,6 +3,9 @@ namespace Gu.Wpf.Geometry
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
 
+    /// <summary>
+    /// A collection of commands for <see cref="Zoombox"/>
+    /// </summary>
     public static class ZoomCommands
     {
         /////// <summary>

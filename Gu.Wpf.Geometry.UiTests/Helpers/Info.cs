@@ -21,10 +21,10 @@
                 var workingDirectory = Path.GetDirectoryName(fileName);
                 Assert.NotNull(workingDirectory);
                 var processStartInfo = new ProcessStartInfo
-                                           {
-                                               WorkingDirectory = workingDirectory,
-                                               FileName = fileName,
-                                           };
+                {
+                    WorkingDirectory = workingDirectory,
+                    FileName = fileName,
+                };
                 return processStartInfo;
             }
         }
@@ -32,11 +32,11 @@
         internal static ProcessStartInfo CreateStartInfo(string args)
         {
             var processStartInfo = new ProcessStartInfo
-                                       {
-                                           FileName = GetExeFileName(),
-                                           Arguments = args,
-                                           UseShellExecute = false,
-                                       };
+            {
+                FileName = GetExeFileName(),
+                Arguments = args,
+                UseShellExecute = false,
+            };
             return processStartInfo;
         }
 
@@ -46,7 +46,7 @@
             var testDirestory = Path.GetDirectoryName(new Uri(assembly.CodeBase).LocalPath);
             var assemblyName = assembly.GetName().Name;
             var exeDirectoryName = assemblyName.Replace("UiTests", "Demo");
-            // ReSharper disable once PossibleNullReferenceException
+            //// ReSharper disable once PossibleNullReferenceException
             var exeDirectory = testDirestory.Replace(assemblyName, exeDirectoryName);
             var fileName = Path.Combine(exeDirectory, "Gu.Wpf.Geometry.Demo.exe");
 

@@ -8,6 +8,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Input;
     using System.Windows.Media;
 
+    /// <summary>
+    /// A decorator that adds zoom and pan.
+    /// </summary>
     public class Zoombox : Decorator
     {
         public static readonly DependencyProperty WheelZoomFactorProperty = DependencyProperty.Register(
@@ -27,6 +30,14 @@ namespace Gu.Wpf.Geometry
             typeof(double),
             typeof(Zoombox),
             new PropertyMetadata(double.PositiveInfinity));
+
+        public static readonly DependencyProperty ContentMatrixProperty = DependencyProperty.Register(
+            "ContentMatrix",
+            typeof(Matrix),
+            typeof(Zoombox),
+            new PropertyMetadata(
+                default(Matrix),
+                OnContentMatrixChanged));
 
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
@@ -120,6 +131,15 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(MaxZoomProperty, value);
         }
 
+        /// <summary>
+        /// The transform applied to the contents.
+        /// </summary>
+        public Matrix ContentMatrix
+        {
+            get => (Matrix)this.GetValue(ContentMatrixProperty);
+            set => this.SetValue(ContentMatrixProperty, value);
+        }
+
         /// <inheritdoc />
         public override UIElement Child
         {
@@ -147,8 +167,6 @@ namespace Gu.Wpf.Geometry
                 }
             }
         }
-
-        internal MatrixTransform ContentTransform => (MatrixTransform)this.InternalVisual.Transform;
 
         /// <inheritdoc />
         protected override int VisualChildrenCount => 1;
@@ -213,7 +231,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private Vector CurrentZoom => new Vector(this.ContentTransform.Matrix.M11, this.ContentTransform.Matrix.M22);
+        private Vector CurrentZoom => new Vector(this.ContentMatrix.M11, this.ContentMatrix.M22);
 
         /// <summary>
         /// Zoom around a the center of the currently visible part.
@@ -246,7 +264,7 @@ namespace Gu.Wpf.Geometry
             ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, center.Y);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale.X);
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale.Y);
-            this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, ScaleTransform.Value));
+            this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(this.ContentMatrix, ScaleTransform.Value));
         }
 
         /// <inheritdoc />
@@ -294,9 +312,10 @@ namespace Gu.Wpf.Geometry
             {
                 TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.Translation.X);
                 TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, delta.Translation.Y);
-                this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, TranslateTransform.Value));
+                this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(this.ContentMatrix, TranslateTransform.Value));
             }
 
+            // Calling InvalidateRequerySuggested as we are using RoutedCommands
             CommandManager.InvalidateRequerySuggested();
             base.OnManipulationDelta(e);
         }
@@ -314,6 +333,8 @@ namespace Gu.Wpf.Geometry
                 : 1.0 / this.WheelZoomFactor;
             var p = e.GetPosition(this);
             this.Zoom(p, new Vector(scale, scale));
+
+            // Calling InvalidateRequerySuggested as we are using RoutedCommands
             CommandManager.InvalidateRequerySuggested();
             base.OnMouseWheel(e);
         }
@@ -339,11 +360,16 @@ namespace Gu.Wpf.Geometry
                 var delta = newPos - this.position;
                 TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, delta.X);
                 TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, delta.Y);
-                this.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(this.ContentTransform.Value, TranslateTransform.Value));
+                this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(this.ContentMatrix, TranslateTransform.Value));
                 this.position = newPos;
             }
 
             base.OnMouseMove(e);
+        }
+
+        private static void OnContentMatrixChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((MatrixTransform)((Zoombox)d).InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue);
         }
 
         private static void OnCanDecreaseZoom(object sender, CanExecuteRoutedEventArgs e)
@@ -387,14 +413,14 @@ namespace Gu.Wpf.Geometry
         private static void OnCanZoomNone(object sender, CanExecuteRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            e.CanExecute = !box.ContentTransform.Matrix.IsIdentity;
+            e.CanExecute = !box.ContentMatrix.IsIdentity;
             e.Handled = true;
         }
 
         private static void OnZoomNone(object sender, ExecutedRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Identity);
+            box.SetCurrentValue(ContentMatrixProperty, Matrix.Identity);
             e.Handled = true;
         }
 
@@ -434,7 +460,7 @@ namespace Gu.Wpf.Geometry
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
             TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
             TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
-            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            box.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
             e.Handled = true;
         }
 
@@ -474,7 +500,7 @@ namespace Gu.Wpf.Geometry
             ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
             TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
             TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
-            box.ContentTransform.SetCurrentValue(MatrixTransform.MatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            box.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
             e.Handled = true;
         }
 

@@ -106,7 +106,7 @@
 
             var topLeft = image.Properties.BoundingRectangle.Value.TopLeft();
             var size = Size.Parse(renderSize.Text);
-            Mouse.Click(MouseButton.Left, new FlaUI.Core.Shapes.Point(topLeft.X + size.Width, topLeft.Y + size.Height));
+            Mouse.Click(MouseButton.Left, new FlaUI.Core.Shapes.Point(topLeft.X + size.Width - 1, topLeft.Y + size.Height - 1));
             Mouse.Scroll(1);
             this.app.WaitWhileBusy();
             this.app.WaitWhileBusy();

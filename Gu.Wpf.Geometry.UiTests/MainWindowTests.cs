@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Geometry.UiTests
 {
-    using System.Linq;
     using FlaUI.Core;
     using FlaUI.Core.Definitions;
     using FlaUI.UIA3;

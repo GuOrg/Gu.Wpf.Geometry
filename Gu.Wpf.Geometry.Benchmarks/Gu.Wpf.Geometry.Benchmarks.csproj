@@ -65,7 +65,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
@@ -157,6 +156,17 @@
         <Reference Include="mscorlib">
           <Paket>True</Paket>
         </Reference>
+        <Reference Include="Microsoft.Win32.Registry">
+          <HintPath>..\packages\benchmark\Microsoft.Win32.Registry\lib\net46\Microsoft.Win32.Registry.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
+      <ItemGroup>
         <Reference Include="System.AppContext">
           <HintPath>..\packages\benchmark\System.AppContext\lib\net46\System.AppContext.dll</HintPath>
           <Private>True</Private>
@@ -415,4 +425,5 @@
       </ItemGroup>
     </When>
   </Choose>
+  <Import Project="..\.paket\paket.targets" />
 </Project>

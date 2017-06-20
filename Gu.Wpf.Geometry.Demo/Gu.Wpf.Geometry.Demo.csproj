@@ -220,7 +220,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Resource Include="Images\Circles.png" />
   </ItemGroup>
@@ -236,9 +235,6 @@
     </Analyzer>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\Newtonsoft.Json.dll">
-      <Paket>True</Paket>
-    </Analyzer>
     <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -254,4 +250,5 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
 </Project>

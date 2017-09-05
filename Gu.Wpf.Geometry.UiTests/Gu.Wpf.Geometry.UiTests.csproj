@@ -67,6 +67,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
@@ -94,24 +95,13 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5.2'">
       <ItemGroup>
-        <Reference Include="FlaUI.Core">
-          <HintPath>..\packages\test\FlaUI.Core\lib\net45\FlaUI.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5.2'">
-      <ItemGroup>
-        <Reference Include="FlaUI.UIA3">
-          <HintPath>..\packages\test\FlaUI.UIA3\lib\net45\FlaUI.UIA3.dll</HintPath>
+        <Reference Include="Gu.Wpf.UiAutomation">
+          <HintPath>..\packages\test\Gu.Wpf.UiAutomation\lib\net45\Gu.Wpf.UiAutomation.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="Interop.UIAutomationClient">
-          <HintPath>..\packages\test\FlaUI.UIA3\lib\net45\Interop.UIAutomationClient.dll</HintPath>
+          <HintPath>..\packages\test\Gu.Wpf.UiAutomation\lib\net45\Interop.UIAutomationClient.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -129,5 +119,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\.paket\paket.targets" />
 </Project>

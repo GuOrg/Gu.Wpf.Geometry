@@ -3,28 +3,21 @@
     using System;
     using System.Windows;
     using System.Windows.Media;
-    using FlaUI.Core.AutomationElements;
-    using FlaUI.Core.Definitions;
-    using FlaUI.Core.Input;
-    using FlaUI.UIA3;
     using Gu.Wpf.Geometry.UiTests.Helpers;
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using Application = FlaUI.Core.Application;
 
     public sealed class ZoomViewTests : IDisposable
     {
-        private Application app;
-        private UIA3Automation automation;
+        private Gu.Wpf.UiAutomation.Application app;
         private TabItem tabItem;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             this.app?.Dispose();
-            this.app = Application.Launch(Info.ProcessStartInfo);
-            this.automation?.Dispose();
-            this.automation = new UIA3Automation();
-            var window = this.app.GetMainWindow(this.automation);
+            this.app = Gu.Wpf.UiAutomation.Application.Launch(Info.ProcessStartInfo);
+            var window = this.app.MainWindow;
             this.tabItem = window.FindFirstDescendant(x => x.ByName("ZoomViewer")).AsTabItem();
             this.tabItem.Click();
             this.app.WaitWhileBusy();
@@ -106,7 +99,7 @@
 
             var topLeft = image.Properties.BoundingRectangle.Value.TopLeft();
             var size = Size.Parse(renderSize.Text);
-            Mouse.Click(MouseButton.Left, new FlaUI.Core.Shapes.Point(topLeft.X + size.Width - 1, topLeft.Y + size.Height - 1));
+            Mouse.Click(MouseButton.Left, new Point(topLeft.X + size.Width - 1, topLeft.Y + size.Height - 1));
             Mouse.Scroll(1);
             this.app.WaitWhileBusy();
             this.app.WaitWhileBusy();
@@ -121,17 +114,8 @@
 
         public void Dispose()
         {
-            try
-            {
-                this.automation?.Dispose();
-                this.automation = null;
-                this.app?.Dispose();
-                this.app = null;
-            }
-            catch (Exception)
-            {
-                // Swallow
-            }
+            this.app?.Dispose();
+            this.app = null;
         }
     }
 }

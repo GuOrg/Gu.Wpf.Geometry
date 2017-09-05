@@ -125,7 +125,5 @@ GROUP Test
 RESTRICTION: == net452
 NUGET
   remote: http://www.nuget.org/api/v2
-    FlaUI.Core (1.2)
-    FlaUI.UIA3 (1.2)
-      FlaUI.Core (>= 1.2)
+    Gu.Wpf.UiAutomation (0.1.5-dev)
     NUnit (3.7.1)

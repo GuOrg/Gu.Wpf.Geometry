@@ -13,7 +13,7 @@ group Test
   source http://www.nuget.org/api/v2/
   framework: net452
   nuget NUnit
-  nuget FlaUI.UIA3
+  nuget Gu.Wpf.UiAutomation
 
 group Benchmark
   redirects: on

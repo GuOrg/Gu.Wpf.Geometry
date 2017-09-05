@@ -226,7 +226,6 @@
   <ItemGroup>
     <Resource Include="Images\Crosshair.png" />
   </ItemGroup>
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
@@ -251,4 +250,5 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
 </Project>

@@ -65,7 +65,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
@@ -144,7 +143,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
         <Reference Include="Microsoft.DotNet.PlatformAbstractions">
-          <HintPath>..\packages\benchmark\Microsoft.DotNet.PlatformAbstractions\lib\net451\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+          <HintPath>..\packages\benchmark\Microsoft.DotNet.PlatformAbstractions\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -158,7 +157,7 @@
           <Paket>True</Paket>
         </Reference>
         <Reference Include="Microsoft.Win32.Registry">
-          <HintPath>..\packages\benchmark\Microsoft.Win32.Registry\lib\net46\Microsoft.Win32.Registry.dll</HintPath>
+          <HintPath>..\packages\benchmark\Microsoft.Win32.Registry\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -285,6 +284,17 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
+        <Reference Include="System.Security.AccessControl">
+          <HintPath>..\packages\benchmark\System.Security.AccessControl\lib\net461\System.Security.AccessControl.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
+      <ItemGroup>
         <Reference Include="System.Security.Cryptography.Algorithms">
           <HintPath>..\packages\benchmark\System.Security.Cryptography.Algorithms\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
           <Private>True</Private>
@@ -329,8 +339,19 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
+        <Reference Include="System.Security.Principal.Windows">
+          <HintPath>..\packages\benchmark\System.Security.Principal.Windows\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
+      <ItemGroup>
         <Reference Include="System.Text.Encoding.CodePages">
-          <HintPath>..\packages\benchmark\System.Text.Encoding.CodePages\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+          <HintPath>..\packages\benchmark\System.Text.Encoding.CodePages\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -363,7 +384,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
         <Reference Include="System.ValueTuple">
-          <HintPath>..\packages\benchmark\System.ValueTuple\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+          <HintPath>..\packages\benchmark\System.ValueTuple\lib\net461\System.ValueTuple.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -426,4 +447,6 @@
       </ItemGroup>
     </When>
   </Choose>
+  <Import Project="..\packages\benchmark\NETStandard.Library\build\NETStandard.Library.targets" Condition="Exists('..\packages\benchmark\NETStandard.Library\build\NETStandard.Library.targets')" Label="Paket" />
+  <Import Project="..\.paket\paket.targets" />
 </Project>

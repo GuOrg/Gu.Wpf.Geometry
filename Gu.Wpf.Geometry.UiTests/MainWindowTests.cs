@@ -9,7 +9,7 @@
         [Test]
         public void ClickAllTabs()
         {
-            // Just a smoke test so that everything builds.
+            // Just a smoke test so that we do not explode.
             using (var app = Application.Launch(Info.ProcessStartInfo))
             {
                 var window = app.MainWindow;

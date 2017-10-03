@@ -65,6 +65,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.6.1'">
       <ItemGroup>
@@ -448,5 +449,4 @@
     </When>
   </Choose>
   <Import Project="..\packages\benchmark\NETStandard.Library\build\NETStandard.Library.targets" Condition="Exists('..\packages\benchmark\NETStandard.Library\build\NETStandard.Library.targets')" Label="Paket" />
-  <Import Project="..\.paket\paket.targets" />
 </Project>

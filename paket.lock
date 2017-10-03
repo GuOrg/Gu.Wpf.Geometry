@@ -111,7 +111,7 @@ NUGET
       System.Security.Cryptography.Primitives (>= 4.3)
     System.Security.Cryptography.Encoding (4.3)
     System.Security.Cryptography.Primitives (4.3)
-    System.Security.Cryptography.X509Certificates (4.3)
+    System.Security.Cryptography.X509Certificates (4.3.1)
       System.Security.Cryptography.Algorithms (>= 4.3)
       System.Security.Cryptography.Encoding (>= 4.3)
     System.Security.Principal.Windows (4.4)
@@ -138,5 +138,5 @@ GROUP Test
 RESTRICTION: == net452
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Wpf.UiAutomation (0.1.10-dev)
+    Gu.Wpf.UiAutomation (0.1.16)
     NUnit (3.8.1)

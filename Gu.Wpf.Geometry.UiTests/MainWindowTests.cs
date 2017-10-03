@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Geometry.UiTests
 {
-    using Gu.Wpf.Geometry.UiTests.Helpers;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -10,7 +9,7 @@
         public void ClickAllTabs()
         {
             // Just a smoke test so that we do not explode.
-            using (var app = Application.Launch(Info.ProcessStartInfo))
+            using (var app = Application.Launch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe")))
             {
                 var window = app.MainWindow;
                 var tab = window.FindTabControl();

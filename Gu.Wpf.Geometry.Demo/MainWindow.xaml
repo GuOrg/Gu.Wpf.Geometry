@@ -1,14 +1,15 @@
-﻿<Window x:Class="Gu.Wpf.Geometry.Demo.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:effects="clr-namespace:Gu.Wpf.Geometry.Demo.Effects"
-        xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="MainWindow"
-        Width="525"
-        Height="350"
-        mc:Ignorable="d">
+﻿<Window
+    x:Class="Gu.Wpf.Geometry.Demo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:effects="clr-namespace:Gu.Wpf.Geometry.Demo.Effects"
+    xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="525"
+    Height="350"
+    mc:Ignorable="d">
     <TabControl>
         <TabItem Header="GradientPaths">
             <local:PathDebugView />

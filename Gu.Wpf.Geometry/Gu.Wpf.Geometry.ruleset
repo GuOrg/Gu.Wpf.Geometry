@@ -91,5 +91,6 @@
     <Rule Id="WPF0011" Action="Error" />
     <Rule Id="WPF0012" Action="Error" />
     <Rule Id="WPF0030" Action="Error" />
+    <Rule Id="WPF0060" Action="Warning" />
   </Rules>
 </RuleSet>

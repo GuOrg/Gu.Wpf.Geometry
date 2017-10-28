@@ -5,14 +5,19 @@ namespace Gu.Wpf.Geometry
 
     public class Balloon : ContentControl
     {
+        /// <summary>Identifies the <see cref="CornerRadius"/> dependency property.</summary>
         public static readonly DependencyProperty CornerRadiusProperty = Border.CornerRadiusProperty.AddOwner(typeof(Balloon));
 
+        /// <summary>Identifies the <see cref="ConnectorOffset"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorOffsetProperty = BalloonBase.ConnectorOffsetProperty.AddOwner(typeof(Balloon));
 
+        /// <summary>Identifies the <see cref="ConnectorAngle"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorAngleProperty = BalloonBase.ConnectorAngleProperty.AddOwner(typeof(Balloon));
 
+        /// <summary>Identifies the <see cref="PlacementTarget"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementTargetProperty = BalloonBase.PlacementTargetProperty.AddOwner(typeof(Balloon));
 
+        /// <summary>Identifies the <see cref="PlacementOptions"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementOptionsProperty = BalloonBase.PlacementOptionsProperty.AddOwner(typeof(Balloon));
 
         static Balloon()

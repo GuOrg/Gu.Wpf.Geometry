@@ -10,6 +10,7 @@ namespace Gu.Wpf.Geometry
 
     public abstract class BalloonBase : Shape
     {
+        /// <summary>Identifies the <see cref="ConnectorOffset"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorOffsetProperty = DependencyProperty.Register(
             "ConnectorOffset",
             typeof(Vector),
@@ -21,6 +22,7 @@ namespace Gu.Wpf.Geometry
                 OnConnectorChanged));
 #pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
+        /// <summary>Identifies the <see cref="ConnectorAngle"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorAngleProperty = DependencyProperty.Register(
             "ConnectorAngle",
             typeof(double),
@@ -32,6 +34,7 @@ namespace Gu.Wpf.Geometry
                 OnConnectorChanged));
 #pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
+        /// <summary>Identifies the <see cref="PlacementTarget"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
             "PlacementTarget",
             typeof(UIElement),
@@ -40,6 +43,7 @@ namespace Gu.Wpf.Geometry
                 default(UIElement),
                 OnPlacementTargetChanged));
 
+        /// <summary>Identifies the <see cref="PlacementOptions"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementOptionsProperty = DependencyProperty.Register(
             "PlacementOptions",
             typeof(PlacementOptions),
@@ -104,11 +108,13 @@ namespace Gu.Wpf.Geometry
 
         protected Geometry BoxGeometry { get; private set; }
 
+        /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
         {
             return new Size(this.StrokeThickness, this.StrokeThickness);
         }
 
+        /// <inheritdoc />
         protected override Size ArrangeOverride(Size finalSize)
         {
             if (finalSize.Width > this.StrokeThickness && finalSize.Height > this.StrokeThickness)
@@ -119,12 +125,14 @@ namespace Gu.Wpf.Geometry
             return finalSize;
         }
 
+        /// <inheritdoc />
         protected override void OnRender(DrawingContext drawingContext)
         {
             var pen = this.penCache.GetPen(this.Stroke, this.StrokeThickness);
             drawingContext.DrawGeometry(this.Fill, pen, this.balloonGeometry);
         }
 
+        /// <inheritdoc />
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);

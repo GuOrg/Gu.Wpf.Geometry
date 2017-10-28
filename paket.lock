@@ -4,10 +4,10 @@ GROUP Analyzers
 RESTRICTION: >= net45
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Analyzers (1.0.0.1)
-    JetBrains.Annotations (11.0)
+    Gu.Analyzers (1.0.0.1-dev)
+    JetBrains.Annotations (11.1)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.3.0)
+    WpfAnalyzers (0.3)
 
 GROUP Benchmark
 REDIRECTS: ON
@@ -28,7 +28,7 @@ NUGET
       Microsoft.CodeAnalysis.CSharp (>= 2.0)
       System.Threading.Tasks (>= 4.3)
     Microsoft.CodeAnalysis.Analyzers (1.1)
-    Microsoft.CodeAnalysis.Common (2.3.2)
+    Microsoft.CodeAnalysis.Common (2.4)
       Microsoft.CodeAnalysis.Analyzers (>= 1.1)
       System.AppContext (>= 4.3)
       System.Collections (>= 4.3)
@@ -68,15 +68,15 @@ NUGET
       System.Xml.XDocument (>= 4.3)
       System.Xml.XmlDocument (>= 4.3)
       System.Xml.XPath.XDocument (>= 4.3)
-    Microsoft.CodeAnalysis.CSharp (2.3.2)
-      Microsoft.CodeAnalysis.Common (2.3.2)
+    Microsoft.CodeAnalysis.CSharp (2.4)
+      Microsoft.CodeAnalysis.Common (2.4)
     Microsoft.DotNet.InternalAbstractions (1.0)
     Microsoft.DotNet.PlatformAbstractions (2.0)
     Microsoft.NETCore.Platforms (2.0)
     Microsoft.Win32.Registry (4.4)
       System.Security.AccessControl (>= 4.4)
       System.Security.Principal.Windows (>= 4.4)
-    NETStandard.Library (2.0)
+    NETStandard.Library (2.0.1)
       Microsoft.NETCore.Platforms (>= 1.1)
     System.AppContext (4.3)
     System.Collections (4.3)
@@ -138,5 +138,5 @@ GROUP Test
 RESTRICTION: == net452
 NUGET
   remote: http://www.nuget.org/api/v2
-    Gu.Wpf.UiAutomation (0.1.16)
+    Gu.Wpf.UiAutomation (0.1.17)
     NUnit (3.8.1)

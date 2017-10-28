@@ -13,26 +13,30 @@ namespace Gu.Wpf.Geometry
     /// </summary>
     public class Zoombox : Decorator
     {
+        /// <summary>Identifies the <see cref="WheelZoomFactor"/> dependency property.</summary>
         public static readonly DependencyProperty WheelZoomFactorProperty = DependencyProperty.Register(
-            "WheelZoomFactor",
+            nameof(WheelZoomFactor),
             typeof(double),
             typeof(Zoombox),
             new PropertyMetadata(1.05));
 
+        /// <summary>Identifies the <see cref="MinZoom"/> dependency property.</summary>
         public static readonly DependencyProperty MinZoomProperty = DependencyProperty.Register(
-            "MinZoom",
+            nameof(MinZoom),
             typeof(double),
             typeof(Zoombox),
             new PropertyMetadata(double.NegativeInfinity));
 
+        /// <summary>Identifies the <see cref="MaxZoom"/> dependency property.</summary>
         public static readonly DependencyProperty MaxZoomProperty = DependencyProperty.Register(
-            "MaxZoom",
+            nameof(MaxZoom),
             typeof(double),
             typeof(Zoombox),
             new PropertyMetadata(double.PositiveInfinity));
 
+        /// <summary>Identifies the <see cref="ContentMatrix"/> dependency property.</summary>
         public static readonly DependencyProperty ContentMatrixProperty = DependencyProperty.Register(
-            "ContentMatrix",
+            nameof(ContentMatrix),
             typeof(Matrix),
             typeof(Zoombox),
             new PropertyMetadata(

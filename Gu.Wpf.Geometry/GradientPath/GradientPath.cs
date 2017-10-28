@@ -9,6 +9,7 @@ namespace Gu.Wpf.Geometry
 
     public partial class GradientPath : FrameworkElement
     {
+        /// <summary>Identifies the <see cref="Data"/> dependency property.</summary>
         public static readonly DependencyProperty DataProperty = Path.DataProperty.AddOwner(
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
@@ -16,6 +17,7 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGeometryChanged));
 
+        /// <summary>Identifies the <see cref="GradientStops"/> dependency property.</summary>
         public static readonly DependencyProperty GradientStopsProperty = GradientBrush.GradientStopsProperty.AddOwner(
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
@@ -23,8 +25,9 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGradientChanged));
 
+        /// <summary>Identifies the <see cref="GradientMode"/> dependency property.</summary>
         public static readonly DependencyProperty GradientModeProperty = DependencyProperty.Register(
-            "GradientMode",
+            nameof(GradientMode),
             typeof(GradientMode),
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
@@ -32,14 +35,15 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGradientChanged));
 
-        public static readonly DependencyProperty ColorInterpolationModeProperty = GradientBrush
-            .ColorInterpolationModeProperty.AddOwner(
+        /// <summary>Identifies the <see cref="ColorInterpolationMode"/> dependency property.</summary>
+        public static readonly DependencyProperty ColorInterpolationModeProperty = GradientBrush.ColorInterpolationModeProperty.AddOwner(
                 typeof(GradientPath),
                 new FrameworkPropertyMetadata(
                     ColorInterpolationMode.SRgbLinearInterpolation,
                     FrameworkPropertyMetadataOptions.AffectsRender,
                     OnGradientChanged));
 
+        /// <summary>Identifies the <see cref="StrokeThickness"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
@@ -47,20 +51,23 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                 OnGeometryChanged));
 
+        /// <summary>Identifies the <see cref="StrokeStartLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeStartLineCapProperty = Shape.StrokeStartLineCapProperty.AddOwner(
                 typeof(GradientPath),
                 new FrameworkPropertyMetadata(
                     PenLineCap.Flat,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="StrokeEndLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeEndLineCapProperty = Shape.StrokeEndLineCapProperty.AddOwner(
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="Tolerance"/> dependency property.</summary>
         public static readonly DependencyProperty ToleranceProperty = DependencyProperty.Register(
-            "Tolerance",
+            nameof(Tolerance),
             typeof(double),
             typeof(GradientPath),
             new FrameworkPropertyMetadata(

@@ -8,34 +8,43 @@
     /// <summary>A gradient that changes value with angle.</summary>
     public class AngularGradientEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(AngularGradientEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(AngularGradientEffect),
+            0);
 
+        /// <summary>Identifies the <see cref="CenterPoint"/> dependency property.</summary>
         public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(
-            "CenterPoint",
+            nameof(CenterPoint),
             typeof(Point),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(new Point(0.5D, 0.5D), PixelShaderConstantCallback(0)));
 
+        /// <summary>Identifies the <see cref="StartColor"/> dependency property.</summary>
         public static readonly DependencyProperty StartColorProperty = DependencyProperty.Register(
-            "StartColor",
+            nameof(StartColor),
             typeof(Color),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 255), PixelShaderConstantCallback(1)));
 
+        /// <summary>Identifies the <see cref="EndColor"/> dependency property.</summary>
         public static readonly DependencyProperty EndColorProperty = DependencyProperty.Register(
-            "EndColor",
+            nameof(EndColor),
             typeof(Color),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(Color.FromArgb(255, 255, 0, 0), PixelShaderConstantCallback(2)));
 
+        /// <summary>Identifies the <see cref="StartAngle"/> dependency property.</summary>
         public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register(
-            "StartAngle",
+            nameof(StartAngle),
             typeof(double),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(3)));
 
+        /// <summary>Identifies the <see cref="ArcLength"/> dependency property.</summary>
         public static readonly DependencyProperty ArcLengthProperty = DependencyProperty.Register(
-            "ArcLength",
+            nameof(ArcLength),
             typeof(double),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(360D, PixelShaderConstantCallback(4)));

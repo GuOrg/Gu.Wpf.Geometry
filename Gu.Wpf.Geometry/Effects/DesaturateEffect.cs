@@ -8,10 +8,15 @@
     /// <summary>An effect that turns the input into shades of a single color.</summary>
     public class DesaturateEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(DesaturateEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(DesaturateEffect),
+            0);
 
+        /// <summary>Identifies the <see cref="Strength"/> dependency property.</summary>
         public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register(
-            "Strength",
+            nameof(Strength),
             typeof(double),
             typeof(DesaturateEffect),
             new UIPropertyMetadata(1.0, PixelShaderConstantCallback(0)));

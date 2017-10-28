@@ -8,11 +8,25 @@
     /// <summary>An effect that makes black pixels transparent and all other pixels the provided color.</summary>
     public class MaskEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(MaskEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(MaskEffect),
+            0);
 
-        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(MaskEffect), new UIPropertyMetadata(Color.FromArgb(102, 255, 0, 0), PixelShaderConstantCallback(0)));
+        /// <summary>Identifies the <see cref="Color"/> dependency property.</summary>
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
+            nameof(Color),
+            typeof(Color),
+            typeof(MaskEffect),
+            new UIPropertyMetadata(Color.FromArgb(102, 255, 0, 0), PixelShaderConstantCallback(0)));
 
-        public static readonly DependencyProperty ToleranceProperty = DependencyProperty.Register("Tolerance", typeof(double), typeof(MaskEffect), new UIPropertyMetadata(0.05D, PixelShaderConstantCallback(1)));
+        /// <summary>Identifies the <see cref="Tolerance"/> dependency property.</summary>
+        public static readonly DependencyProperty ToleranceProperty = DependencyProperty.Register(
+            nameof(Tolerance),
+            typeof(double),
+            typeof(MaskEffect),
+            new UIPropertyMetadata(0.05D, PixelShaderConstantCallback(1)));
 
         /// <summary>
         /// The uri should be something like pack://application:,,,/Gu.Wpf.Geometry;component/Effects/MaskEffect.ps

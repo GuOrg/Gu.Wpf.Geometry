@@ -188,8 +188,7 @@ namespace Gu.Wpf.Geometry
                     return FindTangentPoint(ray, rectangle, cornerRadius);
                 }
 
-                Circle corner;
-                if (TryGetCorner(ip.Value, rectangle, cornerRadius, out corner))
+                if (TryGetCorner(ip.Value, rectangle, cornerRadius, out var corner))
                 {
                     ip = ray.FirstIntersectionWith(corner);
                     if (ip == null)

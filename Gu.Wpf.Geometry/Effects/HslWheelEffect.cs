@@ -10,22 +10,29 @@
     /// </summary>
     public class HslWheelEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(HslWheelEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(HslWheelEffect),
+            0);
 
+        /// <summary>Identifies the <see cref="InnerRadius"/> dependency property.</summary>
         public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register(
-            "InnerRadius",
+            nameof(InnerRadius),
             typeof(double),
             typeof(HslWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
+        /// <summary>Identifies the <see cref="InnerSaturation"/> dependency property.</summary>
         public static readonly DependencyProperty InnerSaturationProperty = DependencyProperty.Register(
-            "InnerSaturation",
+            nameof(InnerSaturation),
             typeof(double),
             typeof(HslWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(1)));
 
+        /// <summary>Identifies the <see cref="Lightness"/> dependency property.</summary>
         public static readonly DependencyProperty LightnessProperty = DependencyProperty.Register(
-            "Lightness",
+            nameof(Lightness),
             typeof(double),
             typeof(HslWheelEffect),
             new UIPropertyMetadata(0.5D, PixelShaderConstantCallback(2)));

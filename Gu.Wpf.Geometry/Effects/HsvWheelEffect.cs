@@ -10,22 +10,29 @@
     /// </summary>
     public class HsvWheelEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(HsvWheelEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(HsvWheelEffect),
+            0);
 
+        /// <summary>Identifies the <see cref="InnerRadius"/> dependency property.</summary>
         public static readonly DependencyProperty InnerRadiusProperty = DependencyProperty.Register(
-            "InnerRadius",
+            nameof(InnerRadius),
             typeof(double),
             typeof(HsvWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
+        /// <summary>Identifies the <see cref="InnerSaturation"/> dependency property.</summary>
         public static readonly DependencyProperty InnerSaturationProperty = DependencyProperty.Register(
-            "InnerSaturation",
+            nameof(InnerSaturation),
             typeof(double),
             typeof(HsvWheelEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(1)));
 
+        /// <summary>Identifies the <see cref="Value"/> dependency property.</summary>
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value",
+            nameof(Value),
             typeof(double),
             typeof(HsvWheelEffect),
             new UIPropertyMetadata(1D, PixelShaderConstantCallback(2)));

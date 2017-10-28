@@ -8,11 +8,25 @@
     /// <summary>Fade to a colour by animating the strength.</summary>
     public class FadeEffect : ShaderEffect
     {
-        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty("Input", typeof(FadeEffect), 0);
+        /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(
+            nameof(Input),
+            typeof(FadeEffect),
+            0);
 
-        public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register("Strength", typeof(double), typeof(FadeEffect), new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
+        /// <summary>Identifies the <see cref="Strength"/> dependency property.</summary>
+        public static readonly DependencyProperty StrengthProperty = DependencyProperty.Register(
+            nameof(Strength),
+            typeof(double),
+            typeof(FadeEffect),
+            new UIPropertyMetadata(0D, PixelShaderConstantCallback(0)));
 
-        public static readonly DependencyProperty ToProperty = DependencyProperty.Register("To", typeof(Color), typeof(FadeEffect), new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
+        /// <summary>Identifies the <see cref="To"/> dependency property.</summary>
+        public static readonly DependencyProperty ToProperty = DependencyProperty.Register(
+            nameof(To),
+            typeof(Color),
+            typeof(FadeEffect),
+            new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
 
         private static readonly PixelShader Shader = new PixelShader
         {

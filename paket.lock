@@ -7,7 +7,7 @@ NUGET
     Gu.Analyzers (0.1.11.25-dev)
     JetBrains.Annotations (11.0)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.2.7.10)
+    WpfAnalyzers (0.3.0)
 
 GROUP Benchmark
 REDIRECTS: ON

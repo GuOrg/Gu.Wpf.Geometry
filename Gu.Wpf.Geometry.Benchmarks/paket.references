@@ -1,2 +1,11 @@
 group Benchmark
   BenchmarkDotNet
+
+group Analyzers
+  AsyncUsageAnalyzers
+  IDisposableAnalyzers
+  PropertyChangedAnalyzers
+  StyleCop.Analyzers
+  WpfAnalyzers
+  Gu.Analyzers
+  JetBrains.Annotations

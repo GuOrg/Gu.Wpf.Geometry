@@ -1,8 +1,12 @@
-group Analyzers
-  StyleCop.Analyzers
-  WpfAnalyzers
-  Gu.Analyzers
-
 group Test
   NUnit
   Gu.Wpf.UiAutomation
+
+group Analyzers
+  AsyncUsageAnalyzers
+  IDisposableAnalyzers
+  PropertyChangedAnalyzers
+  StyleCop.Analyzers
+  WpfAnalyzers
+  Gu.Analyzers
+  JetBrains.Annotations

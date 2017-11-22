@@ -1,9 +1,10 @@
 source http://www.nuget.org/api/v2/
-framework: net45
 
 group Analyzers
-  source http://www.nuget.org/api/v2/
-  framework: >= net45
+  source http://nuget.org/api/v2
+  nuget AsyncUsageAnalyzers
+  nuget IDisposableAnalyzers
+  nuget PropertyChangedAnalyzers
   nuget StyleCop.Analyzers
   nuget WpfAnalyzers
   nuget Gu.Analyzers
@@ -11,12 +12,9 @@ group Analyzers
 
 group Test
   source http://www.nuget.org/api/v2/
-  framework: net452
   nuget NUnit
   nuget Gu.Wpf.UiAutomation
 
 group Benchmark
-  redirects: on
   source http://www.nuget.org/api/v2/
-  framework: net461
   nuget BenchmarkDotNet

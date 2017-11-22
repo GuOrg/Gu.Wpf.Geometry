@@ -3,8 +3,5 @@ tags xaml wpf Balloon Gradient
 projectUrl https://github.com/JohanLarsson/Gu.Wpf.Geometry
 licenseUrl http://opensource.org/licenses/MIT
 
-excludeddependencies
-  JetBrains.Annotations
-  StyleCop.Analyzers
-  WpfAnalyzers
-  Gu.Analyzers
+excludedgroups
+  Analyzers

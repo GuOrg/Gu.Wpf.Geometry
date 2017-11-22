@@ -6,7 +6,7 @@
              mc:Ignorable="d">
     <Path Fill="Gray">
         <Path.Data>
-            <EllipseGeometry x:Name="ellipseGeo"
+            <EllipseGeometry x:Name="EllipseGeometry"
                              RadiusX="6"
                              RadiusY="6" />
         </Path.Data>

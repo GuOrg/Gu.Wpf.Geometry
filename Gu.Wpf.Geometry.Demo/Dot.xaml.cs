@@ -70,7 +70,7 @@
 
         private static void OnCenterChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
-            ((Dot)obj).ellipseGeo.SetCurrentValue(System.Windows.Media.EllipseGeometry.CenterProperty, (Point)args.NewValue);
+            ((Dot)obj).EllipseGeometry.SetCurrentValue(System.Windows.Media.EllipseGeometry.CenterProperty, (Point)args.NewValue);
         }
     }
 }

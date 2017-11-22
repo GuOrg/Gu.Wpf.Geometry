@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Demo.DebugViews
+﻿namespace Gu.Wpf.Geometry.Demo
 {
     using System.Windows.Controls;
 

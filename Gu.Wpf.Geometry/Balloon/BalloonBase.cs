@@ -12,7 +12,7 @@ namespace Gu.Wpf.Geometry
     {
         /// <summary>Identifies the <see cref="ConnectorOffset"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorOffsetProperty = DependencyProperty.Register(
-            "ConnectorOffset",
+            nameof(ConnectorOffset),
             typeof(Vector),
             typeof(BalloonBase),
             new FrameworkPropertyMetadata(
@@ -24,7 +24,7 @@ namespace Gu.Wpf.Geometry
 
         /// <summary>Identifies the <see cref="ConnectorAngle"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorAngleProperty = DependencyProperty.Register(
-            "ConnectorAngle",
+            nameof(ConnectorAngle),
             typeof(double),
             typeof(BalloonBase),
             new FrameworkPropertyMetadata(
@@ -36,7 +36,7 @@ namespace Gu.Wpf.Geometry
 
         /// <summary>Identifies the <see cref="PlacementTarget"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
-            "PlacementTarget",
+            nameof(PlacementTarget),
             typeof(UIElement),
             typeof(BalloonBase),
             new PropertyMetadata(
@@ -45,7 +45,7 @@ namespace Gu.Wpf.Geometry
 
         /// <summary>Identifies the <see cref="PlacementOptions"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementOptionsProperty = DependencyProperty.Register(
-            "PlacementOptions",
+            nameof(PlacementOptions),
             typeof(PlacementOptions),
             typeof(BalloonBase),
             new PropertyMetadata(

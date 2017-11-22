@@ -3,6 +3,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Controls;
 
+    /// <summary>
+    /// Draws a ballon callout
+    /// </summary>
     public class Balloon : ContentControl
     {
         /// <summary>Identifies the <see cref="CornerRadius"/> dependency property.</summary>

@@ -62,9 +62,9 @@
                              Tag="{x:Static PenLineCap.Triangle}" />
             </StackPanel>
 
-            <TextBlock Text="{Binding ElementName=scroll, Path=Value, StringFormat='Tolerance = {0}'}" />
+            <TextBlock Text="{Binding ElementName=Scroll, Path=Value, StringFormat='Tolerance = {0}'}" />
 
-            <ScrollBar Name="scroll"
+            <ScrollBar Name="Scroll"
                        Width="192"
                        Margin="6 0 0 0"
                        HorizontalAlignment="Left"
@@ -73,9 +73,9 @@
                        Orientation="Horizontal"
                        Value="0.25" />
 
-            <TextBlock Text="{Binding ElementName=thickness, Path=Value, StringFormat='Thickness = {0}'}" />
+            <TextBlock Text="{Binding ElementName=Thickness, Path=Value, StringFormat='Thickness = {0}'}" />
 
-            <ScrollBar x:Name="thickness"
+            <ScrollBar x:Name="Thickness"
                        Width="192"
                        Margin="6 0 0 0"
                        HorizontalAlignment="Left"
@@ -85,23 +85,23 @@
                        Value="100" />
         </StackPanel>
 
-        <geometry:GradientPath x:Name="gradientPath"
+        <geometry:GradientPath x:Name="GradientPath"
                                StrokeThickness="{Binding Value,
-                                                         ElementName=thickness}"
-                               Tolerance="{Binding ElementName=scroll,
+                                                         ElementName=Thickness}"
+                               Tolerance="{Binding ElementName=Scroll,
                                                    Path=Value}"
                                UseLayoutRounding="True">
             <geometry:GradientPath.Data>
                 <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=linePtBeg, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt0, Path=Center}" />
-                        <BezierSegment Point1="{Binding ElementName=bezPt1,
+                    <PathFigure StartPoint="{Binding ElementName=LinePtBeg, Path=Center}">
+                        <LineSegment Point="{Binding ElementName=BezPt0, Path=Center}" />
+                        <BezierSegment Point1="{Binding ElementName=BezPt1,
                                                         Path=Center}"
-                                       Point2="{Binding ElementName=bezPt2,
+                                       Point2="{Binding ElementName=BezPt2,
                                                         Path=Center}"
-                                       Point3="{Binding ElementName=bezPt3,
+                                       Point3="{Binding ElementName=BezPt3,
                                                         Path=Center}" />
-                        <LineSegment Point="{Binding ElementName=linePtEnd, Path=Center}" />
+                        <LineSegment Point="{Binding ElementName=LinePtEnd, Path=Center}" />
                     </PathFigure>
                     <PathFigure StartPoint="200,200">
                         <LineSegment Point="200,400" />
@@ -124,27 +124,27 @@
         <Path Stroke="Black">
             <Path.Data>
                 <PathGeometry>
-                    <PathFigure StartPoint="{Binding ElementName=bezPt0, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt1, Path=Center}" />
+                    <PathFigure StartPoint="{Binding ElementName=BezPt0, Path=Center}">
+                        <LineSegment Point="{Binding ElementName=BezPt1, Path=Center}" />
                     </PathFigure>
-                    <PathFigure StartPoint="{Binding ElementName=bezPt2, Path=Center}">
-                        <LineSegment Point="{Binding ElementName=bezPt3, Path=Center}" />
+                    <PathFigure StartPoint="{Binding ElementName=BezPt2, Path=Center}">
+                        <LineSegment Point="{Binding ElementName=BezPt3, Path=Center}" />
                     </PathFigure>
                 </PathGeometry>
             </Path.Data>
         </Path>
 
-        <local:Dot x:Name="linePtBeg"
+        <local:Dot x:Name="LinePtBeg"
                    Center="35 400" />
-        <local:Dot x:Name="bezPt0"
+        <local:Dot x:Name="BezPt0"
                    Center="100 300" />
-        <local:Dot x:Name="bezPt1"
+        <local:Dot x:Name="BezPt1"
                    Center="300 10" />
-        <local:Dot x:Name="bezPt2"
+        <local:Dot x:Name="BezPt2"
                    Center="500 600" />
-        <local:Dot x:Name="bezPt3"
+        <local:Dot x:Name="BezPt3"
                    Center="700 300" />
-        <local:Dot x:Name="linePtEnd"
+        <local:Dot x:Name="LinePtEnd"
                    Center="800 100" />
     </Grid>
 </UserControl>

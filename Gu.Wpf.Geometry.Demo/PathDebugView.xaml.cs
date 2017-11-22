@@ -16,46 +16,46 @@
 
         private void OnGradientModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.gradientPath == null)
+            if (this.GradientPath == null)
             {
                 return;
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(GradientPath.GradientModeProperty, radioButton.Tag);
+            this.GradientPath.SetCurrentValue(GradientPath.GradientModeProperty, radioButton.Tag);
         }
 
         private void OnStartLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.gradientPath == null)
+            if (this.GradientPath == null)
             {
                 return;
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(GradientPath.StrokeStartLineCapProperty, (PenLineCap)radioButton.Tag);
+            this.GradientPath.SetCurrentValue(GradientPath.StrokeStartLineCapProperty, (PenLineCap)radioButton.Tag);
         }
 
         private void OnEndLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.gradientPath == null)
+            if (this.GradientPath == null)
             {
                 return;
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(GradientPath.StrokeEndLineCapProperty, (PenLineCap)radioButton.Tag);
+            this.GradientPath.SetCurrentValue(GradientPath.StrokeEndLineCapProperty, (PenLineCap)radioButton.Tag);
         }
 
         private void OnColorInterpolationModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.gradientPath == null)
+            if (this.GradientPath == null)
             {
                 return;
             }
 
             var radioButton = (RadioButton)args.Source;
-            this.gradientPath.SetCurrentValue(GradientPath.ColorInterpolationModeProperty, (ColorInterpolationMode)radioButton.Tag);
+            this.GradientPath.SetCurrentValue(GradientPath.ColorInterpolationModeProperty, (ColorInterpolationMode)radioButton.Tag);
         }
     }
 }

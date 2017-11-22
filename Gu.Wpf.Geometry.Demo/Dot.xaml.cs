@@ -7,7 +7,7 @@
     public partial class Dot : UserControl
     {
         public static readonly DependencyProperty CenterProperty = DependencyProperty.Register(
-            "Center",
+            nameof(Center),
             typeof(Point),
             typeof(Dot),
             new PropertyMetadata(default(Point), OnCenterChanged));

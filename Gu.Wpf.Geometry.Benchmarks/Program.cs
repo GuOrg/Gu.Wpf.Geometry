@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.Benchmarks
 
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var summary = BenchmarkRunner.Run<LineBenchmarks>();
         }

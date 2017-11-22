@@ -16,7 +16,7 @@ namespace Gu.Wpf.Geometry.Benchmarks
             return 1.2345 / 2.3456;
         }
 
-        [Benchmark()]
+        [Benchmark]
         public double IntersectWithRectangle()
         {
             return Line.ClosestIntersection(Rect).GetValueOrDefault().X;

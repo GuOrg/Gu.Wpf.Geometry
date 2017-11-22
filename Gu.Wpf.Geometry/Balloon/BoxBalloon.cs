@@ -9,7 +9,7 @@ namespace Gu.Wpf.Geometry
     {
         /// <summary>Identifies the <see cref="CornerRadius"/> dependency property.</summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            "CornerRadius",
+            nameof(CornerRadius),
             typeof(CornerRadius),
             typeof(BoxBalloon),
             new FrameworkPropertyMetadata(

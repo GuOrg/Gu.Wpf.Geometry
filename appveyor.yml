@@ -1,9 +1,13 @@
-version: 1.0.{build}
-os: Visual Studio 2017
-configuration: Release
-platform: Any CPU
+image: Visual Studio 2017
 cache:
 - .paket -> paket.lock
 - packages -> paket.lock
+
+before_build:
+- ps: dotnet restore
+
+configuration: Release
+platform: Any CPU
+
 build:
   verbosity: minimal

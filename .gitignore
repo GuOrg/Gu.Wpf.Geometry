@@ -33,3 +33,4 @@ packages/*
 published/*
 publish/*
 /.vs/*
+/paket-files/*

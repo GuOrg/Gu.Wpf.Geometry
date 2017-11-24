@@ -9,28 +9,28 @@
         internal static CornerRadius ScaleBy(this CornerRadius cornerRadius, double factor)
         {
             return new CornerRadius(
-                factor * cornerRadius.TopLeft,
-                factor * cornerRadius.TopRight,
-                factor * cornerRadius.BottomRight,
-                factor * cornerRadius.BottomLeft);
+                topLeft: factor * cornerRadius.TopLeft,
+                topRight: factor * cornerRadius.TopRight,
+                bottomRight: factor * cornerRadius.BottomRight,
+                bottomLeft: factor * cornerRadius.BottomLeft);
         }
 
         internal static CornerRadius InflateBy(this CornerRadius cornerRadius, double value)
         {
             return new CornerRadius(
-                value + cornerRadius.TopLeft,
-                value + cornerRadius.TopRight,
-                value + cornerRadius.BottomRight,
-                value + cornerRadius.BottomLeft);
+                topLeft: value + cornerRadius.TopLeft,
+                topRight: value + cornerRadius.TopRight,
+                bottomRight: value + cornerRadius.BottomRight,
+                bottomLeft: value + cornerRadius.BottomLeft);
         }
 
         internal static CornerRadius WithMin(this CornerRadius cornerRadius, double min)
         {
             return new CornerRadius(
-                Math.Max(min, cornerRadius.TopLeft),
-                Math.Max(min, cornerRadius.TopRight),
-                Math.Max(min, cornerRadius.BottomRight),
-                Math.Max(min, cornerRadius.BottomLeft));
+                topLeft: Math.Max(min, cornerRadius.TopLeft),
+                topRight: Math.Max(min, cornerRadius.TopRight),
+                bottomRight: Math.Max(min, cornerRadius.BottomRight),
+                bottomLeft: Math.Max(min, cornerRadius.BottomLeft));
         }
 
         internal static bool IsZero(this CornerRadius cornerRadius)

@@ -42,8 +42,7 @@
 
         internal static PropertyPath GetPath(DependencyProperty property)
         {
-            PropertyPath path;
-            if (PropertyPaths.TryGetValue(property, out path))
+            if (PropertyPaths.TryGetValue(property, out var path))
             {
                 return path;
             }

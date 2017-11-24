@@ -48,11 +48,11 @@ namespace Gu.Wpf.Geometry
 
                 var geometry = new RectangleGeometry();
                 geometry.Bind(RectangleGeometry.RectProperty)
-                    .OneWayTo(this, RectProperty);
+                        .OneWayTo(this, RectProperty);
                 geometry.Bind(RectangleGeometry.RadiusXProperty)
-                    .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
+                        .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
                 geometry.Bind(RectangleGeometry.RadiusYProperty)
-                    .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
+                        .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
                 return geometry;
             }
             else

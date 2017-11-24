@@ -131,7 +131,7 @@ namespace Gu.Wpf.Geometry
         {
             var figure = new PathFigure { IsClosed = true };
             figure.Bind(PathFigure.StartPointProperty)
-                .OneWayTo(this, property);
+                  .OneWayTo(this, property);
             return figure;
         }
 
@@ -139,7 +139,7 @@ namespace Gu.Wpf.Geometry
         {
             var lineSegment = new LineSegment { IsStroked = true };
             lineSegment.Bind(LineSegment.PointProperty)
-                .OneWayTo(this, property);
+                       .OneWayTo(this, property);
             return lineSegment;
         }
 

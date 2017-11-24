@@ -208,6 +208,8 @@ namespace Gu.Wpf.Geometry
             }
         }
 
+        private Vector CurrentZoom => new Vector(this.ContentMatrix.M11, this.ContentMatrix.M22);
+
         private UIElement InternalChild
         {
             get
@@ -234,8 +236,6 @@ namespace Gu.Wpf.Geometry
                 vc.Add(value);
             }
         }
-
-        private Vector CurrentZoom => new Vector(this.ContentMatrix.M11, this.ContentMatrix.M22);
 
         /// <summary>
         /// Zoom around a the center of the currently visible part.

@@ -17,8 +17,7 @@
                                           Stroke="{TemplateBinding BorderBrush}"
                                           StrokeThickness="{Binding BorderThickness.Left,
                                                                     RelativeSource={RelativeSource TemplatedParent}}" />
-                        <ContentPresenter x:Name="ContentPresenter"
-                                          Margin="{TemplateBinding BorderThickness}" />
+                        <ContentPresenter x:Name="ContentPresenter" Margin="{TemplateBinding BorderThickness}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

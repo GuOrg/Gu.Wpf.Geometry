@@ -36,7 +36,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>  
+    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -120,6 +120,9 @@
     <Resource Include="Effects\MaskEffect.ps">
       <DependentUpon>MaskEffect.cs</DependentUpon>
     </Resource>
+    <None Include="Effects\AngularGradient.fx">
+      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
+    </None>
     <None Include="Gu.Wpf.Geometry.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
@@ -142,9 +145,6 @@
     <None Include="Effects\DesaturateEffect.fx">
       <DependentUpon>DesaturateEffect.cs</DependentUpon>
     </None>
-    <None Include="Effects\AngularGradientEffect.fx">
-      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Effects\HsvWheelEffect.fx">
@@ -155,6 +155,7 @@
     <Content Include="Effects\Mask.fx">
       <DependentUpon>MaskEffect.cs</DependentUpon>
     </Content>
+    <None Include="Effects\shared.hlsli" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
   <ItemGroup>

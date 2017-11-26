@@ -16,6 +16,8 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Ellipse Grid.Row="0"
                  Grid.Column="0"
@@ -23,26 +25,46 @@
                  Stroke="Red"
                  StrokeThickness="15">
             <Ellipse.Effect>
-                <effects:AngularGradientEffect ArcLength="{Binding ElementName=EndAngle, Path=Value}"
-                                               EndColor="Transparent"
-                                               StartAngle="{Binding ElementName=StartAngle, Path=Value}"
-                                               StartColor="Red" />
+                <effects:AngularGradientEffect CentralAngle="{Binding ElementName=CentralAngle,
+                                                                      Path=Value}"
+                                               EndColor="{Binding ElementName=EndColour,
+                                                                  Path=Text}"
+                                               StartAngle="{Binding ElementName=StartAngle,
+                                                                    Path=Value}"
+                                               StartColor="{Binding ElementName=StartColour,
+                                                                    Path=Text}" />
             </Ellipse.Effect>
         </Ellipse>
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Content="Start angle:" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Start colour:" />
+        <TextBox x:Name="StartColour"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Text="#FFFF0000" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Start colour:" />
+        <TextBox x:Name="EndColour"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Text="#00FF0000" />
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Start angle:" />
         <Slider x:Name="StartAngle"
-                Grid.Row="1"
+                Grid.Row="3"
                 Grid.Column="1"
                 Maximum="360"
-                Minimum="0" />
+                Minimum="-360" />
 
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Content="End angle:" />
-        <Slider x:Name="EndAngle"
-                Grid.Row="2"
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Central angle:" />
+        <Slider x:Name="CentralAngle"
+                Grid.Row="4"
                 Grid.Column="1"
                 Maximum="360"
                 Minimum="-360"

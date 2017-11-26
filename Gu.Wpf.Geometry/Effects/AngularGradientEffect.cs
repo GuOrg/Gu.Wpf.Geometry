@@ -14,26 +14,26 @@
             typeof(AngularGradientEffect),
             0);
 
-        /// <summary>Identifies the <see cref="CenterPoint"/> dependency property.</summary>
-        public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(
-            nameof(CenterPoint),
-            typeof(Point),
-            typeof(AngularGradientEffect),
-            new UIPropertyMetadata(new Point(0.5D, 0.5D), PixelShaderConstantCallback(0)));
-
         /// <summary>Identifies the <see cref="StartColor"/> dependency property.</summary>
         public static readonly DependencyProperty StartColorProperty = DependencyProperty.Register(
             nameof(StartColor),
             typeof(Color),
             typeof(AngularGradientEffect),
-            new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 255), PixelShaderConstantCallback(1)));
+            new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 255), PixelShaderConstantCallback(0)));
 
         /// <summary>Identifies the <see cref="EndColor"/> dependency property.</summary>
         public static readonly DependencyProperty EndColorProperty = DependencyProperty.Register(
             nameof(EndColor),
             typeof(Color),
             typeof(AngularGradientEffect),
-            new UIPropertyMetadata(Color.FromArgb(255, 255, 0, 0), PixelShaderConstantCallback(2)));
+            new UIPropertyMetadata(Color.FromArgb(0, 0, 0, 255), PixelShaderConstantCallback(1)));
+
+        /// <summary>Identifies the <see cref="CenterPoint"/> dependency property.</summary>
+        public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(
+            nameof(CenterPoint),
+            typeof(Point),
+            typeof(AngularGradientEffect),
+            new UIPropertyMetadata(new Point(0.5D, 0.5D), PixelShaderConstantCallback(2)));
 
         /// <summary>Identifies the <see cref="StartAngle"/> dependency property.</summary>
         public static readonly DependencyProperty StartAngleProperty = DependencyProperty.Register(
@@ -42,9 +42,9 @@
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(0D, PixelShaderConstantCallback(3)));
 
-        /// <summary>Identifies the <see cref="ArcLength"/> dependency property.</summary>
-        public static readonly DependencyProperty ArcLengthProperty = DependencyProperty.Register(
-            nameof(ArcLength),
+        /// <summary>Identifies the <see cref="CentralAngle"/> dependency property.</summary>
+        public static readonly DependencyProperty CentralAngleProperty = DependencyProperty.Register(
+            nameof(CentralAngle),
             typeof(double),
             typeof(AngularGradientEffect),
             new UIPropertyMetadata(360D, PixelShaderConstantCallback(4)));
@@ -61,11 +61,11 @@
         {
             this.PixelShader = Shader;
             this.UpdateShaderValue(InputProperty);
-            this.UpdateShaderValue(CenterPointProperty);
             this.UpdateShaderValue(StartColorProperty);
             this.UpdateShaderValue(EndColorProperty);
+            this.UpdateShaderValue(CenterPointProperty);
             this.UpdateShaderValue(StartAngleProperty);
-            this.UpdateShaderValue(ArcLengthProperty);
+            this.UpdateShaderValue(CentralAngleProperty);
         }
 
         /// <summary>
@@ -75,13 +75,6 @@
         {
             get => (Brush)this.GetValue(InputProperty);
             set => this.SetValue(InputProperty, value);
-        }
-
-        /// <summary>The center of the gradient. </summary>
-        public Point CenterPoint
-        {
-            get => (Point)this.GetValue(CenterPointProperty);
-            set => this.SetValue(CenterPointProperty, value);
         }
 
         /// <summary>The primary color of the gradient. </summary>
@@ -98,6 +91,13 @@
             set => this.SetValue(EndColorProperty, value);
         }
 
+        /// <summary>The center of the gradient. </summary>
+        public Point CenterPoint
+        {
+            get => (Point)this.GetValue(CenterPointProperty);
+            set => this.SetValue(CenterPointProperty, value);
+        }
+
         /// <summary>The starting angle of the gradient, counterclockwise from X-axis</summary>
         public double StartAngle
         {
@@ -106,10 +106,10 @@
         }
 
         /// <summary>The arc length angle of the gradient, counterclockwise from X-axis</summary>
-        public double ArcLength
+        public double CentralAngle
         {
-            get => (double)this.GetValue(ArcLengthProperty);
-            set => this.SetValue(ArcLengthProperty, value);
+            get => (double)this.GetValue(CentralAngleProperty);
+            set => this.SetValue(CentralAngleProperty, value);
         }
     }
 }

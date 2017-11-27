@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A8270AFD-4
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
 		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.UiTests", "Gu.Wpf.Geometry.UiTests\Gu.Wpf.Geometry.UiTests.csproj", "{B95B1B42-CD04-4A57-AE03-0C9E170EC968}"

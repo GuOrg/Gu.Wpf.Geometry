@@ -19,12 +19,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Ellipse Grid.Row="0"
+        <Ellipse x:Name="Ellipse"
+                 Grid.Row="0"
                  Grid.Column="1"
                  Width="200"
                  Height="200"
-                 Margin="10"
-                 Stroke="Red"
+                 Margin="50"
+                 Stroke="White"
                  StrokeThickness="25">
             <Ellipse.Effect>
                 <effects:AngularGradientEffect CenterPoint="{Binding ElementName=CenterPoint,

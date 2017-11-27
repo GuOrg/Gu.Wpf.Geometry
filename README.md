@@ -318,54 +318,111 @@ Render an image as a selection mask.
 
 ## AngularGradientEffect
 A gradient that changes value along the angle. Perhaps useful for spinners.
+Replaces the pixels of the owning element. The owning element must have a `Brush` set the brush can be any color that is not transparent.
+
+### StartAngle
+The angle for the `StartColor` -360 - 360 degrees, positive clockwise. Zero at 12 o'clock.
+
+### CentralAngle
+The anglular extent of the gradient -360 - 360 degrees, positive clockwise.
+
+### CenterPoint
+The center point of the gradient (0, 0) - (1, 1) default is (0.5, 0.5) fore a gradient around the center.
 
 ```xaml
-<UserControl ...
-             xmlns:effects="http://gu.se/Geometry">
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:effects="http://gu.se/Geometry"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="AngularGradientWindow"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Ellipse Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="2"
-                 Stroke="Red"
-                 StrokeThickness="15">
-            <Ellipse.Effect>
-                <effects:AngularGradientEffect ArcLength="{Binding ElementName=EndAngle,
-                                                             Path=Value}"
-                                         EndColor="Transparent"
-                                         StartAngle="{Binding ElementName=StartAngle,
-                                                              Path=Value}"
-                                         StartColor="Red" />
-            </Ellipse.Effect>
-        </Ellipse>
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Content="Start angle:" />
+        <GroupBox x:Name="Render"
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  Margin="50"
+                  Background="LightGray"
+                  BorderThickness="0"
+                  Style="{StaticResource InvisibleGroupBoxStyle}">
+            <Ellipse x:Name="Ellipse"
+                     Width="200"
+                     Height="200"
+                     Stroke="White"
+                     StrokeThickness="25">
+                <Ellipse.Effect>
+                    <effects:AngularGradientEffect CenterPoint="{Binding ElementName=CenterPoint,
+                                                                         Path=Text}"
+                                                   CentralAngle="{Binding ElementName=CentralAngle,
+                                                                          Path=Value}"
+                                                   EndColor="{Binding ElementName=EndColour,
+                                                                      Path=Text}"
+                                                   StartAngle="{Binding ElementName=StartAngle,
+                                                                        Path=Value}"
+                                                   StartColor="{Binding ElementName=StartColour,
+                                                                        Path=Text}" />
+                </Ellipse.Effect>
+            </Ellipse>
+        </GroupBox>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Start colour:" />
+        <TextBox x:Name="StartColour"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Text="#FFFF0000" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="End colour:" />
+        <TextBox x:Name="EndColour"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Text="#00FF0000" />
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Center point:" />
+        <TextBox x:Name="CenterPoint"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Text="0.5 0.5" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Start angle:" />
         <Slider x:Name="StartAngle"
-                Grid.Row="1"
+                Grid.Row="4"
                 Grid.Column="1"
                 Maximum="360"
-                Minimum="0" />
+                Minimum="-360" />
 
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Content="End angle:" />
-        <Slider x:Name="EndAngle"
-                Grid.Row="2"
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="Central angle:" />
+        <Slider x:Name="CentralAngle"
+                Grid.Row="5"
                 Grid.Column="1"
                 Maximum="360"
                 Minimum="-360"
                 Value="360" />
     </Grid>
-</UserControl>
+</Window>
+
 ```
 
 ## HsvWheelEffect

@@ -23,7 +23,7 @@
                  Width="300"
                  Height="300"
                  HorizontalAlignment="Center"
-                 Fill="Transparent">
+                 Fill="White">
             <Ellipse.Effect>
                 <effects:HsvWheelEffect CentralAngle="{Binding ElementName=CentralAngle,
                                                                Path=Value}"

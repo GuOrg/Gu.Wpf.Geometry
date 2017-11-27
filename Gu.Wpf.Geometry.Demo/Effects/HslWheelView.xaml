@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:effects="http://gu.se/Geometry"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,6 +15,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Ellipse Grid.ColumnSpan="2"
                  Width="300"
@@ -24,16 +26,23 @@
                  Fill="White">
 
             <Ellipse.Effect>
-                <effects:HslWheelEffect InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
-                                        InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
-                                        Lightness="{Binding ElementName=Lightness, Path=Value}" />
+                <effects:HslWheelEffect CentralAngle="{Binding ElementName=CentralAngle,
+                                                               Path=Value}"
+                                        InnerRadius="{Binding ElementName=InnerRadius,
+                                                              Path=Value}"
+                                        InnerSaturation="{Binding ElementName=InnerSaturation,
+                                                                  Path=Value}"
+                                        Lightness="{Binding ElementName=Lightness,
+                                                            Path=Value}"
+                                        StartAngle="{Binding ElementName=StartAngle,
+                                                             Path=Value}" />
             </Ellipse.Effect>
 
         </Ellipse>
 
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Content="Inner radius:" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Inner radius:" />
         <Slider x:Name="InnerRadius"
                 Grid.Row="1"
                 Grid.Column="1"
@@ -41,9 +50,9 @@
                 Minimum="0"
                 Value="0" />
 
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Content="Inner saturation:" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Inner saturation:" />
         <Slider x:Name="InnerSaturation"
                 Grid.Row="2"
                 Grid.Column="1"
@@ -51,14 +60,34 @@
                 Minimum="0"
                 Value="0" />
 
-        <Label Grid.Row="3"
-               Grid.Column="0"
-               Content="Lightness:" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Lightness:" />
         <Slider x:Name="Lightness"
                 Grid.Row="3"
                 Grid.Column="1"
                 Maximum="1"
                 Minimum="0"
                 Value="0.5" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Start angle:" />
+        <Slider x:Name="StartAngle"
+                Grid.Row="4"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="-360"
+                Value="90" />
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="Central angle:" />
+        <Slider x:Name="CentralAngle"
+                Grid.Row="5"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="-360"
+                Value="-360" />
     </Grid>
 </UserControl>

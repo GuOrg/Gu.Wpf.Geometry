@@ -11,12 +11,13 @@
         <Image Source="../Images/Hustler.jpg">
             <Image.Effect>
                 <effects:FadeEffect Strength="{Binding ElementName=StrengthSlider, Path=Value}"
-                                    To="Black" />
+                                    To="Transparent" />
             </Image.Effect>
         </Image>
         <Slider x:Name="StrengthSlider"
                 VerticalAlignment="Bottom"
                 Maximum="1"
-                Minimum="0" />
+                Minimum="0" 
+                Value="0"/>
     </Grid>
 </UserControl>

@@ -15,22 +15,32 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Ellipse Grid.ColumnSpan="2"
                  Width="300"
                  Height="300"
                  HorizontalAlignment="Center"
-                 Fill="White">
+                 Fill="Transparent">
             <Ellipse.Effect>
-                <effects:HsvWheelEffect InnerRadius="{Binding ElementName=InnerRadius, Path=Value}"
-                                        InnerSaturation="{Binding ElementName=InnerSaturation, Path=Value}"
-                                        Value="{Binding ElementName=Value, Path=Value}" />
+                <effects:HsvWheelEffect CentralAngle="{Binding ElementName=CentralAngle,
+                                                               Path=Value}"
+                                        InnerRadius="{Binding ElementName=InnerRadius,
+                                                              Path=Value}"
+                                        InnerSaturation="{Binding ElementName=InnerSaturation,
+                                                                  Path=Value}"
+                                        StartAngle="{Binding ElementName=StartAngle,
+                                                             Path=Value}"
+                                        Value="{Binding ElementName=Value,
+                                                        Path=Value}" />
             </Ellipse.Effect>
         </Ellipse>
 
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Content="Inner radius:" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Inner radius:" />
         <Slider x:Name="InnerRadius"
                 Grid.Row="1"
                 Grid.Column="1"
@@ -38,9 +48,9 @@
                 Minimum="0"
                 Value="0" />
 
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Content="Inner saturation:" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Inner saturation:" />
         <Slider x:Name="InnerSaturation"
                 Grid.Row="2"
                 Grid.Column="1"
@@ -48,14 +58,34 @@
                 Minimum="0"
                 Value="0" />
 
-        <Label Grid.Row="3"
-               Grid.Column="0"
-               Content="Value:" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Value:" />
         <Slider x:Name="Value"
                 Grid.Row="3"
                 Grid.Column="1"
                 Maximum="1"
                 Minimum="0"
                 Value="1" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Start angle:" />
+        <Slider x:Name="StartAngle"
+                Grid.Row="4"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="-360"
+                Value="90" />
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="Central angle:" />
+        <Slider x:Name="CentralAngle"
+                Grid.Row="5"
+                Grid.Column="1"
+                Maximum="360"
+                Minimum="-360"
+                Value="-360" />
     </Grid>
 </UserControl>

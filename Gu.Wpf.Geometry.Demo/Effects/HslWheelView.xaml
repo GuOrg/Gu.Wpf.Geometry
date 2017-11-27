@@ -4,8 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:effects="http://gu.se/Geometry"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>

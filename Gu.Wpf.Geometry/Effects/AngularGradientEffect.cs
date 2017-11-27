@@ -19,14 +19,18 @@
             nameof(StartColor),
             typeof(Color),
             typeof(AngularGradientEffect),
-            new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 255), PixelShaderConstantCallback(0)));
+            new UIPropertyMetadata(
+                Color.FromArgb(255, 0, 0, 255),
+                PixelShaderConstantCallback(0)));
 
         /// <summary>Identifies the <see cref="EndColor"/> dependency property.</summary>
         public static readonly DependencyProperty EndColorProperty = DependencyProperty.Register(
             nameof(EndColor),
             typeof(Color),
             typeof(AngularGradientEffect),
-            new UIPropertyMetadata(Color.FromArgb(0, 0, 0, 255), PixelShaderConstantCallback(1)));
+            new UIPropertyMetadata(
+                Color.FromArgb(0, 0, 0, 255),
+                PixelShaderConstantCallback(1)));
 
         /// <summary>Identifies the <see cref="CenterPoint"/> dependency property.</summary>
         public static readonly DependencyProperty CenterPointProperty = DependencyProperty.Register(

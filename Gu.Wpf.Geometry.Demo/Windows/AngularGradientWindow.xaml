@@ -19,27 +19,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Ellipse x:Name="Ellipse"
-                 Grid.Row="0"
-                 Grid.Column="1"
-                 Width="200"
-                 Height="200"
-                 Margin="50"
-                 Stroke="White"
-                 StrokeThickness="25">
-            <Ellipse.Effect>
-                <effects:AngularGradientEffect CenterPoint="{Binding ElementName=CenterPoint,
-                                                                     Path=Text}"
-                                               CentralAngle="{Binding ElementName=CentralAngle,
-                                                                      Path=Value}"
-                                               EndColor="{Binding ElementName=EndColour,
-                                                                  Path=Text}"
-                                               StartAngle="{Binding ElementName=StartAngle,
-                                                                    Path=Value}"
-                                               StartColor="{Binding ElementName=StartColour,
-                                                                    Path=Text}" />
-            </Ellipse.Effect>
-        </Ellipse>
+        <GroupBox x:Name="Render"
+                  Grid.Row="0"
+                  Grid.Column="1">
+            <Ellipse x:Name="Ellipse"
+                     Width="200"
+                     Height="200"
+                     Margin="50"
+                     Stroke="White"
+                     StrokeThickness="25">
+                <Ellipse.Effect>
+                    <effects:AngularGradientEffect CenterPoint="{Binding ElementName=CenterPoint,
+                                                                         Path=Text}"
+                                                   CentralAngle="{Binding ElementName=CentralAngle,
+                                                                          Path=Value}"
+                                                   EndColor="{Binding ElementName=EndColour,
+                                                                      Path=Text}"
+                                                   StartAngle="{Binding ElementName=StartAngle,
+                                                                        Path=Value}"
+                                                   StartColor="{Binding ElementName=StartColour,
+                                                                        Path=Text}" />
+                </Ellipse.Effect>
+            </Ellipse>
+        </GroupBox>
+
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    Text="Start colour:" />

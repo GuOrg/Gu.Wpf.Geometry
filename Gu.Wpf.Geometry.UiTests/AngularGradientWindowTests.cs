@@ -12,7 +12,8 @@
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            using (var app = Application.Launch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), WindowName))
+            ImageAssert.OnFail = OnFail.SaveImageToTemp;
+            using (Application.Launch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), WindowName))
             {
                 Wait.For(TimeSpan.FromMilliseconds(500));
             }

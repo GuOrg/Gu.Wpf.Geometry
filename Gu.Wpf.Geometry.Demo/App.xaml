@@ -1,8 +1,9 @@
 ﻿<Application x:Class="Gu.Wpf.Geometry.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Application.StartupUri>MainWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>MainWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/AngularGradientWindow.xaml</Application.StartupUri>-->
+    <Application.StartupUri>Windows/FadeEffectWindow.xaml</Application.StartupUri>
     <Application.Resources>
         <Style x:Key="InvisibleGroupBoxStyle" TargetType="{x:Type GroupBox}">
             <Setter Property="Template">

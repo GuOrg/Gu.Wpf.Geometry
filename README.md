@@ -425,6 +425,8 @@ The center point of the gradient (0, 0) - (1, 1) default is (0.5, 0.5) fore a gr
 
 ```
 
+![animation](https://user-images.githubusercontent.com/1640096/33270557-c407bbdc-d384-11e7-9e81-03d5ab9f7b08.gif)
+
 ## HsvWheelEffect
 A gradient that changes value along the angle. Perhaps useful for colour pickers.
 Note that the element must have a background or fill. The brush can be any colour.

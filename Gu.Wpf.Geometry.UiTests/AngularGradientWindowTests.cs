@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Geometry.UiTests
 {
-    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
     using Application = Gu.Wpf.UiAutomation.Application;
@@ -13,10 +12,6 @@
         public void OneTimeSetUp()
         {
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
-            using (Application.Launch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), WindowName))
-            {
-                Wait.For(TimeSpan.FromMilliseconds(500));
-            }
         }
 
         [OneTimeTearDown]
@@ -25,13 +20,57 @@
             Application.KillLaunched(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"));
         }
 
-        [Test]
-        public void Renders()
+        [TestCase(0, 360)]
+        [TestCase(90, 360)]
+        [TestCase(-90, 360)]
+        [TestCase(180, 360)]
+        [TestCase(-180, 360)]
+        [TestCase(270, 360)]
+        [TestCase(-270, 360)]
+        [TestCase(0, 90)]
+        [TestCase(90, 90)]
+        [TestCase(-90, 90)]
+        [TestCase(180, 90)]
+        [TestCase(-180, 90)]
+        [TestCase(270, 90)]
+        [TestCase(-270, 90)]
+        [TestCase(0, 270)]
+        [TestCase(90, 270)]
+        [TestCase(-90, 270)]
+        [TestCase(180, 270)]
+        [TestCase(-180, 270)]
+        [TestCase(270, 270)]
+        [TestCase(-270, 270)]
+        [TestCase(0, -360)]
+        [TestCase(90, -360)]
+        [TestCase(-90, -360)]
+        [TestCase(180, -360)]
+        [TestCase(-180, -360)]
+        [TestCase(270, -360)]
+        [TestCase(-270, -360)]
+        [TestCase(0, -90)]
+        [TestCase(90, -90)]
+        [TestCase(-90, -90)]
+        [TestCase(180, -90)]
+        [TestCase(-180, -90)]
+        [TestCase(270, -90)]
+        [TestCase(-270, -90)]
+        [TestCase(0, -270)]
+        [TestCase(90, -270)]
+        [TestCase(-90, -270)]
+        [TestCase(180, -270)]
+        [TestCase(-180, -270)]
+        [TestCase(270, -270)]
+        [TestCase(-270, -270)]
+        public void Renders(int startAngle, int centralAngle)
         {
             using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), WindowName))
             {
                 var window = app.MainWindow;
-                Assert.Inconclusive("Write tests for different start angles & central angles");
+                window.FindSlider("StartAngle").Value = startAngle;
+                window.FindSlider("CentralAngle").Value = centralAngle;
+                var groupBox = window.FindGroupBox("Render");
+                ImageAssert.AreEqual($".\\Images\\AngularGradient_StartAngle_{startAngle}_CentralAngle_{centralAngle}.png", groupBox);
             }
         }
     }

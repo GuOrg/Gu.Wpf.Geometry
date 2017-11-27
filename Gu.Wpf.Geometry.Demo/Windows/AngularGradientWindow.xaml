@@ -21,11 +21,14 @@
         </Grid.RowDefinitions>
         <GroupBox x:Name="Render"
                   Grid.Row="0"
-                  Grid.Column="1">
+                  Grid.Column="1"
+                  Margin="50"
+                  Background="LightGray"
+                  BorderThickness="0"
+                  Style="{StaticResource InvisibleGroupBoxStyle}">
             <Ellipse x:Name="Ellipse"
                      Width="200"
                      Height="200"
-                     Margin="50"
                      Stroke="White"
                      StrokeThickness="25">
                 <Ellipse.Effect>

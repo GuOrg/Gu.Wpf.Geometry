@@ -51,7 +51,8 @@
             nameof(CentralAngle),
             typeof(double),
             typeof(HsvWheelEffect),
-            new UIPropertyMetadata(-360D,
+            new UIPropertyMetadata(
+                -360D,
                 PixelShaderConstantCallback(4)));
 
         private static readonly PixelShader Shader = new PixelShader

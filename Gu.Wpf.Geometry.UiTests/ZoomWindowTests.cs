@@ -2,6 +2,7 @@
 {
     using System;
     using System.Windows;
+    using System.Windows.Automation;
     using System.Windows.Media;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -21,8 +22,8 @@
             using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
             {
                 var window = app.MainWindow;
-                var renderSize = window.FindFirstDescendant(x => x.ByAutomationId("Size")).AsLabel();
-                var contentMatrix = window.FindFirstDescendant(x => x.ByAutomationId("ContentMatrix")).AsLabel();
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
                 window.FindFirstDescendant("Uniform").AsButton().Click();
                 var size = Size.Parse(renderSize.Text);
                 var expectedScale = Math.Min(size.Width / 300, size.Height / 400);
@@ -42,8 +43,8 @@
             using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
             {
                 var window = app.MainWindow;
-                var renderSize = window.FindFirstDescendant(x => x.ByAutomationId("Size")).AsLabel();
-                var contentMatrix = window.FindFirstDescendant(x => x.ByAutomationId("ContentMatrix")).AsLabel();
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
                 window.FindFirstDescendant("UniformToFill").AsButton().Click();
                 var size = Size.Parse(renderSize.Text);
                 var expectedScale = Math.Max(size.Width / 300, size.Height / 400);
@@ -64,9 +65,9 @@
             {
                 var window = app.MainWindow;
                 window.FindButton("None").Invoke();
-                var contentMatrix = window.FindFirstDescendant(x => x.ByAutomationId("ContentMatrix")).AsLabel();
-                var image = window.FindFirstDescendant(x => x.ByControlType(ControlType.Image));
-                var topLeft = image.Properties.BoundingRectangle.Value.TopLeft();
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                var image = window.FindFirstDescendant(ControlType.Image);
+                var topLeft = image.Bounds.TopLeft();
                 Mouse.Position = topLeft;
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
@@ -87,12 +88,12 @@
             using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
             {
                 var window = app.MainWindow;
-                var renderSize = window.FindFirstDescendant(x => x.ByAutomationId("Size")).AsLabel();
-                var contentMatrix = window.FindFirstDescendant(x => x.ByAutomationId("ContentMatrix")).AsLabel();
-                var image = window.FindFirstDescendant(x => x.ByControlType(ControlType.Image));
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                var image = window.FindFirstDescendant(ControlType.Image);
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
-                var topLeft = image.Properties.BoundingRectangle.Value.TopLeft();
+                var topLeft = image.Bounds.TopLeft();
                 var size = Size.Parse(renderSize.Text);
                 Mouse.Click(MouseButton.Left, new Point(topLeft.X + size.Width - 1, topLeft.Y + size.Height - 1));
                 Mouse.Scroll(1);

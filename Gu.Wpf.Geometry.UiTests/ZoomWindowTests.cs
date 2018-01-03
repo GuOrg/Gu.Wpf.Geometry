@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests
 {
     using System;
     using System.Windows;
@@ -24,7 +24,7 @@
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                window.FindFirstDescendant("Uniform").AsButton().Click();
+                window.FindButton("Uniform").Click();
                 var size = Size.Parse(renderSize.Text);
                 var expectedScale = Math.Min(size.Width / 300, size.Height / 400);
                 var matrix = Matrix.Parse(contentMatrix.Text);
@@ -45,7 +45,7 @@
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                window.FindFirstDescendant("UniformToFill").AsButton().Click();
+                window.FindButton("UniformToFill").Click();
                 var size = Size.Parse(renderSize.Text);
                 var expectedScale = Math.Max(size.Width / 300, size.Height / 400);
                 var matrix = Matrix.Parse(contentMatrix.Text);

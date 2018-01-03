@@ -1,8 +1,7 @@
-﻿namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
-    using Application = Gu.Wpf.UiAutomation.Application;
 
     public sealed class AngularGradientWindowTests
     {

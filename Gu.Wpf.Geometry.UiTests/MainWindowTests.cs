@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests
 {
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -15,7 +15,7 @@
                 var tab = window.FindTabControl();
                 foreach (var tabItem in tab.Items)
                 {
-                    tabItem.Click();
+                    tabItem.Select();
                 }
             }
         }

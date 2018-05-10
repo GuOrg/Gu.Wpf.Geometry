@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System.Windows;
 
@@ -6,7 +6,6 @@
 
     public class LineTests
     {
-        [TestCase("1,1; 1,2", "0,3; -1,3", "1,1; 1,3")]
         [TestCase("1,1; 1,2", "0,3; -1,3", "1,1; 1,3")]
         [TestCase("0,0; 1,0", "1,0; 1,1", "0,0; 1,0")]
         [TestCase("0,0; 1,0", "2,0; 2,1", "0,0; 2,0")]

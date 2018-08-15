@@ -15,7 +15,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 var tab = window.FindTabControl();
                 foreach (var tabItem in tab.Items)
                 {
-                    tabItem.Select();
+                    _ = tabItem.Select();
                 }
             }
         }

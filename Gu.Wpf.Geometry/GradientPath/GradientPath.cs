@@ -15,7 +15,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                OnGeometryChanged));
+                (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         /// <summary>Identifies the <see cref="GradientStops"/> dependency property.</summary>
         public static readonly DependencyProperty GradientStopsProperty = GradientBrush.GradientStopsProperty.AddOwner(
@@ -23,7 +23,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnGradientChanged));
+                (d, e) => ((GradientPath)d).OnGradientChanged()));
 
         /// <summary>Identifies the <see cref="GradientMode"/> dependency property.</summary>
         public static readonly DependencyProperty GradientModeProperty = DependencyProperty.Register(
@@ -33,7 +33,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 GradientMode.Perpendicular,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnGradientChanged));
+                (d, e) => ((GradientPath)d).OnGradientChanged()));
 
         /// <summary>Identifies the <see cref="ColorInterpolationMode"/> dependency property.</summary>
         public static readonly DependencyProperty ColorInterpolationModeProperty = GradientBrush.ColorInterpolationModeProperty.AddOwner(
@@ -41,7 +41,7 @@ namespace Gu.Wpf.Geometry
                 new FrameworkPropertyMetadata(
                     ColorInterpolationMode.SRgbLinearInterpolation,
                     FrameworkPropertyMetadataOptions.AffectsRender,
-                    OnGradientChanged));
+                    (d, e) => ((GradientPath)d).OnGradientChanged()));
 
         /// <summary>Identifies the <see cref="StrokeThickness"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
@@ -49,7 +49,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                OnGeometryChanged));
+                (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         /// <summary>Identifies the <see cref="StrokeStartLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeStartLineCapProperty = Shape.StrokeStartLineCapProperty.AddOwner(
@@ -73,7 +73,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 Geometry.StandardFlatteningTolerance,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnGeometryChanged));
+                (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         private GradientGeometry gradientGeometry;
 
@@ -200,16 +200,6 @@ namespace Gu.Wpf.Geometry
                 this.DrawLineCap(dc, figure.Lines.First(), this.StrokeStartLineCap, PenLineCap.Flat);
                 this.DrawLineCap(dc, figure.Lines.Last(), PenLineCap.Flat, this.StrokeEndLineCap);
             }
-        }
-
-        private static void OnGeometryChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((GradientPath)d).OnGeometryChanged();
-        }
-
-        private static void OnGradientChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((GradientPath)d).OnGradientChanged();
         }
 
         private void OnGeometryChanged()

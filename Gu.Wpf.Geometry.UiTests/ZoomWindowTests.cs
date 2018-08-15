@@ -64,7 +64,12 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
             {
                 var window = app.MainWindow;
-                window.FindButton("None").Invoke();
+                var button = window.FindButton("None");
+                if (button.IsEnabled)
+                {
+                    button.Invoke();
+                }
+
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
                 var image = window.FindFirstDescendant(ControlType.Image);
                 var topLeft = image.Bounds.TopLeft();

@@ -14,9 +14,6 @@
     <Rule Id="GU0020" Action="Warning" />
     <Rule Id="GU0022" Action="Warning" />
   </Rules>
-  <Rules AnalyzerId="IDisposableAnalyzers" RuleNamespace="IDisposableAnalyzers">
-    <Rule Id="IDISP004" Action="Warning" />
-  </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1001" Action="Warning" />
     <Rule Id="CA1009" Action="Warning" />
@@ -103,14 +100,21 @@
     <Rule Id="WPF0004" Action="Error" />
     <Rule Id="WPF0011" Action="Error" />
     <Rule Id="WPF0012" Action="Error" />
+    <Rule Id="WPF0023" Action="Warning" />
     <Rule Id="WPF0030" Action="Error" />
-    <Rule Id="WPF0050" Action="Warning" />
+    <Rule Id="WPF0033" Action="Warning" />
+    <Rule Id="WPF0034" Action="Warning" />
     <Rule Id="WPF0051" Action="Warning" />
     <Rule Id="WPF0052" Action="Warning" />
     <Rule Id="WPF0060" Action="Warning" />
     <Rule Id="WPF0061" Action="Warning" />
+    <Rule Id="WPF0062" Action="Warning" />
     <Rule Id="WPF0070" Action="Warning" />
     <Rule Id="WPF0071" Action="Warning" />
+    <Rule Id="WPF0073" Action="Warning" />
     <Rule Id="WPF0080" Action="Warning" />
+    <Rule Id="WPF0083" Action="Warning" />
+    <Rule Id="WPF0090" Action="Warning" />
+    <Rule Id="WPF0091" Action="Warning" />
   </Rules>
 </RuleSet>

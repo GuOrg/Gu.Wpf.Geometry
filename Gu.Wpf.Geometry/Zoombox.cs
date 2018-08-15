@@ -41,7 +41,7 @@ namespace Gu.Wpf.Geometry
             typeof(Zoombox),
             new PropertyMetadata(
                 default(Matrix),
-                OnContentMatrixChanged));
+                (d, e) => ((MatrixTransform)((Zoombox)d).InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue)));
 
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
@@ -348,7 +348,7 @@ namespace Gu.Wpf.Geometry
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             this.position = e.GetPosition(this);
-            this.CaptureMouse();
+            _ = this.CaptureMouse();
             base.OnMouseLeftButtonDown(e);
         }
 
@@ -371,11 +371,6 @@ namespace Gu.Wpf.Geometry
             }
 
             base.OnMouseMove(e);
-        }
-
-        private static void OnContentMatrixChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((MatrixTransform)((Zoombox)d).InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue);
         }
 
         private static void OnCanDecreaseZoom(object sender, CanExecuteRoutedEventArgs e)

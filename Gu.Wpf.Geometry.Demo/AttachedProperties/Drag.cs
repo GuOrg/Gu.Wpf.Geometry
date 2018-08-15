@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Demo
+namespace Gu.Wpf.Geometry.Demo
 {
     using System;
     using System.Windows;
@@ -49,7 +49,7 @@
             var window = Window.GetWindow(element);
             mousePreviousPosition = e.GetPosition(window);
             elementPosition = new Point(Canvas.GetLeft(element), Canvas.GetTop(element));
-            element.CaptureMouse();
+            _ = element.CaptureMouse();
         }
 
         private static void OnMouseLeftUp(object sender, MouseEventArgs e)

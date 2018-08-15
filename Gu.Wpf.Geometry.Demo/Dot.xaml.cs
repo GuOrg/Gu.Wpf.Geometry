@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Demo
+namespace Gu.Wpf.Geometry.Demo
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -33,7 +33,7 @@
             this.isDragging = true;
             this.mouseDragStart = args.GetPosition(this);
             this.dragStartPos = this.Center;
-            this.CaptureMouse();
+            _ = this.CaptureMouse();
         }
 
         protected override void OnMouseMove(MouseEventArgs args)

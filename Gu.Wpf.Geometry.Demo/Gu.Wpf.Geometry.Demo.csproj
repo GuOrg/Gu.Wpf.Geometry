@@ -212,7 +212,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="Gu.Wpf.Geometry.Demo.ruleset" />
+    <None Include="Gu.Wpf.Geometry.Demo.ruleset">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="paket.references" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.Geometry.svg)](https://www.nuget.org/packages/Gu.Wpf.Geometry/)
 [![Build status](https://ci.appveyor.com/api/projects/status/1nk9elw89ker9fjs?svg=true)](https://ci.appveyor.com/project/JohanLarsson/gu-wpf-geometry)
 
-Small library with WPF geometries.
+Small library with WPF geometries and shaders.
 
 # Contents
 - [Geometries](#geometries)

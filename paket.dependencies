@@ -1,7 +1,8 @@
 source http://www.nuget.org/api/v2/
 
 group Analyzers
-  source http://nuget.org/api/v2
+  source http://www.nuget.org/api/v2/
+  storage: none
   nuget AsyncUsageAnalyzers
   nuget IDisposableAnalyzers
   nuget PropertyChangedAnalyzers
@@ -12,9 +13,11 @@ group Analyzers
 
 group Test
   source http://www.nuget.org/api/v2/
+  storage: none
   nuget NUnit
   nuget Gu.Wpf.UiAutomation
 
 group Benchmark
   source http://www.nuget.org/api/v2/
+  storage: none
   nuget BenchmarkDotNet

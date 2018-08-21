@@ -4,7 +4,7 @@
     <Name Resource="MinimumRecommendedRules_Name" />
     <Description Resource="MinimumRecommendedRules_Description" />
   </Localization>
-  <Rules AnalyzerId="Gu.Analyzers.Analyzers" RuleNamespace="Gu.Analyzers.Analyzers">
+  <Rules AnalyzerId="Gu.Analyzers" RuleNamespace="Gu.Analyzers">
     <Rule Id="GU0001" Action="Warning" />
     <Rule Id="GU0002" Action="Warning" />
     <Rule Id="GU0003" Action="Warning" />
@@ -94,14 +94,14 @@
     <Rule Id="SA1633" Action="None" />
   </Rules>
   <Rules AnalyzerId="WpfAnalyzers" RuleNamespace="WpfAnalyzers">
-    <Rule Id="WPF0001" Action="Error" />
-    <Rule Id="WPF0002" Action="Error" />
-    <Rule Id="WPF0003" Action="Error" />
-    <Rule Id="WPF0004" Action="Error" />
-    <Rule Id="WPF0011" Action="Error" />
-    <Rule Id="WPF0012" Action="Error" />
+    <Rule Id="WPF0001" Action="Warning" />
+    <Rule Id="WPF0002" Action="Warning" />
+    <Rule Id="WPF0003" Action="Warning" />
+    <Rule Id="WPF0004" Action="Warning" />
+    <Rule Id="WPF0011" Action="Warning" />
+    <Rule Id="WPF0012" Action="Warning" />
     <Rule Id="WPF0023" Action="Warning" />
-    <Rule Id="WPF0030" Action="Error" />
+    <Rule Id="WPF0030" Action="Warning" />
     <Rule Id="WPF0033" Action="Warning" />
     <Rule Id="WPF0034" Action="Warning" />
     <Rule Id="WPF0051" Action="Warning" />

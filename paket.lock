@@ -1,7 +1,6 @@
 
 
 GROUP Analyzers
-STORAGE: NONE
 NUGET
   remote: http://www.nuget.org/api/v2
     AsyncUsageAnalyzers (1.0.0-alpha003)

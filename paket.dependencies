@@ -2,7 +2,6 @@ source http://www.nuget.org/api/v2/
 
 group Analyzers
   source http://www.nuget.org/api/v2/
-  storage: none
   nuget AsyncUsageAnalyzers
   nuget IDisposableAnalyzers
   nuget PropertyChangedAnalyzers

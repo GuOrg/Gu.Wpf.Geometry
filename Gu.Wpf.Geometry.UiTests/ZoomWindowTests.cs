@@ -83,26 +83,26 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
             {
                 var window = app.MainWindow;
-                var button = window.FindButton("None");
-                if (button.IsEnabled)
-                {
-                    button.Invoke();
-                }
-
+                var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                var image = window.FindFirstDescendant(ControlType.Image);
-                var topLeft = image.Bounds.TopLeft();
-                Mouse.Position = topLeft;
+                Mouse.Position = window.FindFirstDescendant(ControlType.Image).Bounds.TopLeft;
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
                 Mouse.Scroll(1);
-                app.WaitWhileBusy();
-                app.WaitWhileBusy();
-                var matrix = Matrix.Parse(contentMatrix.Text);
-                Assert.AreEqual(1.05, matrix.M11, 1E-3);
-                Assert.AreEqual(1.05, matrix.M22, 1E-3);
-                Assert.AreEqual(0, matrix.OffsetX, 1E-2);
-                Assert.AreEqual(0, matrix.OffsetY, 1E-2);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("Identity", contentMatrix.Text);
             }
         }
 

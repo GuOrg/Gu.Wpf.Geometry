@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System;
     using System.Windows;
     using System.Windows.Automation;
     using System.Windows.Media;
@@ -85,7 +86,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                Mouse.Position = window.FindFirstDescendant(ControlType.Image).Bounds.TopLeft;
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.TopLeft + new Vector(1, 1);
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
                 Mouse.Scroll(1);
@@ -114,24 +115,24 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                Mouse.Position = window.FindFirstDescendant(ControlType.Image).Bounds.TopRight;
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.TopRight + new Vector(-1, 1);
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
                 Mouse.Scroll(1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.05,0,0,1.05,-15,0", contentMatrix.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-19.3,0", contentMatrix.Text);
 
                 Mouse.Scroll(1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.1025,0,0,1.1025,-30.75,0", contentMatrix.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,-39.565,0", contentMatrix.Text);
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.05,0,0,1.05,-15,0", contentMatrix.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-19.3,0", contentMatrix.Text);
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1,0,0,1,-1.4210854715202E-14,0", contentMatrix.Text);
+                Assert.AreEqual("1,0,0,1,3.19744231092045E-14,0", contentMatrix.Text);
             }
         }
 
@@ -143,22 +144,82 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
                 var contentMatrix = window.FindTextBlock("ContentMatrix");
-                var image = window.FindFirstDescendant(ControlType.Image);
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.BottomRight + new Vector(-1, -1);
                 Assert.AreEqual("Identity", contentMatrix.Text);
 
-                var topLeft = image.Bounds.TopLeft();
-                var size = Size.Parse(renderSize.Text);
-                Mouse.Click(MouseButton.Left, new Point(topLeft.X + size.Width - 1, topLeft.Y + size.Height - 1));
                 Mouse.Scroll(1);
-                app.WaitWhileBusy();
-                app.WaitWhileBusy();
-                var matrix = Matrix.Parse(contentMatrix.Text);
-                Assert.AreEqual(1.05, matrix.M11, 1E-3);
-                Assert.AreEqual(1.05, matrix.M22, 1E-3);
-                var expectedOffsetX = -0.05 * size.Width;
-                Assert.AreEqual(expectedOffsetX, matrix.OffsetX, 1E-1);
-                var expectedOffsetY = -0.05 * size.Height;
-                Assert.AreEqual(expectedOffsetY, matrix.OffsetY, 1E-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-19.3,-12.45", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,-39.565,-25.5225", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-19.3,-12.45", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,3.19744231092045E-14,2.8421709430404E-14", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void MouseWheelBottomLeft()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.BottomLeft + new Vector(1, -1);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,0,-12.45", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,0,-25.5225", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,0,-12.45", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,0,2.8421709430404E-14", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void MouseWheelCenter()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.Center();
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-9.65000000000001,-6.20000000000002", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,-19.7825,-12.71", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-9.65,-6.20000000000003", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,1.59872115546023E-14,-1.68753899743024E-14", contentMatrix.Text);
             }
         }
     }

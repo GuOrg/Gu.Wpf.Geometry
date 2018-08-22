@@ -19,7 +19,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void ZoomUniform()
         {
-            using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -40,7 +40,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void ZoomUniformToFill()
         {
-            using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -61,7 +61,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelTopLeft()
         {
-            using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
             {
                 var window = app.MainWindow;
                 var button = window.FindButton("None");
@@ -90,7 +90,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelBottomRight()
         {
-            using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");

@@ -32,6 +32,7 @@
                     </Setter>
                 </Style>
             </UniformGrid.Resources>
+
             <GroupBox x:Name="Zoombox"
                       BorderBrush="Red"
                       BorderThickness="1">
@@ -72,6 +73,7 @@
             <Button Command="gu:ZoomCommands.UniformToFill"
                     CommandTarget="{Binding ElementName=ImageBox}"
                     Content="UniformToFill" />
+            <TextBox x:Name="WheelZoomFactor" Text="{Binding ElementName=ImageBox, Path=WheelZoomFactor}" />
         </UniformGrid>
 
         <StackPanel Grid.Row="2">

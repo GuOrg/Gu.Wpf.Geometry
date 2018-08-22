@@ -1,9 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
-    using System;
     using System.Windows;
-    using System.Windows.Automation;
-    using System.Windows.Media;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
     using Application = Gu.Wpf.UiAutomation.Application;
@@ -100,6 +97,37 @@ namespace Gu.Wpf.Geometry.UiTests
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
                 Assert.AreEqual("1.05,0,0,1.05,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void MouseWheelTopLeftExplicitWheelZoomFactor()
+        {
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                window.FindTextBox("WheelZoomFactor").Text = "1.1";
+                window.FindButton("None").Click();
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                Mouse.Position = window.FindGroupBox("Zoombox").Bounds.TopLeft + new Vector(1, 1);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.1,0,0,1.1,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.21,0,0,1.21,0,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.1,0,0,1.1,0,0", contentMatrix.Text);
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);

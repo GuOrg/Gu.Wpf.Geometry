@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <UniformGrid>
-            <GroupBox x:Name="Zoom"
+            <GroupBox x:Name="Zoombox"
                       BorderBrush="Red"
                       BorderThickness="1">
                 <gu:Zoombox x:Name="ImageBox"

@@ -330,6 +330,14 @@ namespace Gu.Wpf.Geometry
             this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
         }
 
+        /// <summary>
+        /// The content preserves its original size.
+        /// </summary>
+        public void ZoomNone()
+        {
+            this.SetCurrentValue(ContentMatrixProperty, Matrix.Identity);
+        }
+
         /// <inheritdoc />
         protected override Visual GetVisualChild(int index)
         {
@@ -485,7 +493,7 @@ namespace Gu.Wpf.Geometry
         private static void OnZoomNone(object sender, ExecutedRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            box.SetCurrentValue(ContentMatrixProperty, Matrix.Identity);
+            box.ZoomNone();
             e.Handled = true;
         }
 

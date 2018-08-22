@@ -107,6 +107,35 @@ namespace Gu.Wpf.Geometry.UiTests
         }
 
         [Test]
+        public void MouseWheelTopRight()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                Mouse.Position = window.FindFirstDescendant(ControlType.Image).Bounds.TopRight;
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-15,0", contentMatrix.Text);
+
+                Mouse.Scroll(1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.1025,0,0,1.1025,-30.75,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-15,0", contentMatrix.Text);
+
+                Mouse.Scroll(-1);
+                Assert.AreEqual("380, 247.56", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,-1.4210854715202E-14,0", contentMatrix.Text);
+            }
+        }
+
+        [Test]
         public void MouseWheelBottomRight()
         {
             using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))

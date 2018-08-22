@@ -76,6 +76,52 @@ namespace Gu.Wpf.Geometry.UiTests
         }
 
         [Test]
+        public void Increase()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                window.FindButton("Uniform").Invoke();
+                var zoomButton = window.FindButton("Increase");
+
+                Assert.AreEqual(true, zoomButton.IsEnabled);
+                zoomButton.Click();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1.245,0,0,1.245,6.24999999999997,-124.5", contentMatrix.Text);
+
+                Assert.AreEqual(true, zoomButton.IsEnabled);
+                zoomButton.Click();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("2.49,0,0,2.49,-180.5,-373.5", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void Decrease()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                window.FindButton("Uniform").Invoke();
+                var zoomButton = window.FindButton("Decrease");
+
+                Assert.AreEqual(true, zoomButton.IsEnabled);
+                zoomButton.Click();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.31125,0,0,0.31125,146.3125,62.25", contentMatrix.Text);
+
+                Assert.AreEqual(true, zoomButton.IsEnabled);
+                zoomButton.Click();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.155625,0,0,0.155625,169.65625,93.375", contentMatrix.Text);
+            }
+        }
+
+        [Test]
         public void MouseWheelTopLeft()
         {
             using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))

@@ -305,6 +305,7 @@ namespace Gu.Wpf.Geometry
             dc.DrawRectangle(Brushes.Transparent, null, new Rect(this.RenderSize));
         }
 
+        /// <inheritdoc />
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
         {
             var delta = e.DeltaManipulation;
@@ -326,6 +327,7 @@ namespace Gu.Wpf.Geometry
             base.OnManipulationDelta(e);
         }
 
+        /// <inheritdoc />
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -345,6 +347,7 @@ namespace Gu.Wpf.Geometry
             base.OnMouseWheel(e);
         }
 
+        /// <inheritdoc />
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             this.position = e.GetPosition(this);
@@ -352,12 +355,14 @@ namespace Gu.Wpf.Geometry
             base.OnMouseLeftButtonDown(e);
         }
 
+        /// <inheritdoc />
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             this.ReleaseMouseCapture();
             base.OnMouseLeftButtonUp(e);
         }
 
+        /// <inheritdoc />
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (this.IsMouseCaptured)

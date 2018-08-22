@@ -271,6 +271,35 @@ namespace Gu.Wpf.Geometry
             this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(this.ContentMatrix, ScaleTransform.Value));
         }
 
+        /// <summary>
+        /// The content is re-sized to fit in the destination dimensions while it preserves its native aspect ratio.
+        /// </summary>
+        public void ZoomUniform()
+        {
+            if (this.InternalChild == null)
+            {
+                return;
+            }
+
+            var size = this.InternalChild.DesiredSize;
+            if (Math.Abs(size.Width) < MinScaleDelta ||
+                Math.Abs(size.Height) < MinScaleDelta)
+            {
+                return;
+            }
+
+            var scaleX = this.ActualWidth / size.Width;
+            var scaleY = this.ActualHeight / size.Height;
+            var scale = Math.Min(scaleX, scaleY);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
+            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
+            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (this.ActualWidth - (scale * size.Width)) / 2);
+            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (this.ActualHeight - (scale * size.Height)) / 2);
+            this.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+        }
+
         /// <inheritdoc />
         protected override Visual GetVisualChild(int index)
         {
@@ -450,23 +479,7 @@ namespace Gu.Wpf.Geometry
         private static void OnZoomUniform(object sender, ExecutedRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            var size = box.InternalChild.DesiredSize;
-            if (Math.Abs(size.Width) < MinScaleDelta ||
-                Math.Abs(size.Height) < MinScaleDelta)
-            {
-                return;
-            }
-
-            var scaleX = box.ActualWidth / size.Width;
-            var scaleY = box.ActualHeight / size.Height;
-            var scale = Math.Min(scaleX, scaleY);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterXProperty, 0.0);
-            ScaleTransform.SetCurrentValue(ScaleTransform.CenterYProperty, 0.0);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleXProperty, scale);
-            ScaleTransform.SetCurrentValue(ScaleTransform.ScaleYProperty, scale);
-            TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, (box.ActualWidth - (scale * size.Width)) / 2);
-            TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, (box.ActualHeight - (scale * size.Height)) / 2);
-            box.SetCurrentValue(ContentMatrixProperty, Matrix.Multiply(ScaleTransform.Value, TranslateTransform.Value));
+            box.ZoomUniform();
             e.Handled = true;
         }
 

@@ -19,14 +19,16 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="Red" BorderThickness="1">
+            <GroupBox x:Name="Zoom"
+                      BorderBrush="Red"
+                      BorderThickness="1">
                 <gu:Zoombox x:Name="ImageBox"
                             IsManipulationEnabled="True"
                             MaxZoom="10"
                             MinZoom="0.1">
                     <Image Source="../Images/Crosshair.png" />
                 </gu:Zoombox>
-            </Border>
+            </GroupBox>
 
             <Border Grid.Column="1"
                     BorderBrush="Gray"

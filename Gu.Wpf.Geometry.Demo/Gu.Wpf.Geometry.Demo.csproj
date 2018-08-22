@@ -105,6 +105,9 @@
     <Compile Include="SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ZoomboxContentChanged.xaml.cs">
+      <DependentUpon>ZoomboxContentChanged.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZoomView.xaml.cs">
       <DependentUpon>ZoomView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\AngularGradientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ZoomboxContentChanged.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System;
     using System.Windows;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -7,10 +8,12 @@ namespace Gu.Wpf.Geometry.UiTests
 
     public sealed class ZoomWindowTests
     {
+        private const string WindowName = "ZoomWindow";
+
         [SetUp]
         public void SetUp()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 window.FindButton("None").Invoke();
@@ -26,7 +29,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void ZoomUniform()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -52,7 +55,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void ZoomUniformToFill()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -78,7 +81,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void Increase()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -101,7 +104,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void Decrease()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -124,7 +127,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelTopLeft()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -153,7 +156,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelTopLeftExplicitWheelZoomFactor()
         {
-            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 window.FindTextBox("WheelZoomFactor").Text = "1.1";
@@ -184,7 +187,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelTopRight()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -213,7 +216,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelBottomRight()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -242,7 +245,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelBottomLeft()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -271,7 +274,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public void MouseWheelCenter()
         {
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", "ZoomWindow"))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 var renderSize = window.FindTextBlock("Size");
@@ -294,6 +297,26 @@ namespace Gu.Wpf.Geometry.UiTests
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
                 Assert.AreEqual("1,0,0,1,1.59872115546023E-14,-1.68753899743024E-14", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void SetsToUniformInCodeBehind()
+        {
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "ZoomboxContentChanged"))
+            {
+                var window = app.MainWindow;
+                Wait.For(TimeSpan.FromMilliseconds(200));
+                window.FindButton("Uniform").Invoke();
+                var zoomBox = window.FindGroupBox("Zoom");
+                var imageSources = window.FindComboBox("ImageSources");
+                using (var expected = zoomBox.Capture())
+                {
+                    imageSources.SelectedIndex = 1;
+                    window.FindButton("UniformToFill").Invoke();
+                    imageSources.SelectedIndex = 0;
+                    ImageAssert.AreEqual(expected, zoomBox);
+                }
             }
         }
     }

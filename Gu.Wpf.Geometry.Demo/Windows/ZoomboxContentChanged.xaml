@@ -1,0 +1,63 @@
+<Window x:Class="Gu.Wpf.Geometry.Demo.Windows.ZoomboxContentChanged"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:effects="http://gu.se/Geometry"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=System"
+        Title="ZoomboxContentChanged"
+        Width="800"
+        Height="450"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="Zoom"
+                  Width="300"
+                  Height="300"
+                  BorderBrush="Red"
+                  BorderThickness="1">
+            <effects:Zoombox x:Name="Zoombox"
+                             IsManipulationEnabled="True"
+                             MaxZoom="10"
+                             MinZoom="0.1">
+                <Image Source="{Binding ElementName=ImageSources, Path=SelectedItem, NotifyOnTargetUpdated=True}" TargetUpdated="OnTargetUpdated" />
+            </effects:Zoombox>
+        </GroupBox>
+
+        <UniformGrid Grid.Row="1" Rows="1">
+            <Button Command="effects:ZoomCommands.Uniform"
+                    CommandTarget="{Binding ElementName=Zoombox}"
+                    Content="Uniform" />
+
+            <Button Command="effects:ZoomCommands.UniformToFill"
+                    CommandTarget="{Binding ElementName=Zoombox}"
+                    Content="UniformToFill" />
+
+            <ComboBox x:Name="ImageSources" SelectedIndex="0">
+                <system:Uri>../Images/Crosshair.png</system:Uri>
+                <system:Uri>../Images/Circles.png</system:Uri>
+            </ComboBox>
+        </UniformGrid>
+    </Grid>
+</Window>
+

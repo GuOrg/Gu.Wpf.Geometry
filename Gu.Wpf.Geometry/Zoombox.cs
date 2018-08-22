@@ -7,6 +7,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Threading;
 
     /// <summary>
     /// A decorator that adds zoom and pan.
@@ -281,6 +282,12 @@ namespace Gu.Wpf.Geometry
                 return;
             }
 
+            if (!this.InternalChild.IsArrangeValid)
+            {
+                _ = this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => this.ZoomUniform()));
+                return;
+            }
+
             var size = this.InternalChild.DesiredSize;
             if (Math.Abs(size.Width) < MinScaleDelta ||
                 Math.Abs(size.Height) < MinScaleDelta)
@@ -308,6 +315,12 @@ namespace Gu.Wpf.Geometry
         {
             if (this.InternalChild == null)
             {
+                return;
+            }
+
+            if (!this.InternalChild.IsArrangeValid)
+            {
+                _ = this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => this.ZoomUniformToFill()));
                 return;
             }
 

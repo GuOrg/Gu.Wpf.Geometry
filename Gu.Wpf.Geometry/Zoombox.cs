@@ -478,7 +478,7 @@ namespace Gu.Wpf.Geometry
         private static void OnCanZoomNone(object sender, CanExecuteRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            e.CanExecute = !box.ContentMatrix.IsIdentity;
+            e.CanExecute = box.InternalChild != null;
             e.Handled = true;
         }
 

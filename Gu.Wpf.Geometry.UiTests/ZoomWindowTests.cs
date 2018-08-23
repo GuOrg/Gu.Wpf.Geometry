@@ -125,6 +125,77 @@ namespace Gu.Wpf.Geometry.UiTests
         }
 
         [Test]
+        public void PanFromNone()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                var zoomBox = window.FindGroupBox("Zoombox");
+                window.FindButton("None").Invoke();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), 50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,50,0", contentMatrix.Text);
+
+                Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), -50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+
+                Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), 50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("1,0,0,1,0,50", contentMatrix.Text);
+
+                Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), -50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("Identity", contentMatrix.Text);
+            }
+        }
+
+        [Test]
+        public void PanFromUniform()
+        {
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
+            {
+                var window = app.MainWindow;
+                var renderSize = window.FindTextBlock("Size");
+                var contentMatrix = window.FindTextBlock("ContentMatrix");
+                var zoomBox = window.FindGroupBox("Zoombox");
+                window.FindButton("Uniform").Invoke();
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+
+                Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), 50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,149.625,-1.4210854715202E-14", contentMatrix.Text);
+
+                Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), -50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+
+                Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), 50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,50", contentMatrix.Text);
+
+                Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), -50);
+                window.WaitUntilResponsive();
+                Assert.AreEqual("386, 249", renderSize.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+            }
+        }
+
+        [Test]
         public void MouseWheelTopLeft()
         {
             using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))

@@ -3,9 +3,9 @@ namespace Gu.Wpf.Geometry.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class BoxBalloonPlacementRectangleWindowTests
+    public sealed class BoxBalloonPlacementTargetAndRectangleWindowTests
     {
-        private const string WindowName = "BoxBalloonPlacementRectangleWindow";
+        private const string WindowName = "BoxBalloonPlacementTargetAndRectangleWindow";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

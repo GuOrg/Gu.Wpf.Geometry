@@ -1,3 +1,6 @@
+#### 2.2.0
+* FEATURE: Balloon.PlacementRectangle
+
 #### 2.1.0
 * BUGFIX: Handle ZoomUniform & ZoomUniformToFill when child is not arranged yet.
 * FEATURE: Expose more API on ZoomBox, ZoomNone(), ZoomUniform(), ZoomUniformToFill()

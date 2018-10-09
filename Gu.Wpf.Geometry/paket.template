@@ -4,8 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Geometry
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  BUGFIX: Handle ZoomUniform & ZoomUniformToFill when child is not arranged yet.
-  FEATURE: Expose more API on ZoomBox, ZoomNone(), ZoomUniform(), ZoomUniformToFill()
+  FEATURE: Balloon.PlacementRectangle
 
 excludedgroups
   Analyzers

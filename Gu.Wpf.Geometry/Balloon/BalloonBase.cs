@@ -245,7 +245,7 @@ namespace Gu.Wpf.Geometry
                     }
                     else
                     {
-                        targetRect = this.PlacementRectangle.ToScreen(this);
+                        targetRect = this.PlacementRectangle.ToScreen(Window.GetWindow(this)).ToScreen(this);
                     }
                 }
                 else if (this.PlacementTarget != null)

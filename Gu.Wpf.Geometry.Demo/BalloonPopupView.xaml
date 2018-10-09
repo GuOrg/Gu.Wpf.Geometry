@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Gu.Wpf.Geometry.Demo.BalloonPopupView"
+<UserControl x:Class="Gu.Wpf.Geometry.Demo.BalloonPopupView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,10 +25,7 @@
                Placement="Bottom"
                PlacementTarget="{Binding ElementName=ShowPopupBox}">
             <Border Padding="0,30,0,0" ClipToBounds="False">
-                <geometry:Balloon 
-                                  CornerRadius="10"
-                                  PlacementTarget="{Binding PlacementTarget,
-                                                            RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
+                <geometry:Balloon CornerRadius="10" PlacementTarget="{Binding PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type Popup}}}">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition />

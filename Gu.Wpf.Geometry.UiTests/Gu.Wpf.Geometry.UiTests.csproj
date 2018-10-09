@@ -8,6 +8,25 @@
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Images\BoxBallonWindow_Auto Auto -5.png" />
+    <None Remove="Images\BoxBallonWindow_Auto Auto 0.png" />
+    <None Remove="Images\BoxBallonWindow_Auto Auto 5.png" />
+    <None Remove="Images\BoxBallonWindow_Auto Bottom 0.png" />
+    <None Remove="Images\BoxBallonWindow_Auto Center 0.png" />
+    <None Remove="Images\BoxBallonWindow_Auto Top 0.png" />
+    <None Remove="Images\BoxBallonWindow_Center Bottom 0.png" />
+    <None Remove="Images\BoxBallonWindow_Center Center -5.png" />
+    <None Remove="Images\BoxBallonWindow_Center Center 0.png" />
+    <None Remove="Images\BoxBallonWindow_Center Center 5.png" />
+    <None Remove="Images\BoxBallonWindow_Center Top 0.png" />
+    <None Remove="Images\BoxBallonWindow_Left Auto 0.png" />
+    <None Remove="Images\BoxBallonWindow_Left Bottom 0.png" />
+    <None Remove="Images\BoxBallonWindow_Left Top 0.png" />
+    <None Remove="Images\BoxBallonWindow_Right Auto 0.png" />
+    <None Remove="Images\BoxBallonWindow_Right Bottom 0.png" />
+    <None Remove="Images\BoxBallonWindow_Right Top 0.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
@@ -83,6 +102,12 @@
     <Content Include="Images\AngularGradient_StartAngle_0_CentralAngle_-90.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Auto -5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Auto 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\AngularGradient_StartAngle_0_CentralAngle_270.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -144,6 +169,51 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\AngularGradient_StartAngle_90_CentralAngle_90.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Auto 5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Bottom 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Center 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Auto Top 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Center Bottom 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Center Center -5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Center Center 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Center Center 5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Center Top 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Left Auto 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Left Bottom 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Left Top 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Right Auto 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Right Bottom 0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BoxBallonWindow_Right Top 0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

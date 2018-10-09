@@ -1,0 +1,89 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:demo="clr-namespace:Gu.Wpf.Geometry.Demo"
+        xmlns:effects="http://gu.se/Geometry"
+        xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo.Windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="BoxBallonWindow"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
+    <Canvas Width="400"
+            Height="400"
+            UseLayoutRounding="True">
+        <Grid Width="400" Height="400">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <GroupBox x:Name="Render"
+                      Grid.Row="0"
+                      Grid.RowSpan="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      BorderThickness="0"
+                      Style="{StaticResource InvisibleGroupBoxStyle}" />
+
+            <ListBox x:Name="Placements"
+                     Grid.Row="0"
+                     Grid.RowSpan="3"
+                     Grid.Column="3"
+                     SelectedIndex="0">
+                <effects:PlacementOptions>Auto</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto 5</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto -5</effects:PlacementOptions>
+                <effects:PlacementOptions>Center</effects:PlacementOptions>
+                <effects:PlacementOptions>Center 5</effects:PlacementOptions>
+                <effects:PlacementOptions>Center -5</effects:PlacementOptions>
+                <effects:PlacementOptions>Top Left</effects:PlacementOptions>
+                <effects:PlacementOptions>Top Center</effects:PlacementOptions>
+                <effects:PlacementOptions>Top Right</effects:PlacementOptions>
+                <effects:PlacementOptions>Bottom Left</effects:PlacementOptions>
+                <effects:PlacementOptions>Bottom Center</effects:PlacementOptions>
+                <effects:PlacementOptions>Bottom Right</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto Center</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto Left</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto Right</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto Top</effects:PlacementOptions>
+                <effects:PlacementOptions>Auto Bottom</effects:PlacementOptions>
+            </ListBox>
+            <Rectangle Grid.Row="1"
+                       Grid.Column="1"
+                       Stroke="Yellow"
+                       StrokeThickness="4" />
+
+            <effects:BoxBalloon Grid.Row="1"
+                                Grid.Column="1"
+                                ConnectorAngle="45"
+                                ConnectorOffset="-25,-5"
+                                CornerRadius="10"
+                                Stroke="CornflowerBlue"
+                                StrokeThickness="4" />
+
+            <effects:BoxBalloon Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="6"
+                                ConnectorAngle="45"
+                                CornerRadius="10"
+                                PlacementOptions="{Binding SelectedItem,
+                                                           ElementName=Placements}"
+                                PlacementTarget="{Binding ElementName=Target}"
+                                Stroke="HotPink"
+                                StrokeThickness="4" />
+        </Grid>
+        <Rectangle x:Name="Target"
+                   Canvas.Left="100"
+                   Canvas.Top="50"
+                   Width="100"
+                   Height="10"
+                   demo:Drag.WithMouse="True"
+                   Fill="Gainsboro" />
+    </Canvas>
+</Window>

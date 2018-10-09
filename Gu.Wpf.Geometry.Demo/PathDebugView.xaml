@@ -17,8 +17,7 @@
                 <RadioButton Content="Perpendicular "
                              IsChecked="true"
                              Tag="{x:Static geometry:GradientMode.Perpendicular}" />
-                <RadioButton Content="Parallel"
-                             Tag="{x:Static geometry:GradientMode.Parallel}" />
+                <RadioButton Content="Parallel" Tag="{x:Static geometry:GradientMode.Parallel}" />
             </StackPanel>
 
             <StackPanel Margin="6"
@@ -28,8 +27,7 @@
                 <RadioButton Content="SRgb "
                              IsChecked="true"
                              Tag="{x:Static ColorInterpolationMode.SRgbLinearInterpolation}" />
-                <RadioButton Content="ScRgb "
-                             Tag="{x:Static ColorInterpolationMode.ScRgbLinearInterpolation}" />
+                <RadioButton Content="ScRgb " Tag="{x:Static ColorInterpolationMode.ScRgbLinearInterpolation}" />
             </StackPanel>
 
             <StackPanel Margin="6"
@@ -39,12 +37,9 @@
                 <RadioButton Content="Flat "
                              IsChecked="true"
                              Tag="{x:Static PenLineCap.Flat}" />
-                <RadioButton Content="Square "
-                             Tag="{x:Static PenLineCap.Square}" />
-                <RadioButton Content="Round "
-                             Tag="{x:Static PenLineCap.Round}" />
-                <RadioButton Content="Triangle "
-                             Tag="{x:Static PenLineCap.Triangle}" />
+                <RadioButton Content="Square " Tag="{x:Static PenLineCap.Square}" />
+                <RadioButton Content="Round " Tag="{x:Static PenLineCap.Round}" />
+                <RadioButton Content="Triangle " Tag="{x:Static PenLineCap.Triangle}" />
             </StackPanel>
 
             <StackPanel Margin="6"
@@ -54,19 +49,16 @@
                 <RadioButton Content="Flat "
                              IsChecked="true"
                              Tag="{x:Static PenLineCap.Flat}" />
-                <RadioButton Content="Square "
-                             Tag="{x:Static PenLineCap.Square}" />
-                <RadioButton Content="Round "
-                             Tag="{x:Static PenLineCap.Round}" />
-                <RadioButton Content="Triangle "
-                             Tag="{x:Static PenLineCap.Triangle}" />
+                <RadioButton Content="Square " Tag="{x:Static PenLineCap.Square}" />
+                <RadioButton Content="Round " Tag="{x:Static PenLineCap.Round}" />
+                <RadioButton Content="Triangle " Tag="{x:Static PenLineCap.Triangle}" />
             </StackPanel>
 
             <TextBlock Text="{Binding ElementName=Scroll, Path=Value, StringFormat='Tolerance = {0}'}" />
 
             <ScrollBar Name="Scroll"
                        Width="192"
-                       Margin="6 0 0 0"
+                       Margin="6,0,0,0"
                        HorizontalAlignment="Left"
                        Maximum="20"
                        Minimum="0.05"
@@ -77,7 +69,7 @@
 
             <ScrollBar x:Name="Thickness"
                        Width="192"
-                       Margin="6 0 0 0"
+                       Margin="6,0,0,0"
                        HorizontalAlignment="Left"
                        Maximum="300"
                        Minimum="1"
@@ -134,17 +126,11 @@
             </Path.Data>
         </Path>
 
-        <local:Dot x:Name="LinePtBeg"
-                   Center="35 400" />
-        <local:Dot x:Name="BezPt0"
-                   Center="100 300" />
-        <local:Dot x:Name="BezPt1"
-                   Center="300 10" />
-        <local:Dot x:Name="BezPt2"
-                   Center="500 600" />
-        <local:Dot x:Name="BezPt3"
-                   Center="700 300" />
-        <local:Dot x:Name="LinePtEnd"
-                   Center="800 100" />
+        <local:Dot x:Name="LinePtBeg" Center="35 400" />
+        <local:Dot x:Name="BezPt0" Center="100 300" />
+        <local:Dot x:Name="BezPt1" Center="300 10" />
+        <local:Dot x:Name="BezPt2" Center="500 600" />
+        <local:Dot x:Name="BezPt3" Center="700 300" />
+        <local:Dot x:Name="LinePtEnd" Center="800 100" />
     </Grid>
 </UserControl>

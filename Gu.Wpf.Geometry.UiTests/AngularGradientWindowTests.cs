@@ -19,7 +19,6 @@ namespace Gu.Wpf.Geometry.UiTests
             Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
         }
 
-        [Explicit("Fails on AppVeyor for some reason, can't spot a difference in the pics.")]
         [TestCase(0, 360)]
         [TestCase(90, 360)]
         [TestCase(-90, 360)]

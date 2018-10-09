@@ -75,7 +75,11 @@ namespace Gu.Wpf.Geometry
 
         protected override void UpdateConnectorOffset()
         {
-            if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
+            var hasTarget =
+                this.PlacementTarget?.IsVisible == true ||
+                !this.PlacementRectangle.IsEmptyOrZero();
+
+            if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
             {
                 if (!this.IsLoaded)
                 {
@@ -85,7 +89,25 @@ namespace Gu.Wpf.Geometry
 
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
                 var ellipse = new Ellipse(selfRect);
-                var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+
+                var targetRect = Rect.Empty;
+
+                if (!this.PlacementRectangle.IsEmptyOrZero())
+                {
+                    if (this.PlacementTarget != null)
+                    {
+                        targetRect = this.PlacementRectangle.ToScreen(this.PlacementTarget).ToScreen(this);
+                    }
+                    else
+                    {
+                        targetRect = this.PlacementRectangle.ToScreen(this);
+                    }
+                }
+                else if (this.PlacementTarget != null)
+                {
+                    targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                }
+
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
                 if (tp == null || ellipse.Contains(tp.Value))
                 {

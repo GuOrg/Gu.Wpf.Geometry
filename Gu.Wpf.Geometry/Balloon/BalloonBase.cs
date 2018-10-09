@@ -18,9 +18,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 default(Vector),
                 FrameworkPropertyMetadataOptions.AffectsRender,
-#pragma warning disable WPF0005 // Name of PropertyChangedCallback should match registered name.
                 OnConnectorChanged));
-#pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
         /// <summary>Identifies the <see cref="ConnectorAngle"/> dependency property.</summary>
         public static readonly DependencyProperty ConnectorAngleProperty = DependencyProperty.Register(
@@ -30,9 +28,7 @@ namespace Gu.Wpf.Geometry
             new FrameworkPropertyMetadata(
                 15.0,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-#pragma warning disable WPF0005 // Name of PropertyChangedCallback should match registered name.
                 OnConnectorChanged));
-#pragma warning restore WPF0005 // Name of PropertyChangedCallback should match registered name.
 
         /// <summary>Identifies the <see cref="PlacementTarget"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register(
@@ -214,10 +210,7 @@ namespace Gu.Wpf.Geometry
 
         protected virtual Geometry CreateGeometry(Geometry box, Geometry connector)
         {
-            var ballonGeometry = new CombinedGeometry(GeometryCombineMode.Union, box, connector);
-
-            // ballonGeometry.Freeze();
-            return ballonGeometry;
+            return new CombinedGeometry(GeometryCombineMode.Union, box, connector);
         }
 
         protected virtual void UpdateConnectorOffset()

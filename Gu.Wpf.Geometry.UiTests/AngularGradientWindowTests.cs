@@ -16,7 +16,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Application.KillLaunched(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"));
+            Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
         }
 
         [Explicit("Fails on AppVeyor for some reason, can't spot a difference in the pics.")]
@@ -64,7 +64,7 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase(-270, -270)]
         public void Renders(int startAngle, int centralAngle)
         {
-            using (var app = Application.AttachOrLaunch(Application.FindExe("Gu.Wpf.Geometry.Demo.exe"), WindowName))
+            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;
                 window.FindSlider("StartAngle").Value = startAngle;

@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -63,6 +64,11 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase(-270, -270)]
         public void Renders(int startAngle, int centralAngle)
         {
+            if (Env.IsAppVeyor)
+            {
+                return;
+            }
+
             using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
             {
                 var window = app.MainWindow;

@@ -3,9 +3,9 @@ namespace Gu.Wpf.Geometry.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class BoxBallonWindowTests
+    public sealed class BoxBalloonWindowTests
     {
-        private const string WindowName = "BoxBallonWindow";
+        private const string WindowName = "BoxBalloonWindow";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 _ = window.FindListBox("Placements").Select(placement);
                 var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($".\\Images\\BoxBallonWindow_{placement}.png", groupBox);
+                ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow_{placement}.png", groupBox);
             }
         }
     }

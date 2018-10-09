@@ -76,9 +76,9 @@
                                 PlacementOptions="{Binding SelectedItem,
                                                            ElementName=Placements}"
                                 PlacementRectangle="{Binding ElementName=Target,
-                                                             Converter={x:Static converters:ElementToBoundsRectConverter.Default}}"
+                                                             Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}"
                                 PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                                         AncestorType={x:Type Window}}}"
+                                                                                         AncestorType={x:Type Canvas}}}"
                                 Stroke="HotPink"
                                 StrokeThickness="4" />
         </Grid>

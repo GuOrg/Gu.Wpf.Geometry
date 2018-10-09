@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System.Windows;
 
@@ -34,8 +34,21 @@
             return p.Closest(rect.TopLeft, rect.TopRight, rect.BottomRight, rect.BottomLeft);
         }
 
+        internal static bool IsEmptyOrZero(this Rect rect)
+        {
+            return
+                rect.IsEmpty ||
+                rect.Width <= 0 ||
+                rect.Height <= 0;
+        }
+
         internal static Rect ToScreen(this Rect rect, UIElement element)
         {
+            if (PresentationSource.FromVisual(element) == null)
+            {
+                return rect;
+            }
+
             var topLeft = element.PointToScreen(rect.TopLeft);
             var bottomRight = element.PointToScreen(rect.BottomRight);
             return new Rect(topLeft, bottomRight);

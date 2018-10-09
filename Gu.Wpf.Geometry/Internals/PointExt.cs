@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Globalization;
@@ -88,6 +88,11 @@
 
         internal static Point ToScreen(this Point self, UIElement element)
         {
+            if (PresentationSource.FromVisual(element) == null)
+            {
+                return self;
+            }
+
             return element.PointToScreen(self);
         }
 

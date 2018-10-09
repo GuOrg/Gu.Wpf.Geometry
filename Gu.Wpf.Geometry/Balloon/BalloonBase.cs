@@ -43,6 +43,15 @@ namespace Gu.Wpf.Geometry
                 default(UIElement),
                 OnPlacementTargetChanged));
 
+        /// <summary>Identifies the <see cref="PlacementRectangle"/> dependency property.</summary>
+        public static readonly DependencyProperty PlacementRectangleProperty = DependencyProperty.Register(
+            nameof(PlacementRectangle),
+            typeof(Rect),
+            typeof(BalloonBase),
+            new PropertyMetadata(
+                Rect.Empty,
+                OnPlacementRectangleChanged));
+
         /// <summary>Identifies the <see cref="PlacementOptions"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementOptionsProperty = DependencyProperty.Register(
             nameof(PlacementOptions),
@@ -94,6 +103,12 @@ namespace Gu.Wpf.Geometry
         {
             get => (UIElement)this.GetValue(PlacementTargetProperty);
             set => this.SetValue(PlacementTargetProperty, value);
+        }
+
+        public Rect PlacementRectangle
+        {
+            get => (Rect)this.GetValue(PlacementRectangleProperty);
+            set => this.SetValue(PlacementRectangleProperty, value);
         }
 
         public PlacementOptions PlacementOptions
@@ -207,7 +222,11 @@ namespace Gu.Wpf.Geometry
 
         protected virtual void UpdateConnectorOffset()
         {
-            if (this.IsVisible && this.RenderSize.Width > 0 && this.PlacementTarget?.IsVisible == true)
+            var hasTarget =
+                this.PlacementTarget?.IsVisible == true ||
+                !this.PlacementRectangle.IsEmptyOrZero();
+
+            if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
             {
                 if (!this.IsLoaded)
                 {
@@ -216,7 +235,24 @@ namespace Gu.Wpf.Geometry
                 }
 
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
-                var targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                var targetRect = Rect.Empty;
+
+                if (!this.PlacementRectangle.IsEmptyOrZero())
+                {
+                    if (this.PlacementTarget != null)
+                    {
+                        targetRect = this.PlacementRectangle.ToScreen(this.PlacementTarget).ToScreen(this);
+                    }
+                    else
+                    {
+                        targetRect = this.PlacementRectangle.ToScreen(this);
+                    }
+                }
+                else if (this.PlacementTarget != null)
+                {
+                    targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                }
+
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
                 if (tp == null || selfRect.Contains(tp.Value))
                 {
@@ -288,6 +324,12 @@ namespace Gu.Wpf.Geometry
             {
                 WeakEventManager<UIElement, EventArgs>.AddHandler(newTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
             }
+        }
+
+        private static void OnPlacementRectangleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var balloon = (BalloonBase)d;
+            balloon.UpdateConnectorOffset();
         }
 
         private class PenCache

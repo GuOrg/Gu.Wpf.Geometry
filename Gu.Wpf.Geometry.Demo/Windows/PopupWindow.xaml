@@ -24,7 +24,7 @@
                        Fill="HotPink" />
         </Popup>
 
-        <Popup IsOpen="{Binding ElementName=CheckBox1, Path=IsChecked}" PlacementRectangle="{Binding ElementName=Target, Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}">
+        <Popup IsOpen="{Binding ElementName=CheckBox2, Path=IsChecked}" PlacementRectangle="{Binding ElementName=Target, Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}">
             <Rectangle Width="100"
                        Height="100"
                        Fill="Blue" />

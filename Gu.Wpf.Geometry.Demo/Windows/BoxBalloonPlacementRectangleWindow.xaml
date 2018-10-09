@@ -87,7 +87,6 @@
                    Canvas.Top="50"
                    Width="100"
                    Height="10"
-                   demo:Drag.WithMouse="True"
                    Fill="Gainsboro" />
     </Canvas>
 </Window>

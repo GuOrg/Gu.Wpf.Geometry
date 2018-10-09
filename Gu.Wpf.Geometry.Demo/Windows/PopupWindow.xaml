@@ -1,0 +1,40 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:Gu.Wpf.Geometry.Demo.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo.Windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="PopupWindow"
+        Width="800"
+        Height="450"
+        mc:Ignorable="d">
+    <Canvas>
+        <StackPanel>
+            <CheckBox x:Name="CheckBox1" />
+            <CheckBox x:Name="CheckBox2" />
+        </StackPanel>
+        <Popup IsOpen="{Binding ElementName=CheckBox1,
+                                Path=IsChecked}"
+               PlacementRectangle="{Binding ElementName=Target,
+                                            Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}"
+               PlacementTarget="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                        AncestorType={x:Type Canvas}}}">
+            <Rectangle Width="100"
+                       Height="100"
+                       Fill="HotPink" />
+        </Popup>
+
+        <Popup IsOpen="{Binding ElementName=CheckBox1, Path=IsChecked}" PlacementRectangle="{Binding ElementName=Target, Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}">
+            <Rectangle Width="100"
+                       Height="100"
+                       Fill="Blue" />
+        </Popup>
+
+        <Rectangle x:Name="Target"
+                   Canvas.Left="100"
+                   Canvas.Top="50"
+                   Width="100"
+                   Height="10"
+                   Fill="Gainsboro" />
+    </Canvas>
+</Window>

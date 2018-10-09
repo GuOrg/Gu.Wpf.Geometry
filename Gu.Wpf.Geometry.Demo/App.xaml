@@ -8,6 +8,7 @@
     <!--<Application.StartupUri>Windows/ZoomboxContentChanged.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/BoxBalloonWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/BoxBalloonPlacementRectangleWindow.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Windows/PopupWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style x:Key="InvisibleGroupBoxStyle" TargetType="{x:Type GroupBox}">
             <Setter Property="Template">

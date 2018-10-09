@@ -215,6 +215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\PopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ZoomboxContentChanged.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

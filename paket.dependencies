@@ -3,11 +3,12 @@ source https://www.nuget.org/api/v2/
 group Analyzers
   source https://www.nuget.org/api/v2/
   nuget AsyncUsageAnalyzers
+  nuget Gu.Analyzers
   nuget IDisposableAnalyzers
   nuget PropertyChangedAnalyzers
-  nuget StyleCop.Analyzers
+  nuget ReflectionAnalyzers prerelease
+  nuget StyleCop.Analyzers prerelease
   nuget WpfAnalyzers
-  nuget Gu.Analyzers
   nuget JetBrains.Annotations
 
 group Test

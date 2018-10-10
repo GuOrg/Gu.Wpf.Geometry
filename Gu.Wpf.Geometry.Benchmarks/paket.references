@@ -3,9 +3,10 @@ group Benchmark
 
 group Analyzers
   AsyncUsageAnalyzers
+  Gu.Analyzers
   IDisposableAnalyzers
   PropertyChangedAnalyzers
+  ReflectionAnalyzers
   StyleCop.Analyzers
   WpfAnalyzers
-  Gu.Analyzers
   JetBrains.Annotations

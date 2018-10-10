@@ -57,7 +57,7 @@
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheelEffect.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheelEffect.ps", UriKind.Absolute),
         };
 
         /// <summary>
@@ -104,7 +104,7 @@
             set => this.SetValue(ValueProperty, value);
         }
 
-        /// <summary>The starting angle of the gradient, clockwise from X-axis</summary>
+        /// <summary>The starting angle of the gradient, clockwise from X-axis.</summary>
         public double StartAngle
         {
             get => (double)this.GetValue(StartAngleProperty);

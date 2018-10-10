@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for SimpleView.xaml
+    /// Interaction logic for SimpleView.xaml.
     /// </summary>
     public partial class SimpleView : UserControl
     {

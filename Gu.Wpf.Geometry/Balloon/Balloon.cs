@@ -4,7 +4,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Controls;
 
     /// <summary>
-    /// Draws a ballon callout
+    /// Draws a ballon callout.
     /// </summary>
     public class Balloon : ContentControl
     {

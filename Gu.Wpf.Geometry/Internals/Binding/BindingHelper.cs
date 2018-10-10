@@ -35,7 +35,7 @@
                 Path = path,
                 Source = source,
                 Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
             };
             return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
         }
@@ -77,7 +77,7 @@
                     Source = source,
                     Path = sourcePath,
                     Mode = BindingMode.TwoWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
@@ -102,7 +102,7 @@
                     Source = source,
                     Mode = BindingMode.OneWay,
                     UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                    Converter = converter
+                    Converter = converter,
                 };
 
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);

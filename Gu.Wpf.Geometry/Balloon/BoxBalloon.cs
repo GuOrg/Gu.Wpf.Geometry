@@ -47,12 +47,12 @@ namespace Gu.Wpf.Geometry
                 }
 
                 var geometry = new RectangleGeometry();
-                geometry.Bind(RectangleGeometry.RectProperty)
-                        .OneWayTo(this, RectProperty);
-                geometry.Bind(RectangleGeometry.RadiusXProperty)
-                        .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
-                geometry.Bind(RectangleGeometry.RadiusYProperty)
-                        .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
+                _ = geometry.Bind(RectangleGeometry.RectProperty)
+                            .OneWayTo(this, RectProperty);
+                _ = geometry.Bind(RectangleGeometry.RadiusXProperty)
+                            .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
+                _ = geometry.Bind(RectangleGeometry.RadiusYProperty)
+                            .OneWayTo(this, CornerRadiusProperty, CornerRadiusTopLeftConverter.Default);
                 return geometry;
             }
             else
@@ -79,7 +79,7 @@ namespace Gu.Wpf.Geometry
 
                     p = p.WithOffset(0, -rect.Height + cr.TopLeft + cr.BottomLeft);
                     context.LineTo(p, isStroked: true, isSmoothJoin: true);
-                    context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
+                    _ = context.DrawCorner(p, cr.TopLeft, -cr.TopLeft);
                 }
 
                 geometry.Freeze();
@@ -143,7 +143,7 @@ namespace Gu.Wpf.Geometry
 
             var factor = Math.Min(
                 Math.Min(this.ActualWidth / top, this.ActualWidth / bottom),
-                                  Math.Min(this.ActualHeight / left, this.ActualHeight / right));
+                Math.Min(this.ActualHeight / left, this.ActualHeight / right));
             return cr.ScaleBy(factor);
         }
 
@@ -159,16 +159,16 @@ namespace Gu.Wpf.Geometry
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
         {
             var figure = new PathFigure { IsClosed = true };
-            figure.Bind(PathFigure.StartPointProperty)
-                .OneWayTo(this, property);
+            _ = figure.Bind(PathFigure.StartPointProperty)
+                      .OneWayTo(this, property);
             return figure;
         }
 
         private LineSegment CreateLineSegmentTo(DependencyProperty property)
         {
             var lineSegment = new LineSegment { IsStroked = true };
-            lineSegment.Bind(LineSegment.PointProperty)
-                .OneWayTo(this, property);
+            _ = lineSegment.Bind(LineSegment.PointProperty)
+                           .OneWayTo(this, property);
             return lineSegment;
         }
 

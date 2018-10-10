@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Effects
+namespace Gu.Wpf.Geometry.Effects
 {
     using System;
     using System.Windows;
@@ -57,7 +57,7 @@
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HslWheelEffect.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HslWheelEffect.ps", UriKind.Absolute),
         };
 
         /// <summary>
@@ -104,7 +104,7 @@
             set => this.SetValue(LightnessProperty, value);
         }
 
-        /// <summary>The starting angle of the gradient, clockwise from X-axis</summary>
+        /// <summary>The starting angle of the gradient, clockwise from X-axis.</summary>
         public double StartAngle
         {
             get => (double)this.GetValue(StartAngleProperty);

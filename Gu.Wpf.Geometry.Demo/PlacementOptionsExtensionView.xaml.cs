@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for PlacementOptionsExtensionView.xaml
+    /// Interaction logic for PlacementOptionsExtensionView.xaml.
     /// </summary>
     public partial class PlacementOptionsExtensionView : UserControl
     {

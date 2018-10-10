@@ -3,6 +3,6 @@
     public enum GradientMode
     {
         Perpendicular,
-        Parallel
+        Parallel,
     }
 }

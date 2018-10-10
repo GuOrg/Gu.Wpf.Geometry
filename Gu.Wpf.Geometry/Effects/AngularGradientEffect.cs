@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Effects
+namespace Gu.Wpf.Geometry.Effects
 {
     using System;
     using System.Windows;
@@ -55,7 +55,7 @@
 
         private static readonly PixelShader Shader = new PixelShader
         {
-            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/AngularGradientEffect.ps", UriKind.Absolute)
+            UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/AngularGradientEffect.ps", UriKind.Absolute),
         };
 
         /// <summary>
@@ -102,14 +102,14 @@
             set => this.SetValue(CenterPointProperty, value);
         }
 
-        /// <summary>The starting angle of the gradient, counterclockwise from X-axis</summary>
+        /// <summary>The starting angle of the gradient, counterclockwise from X-axis.</summary>
         public double StartAngle
         {
             get => (double)this.GetValue(StartAngleProperty);
             set => this.SetValue(StartAngleProperty, value);
         }
 
-        /// <summary>The arc length angle of the gradient, counterclockwise from X-axis</summary>
+        /// <summary>The arc length angle of the gradient, counterclockwise from X-axis.</summary>
         public double CentralAngle
         {
             get => (double)this.GetValue(CentralAngleProperty);

@@ -5,6 +5,6 @@
         NegativeXPositiveY,
         PositiveXPositiveY,
         PositiveXNegativeY,
-        NegativeXNegativeY
+        NegativeXNegativeY,
     }
 }

@@ -5,7 +5,7 @@
     using System.Windows.Media;
 
     /// <summary>
-    /// Interaction logic for PathDebugView.xaml
+    /// Interaction logic for PathDebugView.xaml.
     /// </summary>
     public partial class PathDebugView : UserControl
     {

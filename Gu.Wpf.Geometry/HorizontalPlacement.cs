@@ -5,6 +5,6 @@
         Auto,
         Left,
         Center,
-        Right
+        Right,
     }
 }

@@ -200,7 +200,7 @@ namespace Gu.Wpf.Geometry
                 {
                     this.internalVisual = new ContainerVisual
                     {
-                        Transform = new MatrixTransform(Matrix.Identity)
+                        Transform = new MatrixTransform(Matrix.Identity),
                     };
                     this.AddVisualChild(this.internalVisual);
                 }
@@ -260,7 +260,7 @@ namespace Gu.Wpf.Geometry
         /// <summary>
         /// Zoom around a point.
         /// </summary>
-        /// <param name="center">The point to zoom about</param>
+        /// <param name="center">The point to zoom about.</param>
         /// <param name="scale">The amount to resize as a multipliers.</param>
         public void Zoom(Point center, Vector scale)
         {

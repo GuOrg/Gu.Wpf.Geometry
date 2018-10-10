@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for BalloonPopupView.xaml
+    /// Interaction logic for BalloonPopupView.xaml.
     /// </summary>
     public partial class BalloonPopupView : UserControl
     {

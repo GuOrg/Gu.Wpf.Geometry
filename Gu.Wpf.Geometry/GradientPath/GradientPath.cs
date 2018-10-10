@@ -156,7 +156,7 @@ namespace Gu.Wpf.Geometry
 
             var brush = new LinearGradientBrush(gradientStops, sp, ep)
             {
-                MappingMode = BrushMappingMode.Absolute
+                MappingMode = BrushMappingMode.Absolute,
             };
             return brush;
         }
@@ -173,7 +173,7 @@ namespace Gu.Wpf.Geometry
                 Brush = Brushes.Black,
                 Thickness = this.StrokeThickness,
                 StartLineCap = this.StrokeStartLineCap,
-                EndLineCap = this.StrokeEndLineCap
+                EndLineCap = this.StrokeEndLineCap,
             };
 
             var rect = this.Data.GetRenderBounds(pen);

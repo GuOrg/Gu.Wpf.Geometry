@@ -3,7 +3,7 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for IntersectionView.xaml
+    /// Interaction logic for IntersectionView.xaml.
     /// </summary>
     public partial class IntersectionView : UserControl
     {

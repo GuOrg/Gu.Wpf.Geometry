@@ -224,7 +224,7 @@ namespace Gu.Wpf.Geometry
         {
             var hasTarget =
                 this.PlacementTarget?.IsVisible == true ||
-                !this.PlacementRectangle.IsEmptyOrZero();
+                !this.PlacementRectangle.IsEmpty;
 
             if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
             {
@@ -235,23 +235,7 @@ namespace Gu.Wpf.Geometry
                 }
 
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
-                var targetRect = Rect.Empty;
-
-                if (!this.PlacementRectangle.IsEmptyOrZero())
-                {
-                    if (this.PlacementTarget != null)
-                    {
-                        targetRect = this.PlacementRectangle.ToScreen(this.PlacementTarget).ToScreen(this);
-                    }
-                    else
-                    {
-                        targetRect = this.PlacementRectangle.ToScreen(Window.GetWindow(this)).ToScreen(this);
-                    }
-                }
-                else if (this.PlacementTarget != null)
-                {
-                    targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
-                }
+                var targetRect = this.GetTargetRect();
 
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
                 if (tp == null || selfRect.Contains(tp.Value))
@@ -290,6 +274,33 @@ namespace Gu.Wpf.Geometry
         protected virtual void OnLayoutUpdated(object _, EventArgs __)
         {
             this.UpdateConnectorOffset();
+        }
+
+        protected virtual UIElement GetTarget()
+        {
+            return
+                this.PlacementTarget ??
+                this.GetVisualParent();
+        }
+
+        protected virtual Rect GetTargetRect()
+        {
+            var targetRect = Rect.Empty;
+
+            if (this.PlacementRectangle.IsEmpty)
+            {
+                targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+            }
+            else
+            {
+                var target = this.GetTarget();
+                if (target != null)
+                {
+                    targetRect = this.PlacementRectangle.ToScreen(target).ToScreen(this);
+                }
+            }
+
+            return targetRect;
         }
 
         private static void OnConnectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

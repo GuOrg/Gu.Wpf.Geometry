@@ -154,8 +154,136 @@ Note: the connector is drawn outside the bounds of the element.
 
 ![connected balloon](http://i.imgur.com/wJBJACc.gif)
 
+##### With PlacementRectangle
+```xaml
+<Canvas>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="Placements"
+                 Grid.Row="0"
+                 Grid.RowSpan="3"
+                 Grid.Column="2"
+                 SelectedIndex="0">
+            <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>
+        </ListBox>
+
+        <geometry:BoxBalloon Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="6"
+                             ConnectorAngle="45"
+                             CornerRadius="10"
+                             PlacementOptions="{Binding SelectedItem,
+                                                        ElementName=Placements}"
+                             PlacementRectangle="100, 50, 100, 10"
+                             Stroke="HotPink"
+                             StrokeThickness="4" />
+    </Grid>
+    <Rectangle x:Name="Target"
+               Canvas.Left="100"
+               Canvas.Top="50"
+               Width="100"
+               Height="10"
+               Fill="Gainsboro"
+               MouseLeftButtonDown="OnTargetMouseLeftDown" />
+</Canvas>
+```
+
+![connected balloon](http://i.imgur.com/wJBJACc.gif)
+
+##### With PlacementRectangle and PlacementTarget
+```xaml
+<Canvas>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="Placements"
+                 Grid.Row="0"
+                 Grid.RowSpan="3"
+                 Grid.Column="2"
+                 SelectedIndex="0">
+            <geometry:PlacementOptions>Auto</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center 5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Center -5</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Top Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Bottom Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Center</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Left</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Right</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Top</geometry:PlacementOptions>
+            <geometry:PlacementOptions>Auto Bottom</geometry:PlacementOptions>
+        </ListBox>
+
+        <geometry:BoxBalloon Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="6"
+                             ConnectorAngle="45"
+                             CornerRadius="10"
+                             PlacementOptions="{Binding SelectedItem,
+                                                        ElementName=Placements}"
+                             PlacementRectangle="0, 0, 100, 10"
+							 PlacementTarget={Binding ElementName=Target}
+                             Stroke="HotPink"
+                             StrokeThickness="4" />
+    </Grid>
+    <Rectangle x:Name="Target"
+               Canvas.Left="100"
+               Canvas.Top="50"
+               Width="100"
+               Height="10"
+               Fill="Gainsboro"
+               MouseLeftButtonDown="OnTargetMouseLeftDown" />
+</Canvas>
+```
+
+![connected balloon](http://i.imgur.com/wJBJACc.gif)
+
 ##### PlacementTarget
-Thge UIElement to connect the balloon to.
+The UIElement to connect the balloon to.
+
+##### PlacementRectangle
+The rectangle to connect the balloon to. If used with PlacementTarget, the rectangle coordinates are relative to it. If used alone, the coordinates are relative to the parent UIElement.
 
 ##### PlacementOptions
 Where on the connected element the connector should be attached.

@@ -77,7 +77,7 @@ namespace Gu.Wpf.Geometry
         {
             var hasTarget =
                 this.PlacementTarget?.IsVisible == true ||
-                !this.PlacementRectangle.IsEmptyOrZero();
+                !this.PlacementRectangle.IsEmpty;
 
             if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
             {
@@ -88,25 +88,8 @@ namespace Gu.Wpf.Geometry
                 }
 
                 var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+                var targetRect = this.GetTargetRect();
                 var ellipse = new Ellipse(selfRect);
-
-                var targetRect = Rect.Empty;
-
-                if (!this.PlacementRectangle.IsEmptyOrZero())
-                {
-                    if (this.PlacementTarget != null)
-                    {
-                        targetRect = this.PlacementRectangle.ToScreen(this.PlacementTarget).ToScreen(this);
-                    }
-                    else
-                    {
-                        targetRect = this.PlacementRectangle.ToScreen(this);
-                    }
-                }
-                else if (this.PlacementTarget != null)
-                {
-                    targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
-                }
 
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
                 if (tp == null || ellipse.Contains(tp.Value))

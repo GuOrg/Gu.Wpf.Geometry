@@ -34,14 +34,6 @@ namespace Gu.Wpf.Geometry
             return p.Closest(rect.TopLeft, rect.TopRight, rect.BottomRight, rect.BottomLeft);
         }
 
-        internal static bool IsEmptyOrZero(this Rect rect)
-        {
-            return
-                rect.IsEmpty ||
-                rect.Width <= 0 ||
-                rect.Height <= 0;
-        }
-
         internal static Rect ToScreen(this Rect rect, UIElement element)
         {
             if (PresentationSource.FromVisual(element) == null)

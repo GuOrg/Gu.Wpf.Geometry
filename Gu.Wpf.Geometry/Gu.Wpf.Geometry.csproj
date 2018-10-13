@@ -62,6 +62,7 @@
     <Compile Include="Internals\Binding\CornerRadiusConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusTopLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusTopRightConverter.cs" />
+    <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\Constants.cs" />
     <Compile Include="GradientPath\GradientMode.cs" />
     <Compile Include="GradientPath\GradientPath+FigureGeometry.cs" />

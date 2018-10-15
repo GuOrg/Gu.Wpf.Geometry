@@ -3,6 +3,7 @@ group Analyzers
   Gu.Analyzers
   IDisposableAnalyzers
   PropertyChangedAnalyzers
+  PublicApiAnalyzer
   ReflectionAnalyzers
   StyleCop.Analyzers
   WpfAnalyzers

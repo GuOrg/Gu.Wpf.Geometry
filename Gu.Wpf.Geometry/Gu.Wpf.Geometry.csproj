@@ -158,6 +158,8 @@
     <Content Include="Effects\Mask.fx">
       <DependentUpon>MaskEffect.cs</DependentUpon>
     </Content>
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
     <None Include="Effects\shared.hlsli" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
@@ -234,6 +236,14 @@
       <Paket>True</Paket>
     </Analyzer>
     <Analyzer Include="..\packages\analyzers\PropertyChangedAnalyzers\analyzers\dotnet\cs\PropertyChangedAnalyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\analyzers\PublicApiAnalyzer\analyzers\dotnet\cs\PublicApiAnalyzer.CodeFixes.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\PublicApiAnalyzer\analyzers\dotnet\cs\PublicApiAnalyzer.dll">
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>

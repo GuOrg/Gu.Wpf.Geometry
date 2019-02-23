@@ -18,14 +18,14 @@ steps:
   displayName: 'Test'
 
 - task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  displayName: 'Stage image assert errors.'
   inputs:
     sourceFolder: '%TEMP%'
     contents: '*.png'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish: $(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish image assert errors.'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'Images'

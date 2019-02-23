@@ -4,7 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Geometry
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  FEATURE: Balloon.PlacementRectangle
+  BUGFIX: GradientPath with ArcSegment
 
 excludedgroups
   Analyzers

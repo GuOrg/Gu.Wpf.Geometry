@@ -1,3 +1,6 @@
+#### 2.2.2
+* BUGFIX: GradientPath with ArcSegment
+
 #### 2.2.0
 * FEATURE: Balloon.PlacementRectangle
 

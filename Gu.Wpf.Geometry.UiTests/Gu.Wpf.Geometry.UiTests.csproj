@@ -2,30 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Images\EllipseBalloonWindow_Auto Auto -5.png" />
-    <None Remove="Images\EllipseBalloonWindow_Auto Auto 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Auto Auto 5.png" />
-    <None Remove="Images\EllipseBalloonWindow_Auto Bottom 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Auto Center 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Auto Top 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Center Bottom 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Center Center -5.png" />
-    <None Remove="Images\EllipseBalloonWindow_Center Center 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Center Center 5.png" />
-    <None Remove="Images\EllipseBalloonWindow_Center Top 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Left Auto 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Left Bottom 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Left Top 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Right Auto 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Right Bottom 0.png" />
-    <None Remove="Images\EllipseBalloonWindow_Right Top 0.png" />
-  </ItemGroup>
+ 
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -34,10 +15,12 @@
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Geometry.Demo\Gu.Wpf.Geometry.Demo.csproj" />
     <ProjectReference Include="..\Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="Images\AngularGradient_StartAngle_-180_CentralAngle_-270.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -267,6 +250,10 @@
     <Content Include="Images\EllipseBalloonWindow_Right Top 0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\GradientPath.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

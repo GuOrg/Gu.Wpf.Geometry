@@ -1,0 +1,31 @@
+queue:
+  name: Hosted VS2017
+  demands: 
+  - msbuild
+  - visualstudio
+  - vstest
+
+steps:
+- powershell: dotnet restore
+  displayName: 'Restore'
+
+- task: VSBuild@1
+  displayName: 'Build'
+  inputs:
+    configuration: Release
+
+- task: VSTest@2
+  displayName: 'Test'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    sourceFolder: '$(Agent.TempDirectory)'
+    contents: '*.png'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'Images'

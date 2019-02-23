@@ -1,6 +1,5 @@
 group Test
   NUnit
-  NUnit3TestAdapter
 
 group Analyzers
   AsyncUsageAnalyzers

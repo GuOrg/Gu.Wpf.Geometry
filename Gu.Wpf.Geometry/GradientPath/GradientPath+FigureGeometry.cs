@@ -1,5 +1,6 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows.Media;
 
@@ -12,7 +13,7 @@
 
             public FigureGeometry(PathFigure figure, double strokeThickness)
             {
-                this.Lines = figure.AsLines();
+                this.Lines = GetLines(figure);
                 var offsetLines1 = CreateOffsetLines(this.Lines, -strokeThickness / 2);
                 var offsetLines2 = CreateOffsetLines(this.Lines, strokeThickness / 2);
                 var pathGeometries = new PathGeometry[this.Lines.Count];
@@ -74,6 +75,35 @@
                 figure.Segments.Add(polyLineSegment);
                 geometry.Figures.Add(figure);
                 return geometry;
+            }
+
+            private static IReadOnlyList<Line> GetLines(PathFigure figure)
+            {
+                var lines = new List<Line>();
+                var sp = figure.StartPoint;
+                foreach (var segment in figure.Segments)
+                {
+                    switch (segment)
+                    {
+                        case LineSegment lineSegment:
+                            lines.Add(new Line(sp, lineSegment.Point));
+                            sp = lineSegment.Point;
+                            break;
+                        case PolyLineSegment polyLineSegment:
+                            foreach (var point in polyLineSegment.Points)
+                            {
+                                lines.Add(new Line(sp, point));
+                                sp = point;
+                            }
+
+                            break;
+
+                        default:
+                            throw new NotSupportedException("Segment is not PolyLineSegment in flattened PathFigure");
+                    }
+                }
+
+                return lines;
             }
         }
     }

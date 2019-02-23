@@ -20,7 +20,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    sourceFolder: '$(Agent.TempDirectory)'
+    sourceFolder: '%TEMP%'
     contents: '*.png'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 

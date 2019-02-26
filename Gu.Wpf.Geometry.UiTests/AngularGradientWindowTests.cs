@@ -74,7 +74,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 window.FindSlider("StartAngle").Value = startAngle;
                 window.FindSlider("CentralAngle").Value = centralAngle;
                 var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($".\\Images\\AngularGradient_StartAngle_{startAngle}_CentralAngle_{centralAngle}.png", groupBox);
+                ImageAssert.AreEqual($"AngularGradient_StartAngle_{startAngle}_CentralAngle_{centralAngle}.png", groupBox);
             }
         }
     }

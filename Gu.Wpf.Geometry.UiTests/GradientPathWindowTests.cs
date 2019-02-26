@@ -22,7 +22,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathWindow"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual(".\\Images\\GradientPath.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual("GradientPath.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -37,7 +37,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "Issue28Window"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual($".\\Images\\GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual("GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -52,7 +52,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "Issue29Window"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual($".\\Images\\GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual("GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
             }
         }
     }

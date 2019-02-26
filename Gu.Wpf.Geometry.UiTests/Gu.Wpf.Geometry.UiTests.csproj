@@ -6,9 +6,6 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Images\GradientPathWithArcSegment.png" />
-  </ItemGroup>
  
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -259,6 +256,12 @@
     <Content Include="Images\GradientPath.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\GradientPathArcSegmentLargeArc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Import Project="..\.paket\Paket.Restore.targets" />

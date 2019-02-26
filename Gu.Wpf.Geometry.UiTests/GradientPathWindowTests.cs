@@ -40,5 +40,20 @@ namespace Gu.Wpf.Geometry.UiTests
                 ImageAssert.AreEqual($".\\Images\\GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
             }
         }
+
+        [Test]
+        public void RendersArcSegmentLargeArcIssue29()
+        {
+            if (Env.IsAppVeyor)
+            {
+                return;
+            }
+
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "Issue29Window"))
+            {
+                var window = app.MainWindow;
+                ImageAssert.AreEqual($".\\Images\\GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+            }
+        }
     }
 }

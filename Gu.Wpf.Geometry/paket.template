@@ -4,7 +4,7 @@ projectUrl https://github.com/JohanLarsson/Gu.Wpf.Geometry
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  BUGFIX: GradientPath with ArcSegment
+  BUGFIX: GradientPath with IsLargeArc=true
 
 excludedgroups
   Analyzers

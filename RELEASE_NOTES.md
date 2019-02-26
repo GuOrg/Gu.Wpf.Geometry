@@ -1,3 +1,6 @@
+#### 2.2.3
+* GradientPath with IsLargeArc=true
+
 #### 2.2.2
 * BUGFIX: GradientPath with ArcSegment
 

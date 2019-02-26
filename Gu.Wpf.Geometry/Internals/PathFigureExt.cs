@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Windows.Media;
@@ -7,19 +7,32 @@
     {
         internal static double TotalLength(this PathFigure pathFigure)
         {
-            PolyLineSegment polylineSegment = pathFigure.Segments[0] as PolyLineSegment;
-            if (polylineSegment == null)
-            {
-                throw new NotSupportedException("Segment is not PolylineSegment in flattened PathFigure");
-            }
-
-            var points = polylineSegment.Points;
             var totalLength = 0.0;
             var previous = pathFigure.StartPoint;
-            foreach (var pt in points)
+
+            foreach (var segment in pathFigure.Segments)
             {
-                totalLength += (pt - previous).Length;
-                previous = pt;
+                switch (segment)
+                {
+                    case LineSegment lineSegment:
+                        totalLength += (lineSegment.Point - previous).Length;
+                        previous = lineSegment.Point;
+                        break;
+
+                    case PolyLineSegment polyLineSegment:
+                        var points = polyLineSegment.Points;
+
+                        foreach (var point in polyLineSegment.Points)
+                        {
+                            totalLength += (point - previous).Length;
+                            previous = point;
+                        }
+
+                        break;
+
+                    default:
+                        throw new NotSupportedException("Segment is not PolyLineSegment or LineSegment in flattened PathFigure");
+                }
             }
 
             return totalLength;

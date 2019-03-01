@@ -20,7 +20,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Stage image assert errors.'
   inputs:
-    SourceFolder: 'System.TempDirectory'
+    SourceFolder: '$(System.TempDirectory)'
     Contents: '*.png'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true

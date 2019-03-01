@@ -23,6 +23,7 @@ steps:
     sourceFolder: '$(Agent.TempDirectory)'
     contents: '*.png'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
+  condition: failed()
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish image assert errors.'

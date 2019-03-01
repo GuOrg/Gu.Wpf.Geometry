@@ -17,10 +17,14 @@ steps:
 - task: VSTest@2
   displayName: 'Test'
 
-- task: powershell@2
-  script: 'Get-ChildItem -Path "%TEMP%" -Include *.png | Copy-Item -Destination $Build.ArtifactStagingDirectory'
+- task: CopyFiles@2
   displayName: 'Stage image assert errors.'
-  condition: failed()
+  inputs:
+    SourceFolder: 'System.TempDirectory'
+    Contents: '*.png'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+   condition: failed()
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish image assert errors.'

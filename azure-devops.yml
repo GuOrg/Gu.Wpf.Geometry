@@ -20,7 +20,8 @@ steps:
 - task: CopyFiles@2
   displayName: 'Stage image assert errors.'
   inputs:
-    sourceFolder: '$(Agent.TempDirectory)'
+    sourceFolder: '$env:temp'
+    contents: '*.png'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   condition: failed()
 
@@ -29,3 +30,4 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'Images'
+  condition: failed()

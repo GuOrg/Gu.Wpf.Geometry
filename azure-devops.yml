@@ -17,8 +17,8 @@ steps:
 - task: VSTest@2
   displayName: 'Test'
 
-- powershell:
-  Get-ChildItem -Path "%TEMP%" -Include *.png | Copy-Item -Destination $Build.ArtifactStagingDirectory
+- task: powershell@2
+  script: 'Get-ChildItem -Path "%TEMP%" -Include *.png | Copy-Item -Destination $Build.ArtifactStagingDirectory'
   displayName: 'Stage image assert errors.'
   condition: failed()
 

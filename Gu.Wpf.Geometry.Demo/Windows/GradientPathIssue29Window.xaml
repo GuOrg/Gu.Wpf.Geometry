@@ -9,11 +9,16 @@
         Height="250"
         mc:Ignorable="d">
     <GroupBox Header="Path" Style="{StaticResource InvisibleGroupBoxStyle}">
-        <effects:GradientPath GradientMode="Parallel" StrokeThickness="10" Tolerance="0.01">
+        <effects:GradientPath GradientMode="Parallel"
+                              StrokeThickness="10"
+                              Tolerance="0.01">
             <effects:GradientPath.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="10,100">
-                        <ArcSegment Point="100,210" Size="100,100" IsLargeArc="True" SweepDirection="Clockwise"/>
+                        <ArcSegment IsLargeArc="True"
+                                    Point="100,210"
+                                    Size="100,100"
+                                    SweepDirection="Clockwise" />
                     </PathFigure>
                 </PathGeometry>
             </effects:GradientPath.Data>

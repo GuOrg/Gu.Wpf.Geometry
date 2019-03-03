@@ -212,7 +212,9 @@ namespace Gu.Wpf.Geometry
             }
 
             var flattened = this.Data.GetFlattenedPathGeometry(this.Tolerance, ToleranceType.Absolute);
-            this.figureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, this.StrokeThickness)).ToArray();
+            this.figureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, this.StrokeThickness))
+                                                     .Where(fg => fg.Lines.Any())
+                                                     .ToArray();
             this.OnGradientChanged();
         }
 

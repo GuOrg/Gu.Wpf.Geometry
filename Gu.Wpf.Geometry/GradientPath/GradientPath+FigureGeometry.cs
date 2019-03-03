@@ -87,14 +87,21 @@ namespace Gu.Wpf.Geometry
                     switch (segment)
                     {
                         case LineSegment lineSegment:
-                            lines.Add(new Line(sp, lineSegment.Point));
-                            sp = lineSegment.Point;
+                            if (sp != lineSegment.Point)
+                            {
+                                lines.Add(new Line(sp, lineSegment.Point));
+                                sp = lineSegment.Point;
+                            }
+
                             break;
                         case PolyLineSegment polyLineSegment:
                             foreach (var point in polyLineSegment.Points)
                             {
-                                lines.Add(new Line(sp, point));
-                                sp = point;
+                                if (sp != point)
+                                {
+                                    lines.Add(new Line(sp, point));
+                                    sp = point;
+                                }
                             }
 
                             break;

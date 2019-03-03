@@ -2,6 +2,7 @@ namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Media;
 
     public partial class GradientPath
@@ -25,7 +26,7 @@ namespace Gu.Wpf.Geometry
                 }
 
                 this.PathGeometries = pathGeometries;
-                this.TotalLength = figure.TotalLength();
+                this.TotalLength = this.Lines.Sum(x => x.Length);
                 this.Brushes = new Brush[this.Lines.Count];
             }
 

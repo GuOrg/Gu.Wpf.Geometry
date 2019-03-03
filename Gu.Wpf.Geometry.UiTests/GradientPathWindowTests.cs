@@ -12,17 +12,32 @@ namespace Gu.Wpf.Geometry.UiTests
         }
 
         [Test]
-        public void Renders()
+        public void RendersParallel()
         {
             if (Env.IsAppVeyor)
             {
                 return;
             }
 
-            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathWindow"))
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathParallelWindow"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual("GradientPath.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual("GradientPathParallel.png", window.FindGroupBox("Path"));
+            }
+        }
+
+        [Test]
+        public void RendersPerpendicular()
+        {
+            if (Env.IsAppVeyor)
+            {
+                return;
+            }
+
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathPerpendicularWindow"))
+            {
+                var window = app.MainWindow;
+                ImageAssert.AreEqual("GradientPathPerpendicular.png", window.FindGroupBox("Path"));
             }
         }
 

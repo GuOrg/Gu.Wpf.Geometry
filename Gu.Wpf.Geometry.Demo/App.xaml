@@ -10,7 +10,8 @@
     <!--<Application.StartupUri>Windows/BoxBalloonPlacementRectangleWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/PopupWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Windows/PopupWindow.xaml</Application.StartupUri>-->
-    <!--<Application.StartupUri>Windows/Issue28Window.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Windows/GradientPathIssue28Window.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Windows/GradientPathIssue29Window.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style x:Key="InvisibleGroupBoxStyle" TargetType="{x:Type GroupBox}">
             <Setter Property="Template">

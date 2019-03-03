@@ -98,9 +98,10 @@
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Auto 0.png" />
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Bottom 0.png" />
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Top 0.png" />
+    <EmbeddedResource Include="Images\GradientPathPerpendicular.png" />
     <EmbeddedResource Include="Images\GradientPathWithArcSegment.png" />
     <EmbeddedResource Include="Images\GradientPathArcSegmentLargeArc.png" />
-    <EmbeddedResource Include="Images\GradientPath.png" />
+    <EmbeddedResource Include="Images\GradientPathParallel.png" />
   </ItemGroup>
 
   <Import Project="..\.paket\Paket.Restore.targets" />

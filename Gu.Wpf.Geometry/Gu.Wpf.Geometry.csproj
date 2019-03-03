@@ -66,7 +66,6 @@
     <Compile Include="Internals\Constants.cs" />
     <Compile Include="GradientPath\GradientMode.cs" />
     <Compile Include="GradientPath\GradientPath+FigureGeometry.cs" />
-    <Compile Include="GradientPath\GradientPath+GradientGeometry.cs" />
     <Compile Include="GradientPath\GradientPath.cs" />
     <Compile Include="HorizontalPlacement.cs" />
     <Compile Include="Internals\Axis.cs" />

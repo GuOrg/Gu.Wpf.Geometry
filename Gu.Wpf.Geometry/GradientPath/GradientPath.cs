@@ -2,6 +2,7 @@
 namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -75,7 +76,7 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
-        private GradientGeometry gradientGeometry;
+        private IReadOnlyList<FigureGeometry> figureGeometries;
 
         public GradientPath()
         {
@@ -182,12 +183,12 @@ namespace Gu.Wpf.Geometry
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.gradientGeometry == null)
+            if (this.figureGeometries == null)
             {
                 return;
             }
 
-            foreach (var figure in this.gradientGeometry.FigureGeometries)
+            foreach (var figure in this.figureGeometries)
             {
                 for (var i = 0; i < figure.Lines.Count; i++)
                 {
@@ -206,22 +207,23 @@ namespace Gu.Wpf.Geometry
         {
             if (this.Data == null || this.StrokeThickness <= 0)
             {
-                this.gradientGeometry = null;
+                this.figureGeometries = null;
                 return;
             }
 
-            this.gradientGeometry = new GradientGeometry(this.Data, this.Tolerance, this.StrokeThickness);
+            var flattened = this.Data.GetFlattenedPathGeometry(this.Tolerance, ToleranceType.Absolute);
+            this.figureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, this.StrokeThickness)).ToArray();
             this.OnGradientChanged();
         }
 
         private void OnGradientChanged()
         {
-            if (this.gradientGeometry == null)
+            if (this.figureGeometries == null)
             {
                 return;
             }
 
-            foreach (var figure in this.gradientGeometry.FigureGeometries)
+            foreach (var figure in this.figureGeometries)
             {
                 var totalLength = this.GradientMode == GradientMode.Parallel ? figure.TotalLength : 0;
                 var accumLength = 0.0;

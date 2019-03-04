@@ -98,6 +98,14 @@
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Auto 0.png" />
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Bottom 0.png" />
     <EmbeddedResource Include="Images\EllipseBalloonWindow_Right Top 0.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Perpendicular_Flat.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Perpendicular_Round.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Perpendicular_Square.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Perpendicular_Triangle.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Parallel_Triangle.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Parallel_Square.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Parallel_Round.png" />
+    <EmbeddedResource Include="Images\GradientPathLineCap_Parallel_Flat.png" />
     <EmbeddedResource Include="Images\GradientPathPerpendicular.png" />
     <EmbeddedResource Include="Images\GradientPathWithArcSegment.png" />
     <EmbeddedResource Include="Images\GradientPathArcSegmentLargeArc.png" />

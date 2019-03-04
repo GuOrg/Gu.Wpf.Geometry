@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System.Windows.Media;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -68,6 +69,31 @@ namespace Gu.Wpf.Geometry.UiTests
             {
                 var window = app.MainWindow;
                 ImageAssert.AreEqual("GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+            }
+        }
+
+        [TestCase(GradientMode.Parallel, PenLineCap.Flat)]
+        [TestCase(GradientMode.Parallel, PenLineCap.Round)]
+        [TestCase(GradientMode.Parallel, PenLineCap.Square)]
+        [TestCase(GradientMode.Parallel, PenLineCap.Triangle)]
+        [TestCase(GradientMode.Perpendicular, PenLineCap.Flat)]
+        [TestCase(GradientMode.Perpendicular, PenLineCap.Round)]
+        [TestCase(GradientMode.Perpendicular, PenLineCap.Square)]
+        [TestCase(GradientMode.Perpendicular, PenLineCap.Triangle)]
+        public void LineCaps(GradientMode gradientMode, PenLineCap lineCap)
+        {
+            if (Env.IsAppVeyor)
+            {
+                return;
+            }
+
+            using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathLineCapsWindow"))
+            {
+                var window = app.MainWindow;
+                _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
+                _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
+
+                ImageAssert.AreEqual($"GradientPathLineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
             }
         }
     }

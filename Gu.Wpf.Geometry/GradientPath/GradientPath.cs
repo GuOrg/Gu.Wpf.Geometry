@@ -76,8 +76,8 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
-        private IReadOnlyList<FigureGeometry> figureGeometries;
         private readonly Pen pen = new Pen();
+        private IReadOnlyList<FigureGeometry> figureGeometries;
 
         public GradientPath()
         {
@@ -165,8 +165,7 @@ namespace Gu.Wpf.Geometry
             this.pen.SetCurrentValue(Pen.ThicknessProperty, this.StrokeThickness);
             this.pen.SetCurrentValue(Pen.StartLineCapProperty, this.StrokeStartLineCap);
             this.pen.SetCurrentValue(Pen.EndLineCapProperty, this.StrokeEndLineCap);
-            var rect = this.Data.GetRenderBounds(this.pen);
-            return new Size(rect.Right, rect.Bottom);
+            return this.Data.GetRenderBounds(this.pen).Size;
         }
 
         protected override void OnRender(DrawingContext dc)

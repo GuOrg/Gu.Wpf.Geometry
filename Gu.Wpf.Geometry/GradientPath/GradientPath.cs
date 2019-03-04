@@ -131,10 +131,7 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(ToleranceProperty, value);
         }
 
-        internal static LinearGradientBrush CreatePerpendicularBrush(
-            GradientStopCollection gradientStops,
-            double strokeThickness,
-            Line line)
+        internal static LinearGradientBrush CreatePerpendicularBrush(GradientStopCollection gradientStops, double strokeThickness, Line line)
         {
             var mp = line.MidPoint;
             var v = line.PerpendicularDirection;
@@ -146,20 +143,15 @@ namespace Gu.Wpf.Geometry
             };
         }
 
-        internal static LinearGradientBrush CreateParallelBrush(
-            GradientStopCollection gradientStops,
-            double accumLength,
-            double totalLength,
-            Line line)
+        internal static LinearGradientBrush CreateParallelBrush(GradientStopCollection gradientStops, double accumLength, double totalLength, Line line)
         {
             var sp = line.StartPoint - accumLength * line.Direction;
             var ep = sp + totalLength * line.Direction;
 
-            var brush = new LinearGradientBrush(gradientStops, sp, ep)
+            return new LinearGradientBrush(gradientStops, sp, ep)
             {
                 MappingMode = BrushMappingMode.Absolute,
             };
-            return brush;
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -183,7 +175,8 @@ namespace Gu.Wpf.Geometry
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.figureGeometries == null)
+            if (this.figureGeometries == null ||
+                this.figureGeometries.Count == 0)
             {
                 return;
             }
@@ -197,7 +190,6 @@ namespace Gu.Wpf.Geometry
                     dc.DrawGeometry(brush, null, patch);
                 }
 
-                // Use that to draw the start line cap
                 this.DrawLineCap(dc, figure.Lines.First(), this.StrokeStartLineCap, PenLineCap.Flat);
                 this.DrawLineCap(dc, figure.Lines.Last(), PenLineCap.Flat, this.StrokeEndLineCap);
             }

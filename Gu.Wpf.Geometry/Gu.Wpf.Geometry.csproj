@@ -56,6 +56,7 @@
     <Compile Include="Effects\HslWheelEffect.cs" />
     <Compile Include="Effects\HsvWheelEffect.cs" />
     <Compile Include="Effects\MaskEffect.cs" />
+    <Compile Include="GradientPath\GradientPath+FlattenedSegment.cs" />
     <Compile Include="Internals\Binding\BindingHelper.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomLeftConverter.cs" />
     <Compile Include="Internals\Binding\CornerRadiusBottomRightConverter.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\Constants.cs" />
     <Compile Include="GradientPath\GradientMode.cs" />
-    <Compile Include="GradientPath\GradientPath+FigureGeometry.cs" />
+    <Compile Include="GradientPath\GradientPath+FlattenedFigure.cs" />
     <Compile Include="GradientPath\GradientPath.cs" />
     <Compile Include="HorizontalPlacement.cs" />
     <Compile Include="Internals\Axis.cs" />

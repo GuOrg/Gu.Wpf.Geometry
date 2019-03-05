@@ -79,7 +79,7 @@ namespace Gu.Wpf.Geometry
                 (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         private readonly Pen pen = new Pen();
-        private IReadOnlyList<FigureGeometry> figureGeometries;
+        private IReadOnlyList<FlattenedFigure> flattenedFigures;
 
         public GradientPath()
         {
@@ -172,23 +172,21 @@ namespace Gu.Wpf.Geometry
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.figureGeometries == null ||
-                this.figureGeometries.Count == 0)
+            if (this.flattenedFigures == null ||
+                this.flattenedFigures.Count == 0)
             {
                 return;
             }
 
-            foreach (var figure in this.figureGeometries)
+            foreach (var figure in this.flattenedFigures)
             {
-                for (var i = 0; i < figure.Lines.Count; i++)
+                foreach (var segment in figure.Segments)
                 {
-                    var patch = figure.PathGeometries[i];
-                    var brush = figure.Brushes[i];
-                    dc.DrawGeometry(brush, null, patch);
+                    dc.DrawGeometry(segment.Brush, null, segment.Geometry);
                 }
 
-                this.DrawLineCap(dc, figure.Lines.First(), this.StrokeStartLineCap, PenLineCap.Flat);
-                this.DrawLineCap(dc, figure.Lines.Last(), PenLineCap.Flat, this.StrokeEndLineCap);
+                this.DrawLineCap(dc, figure.Segments.First().Line, this.StrokeStartLineCap, PenLineCap.Flat);
+                this.DrawLineCap(dc, figure.Segments.Last().Line, PenLineCap.Flat, this.StrokeEndLineCap);
             }
         }
 
@@ -196,34 +194,34 @@ namespace Gu.Wpf.Geometry
         {
             if (this.Data == null || this.StrokeThickness <= 0)
             {
-                this.figureGeometries = null;
+                this.flattenedFigures = null;
                 return;
             }
 
             var flattened = this.Data.GetFlattenedPathGeometry(this.Tolerance, ToleranceType.Absolute);
-            this.figureGeometries = flattened.Figures.Select(x => new FigureGeometry(x, this.StrokeThickness))
-                                                     .Where(fg => fg.Lines.Any())
+            this.flattenedFigures = flattened.Figures.Select(x => new FlattenedFigure(x, this.StrokeThickness))
+                                                     .Where(fg => fg.Segments.Any())
                                                      .ToArray();
             this.OnGradientChanged();
         }
 
         private void OnGradientChanged()
         {
-            if (this.figureGeometries == null ||
+            if (this.flattenedFigures == null ||
                 this.GradientStops == null)
             {
                 return;
             }
 
-            foreach (var figure in this.figureGeometries)
+            foreach (var figure in this.flattenedFigures)
             {
                 var totalLength = this.GradientMode == GradientMode.Parallel ? figure.TotalLength : 0;
                 var accumLength = 0.0;
 
-                for (var i = 0; i < figure.Lines.Count; i++)
+                foreach (var segment in figure.Segments)
                 {
-                    var line = figure.Lines[i];
-                    figure.Brushes[i] = this.CreateBrush(line, totalLength, accumLength);
+                    var line = segment.Line;
+                    segment.Brush = this.CreateBrush(line, totalLength, accumLength);
                     accumLength += line.Length;
                 }
             }

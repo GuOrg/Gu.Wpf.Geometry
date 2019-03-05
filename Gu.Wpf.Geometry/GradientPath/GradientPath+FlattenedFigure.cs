@@ -7,32 +7,28 @@ namespace Gu.Wpf.Geometry
 
     public partial class GradientPath
     {
-        internal class FigureGeometry
+        internal class FlattenedFigure
         {
-            public readonly IReadOnlyList<Line> Lines;
-            public readonly PathGeometry[] PathGeometries;
+            public readonly IReadOnlyList<FlattenedSegment> Segments;
 
-            public FigureGeometry(PathFigure figure, double strokeThickness)
+            public FlattenedFigure(PathFigure figure, double strokeThickness)
             {
-                this.Lines = GetLines(figure);
-                var offsetLines1 = CreateOffsetLines(this.Lines, -strokeThickness / 2);
-                var offsetLines2 = CreateOffsetLines(this.Lines, strokeThickness / 2);
-                var pathGeometries = new PathGeometry[this.Lines.Count];
-                for (var i = 0; i < this.Lines.Count; i++)
+                var lines = GetLines(figure);
+                var offsetLines1 = CreateOffsetLines(lines, -strokeThickness / 2);
+                var offsetLines2 = CreateOffsetLines(lines, strokeThickness / 2);
+                var segments = new FlattenedSegment[lines.Count];
+                for (var i = 0; i < segments.Length; i++)
                 {
                     var o1 = offsetLines1[i];
                     var o2 = offsetLines2[i];
-                    pathGeometries[i] = CreatePath(o1, o2);
+                    segments[i] = new FlattenedSegment(lines[i], CreatePath(o1, o2));
                 }
 
-                this.PathGeometries = pathGeometries;
-                this.TotalLength = this.Lines.Sum(x => x.Length);
-                this.Brushes = new Brush[this.Lines.Count];
+                this.Segments = segments;
+                this.TotalLength = this.Segments.Sum(x => x.Line.Length);
             }
 
             public double TotalLength { get; }
-
-            public Brush[] Brushes { get; }
 
             internal static IReadOnlyList<Line> CreateOffsetLines(IReadOnlyList<Line> lines, double offset)
             {

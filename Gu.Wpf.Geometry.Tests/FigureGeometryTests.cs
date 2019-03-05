@@ -12,7 +12,7 @@
         public void CreateOffsetLines(string l1, string l2, double offset, string el1S, string el2S)
         {
             var lines = new[] { l1.AsLine(), l2.AsLine() };
-            var actual = GradientPath.FigureGeometry.CreateOffsetLines(lines, offset);
+            var actual = GradientPath.FlattenedFigure.CreateOffsetLines(lines, offset);
             Assert.AreEqual(el1S, actual[0].ToString("F0"));
             Assert.AreEqual(el2S, actual[1].ToString("F0"));
         }

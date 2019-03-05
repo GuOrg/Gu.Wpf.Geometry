@@ -11,13 +11,45 @@ namespace Gu.Wpf.Geometry
         {
             public readonly IReadOnlyList<FlattenedSegment> Segments;
 
-            public FlattenedFigure(PathFigure figure, double strokeThickness)
+            public FlattenedFigure(PathFigure figure, PenLineCap startLineCap, PenLineCap endLineCap, double strokeThickness)
             {
                 var lines = GetLines(figure);
+                if (!lines.Any())
+                {
+                    this.Segments = new FlattenedSegment[0];
+                    return;
+                }
+
                 var segments = new List<FlattenedSegment>(lines.Count);
+                switch (startLineCap)
+                {
+                    case PenLineCap.Flat:
+                        break;
+                    case PenLineCap.Square:
+                    case PenLineCap.Round:
+                    case PenLineCap.Triangle:
+                        segments.Add(FlattenedSegment.CreateStartLineCap(lines[0], startLineCap, strokeThickness));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(startLineCap), startLineCap, "Unknown line cap.");
+                }
+
                 for (int i = 0; i < lines.Count; i++)
                 {
                     segments.Add(FlattenedSegment.Create(lines.ElementAtOrDefault(i - 1), lines[i], lines.ElementAtOrDefault(i + 1), strokeThickness));
+                }
+
+                switch (endLineCap)
+                {
+                    case PenLineCap.Flat:
+                        break;
+                    case PenLineCap.Square:
+                    case PenLineCap.Round:
+                    case PenLineCap.Triangle:
+                        segments.Add(FlattenedSegment.CreateEndLineCap(lines[lines.Count - 1], endLineCap, strokeThickness));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(startLineCap), startLineCap, "Unknown line cap.");
                 }
 
                 this.Segments = segments;

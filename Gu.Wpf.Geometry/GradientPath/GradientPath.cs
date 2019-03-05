@@ -184,9 +184,6 @@ namespace Gu.Wpf.Geometry
                 {
                     dc.DrawGeometry(segment.Brush, null, segment.Geometry);
                 }
-
-                this.DrawLineCap(dc, figure.Segments.First().Line, this.StrokeStartLineCap, PenLineCap.Flat);
-                this.DrawLineCap(dc, figure.Segments.Last().Line, PenLineCap.Flat, this.StrokeEndLineCap);
             }
         }
 
@@ -199,7 +196,7 @@ namespace Gu.Wpf.Geometry
             }
 
             var flattened = this.Data.GetFlattenedPathGeometry(this.Tolerance, ToleranceType.Absolute);
-            this.flattenedFigures = flattened.Figures.Select(x => new FlattenedFigure(x, this.StrokeThickness))
+            this.flattenedFigures = flattened.Figures.Select(x => new FlattenedFigure(x, this.StrokeStartLineCap, this.StrokeEndLineCap, this.StrokeThickness))
                                                      .Where(fg => fg.Segments.Any())
                                                      .ToArray();
             this.OnGradientChanged();
@@ -234,54 +231,6 @@ namespace Gu.Wpf.Geometry
                 : CreatePerpendicularBrush(this.GradientStops, this.StrokeThickness, line);
             brush.SetCurrentValue(GradientBrush.ColorInterpolationModeProperty, this.ColorInterpolationMode);
             return brush;
-        }
-
-        private void DrawLineCap(
-            DrawingContext dc,
-            Line line,
-            PenLineCap startLineCap,
-            PenLineCap endLineCap)
-        {
-            if (startLineCap == PenLineCap.Flat && endLineCap == PenLineCap.Flat)
-            {
-                return;
-            }
-
-            var point = endLineCap == PenLineCap.Flat ? line.StartPoint : line.EndPoint;
-
-            // Construct really tiny horizontal line
-            var angle = Math.Atan2(line.Direction.Y, line.Direction.X);
-            var rotate = new RotateTransform(-180 * angle / Math.PI, point.X, point.Y);
-            var point1 = rotate.Transform(point);
-            var point2 = rotate.Transform(point + 0.25 * line.Direction);
-
-            // Construct pen for that line
-            var pen = new Pen() { Thickness = this.StrokeThickness, StartLineCap = startLineCap, EndLineCap = endLineCap };
-
-            // Why don't I just call dc.DrawLine at this point? Well, to avoid gaps between
-            //  the tetragons, I had to draw them with an 'outlinePenWidth' pen based on the
-            //  same brush as the fill. If I just called dc.DrawLine here, the caps would
-            //  look a little smaller than the line, so....
-            var lineGeo = new LineGeometry(point1, point2);
-            var pathGeo = lineGeo.GetWidenedPathGeometry(pen);
-            Brush brush;
-
-            if (this.GradientMode == GradientMode.Perpendicular)
-            {
-                brush = new LinearGradientBrush(this.GradientStops, new Point(0, 0), new Point(0, 1));
-                ((LinearGradientBrush)brush).SetCurrentValue(GradientBrush.ColorInterpolationModeProperty, this.ColorInterpolationMode);
-            }
-            else
-            {
-                double offset = endLineCap == PenLineCap.Flat ? 0 : 1;
-                brush = new SolidColorBrush(this.GradientStops.GetColorAt(offset, this.ColorInterpolationMode));
-            }
-
-            pen = new Pen(brush, 0);
-            rotate.Angle = 180 * angle / Math.PI;
-            dc.PushTransform(rotate);
-            dc.DrawGeometry(brush, pen, pathGeo);
-            dc.Pop();
         }
     }
 }

@@ -150,6 +150,7 @@ namespace Gu.Wpf.Geometry
                 var line = isStart
                     ? new Line(center.StartPoint - radius * center.Direction, center.StartPoint)
                     : new Line(center.EndPoint, center.EndPoint + radius * center.Direction);
+
                 var geometry = new PathGeometry
                 {
                     Figures =
@@ -169,9 +170,7 @@ namespace Gu.Wpf.Geometry
                                     Points =
                                     {
                                         isStart ? line.StartPoint : line.EndPoint,
-                                        isStart
-                                            ? line.EndPoint + radius * line.Direction.Rotate(90)
-                                            : line.StartPoint + radius * line.Direction.Rotate(-90)
+                                        isStart ? line.EndPoint + radius * line.Direction.Rotate(90) : line.StartPoint + radius * line.Direction.Rotate(-90),
                                     },
                                 },
                             },

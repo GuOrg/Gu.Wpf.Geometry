@@ -49,7 +49,7 @@ namespace Gu.Wpf.Geometry
                         segments.Add(FlattenedSegment.CreateEndLineCap(lines[lines.Count - 1], endLineCap, strokeThickness));
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException(nameof(startLineCap), startLineCap, "Unknown line cap.");
+                        throw new ArgumentOutOfRangeException(nameof(endLineCap), endLineCap, "Unknown line cap.");
                 }
 
                 this.Segments = segments;

@@ -10,6 +10,7 @@ namespace Gu.Wpf.Geometry
         internal class FlattenedFigure
         {
             public readonly IReadOnlyList<FlattenedSegment> Segments;
+            public readonly double TotalLength;
 
             public FlattenedFigure(PathFigure figure, PenLineCap startLineCap, PenLineCap endLineCap, double strokeThickness)
             {
@@ -55,8 +56,6 @@ namespace Gu.Wpf.Geometry
                 this.Segments = segments;
                 this.TotalLength = this.Segments.Sum(x => x.Line.Length);
             }
-
-            public double TotalLength { get; }
 
             private static IReadOnlyList<Line> GetLines(PathFigure figure)
             {

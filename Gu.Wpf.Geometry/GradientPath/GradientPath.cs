@@ -57,14 +57,16 @@ namespace Gu.Wpf.Geometry
                 typeof(GradientPath),
                 new FrameworkPropertyMetadata(
                     PenLineCap.Flat,
-                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                    (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         /// <summary>Identifies the <see cref="StrokeEndLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeEndLineCapProperty = Shape.StrokeEndLineCapProperty.AddOwner(
             typeof(GradientPath),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         /// <summary>Identifies the <see cref="Tolerance"/> dependency property.</summary>
         public static readonly DependencyProperty ToleranceProperty = DependencyProperty.Register(
@@ -207,7 +209,8 @@ namespace Gu.Wpf.Geometry
 
         private void OnGradientChanged()
         {
-            if (this.figureGeometries == null)
+            if (this.figureGeometries == null ||
+                this.GradientStops == null)
             {
                 return;
             }

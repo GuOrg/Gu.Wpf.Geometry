@@ -10,8 +10,7 @@
         mc:Ignorable="d">
     <GroupBox Header="Path" Style="{StaticResource InvisibleGroupBoxStyle}">
         <effects:GradientPath GradientMode="Parallel"
-                              StrokeThickness="10"
-                              UseLayoutRounding="True">
+                              StrokeThickness="10">
             <effects:GradientPath.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="35,400">

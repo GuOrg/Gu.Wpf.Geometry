@@ -14,14 +14,10 @@ namespace Gu.Wpf.Geometry
             public FlattenedFigure(PathFigure figure, double strokeThickness)
             {
                 var lines = GetLines(figure);
-                var offsetLines1 = CreateOffsetLines(lines, -strokeThickness / 2);
-                var offsetLines2 = CreateOffsetLines(lines, strokeThickness / 2);
-                var segments = new FlattenedSegment[lines.Count];
-                for (var i = 0; i < segments.Length; i++)
+                var segments = new List<FlattenedSegment>(lines.Count);
+                for (int i = 0; i < lines.Count; i++)
                 {
-                    var o1 = offsetLines1[i];
-                    var o2 = offsetLines2[i];
-                    segments[i] = new FlattenedSegment(lines[i], CreatePath(o1, o2));
+                    segments.Add(FlattenedSegment.Create(lines.ElementAtOrDefault(i - 1), lines[i], lines.ElementAtOrDefault(i + 1), strokeThickness));
                 }
 
                 this.Segments = segments;
@@ -29,50 +25,6 @@ namespace Gu.Wpf.Geometry
             }
 
             public double TotalLength { get; }
-
-            internal static IReadOnlyList<Line> CreateOffsetLines(IReadOnlyList<Line> lines, double offset)
-            {
-                var result = new Line[lines.Count];
-                for (var i = 0; i < lines.Count; i++)
-                {
-                    var line = lines[i].Offset(offset);
-                    if (i > 0)
-                    {
-                        var previous = result[i - 1];
-                        var extended = previous.TrimOrExtendEndWith(line);
-                        if (extended == null)
-                        {
-                            continue;
-                        }
-
-                        previous = extended.Value;
-                        result[i - 1] = previous;
-                        line = new Line(previous.EndPoint, line.EndPoint);
-                    }
-
-                    result[i] = line;
-                }
-
-                return result;
-            }
-
-            private static PathGeometry CreatePath(Line l1, Line l2)
-            {
-                var geometry = new PathGeometry();
-                var figure = new PathFigure
-                {
-                    StartPoint = l1.StartPoint,
-                    IsClosed = true,
-                    IsFilled = true,
-                };
-                var polyLineSegment = new PolyLineSegment();
-                polyLineSegment.Points.Add(l1.EndPoint);
-                polyLineSegment.Points.Add(l2.EndPoint);
-                polyLineSegment.Points.Add(l2.StartPoint);
-                figure.Segments.Add(polyLineSegment);
-                geometry.Figures.Add(figure);
-                return geometry;
-            }
 
             private static IReadOnlyList<Line> GetLines(PathFigure figure)
             {

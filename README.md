@@ -397,11 +397,11 @@ Desaturate an image, brush or WPF controls. It has only one property `Strength` 
     <Grid>
         <Image Source="Images/Hustler.jpg">
             <Image.Effect>
-                <effects:DesaturateEffect Strength="{Binding ElementName=StrangthSlider, Path=Value}" />
+                <effects:DesaturateEffect Strength="{Binding ElementName=Slider, Path=Value}" />
             </Image.Effect>
         </Image>
         <Slider
-            x:Name="StrangthSlider"
+            x:Name="Slider"
             VerticalAlignment="Bottom"
             Maximum="1"
             Minimum="0" />

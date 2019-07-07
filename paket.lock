@@ -11,7 +11,7 @@ NUGET
     Microsoft.CodeAnalysis.PublicApiAnalyzers (2.9.3)
     Microsoft.NETCore.Platforms (2.2.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net10) (>= netstandard1.5) (< netstandard2.0) (< win8) (< wpa81) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
     Microsoft.NETCore.Targets (2.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net10) (>= netstandard1.5) (< netstandard2.0) (< win8) (< wpa81) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net10) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net10) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net10) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net10) (>= netstandard1.0) (< portable-net45+win8+wp8+wpa81))
-    PropertyChangedAnalyzers (2.7.1)
+    PropertyChangedAnalyzers (2.7.2)
     ReflectionAnalyzers (0.1.20-dev)
     StyleCop.Analyzers (1.1.118)
     System.Runtime (4.3.1) - restriction: && (< net10) (>= netstandard1.0) (< netstandard2.0)

@@ -229,6 +229,45 @@
     <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\Microsoft.CodeAnalysis.PublicApiAnalyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\cs\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\de\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\es\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\fr\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\it\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\ja\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\ko\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\pl\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\pt-BR\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\ru\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\tr\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\zh-Hans\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\analyzers\Microsoft.CodeAnalysis.PublicApiAnalyzers\analyzers\dotnet\zh-Hant\Microsoft.CodeAnalysis.PublicApiAnalyzers.resources.dll">
+      <Paket>True</Paket>
+    </Analyzer>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\analyzers\PropertyChangedAnalyzers\analyzers\dotnet\cs\Gu.Roslyn.Extensions.dll">

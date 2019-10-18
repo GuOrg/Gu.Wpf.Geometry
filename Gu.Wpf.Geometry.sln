@@ -1,23 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{691FDBA9-F293-4FC4-AE73-9031638BDEE5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{691FDBA9-F293-4FC4-AE73-9031638BDEE5}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		appveyor.yml = appveyor.yml
-		azure-devops.yml = azure-devops.yml
-		paket.dependencies = paket.dependencies
-		paket.lock = paket.lock
-		.paket\paket.targets = .paket\paket.targets
-		.paket\Readme.paket.md = .paket\Readme.paket.md
+		azure-pipelines.yml = azure-pipelines.yml
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry", "Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj", "{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Geometry", "Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj", "{A9CBADF5-65F8-4A81-858C-EA0CDFEB2E99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Geometry.Demo", "Gu.Wpf.Geometry.Demo\Gu.Wpf.Geometry.Demo.csproj", "{043391BE-C7A2-4412-9361-8A2023053BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Geometry.Demo", "Gu.Wpf.Geometry.Demo\Gu.Wpf.Geometry.Demo.csproj", "{043391BE-C7A2-4412-9361-8A2023053BAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Geometry.Tests", "Gu.Wpf.Geometry.Tests\Gu.Wpf.Geometry.Tests.csproj", "{A11832B9-3174-4066-83F0-6C0D4478345D}"
 EndProject

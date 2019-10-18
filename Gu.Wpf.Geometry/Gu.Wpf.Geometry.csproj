@@ -37,27 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Effects\AngularGradientEffect.ps">
-      <DependentUpon>AngularGradientEffect.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\DesaturateEffect.ps">
-      <DependentUpon>DesaturateEffect.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\FadeEffect.ps">
-      <DependentUpon>FadeEffect.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\HslWheelEffect.ps">
-      <DependentUpon>HslWheelEffect.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\HsvWheelEffect.ps">
-      <DependentUpon>HsvWheelEffect.cs</DependentUpon>
-    </Resource>
-    <Resource Include="Effects\MaskEffect.ps">
-      <DependentUpon>MaskEffect.cs</DependentUpon>
-    </Resource>
-    <Content Include="Effects\Mask.fx">
-      <DependentUpon>MaskEffect.cs</DependentUpon>
-    </Content>
+    <Resource Include="Effects\AngularGradientEffect.ps" />
+    <Resource Include="Effects\DesaturateEffect.ps" />
+    <Resource Include="Effects\FadeEffect.ps" />
+    <Resource Include="Effects\HslWheelEffect.ps"/>
+    <Resource Include="Effects\HsvWheelEffect.ps"/>
+    <Resource Include="Effects\MaskEffect.ps"/>
   </ItemGroup>
 
   <ItemGroup>

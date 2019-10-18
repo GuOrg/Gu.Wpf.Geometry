@@ -1,10 +1,10 @@
 ﻿type project
-tags xaml wpf Balloon Gradient
-projectUrl https://github.com/JohanLarsson/Gu.Wpf.Geometry
+tags 
+projectUrl 
 licenseUrl http://opensource.org/licenses/MIT
 
 releasenotes
-  BUGFIX: GradientPath with IsLargeArc=true
+  
 
 excludedgroups
   Analyzers

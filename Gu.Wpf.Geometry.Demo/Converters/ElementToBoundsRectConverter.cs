@@ -14,15 +14,16 @@ namespace Gu.Wpf.Geometry.Demo.Converters
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var element = (FrameworkElement)value;
-            DependencyObject parent = element.Parent;
+            var parent = element?.Parent as FrameworkElement;
             while (parent != null)
             {
                 if (parent.GetType() == this.AncestorType)
                 {
-                    return element.TransformToVisual((Visual)parent).TransformBounds(new Rect(element.DesiredSize));
+                    return element.TransformToVisual(parent)
+                                  .TransformBounds(new Rect(element.DesiredSize));
                 }
 
-                parent = element.Parent;
+                parent = parent.Parent as FrameworkElement;
             }
 
             throw new InvalidOperationException("Did not find parent.");

@@ -31,3 +31,17 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+  
+- powershell: Get-ChildItem -Path $env:TEMP\* -Include *.png | Copy-Item -Destination $env:ARTIFACTS_STAGING_DIRECTORY
+  displayName: 'Stage image assert errors.'
+  condition: failed()
+  env:
+    ARTIFACTS_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish image assert errors.'
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'Images'
+  condition: failed()
+  

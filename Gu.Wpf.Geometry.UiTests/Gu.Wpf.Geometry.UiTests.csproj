@@ -99,7 +99,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gu.Wpf.Geometry.Demo\Gu.Wpf.Geometry.Demo.csproj" />
     <ProjectReference Include="..\Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj" />
   </ItemGroup>
 

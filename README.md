@@ -3,7 +3,7 @@
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/GuOrg/Gu.Wpf.Geometry?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![NuGet](https://img.shields.io/nuget/v/Gu.Wpf.Geometry.svg)](https://www.nuget.org/packages/Gu.Wpf.Geometry/)
 [![Build status](https://ci.appveyor.com/api/projects/status/1nk9elw89ker9fjs?svg=true)](https://ci.appveyor.com/project/JohanLarsson/gu-wpf-geometry)
-[![Build Status](https://dev.azure.com/johan-larsson/Gu.Wpf.Geometry/_apis/build/status/Gu.Wpf.Geometry-CI?branchName=master)](https://dev.azure.com/johan-larsson/Gu.Wpf.Geometry/_build/latest?definitionId=12&branchName=master)
+[![Build Status](https://dev.azure.com/guorg/Gu.Wpf.Geometry/_apis/build/status/GuOrg.Gu.Wpf.Geometry?branchName=master)](https://dev.azure.com/guorg/Gu.Wpf.Geometry/_build/latest?definitionId=6&branchName=master)
 
 Small library with WPF geometries and shaders.
 

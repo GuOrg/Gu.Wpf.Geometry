@@ -6,7 +6,11 @@
         Title="AngularGradientWindow"
         Padding="0"
         BorderThickness="0"
+        Left="200"
         SizeToContent="WidthAndHeight"
+        Top="200"
+        UseLayoutRounding="True"
+        WindowStartupLocation="Manual"
         mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>

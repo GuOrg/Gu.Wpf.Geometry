@@ -2,11 +2,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:effects="http://gu.se/Geometry"
-        xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo.Windows"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Issue28Window"
         Width="900"
         Height="450"
+        Left="200"
+        Top="200"
+        UseLayoutRounding="True"
+        WindowStartupLocation="Manual"
         mc:Ignorable="d">
     <GroupBox Header="Path" Style="{StaticResource InvisibleGroupBoxStyle}">
         <effects:GradientPath GradientMode="Parallel" StrokeThickness="10">

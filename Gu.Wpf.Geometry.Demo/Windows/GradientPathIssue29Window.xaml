@@ -7,6 +7,10 @@
         Title="Issue28Window"
         Width="250"
         Height="250"
+        Left="200"
+        Top="200"
+        UseLayoutRounding="True"
+        WindowStartupLocation="Manual"
         mc:Ignorable="d">
     <GroupBox Header="Path" Style="{StaticResource InvisibleGroupBoxStyle}">
         <effects:GradientPath GradientMode="Parallel"

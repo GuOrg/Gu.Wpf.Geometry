@@ -1,16 +1,16 @@
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:demo="clr-namespace:Gu.Wpf.Geometry.Demo"
         xmlns:effects="http://gu.se/Geometry"
-        xmlns:local="clr-namespace:Gu.Wpf.Geometry.Demo.Windows"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="BoxBallonWindow"
+        Left="200"
         SizeToContent="WidthAndHeight"
+        Top="200"
+        UseLayoutRounding="True"
+        WindowStartupLocation="Manual"
         mc:Ignorable="d">
-    <Canvas Width="400"
-            Height="400"
-            UseLayoutRounding="True">
+    <Canvas Width="400" Height="400">
         <Grid Width="400" Height="400">
             <Grid.RowDefinitions>
                 <RowDefinition />

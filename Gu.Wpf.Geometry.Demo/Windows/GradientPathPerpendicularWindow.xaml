@@ -7,11 +7,14 @@
         Title="Issue28Window"
         Width="900"
         Height="450"
+        Left="200"
+        Top="200"
+        UseLayoutRounding="True"
+        WindowStartupLocation="Manual"
         mc:Ignorable="d">
     <GroupBox Header="Path" Style="{StaticResource InvisibleGroupBoxStyle}">
         <effects:GradientPath GradientMode="Perpendicular"
-                              StrokeThickness="10"
-                              UseLayoutRounding="True">
+                              StrokeThickness="10">
             <effects:GradientPath.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="35,400">

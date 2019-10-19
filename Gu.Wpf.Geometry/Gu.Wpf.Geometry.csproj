@@ -1,6 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <UseWpf>true</UseWpf>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -23,26 +25,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationCore" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationFramework" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System.Xaml" />
+    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="WindowsBase" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Effects\AngularGradientEffect.ps" />
     <Resource Include="Effects\DesaturateEffect.ps" />
     <Resource Include="Effects\FadeEffect.ps" />
-    <Resource Include="Effects\HslWheelEffect.ps"/>
-    <Resource Include="Effects\HsvWheelEffect.ps"/>
-    <Resource Include="Effects\MaskEffect.ps"/>
+    <Resource Include="Effects\HslWheelEffect.ps" />
+    <Resource Include="Effects\HsvWheelEffect.ps" />
+    <Resource Include="Effects\MaskEffect.ps" />
   </ItemGroup>
 
   <ItemGroup>

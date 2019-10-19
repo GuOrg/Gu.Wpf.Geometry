@@ -15,6 +15,7 @@
     <!--<Application.StartupUri>Windows/GradientPathLineCapsWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style x:Key="InvisibleGroupBoxStyle" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GroupBox}">

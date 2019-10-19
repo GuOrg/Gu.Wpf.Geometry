@@ -11,56 +11,31 @@
         UseLayoutRounding="True"
         WindowStartupLocation="Manual"
         mc:Ignorable="d">
-    <Canvas Width="400" Height="400">
-        <Grid Width="400" Height="400">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <GroupBox x:Name="Render"
-                      Grid.Row="0"
-                      Grid.RowSpan="3"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="3"
-                      BorderThickness="0"
-                      Style="{StaticResource InvisibleGroupBoxStyle}" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Name="Render"
+                  Style="{StaticResource InvisibleGroupBoxStyle}" >
+            <Grid Width="300" Height="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-            <ListBox x:Name="Placements"
-                     Grid.Row="0"
-                     Grid.RowSpan="3"
-                     Grid.Column="3"
-                     SelectedIndex="0">
-                <effects:PlacementOptions>Auto</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto 5</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto -5</effects:PlacementOptions>
-                <effects:PlacementOptions>Center</effects:PlacementOptions>
-                <effects:PlacementOptions>Center 5</effects:PlacementOptions>
-                <effects:PlacementOptions>Center -5</effects:PlacementOptions>
-                <effects:PlacementOptions>Top Left</effects:PlacementOptions>
-                <effects:PlacementOptions>Top Center</effects:PlacementOptions>
-                <effects:PlacementOptions>Top Right</effects:PlacementOptions>
-                <effects:PlacementOptions>Bottom Left</effects:PlacementOptions>
-                <effects:PlacementOptions>Bottom Center</effects:PlacementOptions>
-                <effects:PlacementOptions>Bottom Right</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto Center</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto Left</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto Right</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto Top</effects:PlacementOptions>
-                <effects:PlacementOptions>Auto Bottom</effects:PlacementOptions>
-            </ListBox>
-            <Rectangle Grid.Row="1"
+                <Rectangle Grid.Row="1"
                        Grid.Column="1"
                        Stroke="Yellow"
                        StrokeThickness="4" />
 
-            <effects:BoxBalloon Grid.Row="1"
+                <effects:BoxBalloon Grid.Row="1"
                                 Grid.Column="1"
                                 ConnectorAngle="45"
                                 ConnectorOffset="-25,-5"
@@ -68,7 +43,7 @@
                                 Stroke="CornflowerBlue"
                                 StrokeThickness="4" />
 
-            <effects:BoxBalloon Grid.Row="1"
+                <effects:BoxBalloon Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="6"
                                 ConnectorAngle="45"
@@ -81,12 +56,42 @@
                                                                                          AncestorType={x:Type Canvas}}}"
                                 Stroke="HotPink"
                                 StrokeThickness="4" />
-        </Grid>
-        <Rectangle x:Name="Target"
-                   Canvas.Left="100"
-                   Canvas.Top="50"
-                   Width="100"
-                   Height="10"
-                   Fill="Gainsboro" />
-    </Canvas>
+
+                <Canvas Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3">
+
+                    <Rectangle x:Name="Target"
+                           Canvas.Left="100"
+                           Canvas.Top="50"
+                           Width="100"
+                           Height="10"
+                           Fill="Gainsboro" />
+                </Canvas>
+            </Grid>
+        </GroupBox>
+
+        <ListBox x:Name="Placements"
+                 Grid.Column="1"
+                 SelectedIndex="0">
+            <effects:PlacementOptions>Auto</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto 5</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto -5</effects:PlacementOptions>
+            <effects:PlacementOptions>Center</effects:PlacementOptions>
+            <effects:PlacementOptions>Center 5</effects:PlacementOptions>
+            <effects:PlacementOptions>Center -5</effects:PlacementOptions>
+            <effects:PlacementOptions>Top Left</effects:PlacementOptions>
+            <effects:PlacementOptions>Top Center</effects:PlacementOptions>
+            <effects:PlacementOptions>Top Right</effects:PlacementOptions>
+            <effects:PlacementOptions>Bottom Left</effects:PlacementOptions>
+            <effects:PlacementOptions>Bottom Center</effects:PlacementOptions>
+            <effects:PlacementOptions>Bottom Right</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto Center</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto Left</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto Right</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto Top</effects:PlacementOptions>
+            <effects:PlacementOptions>Auto Bottom</effects:PlacementOptions>
+        </ListBox>
+    </Grid>
 </Window>

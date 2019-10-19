@@ -39,7 +39,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-0", contentMatrix.Text);
 
                 window.FindButton("None").Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-0", contentMatrix.Text);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.28666666666667,0,0,1.28666666666667,0,-132.833333333333", contentMatrix.Text);
+                Assert.AreEqual("1.28667,0,0,1.28667,0,-132.83333", contentMatrix.Text);
 
                 window.FindButton("None").Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
@@ -74,7 +74,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.28666666666667,0,0,1.28666666666667,0,-132.833333333333", contentMatrix.Text);
+                Assert.AreEqual("1.28667,0,0,1.28667,0,-132.83333", contentMatrix.Text);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.245,0,0,1.245,6.24999999999997,-124.5", contentMatrix.Text);
+                Assert.AreEqual("1.245,0,0,1.245,6.25,-124.5", contentMatrix.Text);
 
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
@@ -120,7 +120,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Assert.AreEqual(true, zoomButton.IsEnabled);
                 zoomButton.Click();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.155625,0,0,0.155625,169.65625,93.375", contentMatrix.Text);
+                Assert.AreEqual("0.15563,0,0,0.15563,169.65625,93.375", contentMatrix.Text);
             }
         }
 
@@ -171,17 +171,17 @@ namespace Gu.Wpf.Geometry.UiTests
                 window.FindButton("Uniform").Invoke();
                 window.WaitUntilResponsive();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-0", contentMatrix.Text);
 
                 Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), 50);
                 window.WaitUntilResponsive();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,149.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,149.625,-0", contentMatrix.Text);
 
                 Mouse.DragHorizontally(MouseButton.Left, zoomBox.Bounds.Center(), -50);
                 window.WaitUntilResponsive();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-0", contentMatrix.Text);
 
                 Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), 50);
                 window.WaitUntilResponsive();
@@ -191,7 +191,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 Mouse.DragVertically(MouseButton.Left, zoomBox.Bounds.Center(), -50);
                 window.WaitUntilResponsive();
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-1.4210854715202E-14", contentMatrix.Text);
+                Assert.AreEqual("0.6225,0,0,0.6225,99.625,-0", contentMatrix.Text);
             }
         }
 
@@ -280,7 +280,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1,0,0,1,3.19744231092045E-14,0", contentMatrix.Text);
+                Assert.AreEqual("1,0,0,1,0,0", contentMatrix.Text);
             }
         }
 
@@ -309,7 +309,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1,0,0,1,3.19744231092045E-14,2.8421709430404E-14", contentMatrix.Text);
+                Assert.AreEqual("1,0,0,1,0,0", contentMatrix.Text);
             }
         }
 
@@ -338,7 +338,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1,0,0,1,0,2.8421709430404E-14", contentMatrix.Text);
+                Assert.AreEqual("1,0,0,1,0,0", contentMatrix.Text);
             }
         }
 
@@ -355,7 +355,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
                 Mouse.Scroll(1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.05,0,0,1.05,-9.65000000000001,-6.20000000000002", contentMatrix.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-9.65,-6.2", contentMatrix.Text);
 
                 Mouse.Scroll(1);
                 Assert.AreEqual("386, 249", renderSize.Text);
@@ -363,11 +363,11 @@ namespace Gu.Wpf.Geometry.UiTests
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1.05,0,0,1.05,-9.65,-6.20000000000003", contentMatrix.Text);
+                Assert.AreEqual("1.05,0,0,1.05,-9.65,-6.2", contentMatrix.Text);
 
                 Mouse.Scroll(-1);
                 Assert.AreEqual("386, 249", renderSize.Text);
-                Assert.AreEqual("1,0,0,1,1.59872115546023E-14,-1.68753899743024E-14", contentMatrix.Text);
+                Assert.AreEqual("1,0,0,1,0,-0", contentMatrix.Text);
             }
         }
 

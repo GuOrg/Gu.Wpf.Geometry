@@ -116,7 +116,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.8.1" />
+    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.9" />
     <PackageReference Include="IDisposableAnalyzers" Version="2.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

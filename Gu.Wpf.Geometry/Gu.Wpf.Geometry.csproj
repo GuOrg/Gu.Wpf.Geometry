@@ -17,13 +17,13 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.2.3</Version>
+    <Version>2.2.4</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Geometries for WPF.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>BUGFIX: GradientPath with IsLargeArc=true</PackageReleaseNotes>
+    <PackageReleaseNotes>netcoreapp3.0</PackageReleaseNotes>
     <PackageTags>xaml wpf Balloon Gradient</PackageTags>
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>

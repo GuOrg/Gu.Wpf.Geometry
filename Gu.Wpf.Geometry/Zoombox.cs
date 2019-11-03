@@ -382,12 +382,22 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override void OnRender(DrawingContext dc)
         {
+            if (dc is null)
+            {
+                throw new ArgumentNullException(nameof(dc));
+            }
+
             dc.DrawRectangle(Brushes.Transparent, null, new Rect(this.RenderSize));
         }
 
         /// <inheritdoc />
         protected override void OnManipulationDelta(ManipulationDeltaEventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             var delta = e.DeltaManipulation;
             if (Math.Abs(delta.Scale.LengthSquared - 2) > MinScaleDelta)
             {
@@ -410,6 +420,11 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (e.Delta == 0 || this.WheelZoomFactor == 1)
             {
@@ -430,6 +445,11 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             this.position = e.GetPosition(this);
             _ = this.CaptureMouse();
             base.OnMouseLeftButtonDown(e);
@@ -445,6 +465,11 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override void OnMouseMove(MouseEventArgs e)
         {
+            if (e is null)
+            {
+                throw new ArgumentNullException(nameof(e));
+            }
+
             if (this.IsMouseCaptured)
             {
                 var newPos = e.GetPosition(this);

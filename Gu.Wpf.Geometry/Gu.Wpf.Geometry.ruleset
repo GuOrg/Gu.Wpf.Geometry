@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="15.0">
+<RuleSet Name="Microsoft Managed Recommended Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="16.0">
   <Localization ResourceAssembly="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.dll" ResourceBaseName="Microsoft.VisualStudio.CodeAnalysis.RuleSets.Strings.Localized">
     <Name Resource="MinimumRecommendedRules_Name" />
     <Description Resource="MinimumRecommendedRules_Description" />
@@ -81,6 +81,9 @@
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
     <Rule Id="CS1591" Action="None" />
   </Rules>
+  <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
+    <Rule Id="CA1303" Action="None" />
+  </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1118" Action="None" />
     <Rule Id="SA1313" Action="None" />
@@ -94,14 +97,7 @@
     <Rule Id="SA1633" Action="None" />
   </Rules>
   <Rules AnalyzerId="WpfAnalyzers" RuleNamespace="WpfAnalyzers">
-    <Rule Id="WPF0001" Action="Warning" />
-    <Rule Id="WPF0002" Action="Warning" />
-    <Rule Id="WPF0003" Action="Warning" />
-    <Rule Id="WPF0004" Action="Warning" />
-    <Rule Id="WPF0011" Action="Warning" />
-    <Rule Id="WPF0012" Action="Warning" />
     <Rule Id="WPF0023" Action="Warning" />
-    <Rule Id="WPF0030" Action="Warning" />
     <Rule Id="WPF0033" Action="Warning" />
     <Rule Id="WPF0034" Action="Warning" />
     <Rule Id="WPF0051" Action="Warning" />

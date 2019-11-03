@@ -157,6 +157,7 @@ namespace Gu.Wpf.Geometry
             };
         }
 
+        /// <inheritdoc />
         protected override Size MeasureOverride(Size availableSize)
         {
             if (this.Data == null)
@@ -170,8 +171,14 @@ namespace Gu.Wpf.Geometry
             return this.Data.GetRenderBounds(this.pen).Size;
         }
 
+        /// <inheritdoc />
         protected override void OnRender(DrawingContext dc)
         {
+            if (dc is null)
+            {
+                throw new ArgumentNullException(nameof(dc));
+            }
+
             if (this.flattenedFigures == null ||
                 this.flattenedFigures.Count == 0)
             {

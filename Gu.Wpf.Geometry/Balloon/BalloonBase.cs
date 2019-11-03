@@ -139,6 +139,11 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override void OnRender(DrawingContext drawingContext)
         {
+            if (drawingContext is null)
+            {
+                throw new ArgumentNullException(nameof(drawingContext));
+            }
+
             var pen = this.penCache.GetPen(this.Stroke, this.StrokeThickness);
             drawingContext.DrawGeometry(this.Fill, pen, this.balloonGeometry);
         }

@@ -112,36 +112,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gu.Analyzers" Version="1.6.3-dev">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.10" />
-    <PackageReference Include="IDisposableAnalyzers" Version="2.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Gu.Analyzers" Version="1.6.6.6-dev" PrivateAssets="all"/>
+    <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.2.14" />
+    <PackageReference Include="IDisposableAnalyzers" Version="3.2.0" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" PrivateAssets="all"/>
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
-    <PackageReference Include="PropertyChangedAnalyzers" Version="2.7.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="ReflectionAnalyzers" Version="0.1.20-dev">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.66">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="WpfAnalyzers" Version="2.4.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="PropertyChangedAnalyzers" Version="2.7.5" PrivateAssets="all"/>
+    <PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all"/>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" PrivateAssets="all"/>
+    <PackageReference Include="WpfAnalyzers" Version="2.4.4" PrivateAssets="all"/>
   </ItemGroup>
 </Project>

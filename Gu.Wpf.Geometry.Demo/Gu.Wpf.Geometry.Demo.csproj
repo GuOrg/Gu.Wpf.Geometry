@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Geometry\Gu.Wpf.Geometry.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <Resource Include="Images\Hustler.jpg" />
     <Resource Include="Images\Circles.png" />

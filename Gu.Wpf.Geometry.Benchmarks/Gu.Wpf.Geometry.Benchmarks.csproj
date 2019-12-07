@@ -3,7 +3,6 @@
     <TargetFramework>net472</TargetFramework>
     <OutputType>Exe</OutputType>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.Benchmarks.ruleset</CodeAnalysisRuleSet>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 _ = window.FindListBox("Placements").Select(placement);
                 var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($"EllipseBalloonWindow_{placement}.png", groupBox);
+                ImageAssert.AreEqual($".\\Images\\EllipseBalloonWindow_{placement}.png", groupBox);
             }
         }
     }

@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 var window = app.MainWindow;
                 _ = window.FindListBox("Placements").Select(placement);
                 var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($"BoxBalloonWindow_{placement}.png", groupBox);
+                ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow_{placement}.png", groupBox);
             }
         }
     }

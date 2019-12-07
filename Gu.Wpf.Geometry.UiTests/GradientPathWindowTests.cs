@@ -23,7 +23,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathParallelWindow"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual("GradientPathParallel.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual(".\\Images\\GradientPathParallel.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -38,7 +38,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathPerpendicularWindow"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual("GradientPathPerpendicular.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual(".\\Images\\GradientPathPerpendicular.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -53,7 +53,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue28Window"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual("GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual(".\\Images\\GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -68,7 +68,7 @@ namespace Gu.Wpf.Geometry.UiTests
             using (var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue29Window"))
             {
                 var window = app.MainWindow;
-                ImageAssert.AreEqual("GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual(".\\Images\\GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
             }
         }
 
@@ -93,7 +93,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
                 _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
 
-                ImageAssert.AreEqual($"GradientPathLineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual($".\\Images\\GradientPathLineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
             }
         }
     }

@@ -1,20 +1,21 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System.IO;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class BoxBalloonWindowTests
+    public static class BoxBalloonWindowTests
     {
         private const string WindowName = "BoxBalloonWindow";
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public static void OneTimeSetUp()
         {
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
         }
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
+        public static void OneTimeTearDown()
         {
             Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
         }
@@ -36,18 +37,35 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase("Right Auto 0")]
         [TestCase("Auto Top 0")]
         [TestCase("Auto Bottom 0")]
-        public void Renders(string placement)
+        public static void Renders(string placement)
         {
-            if (WindowsVersion.IsAppVeyor())
+            if (WinVersion() is { } winVersion)
             {
-                return;
+                using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+                var window = app.MainWindow;
+                _ = window.FindListBox("Placements").Select(placement);
+                var groupBox = window.FindGroupBox("Render");
+                ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow\\{winVersion}\\{placement}.png", groupBox);
+            }
+            else
+            {
+                Assert.Inconclusive("Unknown windows version.");
             }
 
-            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-            var window = app.MainWindow;
-            _ = window.FindListBox("Placements").Select(placement);
-            var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow_{placement}.png", groupBox);
+            string WinVersion()
+            {
+                if (WindowsVersion.IsWindows7())
+                {
+                    return "Win7";
+                }
+
+                if (WindowsVersion.IsWindows10())
+                {
+                    return "Win10";
+                }
+
+                return null;
+            }
         }
     }
 }

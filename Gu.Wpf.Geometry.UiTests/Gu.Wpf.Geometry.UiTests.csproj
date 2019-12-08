@@ -2,11 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\**\*" />
     <None Update="Images\**\*.png" CopyToOutputDirectory="Always" />
   </ItemGroup>
 

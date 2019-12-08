@@ -38,18 +38,16 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase("Auto Bottom 0")]
         public void Renders(string placement)
         {
-            if (Env.IsAppVeyor)
+            if (WindowsVersion.IsAppVeyor())
             {
                 return;
             }
 
-            using (var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName))
-            {
-                var window = app.MainWindow;
-                _ = window.FindListBox("Placements").Select(placement);
-                var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow_{placement}.png", groupBox);
-            }
+            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+            var window = app.MainWindow;
+            _ = window.FindListBox("Placements").Select(placement);
+            var groupBox = window.FindGroupBox("Render");
+            ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow_{placement}.png", groupBox);
         }
     }
 }

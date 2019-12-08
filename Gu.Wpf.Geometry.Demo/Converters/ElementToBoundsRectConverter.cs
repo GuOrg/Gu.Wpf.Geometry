@@ -4,7 +4,6 @@ namespace Gu.Wpf.Geometry.Demo.Converters
     using System.Windows;
     using System.Windows.Data;
     using System.Windows.Markup;
-    using System.Windows.Media;
 
     [ValueConversion(typeof(FrameworkElement), typeof(Rect))]
     public sealed class ElementToBoundsRectConverter : MarkupExtension, IValueConverter

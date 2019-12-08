@@ -22,7 +22,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathParallelWindow");
             var window = app.MainWindow;
-            ImageAssert.AreEqual(".\\Images\\GradientPathParallel.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual("Images\\GradientPath\\Parallel.png", window.FindGroupBox("Path"));
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue28Window");
             var window = app.MainWindow;
-            ImageAssert.AreEqual(".\\Images\\GradientPathWithArcSegment.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual("Images\\GradientPath\\ArcSegment.png", window.FindGroupBox("Path"));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue29Window");
             var window = app.MainWindow;
-            ImageAssert.AreEqual(".\\Images\\GradientPathArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual("Images\\GradientPath\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"));
         }
 
         [TestCase(GradientMode.Parallel, PenLineCap.Flat)]
@@ -84,7 +84,22 @@ namespace Gu.Wpf.Geometry.UiTests
             _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
             _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
 
-            ImageAssert.AreEqual($".\\Images\\GradientPathLineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual($"Images\\GradientPath\\LineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+        }
+
+        private static string WinVersion()
+        {
+            if (WindowsVersion.IsWindows7())
+            {
+                return "Win7";
+            }
+
+            if (WindowsVersion.IsWindows10())
+            {
+                return "Win10";
+            }
+
+            return null;
         }
     }
 }

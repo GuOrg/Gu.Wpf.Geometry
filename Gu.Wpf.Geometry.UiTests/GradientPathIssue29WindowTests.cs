@@ -22,31 +22,24 @@ namespace Gu.Wpf.Geometry.UiTests
         [Test]
         public static void ArcSegmentLargeArcIssue29()
         {
-            if (WinVersion() is { } winVersion)
-            {
-                using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-                var window = app.MainWindow;
-                ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{winVersion}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"));
-            }
-            else
-            {
-                Assert.Inconclusive("Unknown windows version.");
-            }
-        }
+            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+            var window = app.MainWindow;
+            ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{WinVersion()}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"));
 
-        private static string WinVersion()
-        {
-            if (WindowsVersion.IsWindows7())
+            string WinVersion()
             {
-                return "Win7";
-            }
+                if (WindowsVersion.IsWindows7())
+                {
+                    return "Win7";
+                }
 
-            if (WindowsVersion.IsWindows10())
-            {
-                return "Win10";
-            }
+                if (WindowsVersion.IsWindows10())
+                {
+                    return "Win10";
+                }
 
-            return null;
+                return WindowsVersion.CurrentVersionProductName;
+            }
         }
     }
 }

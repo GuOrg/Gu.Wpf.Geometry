@@ -38,18 +38,11 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase("Auto Bottom 0")]
         public void Renders(string placement)
         {
-            if (WinVersion() is { } winVersion)
-            {
-                using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-                var window = app.MainWindow;
-                _ = window.FindListBox("Placements").Select(placement);
-                var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($".\\Images\\EllipseBalloonWindow\\{winVersion}\\{placement}.png", groupBox);
-            }
-            else
-            {
-                Assert.Inconclusive("Unknown windows version.");
-            }
+            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+            var window = app.MainWindow;
+            _ = window.FindListBox("Placements").Select(placement);
+            var groupBox = window.FindGroupBox("Render");
+            ImageAssert.AreEqual($".\\Images\\EllipseBalloonWindow\\{WinVersion()}\\{placement}.png", groupBox);
 
             string WinVersion()
             {
@@ -63,7 +56,7 @@ namespace Gu.Wpf.Geometry.UiTests
                     return "Win10";
                 }
 
-                return null;
+                return WindowsVersion.CurrentVersionProductName;
             }
         }
     }

@@ -63,19 +63,12 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase(-270, -270)]
         public static void Renders(int startAngle, int centralAngle)
         {
-            if (WinVersion() is { } winVersion)
-            {
-                using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-                var window = app.MainWindow;
-                window.FindSlider("StartAngle").Value = startAngle;
-                window.FindSlider("CentralAngle").Value = centralAngle;
-                var groupBox = window.FindGroupBox("Render");
-                ImageAssert.AreEqual($"Images\\AngularGradientWindow\\{winVersion}\\{startAngle} → {centralAngle}.png", groupBox);
-            }
-            else
-            {
-                Assert.Inconclusive("Unknown windows version.");
-            }
+            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+            var window = app.MainWindow;
+            window.FindSlider("StartAngle").Value = startAngle;
+            window.FindSlider("CentralAngle").Value = centralAngle;
+            var groupBox = window.FindGroupBox("Render");
+            ImageAssert.AreEqual($"Images\\AngularGradientWindow\\{WinVersion()}\\{startAngle} → {centralAngle}.png", groupBox);
 
             string WinVersion()
             {
@@ -89,7 +82,7 @@ namespace Gu.Wpf.Geometry.UiTests
                     return "Win10";
                 }
 
-                return null;
+                return WindowsVersion.CurrentVersionProductName;
             }
         }
     }

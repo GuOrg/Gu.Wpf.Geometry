@@ -30,34 +30,26 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase(GradientMode.Perpendicular, PenLineCap.Triangle)]
         public static void LineCaps(GradientMode gradientMode, PenLineCap lineCap)
         {
-            if (WinVersion() is { } winVersion)
-            {
-                using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-                var window = app.MainWindow;
-                _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
-                _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
+            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+            var window = app.MainWindow;
+            _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
+            _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
+            ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{WinVersion()}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
 
-                ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{winVersion}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
-            }
-            else
+            string WinVersion()
             {
-                Assert.Inconclusive("Unknown windows version.");
-            }
-        }
+                if (WindowsVersion.IsWindows7())
+                {
+                    return "Win7";
+                }
 
-        private static string WinVersion()
-        {
-            if (WindowsVersion.IsWindows7())
-            {
-                return "Win7";
-            }
+                if (WindowsVersion.IsWindows10())
+                {
+                    return "Win10";
+                }
 
-            if (WindowsVersion.IsWindows10())
-            {
-                return "Win10";
+                return WindowsVersion.CurrentVersionProductName;
             }
-
-            return null;
         }
     }
 }

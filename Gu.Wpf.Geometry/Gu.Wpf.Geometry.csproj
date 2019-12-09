@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWpf>true</UseWpf>
     <LangVersion>latest</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -18,24 +18,24 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.2.4</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.2.5</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Geometries for WPF.</Description>
     <NeutralLanguage>en</NeutralLanguage>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>netcoreapp3.0</PackageReleaseNotes>
+    <PackageReleaseNotes>netcoreapp3.1</PackageReleaseNotes>
     <PackageTags>xaml wpf Balloon Gradient</PackageTags>
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationCore" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="PresentationFramework" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="System.Xaml" />
-    <Reference Condition="'$(TargetFramework)' != 'netcoreapp3.0'" Include="WindowsBase" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
 
   <ItemGroup>

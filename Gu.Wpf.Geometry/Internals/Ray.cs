@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -25,7 +26,7 @@ namespace Gu.Wpf.Geometry
             var strings = text.Split(';');
             if (strings.Length != 2)
             {
-                throw new ArgumentException();
+                throw new FormatException("Could not parse a Ray from the string.");
             }
 
             var p = Point.Parse(strings[0]);
@@ -94,7 +95,7 @@ namespace Gu.Wpf.Geometry
                     return IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
                            IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true);
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new InvalidEnumArgumentException("Unhandled Quadrant.");
             }
         }
 

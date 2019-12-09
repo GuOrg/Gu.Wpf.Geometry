@@ -24,22 +24,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            ImageAssert.AreEqual($"Images\\GradientPathPerpendicularWindow\\{WinVersion()}\\Path.png", window.FindGroupBox("Path"));
-
-            string WinVersion()
-            {
-                if (WindowsVersion.IsWindows7())
-                {
-                    return "Win7";
-                }
-
-                if (WindowsVersion.IsWindows10())
-                {
-                    return "Win10";
-                }
-
-                return WindowsVersion.CurrentVersionProductName;
-            }
+            ImageAssert.AreEqual($"Images\\GradientPathPerpendicularWindow\\{ImageFolder.Current}\\Path.png", window.FindGroupBox("Path"));
         }
     }
 }

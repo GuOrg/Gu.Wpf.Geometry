@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,7 @@
             var strings = s.Split(';');
             if (strings.Length != 2)
             {
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(s));
             }
 
             var sp = Point.Parse(strings[0]);

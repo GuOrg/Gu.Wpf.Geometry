@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Media;
@@ -255,7 +256,7 @@ namespace Gu.Wpf.Geometry
                         corner = CreateBottomRight(rectangle.BottomRight, cornerRadius.BottomRight);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new InvalidEnumArgumentException("Unhandled quadrant.");
                 }
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator

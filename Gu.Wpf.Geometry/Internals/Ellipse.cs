@@ -45,7 +45,7 @@ namespace Gu.Wpf.Geometry
             var strings = text.Split(';');
             if (strings.Length != 3)
             {
-                throw new ArgumentException("Expected length = 3", nameof(text));
+                throw new FormatException("Could not parse an Ellipse from the string.");
             }
 
             var cp = Point.Parse(strings[0]);

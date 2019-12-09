@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System.Windows;
     using System.Windows.Media;
@@ -9,8 +9,8 @@
 
     public class GradientPathTests
     {
-        [TestCase("0,0; 1,0", 10, "0.5, -5.0", "0.5, 5.0")]
-        public void CreatePerpendicularBrush(string ls, double width, string esp, string eep)
+        [TestCase("0,0; 1,0", "0.5, -5.0", "0.5, 5.0")]
+        public void CreatePerpendicularBrush(string ls, string esp, string eep)
         {
             var stops = new GradientStopCollection();
             var line = ls.AsLine();

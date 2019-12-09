@@ -42,22 +42,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindListBox("Placements").Select(placement);
             var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($".\\Images\\EllipseBalloonWindow\\{WinVersion()}\\{placement}.png", groupBox);
-
-            string WinVersion()
-            {
-                if (WindowsVersion.IsWindows7())
-                {
-                    return "Win7";
-                }
-
-                if (WindowsVersion.IsWindows10())
-                {
-                    return "Win10";
-                }
-
-                return WindowsVersion.CurrentVersionProductName;
-            }
+            ImageAssert.AreEqual($".\\Images\\EllipseBalloonWindow\\{ImageFolder.Current}\\{placement}.png", groupBox);
         }
     }
 }

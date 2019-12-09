@@ -24,7 +24,7 @@ namespace Gu.Wpf.Geometry
             var strings = text.Split(';');
             if (strings.Length != 2)
             {
-                throw new ArgumentException("Expected length == 2", nameof(text));
+                throw new FormatException("Could not parse a Circle from the string.");
             }
 
             var cp = Point.Parse(strings[0]);

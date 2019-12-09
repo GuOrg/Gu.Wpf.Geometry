@@ -84,7 +84,7 @@ namespace Gu.Wpf.Geometry
                         HorizontalPlacement.Left => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine()),
                         HorizontalPlacement.Center => sourceMidPoint.Closest(target.BottomLine(), target.TopLine()).MidPoint,
                         HorizontalPlacement.Right => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine()),
-                        _ => throw new ArgumentOutOfRangeException()
+                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
                     };
 
                 case VerticalPlacement.Top:
@@ -94,7 +94,7 @@ namespace Gu.Wpf.Geometry
                         HorizontalPlacement.Left => target.TopLeft,
                         HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.TopRight),
                         HorizontalPlacement.Right => target.TopRight,
-                        _ => throw new ArgumentOutOfRangeException(),
+                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
                     };
                 case VerticalPlacement.Center:
                     return this.Horizontal switch
@@ -103,7 +103,7 @@ namespace Gu.Wpf.Geometry
                         HorizontalPlacement.Left => PointExt.MidPoint(target.BottomLeft, target.TopLeft),
                         HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.BottomRight),
                         HorizontalPlacement.Right => PointExt.MidPoint(target.BottomRight, target.TopRight),
-                        _ => throw new ArgumentOutOfRangeException(),
+                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
                     };
                 case VerticalPlacement.Bottom:
                     return this.Horizontal switch
@@ -112,10 +112,10 @@ namespace Gu.Wpf.Geometry
                         HorizontalPlacement.Left => target.BottomLeft,
                         HorizontalPlacement.Center => PointExt.MidPoint(target.BottomLeft, target.BottomRight),
                         HorizontalPlacement.Right => target.BottomRight,
-                        _ => throw new ArgumentOutOfRangeException(),
+                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
                     };
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new InvalidEnumArgumentException("Unhandled VerticalPlacement.");
             }
         }
     }

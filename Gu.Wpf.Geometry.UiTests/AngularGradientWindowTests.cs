@@ -68,22 +68,7 @@ namespace Gu.Wpf.Geometry.UiTests
             window.FindSlider("StartAngle").Value = startAngle;
             window.FindSlider("CentralAngle").Value = centralAngle;
             var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($"Images\\AngularGradientWindow\\{WinVersion()}\\{startAngle} → {centralAngle}.png", groupBox);
-
-            string WinVersion()
-            {
-                if (WindowsVersion.IsWindows7())
-                {
-                    return "Win7";
-                }
-
-                if (WindowsVersion.IsWindows10())
-                {
-                    return "Win10";
-                }
-
-                return WindowsVersion.CurrentVersionProductName;
-            }
+            ImageAssert.AreEqual($"Images\\AngularGradientWindow\\{ImageFolder.Current}\\{startAngle} → {centralAngle}.png", groupBox);
         }
     }
 }

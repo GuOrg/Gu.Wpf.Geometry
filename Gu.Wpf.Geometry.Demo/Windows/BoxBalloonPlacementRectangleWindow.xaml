@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:effects="http://gu.se/Geometry"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="BoxBallonWindow"
+        Title="BoxBalloonPlacementRectangleWindow"
         Left="200"
         SizeToContent="WidthAndHeight"
         Top="200"
@@ -29,6 +29,18 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
+                <Canvas Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                    <Rectangle x:Name="Target"
+                               Canvas.Left="100"
+                               Canvas.Top="50"
+                               Width="100"
+                               Height="10"
+                               Fill="Gainsboro" />
+                </Canvas>
+
                 <Rectangle Grid.Row="1"
                            Grid.Column="1"
                            Stroke="Yellow"
@@ -48,23 +60,11 @@
                                     ConnectorAngle="45"
                                     CornerRadius="10"
                                     PlacementOptions="{Binding SelectedItem,
-                                                                   ElementName=Placements}"
+                                                               ElementName=Placements}"
                                     PlacementRectangle="{Binding ElementName=Target,
                                                                  Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}"
                                     Stroke="HotPink"
                                     StrokeThickness="4" />
-
-                <Canvas Grid.Row="0"
-                        Grid.RowSpan="3"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3">
-                    <Rectangle x:Name="Target"
-                               Canvas.Left="100"
-                               Canvas.Top="50"
-                               Width="100"
-                               Height="10"
-                               Fill="Gainsboro" />
-                </Canvas>
             </Grid>
         </GroupBox>
 

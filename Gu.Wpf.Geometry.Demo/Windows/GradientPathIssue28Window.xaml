@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:effects="http://gu.se/Geometry"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="Issue28Window"
+        Title="GradientPathIssue28Window"
         Width="800"
         Height="450"
         Left="200"

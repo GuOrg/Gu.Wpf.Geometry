@@ -15,7 +15,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            window.FindButton("None").Invoke();
+            window.FindButton("None").Click();
         }
 
         [OneTimeTearDown]

@@ -3,7 +3,7 @@ namespace Gu.Wpf.Geometry.Tests
     using System.Collections.Generic;
     using System.Windows;
 
-    public class NullableVectorComparer : IEqualityComparer<Vector?>
+    public sealed class NullableVectorComparer : IEqualityComparer<Vector?>
     {
         public static readonly NullableVectorComparer TwoDigits = new NullableVectorComparer(2);
 

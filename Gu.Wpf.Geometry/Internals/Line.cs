@@ -175,23 +175,22 @@ namespace Gu.Wpf.Geometry
                 ? this.Direction.Quadrant()
                 : this.Direction.Negated().Quadrant();
 
-            switch (quadrant)
+            return quadrant switch
             {
-                case Quadrant.NegativeXPositiveY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true);
-                case Quadrant.PositiveXPositiveY:
-                    return IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true);
-                case Quadrant.PositiveXNegativeY:
-                    return IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true);
-                case Quadrant.NegativeXNegativeY:
-                    return IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true);
-                default:
-                    throw new InvalidEnumArgumentException("Unhandled Quadrant.");
-            }
+                Quadrant.NegativeXPositiveY
+                => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
+                Quadrant.PositiveXPositiveY
+                => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
+                Quadrant.PositiveXNegativeY
+                => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
+                Quadrant.NegativeXNegativeY
+                => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
+                _ => throw new InvalidEnumArgumentException("Unhandled Quadrant.")
+            };
         }
 
         internal double DistanceTo(Point p)
@@ -203,8 +202,8 @@ namespace Gu.Wpf.Geometry
         internal double DistanceToPointOnLine(Point p)
         {
             var toPoint = this.StartPoint.VectorTo(p);
-            var dotProdcut = toPoint.DotProdcut(this.Direction);
-            var pointOnLine = this.StartPoint + dotProdcut * this.Direction;
+            var dotProduct = toPoint.DotProdcut(this.Direction);
+            var pointOnLine = this.StartPoint + dotProduct * this.Direction;
             return pointOnLine.DistanceTo(p);
         }
 

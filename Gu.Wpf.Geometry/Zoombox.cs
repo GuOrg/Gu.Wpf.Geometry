@@ -366,7 +366,7 @@ namespace Gu.Wpf.Geometry
         {
             this.InternalChild?.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             return double.IsPositiveInfinity(constraint.Width) || double.IsPositiveInfinity(constraint.Height)
-                ? this.InternalChild?.DesiredSize ?? default(Size)
+                ? this.InternalChild?.DesiredSize ?? default
                 : constraint;
         }
 

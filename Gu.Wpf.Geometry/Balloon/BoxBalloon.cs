@@ -219,7 +219,7 @@ namespace Gu.Wpf.Geometry
                     return true;
                 }
 
-                corner = default(Circle);
+                corner = default;
                 return false;
             }
 
@@ -240,24 +240,14 @@ namespace Gu.Wpf.Geometry
                     return ray.Point.Closest(rectangle.TopLeft, rectangle.TopRight, rectangle.BottomRight, rectangle.BottomLeft);
                 }
 
-                Circle corner;
-                switch (toMid.Value.Direction.Quadrant())
+                var corner = toMid.Value.Direction.Quadrant() switch
                 {
-                    case Quadrant.NegativeXPositiveY:
-                        corner = CreateTopRight(rectangle.TopRight, cornerRadius.TopRight);
-                        break;
-                    case Quadrant.PositiveXPositiveY:
-                        corner = CreateTopLeft(rectangle.TopLeft, cornerRadius.TopLeft);
-                        break;
-                    case Quadrant.PositiveXNegativeY:
-                        corner = CreateBottomLeft(rectangle.BottomLeft, cornerRadius.BottomLeft);
-                        break;
-                    case Quadrant.NegativeXNegativeY:
-                        corner = CreateBottomRight(rectangle.BottomRight, cornerRadius.BottomRight);
-                        break;
-                    default:
-                        throw new InvalidEnumArgumentException("Unhandled quadrant.");
-                }
+                    Quadrant.NegativeXPositiveY => CreateTopRight(rectangle.TopRight, cornerRadius.TopRight),
+                    Quadrant.PositiveXPositiveY => CreateTopLeft(rectangle.TopLeft, cornerRadius.TopLeft),
+                    Quadrant.PositiveXNegativeY => CreateBottomLeft(rectangle.BottomLeft, cornerRadius.BottomLeft),
+                    Quadrant.NegativeXNegativeY => CreateBottomRight(rectangle.BottomRight, cornerRadius.BottomRight),
+                    _ => throw new InvalidEnumArgumentException("Unhandled quadrant.")
+                };
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (corner.Radius == 0)

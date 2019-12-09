@@ -7,7 +7,7 @@ namespace Gu.Wpf.Geometry.Benchmarks
     {
         public static void Main()
         {
-            var summary = BenchmarkRunner.Run<LineBenchmarks>();
+            _ = BenchmarkRunner.Run<LineBenchmarks>();
         }
     }
 }

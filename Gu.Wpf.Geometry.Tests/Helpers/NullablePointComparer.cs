@@ -1,9 +1,9 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System.Collections.Generic;
     using System.Windows;
 
-    public class NullablePointComparer : IEqualityComparer<Point?>
+    public sealed class NullablePointComparer : IEqualityComparer<Point?>
     {
         public static readonly NullablePointComparer TwoDigits = new NullablePointComparer(2);
 

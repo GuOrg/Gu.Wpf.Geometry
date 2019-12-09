@@ -204,7 +204,7 @@ namespace Gu.Wpf.Geometry
 
         protected bool CanCreateConnectorGeometry()
         {
-            return this.ConnectorOffset != default(Vector) &&
+            return this.ConnectorOffset != default &&
                    this.RenderSize.Width > 0 &&
                    this.RenderSize.Height > 0;
         }
@@ -257,7 +257,7 @@ namespace Gu.Wpf.Geometry
                     //// ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {
-                        v = v - this.PlacementOptions.Offset * v.Normalized();
+                        v -= this.PlacementOptions.Offset * v.Normalized();
                     }
 
                     this.SetCurrentValue(ConnectorOffsetProperty, v);

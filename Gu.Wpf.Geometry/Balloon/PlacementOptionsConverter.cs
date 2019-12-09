@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.ComponentModel;
@@ -38,17 +38,13 @@
             try
             {
                 var args = text.Split(SeparatorChars, StringSplitOptions.RemoveEmptyEntries);
-                switch (args.Length)
+                return args.Length switch
                 {
-                    case 1:
-                        return ParseOne(args[0], text);
-                    case 2:
-                        return ParseTwo(args[0], args[1], text);
-                    case 3:
-                        return ParseThree(args[0], args[1], args[2], text);
-                    default:
-                        throw FormatException(text);
-                }
+                    1 => ParseOne(args[0], text),
+                    2 => ParseTwo(args[0], args[1], text),
+                    3 => ParseThree(args[0], args[1], args[2], text),
+                    _ => throw FormatException(text)
+                };
             }
             catch (Exception e)
             {
@@ -69,8 +65,7 @@
 
         private static PlacementOptions ParseOne(string arg, string text)
         {
-            double offset;
-            if (double.TryParse(arg, out offset))
+            if (double.TryParse(arg, out double offset))
             {
                 return new PlacementOptions(HorizontalPlacement.Auto, VerticalPlacement.Auto, offset);
             }
@@ -80,16 +75,13 @@
 
         private static PlacementOptions ParseTwo(string arg1, string arg2, string text)
         {
-            double offset;
-            if (double.TryParse(arg2, out offset))
+            if (double.TryParse(arg2, out double offset))
             {
                 var options = ParseCenterOrAuto(arg1, text);
                 return new PlacementOptions(options.Horizontal, options.Vertical, offset);
             }
 
-            HorizontalPlacement horizontal;
-            VerticalPlacement vertical;
-            if (TryParsePlacements(arg1, arg2, out horizontal, out vertical))
+            if (TryParsePlacements(arg1, arg2, out HorizontalPlacement horizontal, out VerticalPlacement vertical))
             {
                 return new PlacementOptions(horizontal, vertical, 0);
             }
@@ -102,9 +94,7 @@
             try
             {
                 var offset = double.Parse(arg3, CultureInfo.InvariantCulture);
-                HorizontalPlacement horizontal;
-                VerticalPlacement vertical;
-                if (TryParsePlacements(arg1, arg2, out horizontal, out vertical))
+                if (TryParsePlacements(arg1, arg2, out HorizontalPlacement horizontal, out VerticalPlacement vertical))
                 {
                     return new PlacementOptions(horizontal, vertical, offset);
                 }
@@ -134,7 +124,7 @@
 
         private static bool TryParsePlacements(string arg1, string arg2, out HorizontalPlacement horizontal, out VerticalPlacement vertical)
         {
-            vertical = default(VerticalPlacement);
+            vertical = default;
             return (Enum.TryParse(arg1, ignoreCase: true, result: out horizontal) &&
                     Enum.TryParse(arg2, ignoreCase: true, result: out vertical)) ||
                    (Enum.TryParse(arg2, ignoreCase: true, result: out horizontal) &&

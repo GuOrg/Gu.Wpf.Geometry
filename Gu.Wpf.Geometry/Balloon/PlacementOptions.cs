@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
 
     [TypeConverter(typeof(PlacementOptionsConverter))]
-    public class PlacementOptions
+    public sealed class PlacementOptions
     {
         public static readonly PlacementOptions Auto = new PlacementOptions(HorizontalPlacement.Auto, VerticalPlacement.Auto, 0);
         public static readonly PlacementOptions Center = new PlacementOptions(HorizontalPlacement.Center, VerticalPlacement.Center, 0);
@@ -75,48 +75,42 @@ namespace Gu.Wpf.Geometry
 
         private Point? GetPointOnTarget(Point sourceMidPoint, Rect target)
         {
-            switch (this.Vertical)
+            return this.Vertical switch
             {
-                case VerticalPlacement.Auto:
-                    return this.Horizontal switch
-                    {
-                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), ClosestLine(target, sourceMidPoint)),
-                        HorizontalPlacement.Left => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine()),
-                        HorizontalPlacement.Center => sourceMidPoint.Closest(target.BottomLine(), target.TopLine()).MidPoint,
-                        HorizontalPlacement.Right => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine()),
-                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
-                    };
-
-                case VerticalPlacement.Top:
-                    return this.Horizontal switch
-                    {
-                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.TopLine()),
-                        HorizontalPlacement.Left => target.TopLeft,
-                        HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.TopRight),
-                        HorizontalPlacement.Right => target.TopRight,
-                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
-                    };
-                case VerticalPlacement.Center:
-                    return this.Horizontal switch
-                    {
-                        HorizontalPlacement.Auto => sourceMidPoint.Closest(target.LeftLine(), target.RightLine()).MidPoint,
-                        HorizontalPlacement.Left => PointExt.MidPoint(target.BottomLeft, target.TopLeft),
-                        HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.BottomRight),
-                        HorizontalPlacement.Right => PointExt.MidPoint(target.BottomRight, target.TopRight),
-                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
-                    };
-                case VerticalPlacement.Bottom:
-                    return this.Horizontal switch
-                    {
-                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.BottomLine()),
-                        HorizontalPlacement.Left => target.BottomLeft,
-                        HorizontalPlacement.Center => PointExt.MidPoint(target.BottomLeft, target.BottomRight),
-                        HorizontalPlacement.Right => target.BottomRight,
-                        _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
-                    };
-                default:
-                    throw new InvalidEnumArgumentException("Unhandled VerticalPlacement.");
-            }
+                VerticalPlacement.Auto => this.Horizontal switch
+                {
+                    HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), ClosestLine(target, sourceMidPoint)),
+                    HorizontalPlacement.Left => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine()),
+                    HorizontalPlacement.Center => sourceMidPoint.Closest(target.BottomLine(), target.TopLine()).MidPoint,
+                    HorizontalPlacement.Right => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine()),
+                    _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
+                },
+                VerticalPlacement.Top => this.Horizontal switch
+                {
+                    HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.TopLine()),
+                    HorizontalPlacement.Left => target.TopLeft,
+                    HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.TopRight),
+                    HorizontalPlacement.Right => target.TopRight,
+                    _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
+                },
+                VerticalPlacement.Center => this.Horizontal switch
+                {
+                    HorizontalPlacement.Auto => sourceMidPoint.Closest(target.LeftLine(), target.RightLine()).MidPoint,
+                    HorizontalPlacement.Left => PointExt.MidPoint(target.BottomLeft, target.TopLeft),
+                    HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.BottomRight),
+                    HorizontalPlacement.Right => PointExt.MidPoint(target.BottomRight, target.TopRight),
+                    _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
+                },
+                VerticalPlacement.Bottom => this.Horizontal switch
+                {
+                    HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.BottomLine()),
+                    HorizontalPlacement.Left => target.BottomLeft,
+                    HorizontalPlacement.Center => PointExt.MidPoint(target.BottomLeft, target.BottomRight),
+                    HorizontalPlacement.Right => target.BottomRight,
+                    _ => throw new InvalidEnumArgumentException("Unhandled HorizontalPlacement."),
+                },
+                _ => throw new InvalidEnumArgumentException("Unhandled VerticalPlacement."),
+            };
         }
     }
 }

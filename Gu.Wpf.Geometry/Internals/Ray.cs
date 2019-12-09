@@ -80,23 +80,22 @@ namespace Gu.Wpf.Geometry
                 ? this.Direction.Quadrant()
                 : this.Direction.Negated().Quadrant();
 
-            switch (quadrant)
+            return quadrant switch
             {
-                case Quadrant.NegativeXPositiveY:
-                    return IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true);
-                case Quadrant.PositiveXPositiveY:
-                    return IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true);
-                case Quadrant.PositiveXNegativeY:
-                    return IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true);
-                case Quadrant.NegativeXNegativeY:
-                    return IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
-                           IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true);
-                default:
-                    throw new InvalidEnumArgumentException("Unhandled Quadrant.");
-            }
+                Quadrant.NegativeXPositiveY
+                => IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true),
+                Quadrant.PositiveXPositiveY
+                => IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(this, rectangle.BottomLine(), mustBeBetweenStartAndEnd: true),
+                Quadrant.PositiveXNegativeY
+                => IntersectionPoint(this, rectangle.RightLine(), mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true),
+                Quadrant.NegativeXNegativeY
+                => IntersectionPoint(this, rectangle.LeftLine(), mustBeBetweenStartAndEnd: true) ??
+                   IntersectionPoint(this, rectangle.TopLine(), mustBeBetweenStartAndEnd: true),
+                _ => throw new InvalidEnumArgumentException("Unhandled Quadrant."),
+            };
         }
 
         internal Point? FirstIntersectionWith(Circle circle)

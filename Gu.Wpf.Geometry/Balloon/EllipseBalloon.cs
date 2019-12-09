@@ -31,12 +31,12 @@ namespace Gu.Wpf.Geometry
             }
 
             var geometry = new EllipseGeometry();
-            geometry.Bind(EllipseGeometry.CenterProperty)
-                    .OneWayTo(this, EllipseProperty, EllipseCenterConverter.Default);
-            geometry.Bind(EllipseGeometry.RadiusXProperty)
-                    .OneWayTo(this, EllipseProperty, EllipseRadiusXConverter.Default);
-            geometry.Bind(EllipseGeometry.RadiusYProperty)
-                    .OneWayTo(this, EllipseProperty, EllipseRadiusYConverter.Default);
+            _ = geometry.Bind(EllipseGeometry.CenterProperty)
+                        .OneWayTo(this, EllipseProperty, EllipseCenterConverter.Default);
+            _ = geometry.Bind(EllipseGeometry.RadiusXProperty)
+                        .OneWayTo(this, EllipseProperty, EllipseRadiusXConverter.Default);
+            _ = geometry.Bind(EllipseGeometry.RadiusYProperty)
+                        .OneWayTo(this, EllipseProperty, EllipseRadiusYConverter.Default);
             return geometry;
         }
 
@@ -120,7 +120,7 @@ namespace Gu.Wpf.Geometry
                     // ReSharper disable once CompareOfFloatsByEqualityOperator
                     if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                     {
-                        v = v - this.PlacementOptions.Offset * v.Normalized();
+                        v -= this.PlacementOptions.Offset * v.Normalized();
                     }
 
                     this.SetCurrentValue(ConnectorOffsetProperty, v);
@@ -135,16 +135,16 @@ namespace Gu.Wpf.Geometry
         private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
         {
             var figure = new PathFigure { IsClosed = true };
-            figure.Bind(PathFigure.StartPointProperty)
-                  .OneWayTo(this, property);
+            _ = figure.Bind(PathFigure.StartPointProperty)
+                      .OneWayTo(this, property);
             return figure;
         }
 
         private LineSegment CreateLineSegmentTo(DependencyProperty property)
         {
             var lineSegment = new LineSegment { IsStroked = true };
-            lineSegment.Bind(LineSegment.PointProperty)
-                       .OneWayTo(this, property);
+            _ = lineSegment.Bind(LineSegment.PointProperty)
+                           .OneWayTo(this, property);
             return lineSegment;
         }
 
@@ -182,7 +182,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private class EllipseCenterConverter : IValueConverter
+        private sealed class EllipseCenterConverter : IValueConverter
         {
             internal static readonly EllipseCenterConverter Default = new EllipseCenterConverter();
 
@@ -202,7 +202,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private class EllipseRadiusXConverter : IValueConverter
+        private sealed class EllipseRadiusXConverter : IValueConverter
         {
             internal static readonly EllipseRadiusXConverter Default = new EllipseRadiusXConverter();
 
@@ -222,7 +222,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private class EllipseRadiusYConverter : IValueConverter
+        private sealed class EllipseRadiusYConverter : IValueConverter
         {
             internal static readonly EllipseRadiusYConverter Default = new EllipseRadiusYConverter();
 

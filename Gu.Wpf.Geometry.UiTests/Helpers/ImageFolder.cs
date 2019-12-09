@@ -24,8 +24,7 @@ namespace Gu.Wpf.Geometry.UiTests
 
         private static string GetCurrent()
         {
-            if (WindowsVersion.IsWindows7() ||
-                WindowsVersion.CurrentContains("Windows Server 2019"))
+            if (WindowsVersion.IsWindows7())
             {
                 return "Win7";
             }
@@ -33,6 +32,11 @@ namespace Gu.Wpf.Geometry.UiTests
             if (WindowsVersion.IsWindows10())
             {
                 return "Win10";
+            }
+
+            if (WindowsVersion.CurrentContains("Windows Server 2019"))
+            {
+                return "WinServer2019";
             }
 
             return WindowsVersion.CurrentVersionProductName;

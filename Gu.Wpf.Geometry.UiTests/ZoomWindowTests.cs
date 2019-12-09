@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
     using System;
+    using System.IO;
     using System.Windows;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
@@ -98,6 +99,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
+            Capture.ElementToFile(window, Path.Combine(Path.GetTempPath(), "ZoomWindow_Decrease_Start.png"));
             var renderSize = window.FindTextBlock("Size");
             var contentMatrix = window.FindTextBlock("ContentMatrix");
             window.FindButton("Uniform").Invoke();
@@ -107,11 +109,13 @@ namespace Gu.Wpf.Geometry.UiTests
             zoomButton.Click();
             Assert.AreEqual("386, 248", renderSize.Text);
             Assert.AreEqual("0.31,0,0,0.31,146.5,62", contentMatrix.Text);
+            Capture.ElementToFile(window, Path.Combine(Path.GetTempPath(), "ZoomWindow_Decrease_First.png"));
 
             Assert.AreEqual(true, zoomButton.IsEnabled);
             zoomButton.Click();
             Assert.AreEqual("386, 248", renderSize.Text);
             Assert.AreEqual("0.155,0,0,0.155,169.75,93", contentMatrix.Text);
+            Capture.ElementToFile(window, Path.Combine(Path.GetTempPath(), "ZoomWindow_Decrease_Second.png"));
         }
 
         [Test]

@@ -29,18 +29,6 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Canvas Grid.Row="0"
-                        Grid.RowSpan="3"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3">
-                    <Rectangle x:Name="Target"
-                               Canvas.Left="100"
-                               Canvas.Top="50"
-                               Width="100"
-                               Height="10"
-                               Fill="Gainsboro" />
-                </Canvas>
-
                 <Rectangle Grid.Row="1"
                            Grid.Column="1"
                            Stroke="Yellow"
@@ -65,6 +53,18 @@
                                                                  Converter={converters:ElementToBoundsRectConverter AncestorType={x:Type Canvas}}}"
                                     Stroke="HotPink"
                                     StrokeThickness="4" />
+
+                <Canvas Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                    <Rectangle x:Name="Target"
+                               Canvas.Left="100"
+                               Canvas.Top="50"
+                               Width="100"
+                               Height="10"
+                               Fill="Gainsboro" />
+                </Canvas>
             </Grid>
         </GroupBox>
 

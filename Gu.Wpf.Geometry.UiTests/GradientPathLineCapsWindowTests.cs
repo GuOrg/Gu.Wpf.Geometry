@@ -4,12 +4,20 @@ namespace Gu.Wpf.Geometry.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public static class GradientPathWindowTests
+    public static class GradientPathLineCapsWindowTests
     {
+        private const string WindowName = "GradientPathLineCapsWindow";
+
         [OneTimeSetUp]
         public static void OneTimeSetUp()
         {
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
+        }
+
+        [OneTimeTearDown]
+        public static void OneTimeTearDown()
+        {
+            Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
         }
 
         [TestCase(GradientMode.Parallel, PenLineCap.Flat)]
@@ -24,12 +32,12 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             if (WinVersion() is { } winVersion)
             {
-                using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathLineCapsWindow");
+                using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
                 var window = app.MainWindow;
                 _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
                 _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
 
-                ImageAssert.AreEqual($"Images\\GradientPath\\{winVersion}\\LineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+                ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{winVersion}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
             }
             else
             {

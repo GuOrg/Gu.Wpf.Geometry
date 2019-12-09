@@ -7,12 +7,6 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         private const string WindowName = "EllipseBalloonWindow";
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {

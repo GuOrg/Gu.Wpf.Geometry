@@ -7,12 +7,6 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         private const string WindowName = "GradientPathParallelWindow";
 
-        [OneTimeSetUp]
-        public static void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public static void OneTimeTearDown()
         {

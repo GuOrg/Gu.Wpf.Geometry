@@ -7,12 +7,6 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         private const string WindowName = "BoxBalloonPlacementTargetAndRectangleWindow";
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
@@ -42,7 +36,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindListBox("Placements").Select(placement);
             var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow\\{ImageFolder.Current}\\{placement}.png", groupBox);
+            ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow\\{ImageFolder.Current}\\{placement}.png", groupBox, ImageFolder.AddAttachment);
         }
     }
 }

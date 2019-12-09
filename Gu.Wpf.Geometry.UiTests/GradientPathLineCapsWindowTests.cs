@@ -8,12 +8,6 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         private const string WindowName = "GradientPathLineCapsWindow";
 
-        [OneTimeSetUp]
-        public static void OneTimeSetUp()
-        {
-            ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
         [OneTimeTearDown]
         public static void OneTimeTearDown()
         {

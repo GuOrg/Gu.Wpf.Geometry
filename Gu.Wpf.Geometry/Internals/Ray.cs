@@ -1,8 +1,9 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -17,7 +18,7 @@
             this.Direction = direction.Normalized();
         }
 
-        private string DebuggerDisplay => $"{this.Point.ToString("F1")}, {this.Direction.ToString("F1")} angle: {this.Direction.AngleToPositiveX().ToString("F1")}";
+        private string DebuggerDisplay => $"{this.Point.ToString("F1")}, {this.Direction.ToString("F1")} angle: {this.Direction.AngleToPositiveX().ToString("F1", CultureInfo.InvariantCulture)}";
 
         internal static Ray Parse(string text)
         {

@@ -42,7 +42,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindListBox("Placements").Select(placement);
             var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($".\\Images\\BoxBalloonWindow\\{ImageFolder.Current}\\{placement}.png", groupBox, ImageFolder.AddAttachment);
+            ImageAssert.AreEqual($"Images\\BoxBalloonWindow\\{ImageFolder.Current}\\{placement}.png", groupBox, ImageFolder.AddAttachment);
         }
     }
 }

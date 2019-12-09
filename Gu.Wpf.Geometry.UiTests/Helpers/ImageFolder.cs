@@ -13,10 +13,11 @@ namespace Gu.Wpf.Geometry.UiTests
 
         internal static void AddAttachment(Exception exception, Bitmap bitmap)
         {
-            var match = Regex.Match(exception.Message, "Did not find a file nor resource named (?<path>\\.+)\\Z");
+            var match = Regex.Match(exception.Message, "Did not find a file nor resource named (?<path>[^\n]+)");
             if (match.Success)
             {
                 var fileName = Path.Combine(Path.GetTempPath(), match.Groups["path"].Value);
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
                 bitmap.Save(fileName);
                 TestContext.AddTestAttachment(fileName);
             }

@@ -24,23 +24,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{WinVersion()}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"), ImageFolder.AddAttachment);
-
-            string WinVersion()
-            {
-                if (WindowsVersion.IsWindows7())
-                {
-                    return "Win7";
-                }
-
-                if (WindowsVersion.IsWindows10() ||
-                    WindowsVersion.CurrentContains("Windows Server 2019"))
-                {
-                    return "Win10";
-                }
-
-                return WindowsVersion.CurrentVersionProductName;
-            }
+            ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{ImageFolder.Current}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"), ImageFolder.AddAttachment);
         }
     }
 }

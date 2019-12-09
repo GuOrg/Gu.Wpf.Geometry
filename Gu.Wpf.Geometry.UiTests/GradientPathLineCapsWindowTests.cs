@@ -34,7 +34,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
             _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
-            ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{ImageFolder.Current}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{ImageFolder.Current}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"), ImageFolder.AddAttachment);
         }
     }
 }

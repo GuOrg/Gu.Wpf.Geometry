@@ -24,7 +24,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{WinVersion()}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"));
+            ImageAssert.AreEqual($"Images\\GradientPathIssue29Window\\{WinVersion()}\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"), ImageFolder.AddAttachment);
 
             string WinVersion()
             {

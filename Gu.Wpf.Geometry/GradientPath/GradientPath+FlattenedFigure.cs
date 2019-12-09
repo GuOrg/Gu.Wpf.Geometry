@@ -11,13 +11,16 @@ namespace Gu.Wpf.Geometry
         {
             internal readonly IReadOnlyList<FlattenedSegment> Segments;
             internal readonly double TotalLength;
+#pragma warning disable CA1825
+            private static readonly FlattenedSegment[] EmptySegments = new FlattenedSegment[0];
+#pragma warning restore CA1825
 
             internal FlattenedFigure(PathFigure figure, PenLineCap startLineCap, PenLineCap endLineCap, double strokeThickness)
             {
                 var lines = GetLines(figure);
                 if (!lines.Any())
                 {
-                    this.Segments = new FlattenedSegment[0];
+                    this.Segments = EmptySegments;
                     return;
                 }
 

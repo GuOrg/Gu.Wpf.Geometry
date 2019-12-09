@@ -1,10 +1,26 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System;
+    using System.Drawing;
+    using System.IO;
+    using System.Text.RegularExpressions;
     using Gu.Wpf.UiAutomation;
+    using NUnit.Framework;
 
-    public static class ImageFolder
+    internal static class ImageFolder
     {
-        public static readonly string Current = GetCurrent();
+        internal static readonly string Current = GetCurrent();
+
+        internal static void AddAttachment(Exception exception, Bitmap bitmap)
+        {
+            var match = Regex.Match(exception.Message, "Did not find a file nor resource named (?<path>\\.+)\\.\\Z");
+            if (match.Success)
+            {
+                var fileName = Path.Combine(Path.GetTempPath(), match.Groups["path"].Value);
+                bitmap.Save(fileName);
+                TestContext.AddTestAttachment(fileName);
+            }
+        }
 
         private static string GetCurrent()
         {

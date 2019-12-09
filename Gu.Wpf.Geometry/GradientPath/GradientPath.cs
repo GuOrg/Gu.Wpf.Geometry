@@ -92,7 +92,9 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(DataProperty, value);
         }
 
+#pragma warning disable CA2227 // Collection properties should be read only
         public GradientStopCollection GradientStops
+#pragma warning restore CA2227 // Collection properties should be read only
         {
             get => (GradientStopCollection)this.GetValue(GradientStopsProperty);
             set => this.SetValue(GradientStopsProperty, value);

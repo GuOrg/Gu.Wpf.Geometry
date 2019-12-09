@@ -13,7 +13,7 @@ namespace Gu.Wpf.Geometry.Demo
             typeof(Drag),
             new PropertyMetadata(default(bool)));
 
-        private static readonly WeakReference<UIElement> DraggedItem = new WeakReference<UIElement>(null);
+        private static readonly WeakReference<UIElement?> DraggedItem = new WeakReference<UIElement?>(null);
         private static Point mousePreviousPosition;
         private static Point elementPosition;
 
@@ -54,7 +54,7 @@ namespace Gu.Wpf.Geometry.Demo
 
         private static void OnMouseLeftUp(object sender, MouseEventArgs e)
         {
-            if (DraggedItem.TryGetTarget(out UIElement element))
+            if (DraggedItem.TryGetTarget(out UIElement? element))
             {
                 DraggedItem.SetTarget(null);
                 element.ReleaseMouseCapture();
@@ -63,7 +63,7 @@ namespace Gu.Wpf.Geometry.Demo
 
         private static void OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (DraggedItem.TryGetTarget(out UIElement element))
+            if (DraggedItem.TryGetTarget(out UIElement? element))
             {
                 var window = Window.GetWindow(element);
                 var pos = e.GetPosition(window);

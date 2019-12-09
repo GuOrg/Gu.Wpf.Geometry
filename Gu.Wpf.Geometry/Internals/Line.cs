@@ -52,8 +52,6 @@ namespace Gu.Wpf.Geometry
 
         public override string ToString() => this.ToString(string.Empty);
 
-        internal string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
-
         internal static Line Parse(string text)
         {
             var strings = text.Split(';');
@@ -66,6 +64,8 @@ namespace Gu.Wpf.Geometry
             var ep = Point.Parse(strings[1]);
             return new Line(sp, ep);
         }
+
+        internal string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
 
         internal Line RotateAroundStartPoint(double angleInDegrees)
         {

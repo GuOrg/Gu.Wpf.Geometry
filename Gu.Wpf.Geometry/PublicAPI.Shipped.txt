@@ -160,8 +160,6 @@ Gu.Wpf.Geometry.Zoombox.ZoomNone() -> void
 Gu.Wpf.Geometry.Zoombox.ZoomUniform() -> void
 Gu.Wpf.Geometry.Zoombox.ZoomUniformToFill() -> void
 Gu.Wpf.Geometry.Zoombox.Zoombox() -> void
-XamlGeneratedNamespace.GeneratedInternalTypeHelper
-XamlGeneratedNamespace.GeneratedInternalTypeHelper.GeneratedInternalTypeHelper() -> void
 abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
 abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
 override Gu.Wpf.Geometry.BalloonBase.ArrangeOverride(System.Windows.Size finalSize) -> System.Windows.Size

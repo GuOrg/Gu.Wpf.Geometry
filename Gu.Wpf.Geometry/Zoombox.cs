@@ -44,10 +44,9 @@ namespace Gu.Wpf.Geometry
                 default(Matrix),
                 (d, e) => ((MatrixTransform)((Zoombox)d).InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue)));
 
+        private const double MinScaleDelta = 1E-6;
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
-        private static readonly double DefaultScaleIncrement = 2.0;
-        private static readonly double MinScaleDelta = 1E-6;
 
         private ContainerVisual internalVisual;
         private Point position;
@@ -538,7 +537,7 @@ namespace Gu.Wpf.Geometry
         private static void OnCanZoomUniform(object sender, CanExecuteRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            if (box.InternalChild is UIElement child)
+            if (box.InternalChild is { } child)
             {
                 e.CanExecute = child.DesiredSize.Width > MinScaleDelta &&
                                child.DesiredSize.Height > MinScaleDelta;
@@ -560,7 +559,7 @@ namespace Gu.Wpf.Geometry
         private static void OnCanZoomUniformToFill(object sender, CanExecuteRoutedEventArgs e)
         {
             var box = (Zoombox)e.Source;
-            if (box.InternalChild is UIElement child)
+            if (box.InternalChild is { } child)
             {
                 e.CanExecute = child.DesiredSize.Width > MinScaleDelta &&
                                child.DesiredSize.Height > MinScaleDelta;
@@ -601,7 +600,7 @@ namespace Gu.Wpf.Geometry
                 int i => new Vector(i, i),
                 double d => new Vector(d, d),
                 Vector v => v,
-                _ => new Vector(DefaultScaleIncrement, DefaultScaleIncrement),
+                _ => new Vector(2.0, 2.0),
             };
         }
 

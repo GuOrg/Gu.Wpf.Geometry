@@ -8,7 +8,7 @@ namespace Gu.Wpf.Geometry.Demo.Converters
     [ValueConversion(typeof(FrameworkElement), typeof(Rect))]
     public sealed class ElementToBoundsRectConverter : MarkupExtension, IValueConverter
     {
-        public Type AncestorType { get; set; }
+        public Type? AncestorType { get; set; }
 
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -18,7 +18,7 @@ namespace Gu.Wpf.Geometry.Demo.Converters
             {
                 if (parent.GetType() == this.AncestorType)
                 {
-                    return element.TransformToVisual(parent)
+                    return element!.TransformToVisual(parent)
                                   .TransformBounds(new Rect(element.DesiredSize));
                 }
 

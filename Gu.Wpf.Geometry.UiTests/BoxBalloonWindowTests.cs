@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
-    using System.IO;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 

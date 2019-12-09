@@ -4,64 +4,12 @@ namespace Gu.Wpf.Geometry.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class GradientPathWindowTests
+    public static class GradientPathWindowTests
     {
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public static void OneTimeSetUp()
         {
             ImageAssert.OnFail = OnFail.SaveImageToTemp;
-        }
-
-        [Test]
-        public void RendersParallel()
-        {
-            if (WindowsVersion.IsAppVeyor())
-            {
-                return;
-            }
-
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathParallelWindow");
-            var window = app.MainWindow;
-            ImageAssert.AreEqual("Images\\GradientPath\\Parallel.png", window.FindGroupBox("Path"));
-        }
-
-        [Test]
-        public void RendersPerpendicular()
-        {
-            if (WindowsVersion.IsAppVeyor())
-            {
-                return;
-            }
-
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathPerpendicularWindow");
-            var window = app.MainWindow;
-            ImageAssert.AreEqual(".\\Images\\GradientPathPerpendicular.png", window.FindGroupBox("Path"));
-        }
-
-        [Test]
-        public void RendersWhenArcSegmentIssue28()
-        {
-            if (WindowsVersion.IsAppVeyor())
-            {
-                return;
-            }
-
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue28Window");
-            var window = app.MainWindow;
-            ImageAssert.AreEqual("Images\\GradientPath\\ArcSegment.png", window.FindGroupBox("Path"));
-        }
-
-        [Test]
-        public void RendersArcSegmentLargeArcIssue29()
-        {
-            if (WindowsVersion.IsAppVeyor())
-            {
-                return;
-            }
-
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathIssue29Window");
-            var window = app.MainWindow;
-            ImageAssert.AreEqual("Images\\GradientPath\\ArcSegmentLargeArc.png", window.FindGroupBox("Path"));
         }
 
         [TestCase(GradientMode.Parallel, PenLineCap.Flat)]
@@ -72,19 +20,21 @@ namespace Gu.Wpf.Geometry.UiTests
         [TestCase(GradientMode.Perpendicular, PenLineCap.Round)]
         [TestCase(GradientMode.Perpendicular, PenLineCap.Square)]
         [TestCase(GradientMode.Perpendicular, PenLineCap.Triangle)]
-        public void LineCaps(GradientMode gradientMode, PenLineCap lineCap)
+        public static void LineCaps(GradientMode gradientMode, PenLineCap lineCap)
         {
-            if (WindowsVersion.IsAppVeyor())
+            if (WinVersion() is { } winVersion)
             {
-                return;
+                using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathLineCapsWindow");
+                var window = app.MainWindow;
+                _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
+                _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
+
+                ImageAssert.AreEqual($"Images\\GradientPath\\{winVersion}\\LineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
             }
-
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", "GradientPathLineCapsWindow");
-            var window = app.MainWindow;
-            _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
-            _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
-
-            ImageAssert.AreEqual($"Images\\GradientPath\\LineCap_{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
+            else
+            {
+                Assert.Inconclusive("Unknown windows version.");
+            }
         }
 
         private static string WinVersion()

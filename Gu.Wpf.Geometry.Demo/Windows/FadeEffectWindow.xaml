@@ -23,21 +23,21 @@
 
         <Image Grid.ColumnSpan="2" Source="../Images/Hustler.jpg">
             <Image.Effect>
-                <effects:FadeEffect Strength="{Binding ElementName=StrengthSlider, Path=Value}" To="{Binding ElementName=ToColour, Path=Text}" />
+                <effects:FadeEffect Strength="{Binding ElementName=StrengthSlider, Path=Value}" To="{Binding ElementName=ToColor, Path=Text}" />
             </Image.Effect>
         </Image>
 
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
-                   Text="To colour:" />
-        <TextBox x:Name="ToColour"
+                   Text="To color:" />
+        <TextBox x:Name="ToColor"
                  Grid.Row="1"
                  Grid.Column="1"
                  Text="#00000000" />
 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
-                   Text="Start colour:" />
+                   Text="Start color:" />
         <Slider x:Name="StrengthSlider"
                 Grid.Row="2"
                 Grid.Column="1"

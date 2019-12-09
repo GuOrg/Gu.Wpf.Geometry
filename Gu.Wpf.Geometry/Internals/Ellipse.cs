@@ -1,7 +1,8 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -28,7 +29,7 @@
 
         internal bool IsZero => this.RadiusX <= 0 || this.RadiusY <= 0;
 
-        private string DebuggerDisplay => $"{this.CenterPoint.ToString("F1")} rx: {this.RadiusX.ToString("F1")} ry: {this.RadiusY.ToString("F1")}";
+        private string DebuggerDisplay => $"{this.CenterPoint.ToString("F1")} rx: {this.RadiusX.ToString("F1", CultureInfo.InvariantCulture)} ry: {this.RadiusY.ToString("F1", CultureInfo.InvariantCulture)}";
 
         internal static Ellipse CreateFromSize(Size renderSize)
         {
@@ -44,12 +45,12 @@
             var strings = text.Split(';');
             if (strings.Length != 3)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Expected length = 3", nameof(text));
             }
 
             var cp = Point.Parse(strings[0]);
-            var rx = double.Parse(strings[1]);
-            var ry = double.Parse(strings[2]);
+            var rx = double.Parse(strings[1], CultureInfo.InvariantCulture);
+            var ry = double.Parse(strings[2], CultureInfo.InvariantCulture);
             return new Ellipse(cp, rx, ry);
         }
 

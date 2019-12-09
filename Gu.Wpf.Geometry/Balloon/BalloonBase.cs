@@ -347,7 +347,7 @@ namespace Gu.Wpf.Geometry
             private double cachedStrokeThickness;
             private Pen pen;
 
-            public Pen GetPen(Brush brush, double strokeThickness)
+            internal Pen GetPen(Brush brush, double strokeThickness)
             {
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (Equals(this.cachedBrush, brush) && this.cachedStrokeThickness == strokeThickness)

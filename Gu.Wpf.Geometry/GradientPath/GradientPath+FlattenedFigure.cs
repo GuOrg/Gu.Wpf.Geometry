@@ -9,10 +9,10 @@ namespace Gu.Wpf.Geometry
     {
         internal class FlattenedFigure
         {
-            public readonly IReadOnlyList<FlattenedSegment> Segments;
-            public readonly double TotalLength;
+            internal readonly IReadOnlyList<FlattenedSegment> Segments;
+            internal readonly double TotalLength;
 
-            public FlattenedFigure(PathFigure figure, PenLineCap startLineCap, PenLineCap endLineCap, double strokeThickness)
+            internal FlattenedFigure(PathFigure figure, PenLineCap startLineCap, PenLineCap endLineCap, double strokeThickness)
             {
                 var lines = GetLines(figure);
                 if (!lines.Any())

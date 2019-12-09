@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Diagnostics;
@@ -7,10 +7,10 @@
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     internal struct Line
     {
-        public readonly Point StartPoint;
-        public readonly Point EndPoint;
+        internal readonly Point StartPoint;
+        internal readonly Point EndPoint;
 
-        public Line(Point startPoint, Point endPoint)
+        internal Line(Point startPoint, Point endPoint)
         {
             this.StartPoint = startPoint;
             this.EndPoint = endPoint;
@@ -51,7 +51,7 @@
 
         public override string ToString() => this.ToString(string.Empty);
 
-        public string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
+        internal string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
 
         internal static Line Parse(string text)
         {

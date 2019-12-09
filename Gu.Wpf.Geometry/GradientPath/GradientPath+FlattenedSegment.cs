@@ -8,33 +8,33 @@ namespace Gu.Wpf.Geometry
     {
         internal class FlattenedSegment
         {
-            public readonly Line Line;
-            public readonly Geometry Geometry;
-            public Brush Brush;
+            internal readonly Line Line;
+            internal readonly Geometry Geometry;
+            internal Brush Brush;
 
-            public FlattenedSegment(Line line, Geometry geometry)
+            internal FlattenedSegment(Line line, Geometry geometry)
             {
                 this.Line = line;
                 this.Geometry = geometry;
             }
 
-            public static FlattenedSegment Create(Line? previousCenter, Line center, Line? nextCenter, double strokeThickness)
+            internal static FlattenedSegment Create(Line? previousCenter, Line center, Line? nextCenter, double strokeThickness)
             {
                 return CreateOffset(center, Offset(strokeThickness / 2), Offset(-strokeThickness / 2));
 
                 Line Offset(double offset)
                 {
                     var ol = center.Offset(offset);
-                    if (previousCenter is Line pl &&
+                    if (previousCenter is { } pl &&
                         pl.Length > 0 &&
-                        ol.TrimOrExtendStartWith(pl.Offset(offset)) is Line temp1)
+                        ol.TrimOrExtendStartWith(pl.Offset(offset)) is { } temp1)
                     {
                         ol = temp1;
                     }
 
-                    if (nextCenter is Line nl &&
+                    if (nextCenter is { } nl &&
                         nl.Length > 0 &&
-                        ol.TrimOrExtendEndWith(nl.Offset(offset)) is Line temp2)
+                        ol.TrimOrExtendEndWith(nl.Offset(offset)) is { } temp2)
                     {
                         ol = temp2;
                     }
@@ -43,7 +43,7 @@ namespace Gu.Wpf.Geometry
                 }
             }
 
-            public static FlattenedSegment CreateStartLineCap(Line line, PenLineCap startLineCap, double strokeThickness)
+            internal static FlattenedSegment CreateStartLineCap(Line line, PenLineCap startLineCap, double strokeThickness)
             {
                 switch (startLineCap)
                 {
@@ -60,7 +60,7 @@ namespace Gu.Wpf.Geometry
                 }
             }
 
-            public static FlattenedSegment CreateEndLineCap(Line line, PenLineCap endLineCap, double strokeThickness)
+            internal static FlattenedSegment CreateEndLineCap(Line line, PenLineCap endLineCap, double strokeThickness)
             {
                 switch (endLineCap)
                 {

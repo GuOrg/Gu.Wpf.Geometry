@@ -596,22 +596,13 @@ namespace Gu.Wpf.Geometry
 
         private static Vector GetScale(object parameter)
         {
-            if (parameter is int i)
+            return parameter switch
             {
-                return new Vector(i, i);
-            }
-
-            if (parameter is double d)
-            {
-                return new Vector(d, d);
-            }
-
-            if (parameter is Vector v)
-            {
-                return v;
-            }
-
-            return new Vector(DefaultScaleIncrement, DefaultScaleIncrement);
+                int i => new Vector(i, i),
+                double d => new Vector(d, d),
+                Vector v => v,
+                _ => new Vector(DefaultScaleIncrement, DefaultScaleIncrement),
+            };
         }
 
         private Vector CoerceScale(Vector scale)

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.UiTests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 

@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
 
     internal class EmptyEnumerator : IEnumerator
     {
-        public static readonly IEnumerator Instance = new EmptyEnumerator();
+        internal static readonly IEnumerator Instance = new EmptyEnumerator();
 
         private EmptyEnumerator()
         {

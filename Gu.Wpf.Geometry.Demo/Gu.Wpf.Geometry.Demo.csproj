@@ -2,6 +2,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <UseWpf>true</UseWpf>
     <CodeAnalysisRuleSet>Gu.Wpf.Geometry.Demo.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>

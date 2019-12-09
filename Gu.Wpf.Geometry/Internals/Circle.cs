@@ -1,7 +1,8 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -10,24 +11,24 @@
         internal readonly Point Center;
         internal readonly double Radius;
 
-        public Circle(Point center, double radius)
+        internal Circle(Point center, double radius)
         {
             this.Center = center;
             this.Radius = radius;
         }
 
-        private string DebuggerDisplay => $"{this.Center.ToString("F1")} radius: {this.Radius.ToString("F1")}";
+        private string DebuggerDisplay => $"{this.Center.ToString("F1")} radius: {this.Radius.ToString("F1", CultureInfo.InvariantCulture)}";
 
         internal static Circle Parse(string text)
         {
             var strings = text.Split(';');
             if (strings.Length != 2)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Expected length == 2", nameof(text));
             }
 
             var cp = Point.Parse(strings[0]);
-            var r = double.Parse(strings[1]);
+            var r = double.Parse(strings[1], CultureInfo.InvariantCulture);
             return new Circle(cp, r);
         }
 

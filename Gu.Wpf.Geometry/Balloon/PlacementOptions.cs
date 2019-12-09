@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.ComponentModel;
@@ -78,68 +78,42 @@
             switch (this.Vertical)
             {
                 case VerticalPlacement.Auto:
-                    switch (this.Horizontal)
+                    return this.Horizontal switch
                     {
-                        case HorizontalPlacement.Auto:
-                            var closestLine = ClosestLine(target, sourceMidPoint);
-                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), closestLine);
-                        case HorizontalPlacement.Left:
-                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine());
-                        case HorizontalPlacement.Center:
-                            return sourceMidPoint.Closest(target.BottomLine(), target.TopLine())
-                                                 .MidPoint;
-                        case HorizontalPlacement.Right:
-                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine());
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), ClosestLine(target, sourceMidPoint)),
+                        HorizontalPlacement.Left => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.LeftLine()),
+                        HorizontalPlacement.Center => sourceMidPoint.Closest(target.BottomLine(), target.TopLine()).MidPoint,
+                        HorizontalPlacement.Right => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.RightLine()),
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
 
                 case VerticalPlacement.Top:
-                    switch (this.Horizontal)
+                    return this.Horizontal switch
                     {
-                        case HorizontalPlacement.Auto:
-                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.TopLine());
-                        case HorizontalPlacement.Left:
-                            return target.TopLeft;
-                        case HorizontalPlacement.Center:
-                            return PointExt.MidPoint(target.TopLeft, target.TopRight);
-                        case HorizontalPlacement.Right:
-                            return target.TopRight;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
+                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.TopLine()),
+                        HorizontalPlacement.Left => target.TopLeft,
+                        HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.TopRight),
+                        HorizontalPlacement.Right => target.TopRight,
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
                 case VerticalPlacement.Center:
-                    switch (this.Horizontal)
+                    return this.Horizontal switch
                     {
-                        case HorizontalPlacement.Auto:
-                            return sourceMidPoint.Closest(target.LeftLine(), target.RightLine())
-                                                 .MidPoint;
-                        case HorizontalPlacement.Left:
-                            return PointExt.MidPoint(target.BottomLeft, target.TopLeft);
-                        case HorizontalPlacement.Center:
-                            return PointExt.MidPoint(target.TopLeft, target.BottomRight);
-                        case HorizontalPlacement.Right:
-                            return PointExt.MidPoint(target.BottomRight, target.TopRight);
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
+                        HorizontalPlacement.Auto => sourceMidPoint.Closest(target.LeftLine(), target.RightLine()).MidPoint,
+                        HorizontalPlacement.Left => PointExt.MidPoint(target.BottomLeft, target.TopLeft),
+                        HorizontalPlacement.Center => PointExt.MidPoint(target.TopLeft, target.BottomRight),
+                        HorizontalPlacement.Right => PointExt.MidPoint(target.BottomRight, target.TopRight),
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
                 case VerticalPlacement.Bottom:
-                    switch (this.Horizontal)
+                    return this.Horizontal switch
                     {
-                        case HorizontalPlacement.Auto:
-                            return AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.BottomLine());
-                        case HorizontalPlacement.Left:
-                            return target.BottomLeft;
-                        case HorizontalPlacement.Center:
-                            return PointExt.MidPoint(target.BottomLeft, target.BottomRight);
-                        case HorizontalPlacement.Right:
-                            return target.BottomRight;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
+                        HorizontalPlacement.Auto => AutoPoint(sourceMidPoint.LineTo(target.CenterPoint()), target.BottomLine()),
+                        HorizontalPlacement.Left => target.BottomLeft,
+                        HorizontalPlacement.Center => PointExt.MidPoint(target.BottomLeft, target.BottomRight),
+                        HorizontalPlacement.Right => target.BottomRight,
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
                 default:
                     throw new ArgumentOutOfRangeException();
             }

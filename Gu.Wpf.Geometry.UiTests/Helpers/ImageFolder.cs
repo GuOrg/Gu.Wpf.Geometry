@@ -3,7 +3,6 @@ namespace Gu.Wpf.Geometry.UiTests
     using System;
     using System.Drawing;
     using System.IO;
-    using System.Text.RegularExpressions;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -13,13 +12,12 @@ namespace Gu.Wpf.Geometry.UiTests
 
         internal static void AddAttachment(Exception exception, Bitmap bitmap)
         {
-            var match = Regex.Match(exception.Message, "Did not find a file nor resource named (?<path>[^\n]+)");
-            if (match.Success)
+            if (exception is ImageAssertException { Actual: { } actual, FileName: { } fileName })
             {
-                var fileName = Path.Combine(Path.GetTempPath(), match.Groups["path"].Value);
-                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
-                bitmap.Save(fileName);
-                TestContext.AddTestAttachment(fileName);
+                var fullFileName = Path.Combine(Path.GetTempPath(), fileName);
+                _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
+                actual.Save(fullFileName);
+                TestContext.AddTestAttachment(fullFileName);
             }
         }
 

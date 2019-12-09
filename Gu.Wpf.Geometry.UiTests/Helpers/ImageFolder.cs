@@ -8,13 +8,13 @@ namespace Gu.Wpf.Geometry.UiTests
 
         private static string GetCurrent()
         {
-            if (WindowsVersion.IsWindows7())
+            if (WindowsVersion.IsWindows7() ||
+                WindowsVersion.CurrentContains("Windows Server 2019"))
             {
                 return "Win7";
             }
 
-            if (WindowsVersion.IsWindows10() ||
-                WindowsVersion.CurrentContains("Windows Server 2019"))
+            if (WindowsVersion.IsWindows10())
             {
                 return "Win10";
             }

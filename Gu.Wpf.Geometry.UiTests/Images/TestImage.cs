@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.UiTests
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    internal static class TestImage
+    public static class TestImage
     {
         internal static readonly string Current = GetCurrent();
 
@@ -53,11 +53,6 @@ namespace Gu.Wpf.Geometry.UiTests
             }
 
             return WindowsVersion.CurrentVersionProductName;
-        }
-
-        [System.Diagnostics.Conditional("DEBUG")]
-        public class ScriptAttribute : TestAttribute
-        {
         }
     }
 }

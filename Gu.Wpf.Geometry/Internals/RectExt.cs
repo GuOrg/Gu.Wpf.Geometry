@@ -36,7 +36,7 @@ namespace Gu.Wpf.Geometry
 
         internal static Rect ToScreen(this Rect rect, UIElement element)
         {
-            if (PresentationSource.FromVisual(element) == null)
+            if (PresentationSource.FromVisual(element) is null)
             {
                 return rect;
             }

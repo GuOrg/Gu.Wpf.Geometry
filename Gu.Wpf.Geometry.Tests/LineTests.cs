@@ -77,7 +77,7 @@ namespace Gu.Wpf.Geometry.Tests
         {
             var l = Line.Parse(ls);
             var rect = Rect.Parse(rs);
-            var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
+            var expected = eps is "null" ? (Point?)null : Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
             PointAssert.AreEqual(expected, actual, 2);
         }
@@ -93,7 +93,7 @@ namespace Gu.Wpf.Geometry.Tests
         {
             var l = Line.Parse(ls);
             var rect = Rect.Parse(rs);
-            var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
+            var expected = eps is "null" ? (Point?)null : Point.Parse(eps);
             var actual = l.ClosestIntersection(rect);
             PointAssert.AreEqual(expected, actual, 2);
         }

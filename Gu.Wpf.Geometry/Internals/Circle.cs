@@ -35,7 +35,7 @@ namespace Gu.Wpf.Geometry
         internal Point? ClosestIntersection(Line line)
         {
             var perp = line.PerpendicularLineTo(this.Center);
-            if (perp == null)
+            if (perp is null)
             {
                 return this.Center - this.Radius * line.Direction;
             }

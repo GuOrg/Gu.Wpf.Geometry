@@ -6,7 +6,7 @@
     {
         internal static Color GetColorAt(this GradientStopCollection stops, double offset, ColorInterpolationMode colorInterpolationMode)
         {
-            if (stops == null || stops.Count == 0)
+            if (stops is null || stops.Count == 0)
             {
                 return Color.FromArgb(0, 0, 0, 0);
             }

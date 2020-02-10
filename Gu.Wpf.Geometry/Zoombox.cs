@@ -182,7 +182,7 @@ namespace Gu.Wpf.Geometry
         {
             get
             {
-                if (this.InternalChild == null)
+                if (this.InternalChild is null)
                 {
                     return EmptyEnumerator.Instance;
                 }
@@ -195,7 +195,7 @@ namespace Gu.Wpf.Geometry
         {
             get
             {
-                if (this.internalVisual == null)
+                if (this.internalVisual is null)
                 {
                     this.internalVisual = new ContainerVisual
                     {
@@ -276,7 +276,7 @@ namespace Gu.Wpf.Geometry
         /// </summary>
         public void ZoomUniform()
         {
-            if (this.InternalChild == null)
+            if (this.InternalChild is null)
             {
                 return;
             }
@@ -312,7 +312,7 @@ namespace Gu.Wpf.Geometry
         /// </summary>
         public void ZoomUniformToFill()
         {
-            if (this.InternalChild == null)
+            if (this.InternalChild is null)
             {
                 return;
             }

@@ -18,9 +18,9 @@
 
         public static void AreEqual(Point? expected, Point? actual, int digits = 2)
         {
-            if (expected == null)
+            if (expected is null)
             {
-                if (actual == null)
+                if (actual is null)
                 {
                     return;
                 }
@@ -30,7 +30,7 @@
                                              $"Actual:   {actual.Value.ToString("F" + digits)}");
             }
 
-            if (actual == null)
+            if (actual is null)
             {
                 throw new AssertionException("Points are not equal\r\n" +
                                              $"Expected: {expected.ToString("F" + digits)}\r\v" +

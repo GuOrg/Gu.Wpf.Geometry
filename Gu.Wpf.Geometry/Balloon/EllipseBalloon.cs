@@ -92,7 +92,7 @@ namespace Gu.Wpf.Geometry
                 var ellipse = new Ellipse(selfRect);
 
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                if (tp == null || ellipse.Contains(tp.Value))
+                if (tp is null || ellipse.Contains(tp.Value))
                 {
                     this.InvalidateProperty(ConnectorOffsetProperty);
                     return;
@@ -108,7 +108,7 @@ namespace Gu.Wpf.Geometry
                 var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
                 Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (ip == null)
+                if (ip is null)
                 {
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
@@ -171,7 +171,7 @@ namespace Gu.Wpf.Geometry
                 var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
                 Debug.Assert(toEllipseCenter != null, "Ray should not go through ellipse center here");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (toEllipseCenter == null)
+                if (toEllipseCenter is null)
                 {
                     // this should never happen but failing silently
                     // the balloons should not throw much returning random point.

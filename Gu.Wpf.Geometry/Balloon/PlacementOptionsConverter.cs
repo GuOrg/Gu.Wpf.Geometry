@@ -30,7 +30,7 @@ namespace Gu.Wpf.Geometry
             object source)
         {
             var text = source as string;
-            if (text == null)
+            if (text is null)
             {
                 return base.ConvertFrom(typeDescriptorContext, cultureInfo, source);
             }

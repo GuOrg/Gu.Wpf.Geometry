@@ -29,7 +29,7 @@ namespace Gu.Wpf.Geometry.Tests
         public void SnapToOrtho(string vs, string evs)
         {
             var v = Vector.Parse(vs);
-            var expected = evs == "null" ? (Vector?)null : Vector.Parse(evs);
+            var expected = evs is "null" ? (Vector?)null : Vector.Parse(evs);
             var actual = v.SnapToOrtho();
             VectorAssert.AreEqual(expected, actual, 2);
 

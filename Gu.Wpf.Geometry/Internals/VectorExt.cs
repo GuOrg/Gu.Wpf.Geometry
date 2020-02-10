@@ -120,7 +120,7 @@
 
         internal static string ToString(this Vector? self, string format = "F1")
         {
-            return self == null ? "null" : self.Value.ToString(format);
+            return self is null ? "null" : self.Value.ToString(format);
         }
 
         internal static string ToString(this Vector self, string format = "F1")

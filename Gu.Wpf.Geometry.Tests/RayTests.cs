@@ -17,7 +17,7 @@
         {
             var ray = Ray.Parse(ls);
             var circle = Circle.Parse(cs);
-            var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
+            var expected = eps is "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(circle);
             PointAssert.AreEqual(expected, actual, 2);
         }
@@ -80,7 +80,7 @@
         {
             var ray = Ray.Parse(rs);
             var ellipse = Ellipse.Parse(es);
-            var expected = eps == "null" ? (Point?)null : Point.Parse(eps);
+            var expected = eps is "null" ? (Point?)null : Point.Parse(eps);
             var actual = ray.FirstIntersectionWith(ellipse);
             PointAssert.AreEqual(expected, actual, 2);
         }

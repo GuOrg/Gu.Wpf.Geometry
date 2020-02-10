@@ -88,7 +88,7 @@ namespace Gu.Wpf.Geometry
 
         internal static Point ToScreen(this Point self, UIElement element)
         {
-            if (PresentationSource.FromVisual(element) == null)
+            if (PresentationSource.FromVisual(element) is null)
             {
                 return self;
             }
@@ -98,7 +98,7 @@ namespace Gu.Wpf.Geometry
 
         internal static string ToString(this Point? self, string format = "F1")
         {
-            return self == null ? "null" : self.Value.ToString(format);
+            return self is null ? "null" : self.Value.ToString(format);
         }
 
         internal static string ToString(this Point self, string format = "F1")

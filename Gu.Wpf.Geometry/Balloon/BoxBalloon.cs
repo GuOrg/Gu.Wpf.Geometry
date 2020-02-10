@@ -98,7 +98,7 @@ namespace Gu.Wpf.Geometry
 
             var fromCenter = new Ray(rectangle.CenterPoint(), this.ConnectorOffset);
             var ip = fromCenter.FirstIntersectionWith(rectangle);
-            if (ip == null)
+            if (ip is null)
             {
                 Debug.Assert(condition: false, message: $"Line {fromCenter} does not intersect rectangle {rectangle}");
 
@@ -184,7 +184,7 @@ namespace Gu.Wpf.Geometry
             private static Point FindForRotated(Ray ray, double strokeThickness, Rect rectangle, CornerRadius cornerRadius)
             {
                 var ip = ray.FirstIntersectionWith(rectangle);
-                if (ip == null)
+                if (ip is null)
                 {
                     return FindTangentPoint(ray, rectangle, cornerRadius);
                 }
@@ -192,7 +192,7 @@ namespace Gu.Wpf.Geometry
                 if (TryGetCorner(ip.Value, rectangle, cornerRadius, out var corner))
                 {
                     ip = ray.FirstIntersectionWith(corner);
-                    if (ip == null)
+                    if (ip is null)
                     {
                         return FindTangentPoint(ray, rectangle, cornerRadius);
                     }
@@ -228,7 +228,7 @@ namespace Gu.Wpf.Geometry
                 var toMid = ray.PerpendicularLineTo(rectangle.CenterPoint());
                 Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (toMid == null)
+                if (toMid is null)
                 {
                     // failing silently in release
                     return rectangle.CenterPoint();
@@ -258,7 +258,7 @@ namespace Gu.Wpf.Geometry
                 var lineToCenter = ray.PerpendicularLineTo(corner.Center);
                 Debug.Assert(lineToCenter != null, "Ray cannot go through center here");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (lineToCenter == null)
+                if (lineToCenter is null)
                 {
                     // this should never happen but failing silently
                     // the balloons should not throw much.

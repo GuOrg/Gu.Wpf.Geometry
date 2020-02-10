@@ -140,7 +140,7 @@ namespace Gu.Wpf.Geometry
             }
 
             var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
-            if (ip == null)
+            if (ip is null)
             {
                 return this;
             }
@@ -156,7 +156,7 @@ namespace Gu.Wpf.Geometry
             }
 
             var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
-            if (ip == null)
+            if (ip is null)
             {
                 return null;
             }

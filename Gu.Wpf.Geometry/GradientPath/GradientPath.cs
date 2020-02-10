@@ -162,7 +162,7 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc />
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.Data == null)
+            if (this.Data is null)
             {
                 return base.MeasureOverride(availableSize);
             }
@@ -181,7 +181,7 @@ namespace Gu.Wpf.Geometry
                 throw new ArgumentNullException(nameof(dc));
             }
 
-            if (this.flattenedFigures == null ||
+            if (this.flattenedFigures is null ||
                 this.flattenedFigures.Count == 0)
             {
                 return;
@@ -198,7 +198,7 @@ namespace Gu.Wpf.Geometry
 
         private void OnGeometryChanged()
         {
-            if (this.Data == null || this.StrokeThickness <= 0)
+            if (this.Data is null || this.StrokeThickness <= 0)
             {
                 this.flattenedFigures = null;
                 return;
@@ -213,8 +213,8 @@ namespace Gu.Wpf.Geometry
 
         private void OnGradientChanged()
         {
-            if (this.flattenedFigures == null ||
-                this.GradientStops == null)
+            if (this.flattenedFigures is null ||
+                this.GradientStops is null)
             {
                 return;
             }

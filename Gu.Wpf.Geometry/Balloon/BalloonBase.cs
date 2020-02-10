@@ -236,7 +236,7 @@ namespace Gu.Wpf.Geometry
                 var targetRect = this.GetTargetRect();
 
                 var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                if (tp == null || selfRect.Contains(tp.Value))
+                if (tp is null || selfRect.Contains(tp.Value))
                 {
                     this.InvalidateProperty(ConnectorOffsetProperty);
                     return;
@@ -246,7 +246,7 @@ namespace Gu.Wpf.Geometry
                 var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
                 Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
                 //// ReSharper disable once ConditionIsAlwaysTrueOrFalse I think we want it weird like this.
-                if (ip == null)
+                if (ip is null)
                 {
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);

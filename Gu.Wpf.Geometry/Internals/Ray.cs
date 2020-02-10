@@ -101,7 +101,7 @@ namespace Gu.Wpf.Geometry
         internal Point? FirstIntersectionWith(Circle circle)
         {
             var perp = this.PerpendicularLineTo(circle.Center);
-            if (perp == null)
+            if (perp is null)
             {
                 return this.Point.DistanceTo(circle.Center) < circle.Radius
                     ? circle.Center + circle.Radius * this.Direction

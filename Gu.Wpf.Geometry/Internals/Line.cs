@@ -189,7 +189,7 @@ namespace Gu.Wpf.Geometry
                 Quadrant.NegativeXNegativeY
                 => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
                    IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
-                _ => throw new InvalidEnumArgumentException("Unhandled Quadrant.")
+                _ => throw new InvalidEnumArgumentException("Unhandled Quadrant."),
             };
         }
 

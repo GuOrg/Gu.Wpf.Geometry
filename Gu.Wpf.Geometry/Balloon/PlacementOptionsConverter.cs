@@ -43,7 +43,7 @@ namespace Gu.Wpf.Geometry
                     1 => ParseOne(args[0], text),
                     2 => ParseTwo(args[0], args[1], text),
                     3 => ParseThree(args[0], args[1], args[2], text),
-                    _ => throw FormatException(text)
+                    _ => throw FormatException(text),
                 };
             }
             catch (Exception e)

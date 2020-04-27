@@ -246,7 +246,7 @@ namespace Gu.Wpf.Geometry
                     Quadrant.PositiveXPositiveY => CreateTopLeft(rectangle.TopLeft, cornerRadius.TopLeft),
                     Quadrant.PositiveXNegativeY => CreateBottomLeft(rectangle.BottomLeft, cornerRadius.BottomLeft),
                     Quadrant.NegativeXNegativeY => CreateBottomRight(rectangle.BottomRight, cornerRadius.BottomRight),
-                    _ => throw new InvalidEnumArgumentException("Unhandled quadrant.")
+                    _ => throw new InvalidEnumArgumentException("Unhandled quadrant."),
                 };
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator

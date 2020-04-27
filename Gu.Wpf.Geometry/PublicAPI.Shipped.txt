@@ -1,4 +1,5 @@
-﻿Gu.Wpf.Geometry.Balloon
+﻿#nullable enable
+Gu.Wpf.Geometry.Balloon
 Gu.Wpf.Geometry.Balloon.Balloon() -> void
 Gu.Wpf.Geometry.Balloon.ConnectorAngle.get -> double
 Gu.Wpf.Geometry.Balloon.ConnectorAngle.set -> void
@@ -6,24 +7,24 @@ Gu.Wpf.Geometry.Balloon.ConnectorOffset.get -> System.Windows.Vector
 Gu.Wpf.Geometry.Balloon.ConnectorOffset.set -> void
 Gu.Wpf.Geometry.Balloon.CornerRadius.get -> System.Windows.CornerRadius
 Gu.Wpf.Geometry.Balloon.CornerRadius.set -> void
-Gu.Wpf.Geometry.Balloon.PlacementOptions.get -> Gu.Wpf.Geometry.PlacementOptions
+Gu.Wpf.Geometry.Balloon.PlacementOptions.get -> Gu.Wpf.Geometry.PlacementOptions!
 Gu.Wpf.Geometry.Balloon.PlacementOptions.set -> void
-Gu.Wpf.Geometry.Balloon.PlacementTarget.get -> System.Windows.UIElement
+Gu.Wpf.Geometry.Balloon.PlacementTarget.get -> System.Windows.UIElement!
 Gu.Wpf.Geometry.Balloon.PlacementTarget.set -> void
 Gu.Wpf.Geometry.BalloonBase
 Gu.Wpf.Geometry.BalloonBase.BalloonBase() -> void
-Gu.Wpf.Geometry.BalloonBase.BoxGeometry.get -> System.Windows.Media.Geometry
+Gu.Wpf.Geometry.BalloonBase.BoxGeometry.get -> System.Windows.Media.Geometry?
 Gu.Wpf.Geometry.BalloonBase.CanCreateConnectorGeometry() -> bool
 Gu.Wpf.Geometry.BalloonBase.ConnectorAngle.get -> double
 Gu.Wpf.Geometry.BalloonBase.ConnectorAngle.set -> void
-Gu.Wpf.Geometry.BalloonBase.ConnectorGeometry.get -> System.Windows.Media.Geometry
+Gu.Wpf.Geometry.BalloonBase.ConnectorGeometry.get -> System.Windows.Media.Geometry?
 Gu.Wpf.Geometry.BalloonBase.ConnectorOffset.get -> System.Windows.Vector
 Gu.Wpf.Geometry.BalloonBase.ConnectorOffset.set -> void
-Gu.Wpf.Geometry.BalloonBase.PlacementOptions.get -> Gu.Wpf.Geometry.PlacementOptions
+Gu.Wpf.Geometry.BalloonBase.PlacementOptions.get -> Gu.Wpf.Geometry.PlacementOptions!
 Gu.Wpf.Geometry.BalloonBase.PlacementOptions.set -> void
 Gu.Wpf.Geometry.BalloonBase.PlacementRectangle.get -> System.Windows.Rect
 Gu.Wpf.Geometry.BalloonBase.PlacementRectangle.set -> void
-Gu.Wpf.Geometry.BalloonBase.PlacementTarget.get -> System.Windows.UIElement
+Gu.Wpf.Geometry.BalloonBase.PlacementTarget.get -> System.Windows.UIElement!
 Gu.Wpf.Geometry.BalloonBase.PlacementTarget.set -> void
 Gu.Wpf.Geometry.BoxBalloon
 Gu.Wpf.Geometry.BoxBalloon.BoxBalloon() -> void
@@ -38,7 +39,7 @@ Gu.Wpf.Geometry.Effects.AngularGradientEffect.CentralAngle.get -> double
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.CentralAngle.set -> void
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.EndColor.get -> System.Windows.Media.Color
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.EndColor.set -> void
-Gu.Wpf.Geometry.Effects.AngularGradientEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.AngularGradientEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartAngle.get -> double
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartAngle.set -> void
@@ -46,13 +47,13 @@ Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartColor.get -> System.Windows.M
 Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartColor.set -> void
 Gu.Wpf.Geometry.Effects.DesaturateEffect
 Gu.Wpf.Geometry.Effects.DesaturateEffect.DesaturateEffect() -> void
-Gu.Wpf.Geometry.Effects.DesaturateEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.DesaturateEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.DesaturateEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.DesaturateEffect.Strength.get -> double
 Gu.Wpf.Geometry.Effects.DesaturateEffect.Strength.set -> void
 Gu.Wpf.Geometry.Effects.FadeEffect
 Gu.Wpf.Geometry.Effects.FadeEffect.FadeEffect() -> void
-Gu.Wpf.Geometry.Effects.FadeEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.FadeEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.FadeEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.FadeEffect.Strength.get -> double
 Gu.Wpf.Geometry.Effects.FadeEffect.Strength.set -> void
@@ -66,7 +67,7 @@ Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerRadius.get -> double
 Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerRadius.set -> void
 Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerSaturation.get -> double
 Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerSaturation.set -> void
-Gu.Wpf.Geometry.Effects.HslWheelEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.HslWheelEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.HslWheelEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.HslWheelEffect.Lightness.get -> double
 Gu.Wpf.Geometry.Effects.HslWheelEffect.Lightness.set -> void
@@ -80,7 +81,7 @@ Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerRadius.get -> double
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerRadius.set -> void
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerSaturation.get -> double
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerSaturation.set -> void
-Gu.Wpf.Geometry.Effects.HsvWheelEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.HsvWheelEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.StartAngle.get -> double
 Gu.Wpf.Geometry.Effects.HsvWheelEffect.StartAngle.set -> void
@@ -89,7 +90,7 @@ Gu.Wpf.Geometry.Effects.HsvWheelEffect.Value.set -> void
 Gu.Wpf.Geometry.Effects.MaskEffect
 Gu.Wpf.Geometry.Effects.MaskEffect.Color.get -> System.Windows.Media.Color
 Gu.Wpf.Geometry.Effects.MaskEffect.Color.set -> void
-Gu.Wpf.Geometry.Effects.MaskEffect.Input.get -> System.Windows.Media.Brush
+Gu.Wpf.Geometry.Effects.MaskEffect.Input.get -> System.Windows.Media.Brush!
 Gu.Wpf.Geometry.Effects.MaskEffect.Input.set -> void
 Gu.Wpf.Geometry.Effects.MaskEffect.MaskEffect() -> void
 Gu.Wpf.Geometry.Effects.MaskEffect.Tolerance.get -> double
@@ -102,12 +103,12 @@ Gu.Wpf.Geometry.GradientMode.Perpendicular = 0 -> Gu.Wpf.Geometry.GradientMode
 Gu.Wpf.Geometry.GradientPath
 Gu.Wpf.Geometry.GradientPath.ColorInterpolationMode.get -> System.Windows.Media.ColorInterpolationMode
 Gu.Wpf.Geometry.GradientPath.ColorInterpolationMode.set -> void
-Gu.Wpf.Geometry.GradientPath.Data.get -> System.Windows.Media.Geometry
+Gu.Wpf.Geometry.GradientPath.Data.get -> System.Windows.Media.Geometry!
 Gu.Wpf.Geometry.GradientPath.Data.set -> void
 Gu.Wpf.Geometry.GradientPath.GradientMode.get -> Gu.Wpf.Geometry.GradientMode
 Gu.Wpf.Geometry.GradientPath.GradientMode.set -> void
 Gu.Wpf.Geometry.GradientPath.GradientPath() -> void
-Gu.Wpf.Geometry.GradientPath.GradientStops.get -> System.Windows.Media.GradientStopCollection
+Gu.Wpf.Geometry.GradientPath.GradientStops.get -> System.Windows.Media.GradientStopCollection!
 Gu.Wpf.Geometry.GradientPath.GradientStops.set -> void
 Gu.Wpf.Geometry.GradientPath.StrokeEndLineCap.get -> System.Windows.Media.PenLineCap
 Gu.Wpf.Geometry.GradientPath.StrokeEndLineCap.set -> void
@@ -160,103 +161,103 @@ Gu.Wpf.Geometry.Zoombox.ZoomNone() -> void
 Gu.Wpf.Geometry.Zoombox.ZoomUniform() -> void
 Gu.Wpf.Geometry.Zoombox.ZoomUniformToFill() -> void
 Gu.Wpf.Geometry.Zoombox.Zoombox() -> void
-abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
-abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
+abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
+abstract Gu.Wpf.Geometry.BalloonBase.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
 override Gu.Wpf.Geometry.BalloonBase.ArrangeOverride(System.Windows.Size finalSize) -> System.Windows.Size
-override Gu.Wpf.Geometry.BalloonBase.DefiningGeometry.get -> System.Windows.Media.Geometry
+override Gu.Wpf.Geometry.BalloonBase.DefiningGeometry.get -> System.Windows.Media.Geometry!
 override Gu.Wpf.Geometry.BalloonBase.MeasureOverride(System.Windows.Size constraint) -> System.Windows.Size
-override Gu.Wpf.Geometry.BalloonBase.OnRender(System.Windows.Media.DrawingContext drawingContext) -> void
-override Gu.Wpf.Geometry.BalloonBase.OnRenderSizeChanged(System.Windows.SizeChangedInfo sizeInfo) -> void
-override Gu.Wpf.Geometry.BoxBalloon.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
-override Gu.Wpf.Geometry.BoxBalloon.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
-override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
-override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry
+override Gu.Wpf.Geometry.BalloonBase.OnRender(System.Windows.Media.DrawingContext! drawingContext) -> void
+override Gu.Wpf.Geometry.BalloonBase.OnRenderSizeChanged(System.Windows.SizeChangedInfo! sizeInfo) -> void
+override Gu.Wpf.Geometry.BoxBalloon.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
+override Gu.Wpf.Geometry.BoxBalloon.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
+override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateBoxGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
+override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
 override Gu.Wpf.Geometry.EllipseBalloon.UpdateConnectorOffset() -> void
 override Gu.Wpf.Geometry.GradientPath.MeasureOverride(System.Windows.Size availableSize) -> System.Windows.Size
-override Gu.Wpf.Geometry.GradientPath.OnRender(System.Windows.Media.DrawingContext dc) -> void
-override Gu.Wpf.Geometry.PlacementOptions.ToString() -> string
-override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext typeDescriptorContext, System.Type sourceType) -> bool
-override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext typeDescriptorContext, System.Type destinationType) -> bool
-override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext typeDescriptorContext, System.Globalization.CultureInfo cultureInfo, object source) -> object
-override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext typeDescriptorContext, System.Globalization.CultureInfo cultureInfo, object value, System.Type destinationType) -> object
-override Gu.Wpf.Geometry.PlacementOptionsExtension.ProvideValue(System.IServiceProvider serviceProvider) -> object
+override Gu.Wpf.Geometry.GradientPath.OnRender(System.Windows.Media.DrawingContext! dc) -> void
+override Gu.Wpf.Geometry.PlacementOptions.ToString() -> string!
+override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Type! sourceType) -> bool
+override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Type! destinationType) -> bool
+override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Globalization.CultureInfo! cultureInfo, object! source) -> object!
+override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Globalization.CultureInfo! cultureInfo, object! value, System.Type! destinationType) -> object!
+override Gu.Wpf.Geometry.PlacementOptionsExtension.ProvideValue(System.IServiceProvider! serviceProvider) -> object!
 override Gu.Wpf.Geometry.Zoombox.ArrangeOverride(System.Windows.Size arrangeSize) -> System.Windows.Size
-override Gu.Wpf.Geometry.Zoombox.Child.get -> System.Windows.UIElement
+override Gu.Wpf.Geometry.Zoombox.Child.get -> System.Windows.UIElement?
 override Gu.Wpf.Geometry.Zoombox.Child.set -> void
-override Gu.Wpf.Geometry.Zoombox.GetVisualChild(int index) -> System.Windows.Media.Visual
-override Gu.Wpf.Geometry.Zoombox.LogicalChildren.get -> System.Collections.IEnumerator
+override Gu.Wpf.Geometry.Zoombox.GetVisualChild(int index) -> System.Windows.Media.Visual!
+override Gu.Wpf.Geometry.Zoombox.LogicalChildren.get -> System.Collections.IEnumerator!
 override Gu.Wpf.Geometry.Zoombox.MeasureOverride(System.Windows.Size constraint) -> System.Windows.Size
-override Gu.Wpf.Geometry.Zoombox.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnMouseMove(System.Windows.Input.MouseEventArgs e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnRender(System.Windows.Media.DrawingContext dc) -> void
+override Gu.Wpf.Geometry.Zoombox.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs! e) -> void
+override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs! e) -> void
+override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs! e) -> void
+override Gu.Wpf.Geometry.Zoombox.OnMouseMove(System.Windows.Input.MouseEventArgs! e) -> void
+override Gu.Wpf.Geometry.Zoombox.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs! e) -> void
+override Gu.Wpf.Geometry.Zoombox.OnRender(System.Windows.Media.DrawingContext! dc) -> void
 override Gu.Wpf.Geometry.Zoombox.VisualChildrenCount.get -> int
-static Gu.Wpf.Geometry.DependencyObjectExt.GetVisualParent(this System.Windows.DependencyObject dependencyObject) -> System.Windows.UIElement
-static Gu.Wpf.Geometry.ZoomCommands.Decrease.get -> System.Windows.Input.RoutedUICommand
-static Gu.Wpf.Geometry.ZoomCommands.Increase.get -> System.Windows.Input.RoutedUICommand
-static Gu.Wpf.Geometry.ZoomCommands.None.get -> System.Windows.Input.RoutedUICommand
-static Gu.Wpf.Geometry.ZoomCommands.Uniform.get -> System.Windows.Input.RoutedUICommand
-static Gu.Wpf.Geometry.ZoomCommands.UniformToFill.get -> System.Windows.Input.RoutedUICommand
-static readonly Gu.Wpf.Geometry.Balloon.ConnectorAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Balloon.ConnectorOffsetProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Balloon.CornerRadiusProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Balloon.PlacementOptionsProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Balloon.PlacementTargetProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorOffsetProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorPoint1Property -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorPoint2Property -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorVertexPointProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.PlacementOptionsProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.PlacementRectangleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BalloonBase.PlacementTargetProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.BoxBalloon.CornerRadiusProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.CenterPointProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.CentralAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.EndColorProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartColorProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.DesaturateEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.DesaturateEffect.StrengthProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.FadeEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.FadeEffect.StrengthProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.FadeEffect.ToProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.CentralAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerRadiusProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerSaturationProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.LightnessProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.StartAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.CentralAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerRadiusProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerSaturationProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.StartAngleProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.ValueProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.MaskEffect.ColorProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.MaskEffect.InputProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Effects.MaskEffect.ToleranceProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.ColorInterpolationModeProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.DataProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.GradientModeProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.GradientStopsProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.StrokeEndLineCapProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.StrokeStartLineCapProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.StrokeThicknessProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.GradientPath.ToleranceProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.PlacementOptions.Auto -> Gu.Wpf.Geometry.PlacementOptions
-static readonly Gu.Wpf.Geometry.PlacementOptions.Center -> Gu.Wpf.Geometry.PlacementOptions
-static readonly Gu.Wpf.Geometry.Zoombox.ContentMatrixProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Zoombox.MaxZoomProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Zoombox.MinZoomProperty -> System.Windows.DependencyProperty
-static readonly Gu.Wpf.Geometry.Zoombox.WheelZoomFactorProperty -> System.Windows.DependencyProperty
-virtual Gu.Wpf.Geometry.BalloonBase.CreateGeometry(System.Windows.Media.Geometry box, System.Windows.Media.Geometry connector) -> System.Windows.Media.Geometry
-virtual Gu.Wpf.Geometry.BalloonBase.GetTarget() -> System.Windows.UIElement
+static Gu.Wpf.Geometry.DependencyObjectExt.GetVisualParent(this System.Windows.DependencyObject! dependencyObject) -> System.Windows.UIElement?
+static Gu.Wpf.Geometry.ZoomCommands.Decrease.get -> System.Windows.Input.RoutedUICommand!
+static Gu.Wpf.Geometry.ZoomCommands.Increase.get -> System.Windows.Input.RoutedUICommand!
+static Gu.Wpf.Geometry.ZoomCommands.None.get -> System.Windows.Input.RoutedUICommand!
+static Gu.Wpf.Geometry.ZoomCommands.Uniform.get -> System.Windows.Input.RoutedUICommand!
+static Gu.Wpf.Geometry.ZoomCommands.UniformToFill.get -> System.Windows.Input.RoutedUICommand!
+static readonly Gu.Wpf.Geometry.Balloon.ConnectorAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Balloon.ConnectorOffsetProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Balloon.CornerRadiusProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Balloon.PlacementOptionsProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Balloon.PlacementTargetProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorOffsetProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorPoint1Property -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorPoint2Property -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.ConnectorVertexPointProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.PlacementOptionsProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.PlacementRectangleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BalloonBase.PlacementTargetProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.BoxBalloon.CornerRadiusProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.CenterPointProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.CentralAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.EndColorProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.AngularGradientEffect.StartColorProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.DesaturateEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.DesaturateEffect.StrengthProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.FadeEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.FadeEffect.StrengthProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.FadeEffect.ToProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.CentralAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerRadiusProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InnerSaturationProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.LightnessProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HslWheelEffect.StartAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.CentralAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerRadiusProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InnerSaturationProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.StartAngleProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.HsvWheelEffect.ValueProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.MaskEffect.ColorProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.MaskEffect.InputProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Effects.MaskEffect.ToleranceProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.ColorInterpolationModeProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.DataProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.GradientModeProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.GradientStopsProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.StrokeEndLineCapProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.StrokeStartLineCapProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.StrokeThicknessProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.GradientPath.ToleranceProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.PlacementOptions.Auto -> Gu.Wpf.Geometry.PlacementOptions!
+static readonly Gu.Wpf.Geometry.PlacementOptions.Center -> Gu.Wpf.Geometry.PlacementOptions!
+static readonly Gu.Wpf.Geometry.Zoombox.ContentMatrixProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Zoombox.MaxZoomProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Zoombox.MinZoomProperty -> System.Windows.DependencyProperty!
+static readonly Gu.Wpf.Geometry.Zoombox.WheelZoomFactorProperty -> System.Windows.DependencyProperty!
+virtual Gu.Wpf.Geometry.BalloonBase.CreateGeometry(System.Windows.Media.Geometry! box, System.Windows.Media.Geometry! connector) -> System.Windows.Media.Geometry!
+virtual Gu.Wpf.Geometry.BalloonBase.GetTarget() -> System.Windows.UIElement?
 virtual Gu.Wpf.Geometry.BalloonBase.GetTargetRect() -> System.Windows.Rect
-virtual Gu.Wpf.Geometry.BalloonBase.OnLayoutUpdated(object _, System.EventArgs __) -> void
+virtual Gu.Wpf.Geometry.BalloonBase.OnLayoutUpdated(object? _, System.EventArgs! __) -> void
 virtual Gu.Wpf.Geometry.BalloonBase.UpdateCachedGeometries() -> void
 virtual Gu.Wpf.Geometry.BalloonBase.UpdateConnectorOffset() -> void
 virtual Gu.Wpf.Geometry.BoxBalloon.AdjustedCornerRadius() -> System.Windows.CornerRadius

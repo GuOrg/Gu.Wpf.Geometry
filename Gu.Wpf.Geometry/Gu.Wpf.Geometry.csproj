@@ -20,14 +20,15 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.2.5</Version>
+    <Version>2.2.6</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Geometries for WPF.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReleaseNotes>
-      2.2.5
+      2.2.6
       netcoreapp3.1
+      nullable: enable
     </PackageReleaseNotes>
     <PackageTags>xaml wpf Balloon Gradient</PackageTags>
     <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>

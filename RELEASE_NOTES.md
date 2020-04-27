@@ -1,3 +1,7 @@
+#### 2.2.6
+* netcoreapp3.1
+* nullable: enable
+
 #### 2.2.3
 * GradientPath with IsLargeArc=true
 

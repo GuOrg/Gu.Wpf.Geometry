@@ -26,7 +26,7 @@ namespace Gu.Wpf.Geometry.Tests
             var strings = this.assembly.GetTypes()
                                    .Select(x => x.Namespace)
                                    .Distinct()
-                                   .Where(x => !skip.Any(x.EndsWith))
+                                   .Where(x => x != null && !skip.Any(x.EndsWith))
                                    .OrderBy(x => x)
                                    .ToArray();
             var attributes = this.assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsDefinitionAttribute))

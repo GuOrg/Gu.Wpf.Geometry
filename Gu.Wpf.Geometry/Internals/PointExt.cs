@@ -55,12 +55,6 @@ namespace Gu.Wpf.Geometry
             return l.TrimTo(self);
         }
 
-        internal static Point ClosestPointOn(this Point self, Line l)
-        {
-            // ReSharper disable once PossibleInvalidOperationException
-            return l.TrimTo(l.Project(self)).Value;
-        }
-
         internal static Point Closest(this Point self, Point p1, Point p2)
         {
             return self.DistanceTo(p1) < self.DistanceTo(p2) ? p1 : p2;

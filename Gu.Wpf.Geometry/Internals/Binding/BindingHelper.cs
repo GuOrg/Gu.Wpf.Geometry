@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System.Collections.Generic;
     using System.Windows;
@@ -63,7 +63,7 @@
                 this.targetProperty = targetProperty;
             }
 
-            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty, IValueConverter converter = null)
+            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty, IValueConverter? converter = null)
             {
                 var sourcePath = GetPath(sourceProperty);
                 return this.OneWayTo(source, sourcePath, converter);
@@ -94,7 +94,7 @@
                 return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
             }
 
-            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath, IValueConverter converter = null)
+            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath, IValueConverter? converter = null)
             {
                 var binding = new Binding
                 {

@@ -76,7 +76,7 @@ namespace Gu.Wpf.Geometry
             new PropertyMetadata(default(Point)));
 
         private readonly PenCache penCache = new PenCache();
-        private Geometry balloonGeometry;
+        private Geometry? balloonGeometry;
 
         static BalloonBase()
         {
@@ -115,9 +115,9 @@ namespace Gu.Wpf.Geometry
 
         protected override Geometry DefiningGeometry => this.BoxGeometry ?? Geometry.Empty;
 
-        protected Geometry ConnectorGeometry { get; private set; }
+        protected Geometry? ConnectorGeometry { get; private set; }
 
-        protected Geometry BoxGeometry { get; private set; }
+        protected Geometry? BoxGeometry { get; private set; }
 
         /// <inheritdoc />
         protected override Size MeasureOverride(Size constraint)
@@ -269,16 +269,15 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        protected virtual void OnLayoutUpdated(object _, EventArgs __)
+        protected virtual void OnLayoutUpdated(object? _, EventArgs __)
         {
             this.UpdateConnectorOffset();
         }
 
-        protected virtual UIElement GetTarget()
+        protected virtual UIElement? GetTarget()
         {
-            return
-                this.PlacementTarget ??
-                this.GetVisualParent();
+            return this.PlacementTarget ??
+                   this.GetVisualParent();
         }
 
         protected virtual Rect GetTargetRect()
@@ -313,7 +312,7 @@ namespace Gu.Wpf.Geometry
         private static void OnPlacementOptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var balloon = (BalloonBase)d;
-            balloon.OnLayoutUpdated(null, null);
+            balloon.OnLayoutUpdated(null, EventArgs.Empty);
         }
 
         private static void OnPlacementTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -343,16 +342,16 @@ namespace Gu.Wpf.Geometry
 
         private class PenCache
         {
-            private Brush cachedBrush;
+            private Brush? cachedBrush;
             private double cachedStrokeThickness;
-            private Pen pen;
+            private Pen? pen;
 
             internal Pen GetPen(Brush brush, double strokeThickness)
             {
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (Equals(this.cachedBrush, brush) && this.cachedStrokeThickness == strokeThickness)
                 {
-                    return this.pen;
+                    return this.pen ?? throw new InvalidOperationException("Failed getting pen.");
                 }
 
                 this.cachedBrush = brush;

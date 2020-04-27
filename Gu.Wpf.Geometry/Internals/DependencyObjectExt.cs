@@ -5,9 +5,9 @@ namespace Gu.Wpf.Geometry
 
     public static class DependencyObjectExt
     {
-        public static UIElement GetVisualParent(this DependencyObject dependencyObject)
+        public static UIElement? GetVisualParent(this DependencyObject dependencyObject)
         {
-            UIElement element = null;
+            UIElement? element = null;
             DependencyObject reference = VisualTreeHelper.GetParent(dependencyObject);
 
             while (reference != null)

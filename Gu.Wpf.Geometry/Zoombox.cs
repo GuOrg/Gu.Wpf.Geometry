@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
         private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
 
-        private ContainerVisual internalVisual;
+        private ContainerVisual? internalVisual;
         private Point position;
 
         static Zoombox()
@@ -145,7 +145,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <inheritdoc />
-        public override UIElement Child
+        public override UIElement? Child
         {
             // everything is the same as on Decorator, the only difference is to insert intermediate Visual to
             // specify scaling transform
@@ -210,7 +210,7 @@ namespace Gu.Wpf.Geometry
 
         private Vector CurrentZoom => new Vector(this.ContentMatrix.M11, this.ContentMatrix.M22);
 
-        private UIElement InternalChild
+        private UIElement? InternalChild
         {
             get
             {

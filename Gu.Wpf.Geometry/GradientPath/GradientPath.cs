@@ -79,7 +79,7 @@ namespace Gu.Wpf.Geometry
                 (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
         private readonly Pen pen = new Pen();
-        private IReadOnlyList<FlattenedFigure> flattenedFigures;
+        private IReadOnlyList<FlattenedFigure>? flattenedFigures;
 
         public GradientPath()
         {

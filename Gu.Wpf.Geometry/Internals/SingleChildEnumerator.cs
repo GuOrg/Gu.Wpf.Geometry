@@ -15,7 +15,7 @@ namespace Gu.Wpf.Geometry
             this.count = child is null ? 0 : 1;
         }
 
-        object IEnumerator.Current => (this.index == 0) ? this.child : null;
+        object? IEnumerator.Current => (this.index == 0) ? this.child : null;
 
         bool IEnumerator.MoveNext()
         {

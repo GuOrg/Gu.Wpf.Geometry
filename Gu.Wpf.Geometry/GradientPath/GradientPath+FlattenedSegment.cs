@@ -10,7 +10,7 @@ namespace Gu.Wpf.Geometry
         {
             internal readonly Line Line;
             internal readonly Geometry Geometry;
-            internal Brush Brush;
+            internal Brush? Brush;
 
             internal FlattenedSegment(Line line, Geometry geometry)
             {

@@ -131,7 +131,7 @@ namespace Gu.Wpf.Geometry
                     Enum.TryParse(arg1, ignoreCase: true, result: out vertical));
         }
 
-        private static FormatException FormatException(string text, Exception inner = null)
+        private static FormatException FormatException(string text, Exception? inner = null)
         {
             var message = $"Could not parse {nameof(PlacementOptions)} from {text}.\r\n" +
                           $"Expected a string like 'Left Bottom'.\r\n" +

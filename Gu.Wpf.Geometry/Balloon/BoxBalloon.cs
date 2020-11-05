@@ -137,7 +137,10 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Calculates the adjusted corner radius.
+        /// </summary>
+        /// <returns>A <see cref="CornerRadius"/>.</returns>
         protected virtual CornerRadius AdjustedCornerRadius()
         {
             var cr = this.CornerRadius;

@@ -8,7 +8,7 @@ namespace Gu.Wpf.Geometry
     {
         internal static Point WithOffset(this Point self, Vector direction, double distance)
         {
-            return self + distance * direction;
+            return self + (distance * direction);
         }
 
         internal static Point WithOffset(this Point self, double x, double y)

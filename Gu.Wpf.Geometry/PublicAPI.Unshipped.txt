@@ -1,2 +1,1 @@
-﻿Gu.Wpf.Geometry.BalloonBase.PlacementTarget.get -> System.Windows.UIElement?
-virtual Gu.Wpf.Geometry.BalloonBase.OnLayoutUpdated(object? sender, System.EventArgs! e) -> void
+﻿

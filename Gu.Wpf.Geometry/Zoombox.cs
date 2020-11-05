@@ -109,7 +109,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// The increment zoom is changed on each mouse wheel.
+        /// Gets or sets the increment zoom is changed on each mouse wheel.
         /// </summary>
         public double WheelZoomFactor
         {
@@ -118,7 +118,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// The minimum zoom allowed.
+        /// Gets or sets the minimum zoom allowed.
         /// </summary>
         public double MinZoom
         {
@@ -127,7 +127,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// The maximum zoom allowed.
+        /// Gets or sets the maximum zoom allowed.
         /// </summary>
         public double MaxZoom
         {
@@ -136,7 +136,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// The transform applied to the contents.
+        /// Gets or sets the transform applied to the contents.
         /// </summary>
         public Matrix ContentMatrix
         {
@@ -383,14 +383,14 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <inheritdoc />
-        protected override void OnRender(DrawingContext dc)
+        protected override void OnRender(DrawingContext drawingContext)
         {
-            if (dc is null)
+            if (drawingContext is null)
             {
-                throw new ArgumentNullException(nameof(dc));
+                throw new ArgumentNullException(nameof(drawingContext));
             }
 
-            dc.DrawRectangle(Brushes.Transparent, null, new Rect(this.RenderSize));
+            drawingContext.DrawRectangle(Brushes.Transparent, null, new Rect(this.RenderSize));
         }
 
         /// <inheritdoc />

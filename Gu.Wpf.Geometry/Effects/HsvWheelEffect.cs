@@ -99,7 +99,9 @@ namespace Gu.Wpf.Geometry.Effects
         }
 
         /// <summary>Gets or sets the value in Hue, Saturation, Value.</summary>
+#pragma warning disable CA1721 // Property names should not match get methods
         public double Value
+#pragma warning restore CA1721 // Property names should not match get methods
         {
             get => (double)this.GetValue(ValueProperty);
             set => this.SetValue(ValueProperty, value);

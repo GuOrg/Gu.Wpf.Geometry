@@ -28,28 +28,27 @@ namespace Gu.Wpf.Geometry
         /// <inheritdoc/>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            var text = value as string;
-            if (text is null)
+            if (value is string text)
             {
-                return base.ConvertFrom(context, culture, value);
+                try
+                {
+                    var args = text.Split(SeparatorChars, StringSplitOptions.RemoveEmptyEntries);
+                    return args.Length switch
+                    {
+                        1 => ParseOne(args[0], text),
+                        2 => ParseTwo(args[0], args[1], text),
+                        3 => ParseThree(args[0], args[1], args[2], text),
+                        _ => throw FormatException(text),
+                    };
+                }
+                catch (Exception e)
+                {
+                    var exception = FormatException(text, e);
+                    throw exception;
+                }
             }
 
-            try
-            {
-                var args = text.Split(SeparatorChars, StringSplitOptions.RemoveEmptyEntries);
-                return args.Length switch
-                {
-                    1 => ParseOne(args[0], text),
-                    2 => ParseTwo(args[0], args[1], text),
-                    3 => ParseThree(args[0], args[1], args[2], text),
-                    _ => throw FormatException(text),
-                };
-            }
-            catch (Exception e)
-            {
-                var exception = FormatException(text, e);
-                throw exception;
-            }
+            return base.ConvertFrom(context, culture, value);
         }
 
         /// <inheritdoc/>

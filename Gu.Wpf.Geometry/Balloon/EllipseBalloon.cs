@@ -168,7 +168,7 @@ namespace Gu.Wpf.Geometry
                 var ip = ray.FirstIntersectionWith(ellipse);
                 if (ip != null)
                 {
-                    return ip.Value + strokeThickness * ray.Direction;
+                    return ip.Value + (strokeThickness * ray.Direction);
                 }
 
                 return FindTangentPoint(ray, ellipse);

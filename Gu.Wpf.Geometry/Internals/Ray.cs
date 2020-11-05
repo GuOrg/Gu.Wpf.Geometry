@@ -145,6 +145,7 @@ namespace Gu.Wpf.Geometry
             var y02 = y0 * y0;
             var a2 = a * a;
             var b2 = b * b;
+#pragma warning disable SA1312 // Variable names should begin with lower-case letter
             var A = (nx2 * b2) + (ny2 * a2);
             if (Math.Abs(A) < Constants.Tolerance)
             {
@@ -170,6 +171,7 @@ namespace Gu.Wpf.Geometry
             }
 
             return new Point(x0, y0) + (s * direction);
+#pragma warning restore SA1312 // Variable names should begin with lower-case letter
         }
 
         // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()

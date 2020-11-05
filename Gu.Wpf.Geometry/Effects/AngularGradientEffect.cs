@@ -73,7 +73,8 @@ namespace Gu.Wpf.Geometry.Effects
         }
 
         /// <summary>
-        /// There has to be a property of type Brush called "Input". This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
+        /// Gets or sets the Brush called "Input" that is required by a shader.
+        /// This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
         /// </summary>
         public Brush Input
         {
@@ -81,35 +82,35 @@ namespace Gu.Wpf.Geometry.Effects
             set => this.SetValue(InputProperty, value);
         }
 
-        /// <summary>The primary color of the gradient. </summary>
+        /// <summary>Gets or sets the primary color of the gradient. </summary>
         public Color StartColor
         {
             get => (Color)this.GetValue(StartColorProperty);
             set => this.SetValue(StartColorProperty, value);
         }
 
-        /// <summary>The secondary color of the gradient. </summary>
+        /// <summary>Gets or sets the secondary color of the gradient. </summary>
         public Color EndColor
         {
             get => (Color)this.GetValue(EndColorProperty);
             set => this.SetValue(EndColorProperty, value);
         }
 
-        /// <summary>The center of the gradient. </summary>
+        /// <summary>Gets or sets the center of the gradient. </summary>
         public Point CenterPoint
         {
             get => (Point)this.GetValue(CenterPointProperty);
             set => this.SetValue(CenterPointProperty, value);
         }
 
-        /// <summary>The starting angle of the gradient, counterclockwise from X-axis.</summary>
+        /// <summary>Gets or sets the starting angle of the gradient, counterclockwise from X-axis.</summary>
         public double StartAngle
         {
             get => (double)this.GetValue(StartAngleProperty);
             set => this.SetValue(StartAngleProperty, value);
         }
 
-        /// <summary>The arc length angle of the gradient, counterclockwise from X-axis.</summary>
+        /// <summary>Gets or sets the arc length angle of the gradient, counterclockwise from X-axis.</summary>
         public double CentralAngle
         {
             get => (double)this.GetValue(CentralAngleProperty);

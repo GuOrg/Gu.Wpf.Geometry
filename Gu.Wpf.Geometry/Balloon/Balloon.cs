@@ -60,9 +60,9 @@ namespace Gu.Wpf.Geometry
         /// <summary>
         /// Gets or sets PlacementTarget property of the <see cref="Balloon"/>.
         /// </summary>
-        public UIElement PlacementTarget
+        public UIElement? PlacementTarget
         {
-            get => (UIElement)this.GetValue(PlacementTargetProperty);
+            get => (UIElement?)this.GetValue(PlacementTargetProperty);
             set => this.SetValue(PlacementTargetProperty, value);
         }
 

@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Markup;
 
     /// <summary>
-    /// <see cref="MarkupExtension"/> for creating <see cref="PlacementOptions"/> <inheritdocxaml./>
+    /// <see cref="MarkupExtension"/> for creating <see cref="PlacementOptions"/>.
     /// </summary>
     [MarkupExtensionReturnType(typeof(PlacementOptions))]
     public class PlacementOptionsExtension : MarkupExtension

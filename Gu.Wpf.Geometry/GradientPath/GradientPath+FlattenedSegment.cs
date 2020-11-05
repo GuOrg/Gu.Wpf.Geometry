@@ -48,7 +48,7 @@ namespace Gu.Wpf.Geometry
                 switch (startLineCap)
                 {
                     case PenLineCap.Square:
-                        var cl = new Line(line.StartPoint - strokeThickness / 2 * line.Direction, line.StartPoint);
+                        var cl = new Line(line.StartPoint - (strokeThickness / 2 * line.Direction), line.StartPoint);
                         return CreateOffset(cl, cl.Offset(strokeThickness / 2), cl.Offset(-strokeThickness / 2));
                     case PenLineCap.Round:
                         return CreateRound(line, strokeThickness, isStart: true);
@@ -65,7 +65,7 @@ namespace Gu.Wpf.Geometry
                 switch (endLineCap)
                 {
                     case PenLineCap.Square:
-                        var cl = new Line(line.EndPoint, line.EndPoint + strokeThickness / 2 * line.Direction);
+                        var cl = new Line(line.EndPoint, line.EndPoint + (strokeThickness / 2 * line.Direction));
                         return CreateOffset(cl, cl.Offset(strokeThickness / 2), cl.Offset(-strokeThickness / 2));
                     case PenLineCap.Round:
                         return CreateRound(line, strokeThickness, isStart: false);
@@ -111,8 +111,8 @@ namespace Gu.Wpf.Geometry
             {
                 var radius = strokeThickness / 2;
                 var line = isStart
-                    ? new Line(center.StartPoint - radius * center.Direction, center.StartPoint)
-                    : new Line(center.EndPoint, center.EndPoint + radius * center.Direction);
+                    ? new Line(center.StartPoint - (radius * center.Direction), center.StartPoint)
+                    : new Line(center.EndPoint, center.EndPoint + (radius * center.Direction));
                 var geometry = new PathGeometry
                 {
                     Figures =
@@ -120,8 +120,8 @@ namespace Gu.Wpf.Geometry
                         new PathFigure
                         {
                             StartPoint = isStart
-                                ? line.EndPoint + radius * line.Direction.Rotate(-90)
-                                : line.StartPoint + radius * line.Direction.Rotate(90),
+                                ? line.EndPoint + (radius * line.Direction.Rotate(-90))
+                                : line.StartPoint + (radius * line.Direction.Rotate(90)),
                             IsClosed = true,
                             IsFilled = true,
                             Segments =
@@ -131,8 +131,8 @@ namespace Gu.Wpf.Geometry
                                    IsLargeArc = false,
                                    RotationAngle = 180,
                                    Point = isStart
-                                        ? line.EndPoint + radius * line.Direction.Rotate(90)
-                                        : line.StartPoint + radius * line.Direction.Rotate(-90),
+                                        ? line.EndPoint + (radius * line.Direction.Rotate(90))
+                                        : line.StartPoint + (radius * line.Direction.Rotate(-90)),
                                    Size = new Size(radius, radius),
                                    IsSmoothJoin = false,
                                 },
@@ -148,8 +148,8 @@ namespace Gu.Wpf.Geometry
             {
                 var radius = strokeThickness / 2;
                 var line = isStart
-                    ? new Line(center.StartPoint - radius * center.Direction, center.StartPoint)
-                    : new Line(center.EndPoint, center.EndPoint + radius * center.Direction);
+                    ? new Line(center.StartPoint - (radius * center.Direction), center.StartPoint)
+                    : new Line(center.EndPoint, center.EndPoint + (radius * center.Direction));
 
                 var geometry = new PathGeometry
                 {
@@ -158,8 +158,8 @@ namespace Gu.Wpf.Geometry
                         new PathFigure
                         {
                             StartPoint = isStart
-                                ? line.EndPoint + radius * line.Direction.Rotate(-90)
-                                : line.StartPoint + radius * line.Direction.Rotate(90),
+                                ? line.EndPoint + (radius * line.Direction.Rotate(-90))
+                                : line.StartPoint + (radius * line.Direction.Rotate(90)),
                             IsClosed = true,
                             IsFilled = true,
                             Segments =
@@ -170,7 +170,7 @@ namespace Gu.Wpf.Geometry
                                     Points =
                                     {
                                         isStart ? line.StartPoint : line.EndPoint,
-                                        isStart ? line.EndPoint + radius * line.Direction.Rotate(90) : line.StartPoint + radius * line.Direction.Rotate(-90),
+                                        isStart ? line.EndPoint + (radius * line.Direction.Rotate(90)) : line.StartPoint + (radius * line.Direction.Rotate(-90)),
                                     },
                                 },
                             },

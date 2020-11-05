@@ -232,7 +232,7 @@ namespace Gu.Wpf.Geometry
             }
 
             var sI = Perp(v, w) / d;
-            var p = l1.StartPoint + sI * u;
+            var p = l1.StartPoint + (sI * u);
             if (mustBeBetweenStartAndEnd)
             {
                 if (l1.IsPointOnLine(p) && l2.IsPointOnLine(p))
@@ -248,7 +248,7 @@ namespace Gu.Wpf.Geometry
 
         private static double Perp(Vector u, Vector v)
         {
-            return u.X * v.Y - u.Y * v.X;
+            return (u.X * v.Y) - (u.Y * v.X);
         }
     }
 }

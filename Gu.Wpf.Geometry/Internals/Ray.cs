@@ -134,8 +134,6 @@ namespace Gu.Wpf.Geometry
             return ip + offset;
         }
 
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
-        [SuppressMessage("StyleCop", "SA1312")]
         private static Point? FirstIntersectionWithEllipseCenteredAtOrigin(Point startPoint, Vector direction, double a, double b)
         {
             var nx = direction.X;
@@ -148,15 +146,15 @@ namespace Gu.Wpf.Geometry
             var y02 = y0 * y0;
             var a2 = a * a;
             var b2 = b * b;
-            var A = nx2 * b2 + ny2 * a2;
+            var A = (nx2 * b2) + (ny2 * a2);
             if (Math.Abs(A) < Constants.Tolerance)
             {
                 return null;
             }
 
-            var B = 2 * x0 * nx * b2 + 2 * y0 * ny * a2;
-            var C = x02 * b2 + y02 * a2 - a2 * b2;
-            var d = B * B - 4 * A * C;
+            var B = (2 * x0 * nx * b2) + (2 * y0 * ny * a2);
+            var C = (x02 * b2) + (y02 * a2) - (a2 * b2);
+            var d = (B * B) - (4 * A * C);
             if (d < 0)
             {
                 return null;
@@ -168,11 +166,11 @@ namespace Gu.Wpf.Geometry
             {
                 s = (-B + sqrt) / (2 * A);
                 return s > 0
-                    ? new Point(x0, y0) + s * direction
+                    ? new Point(x0, y0) + (s * direction)
                     : (Point?)null;
             }
 
-            return new Point(x0, y0) + s * direction;
+            return new Point(x0, y0) + (s * direction);
         }
 
         // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()

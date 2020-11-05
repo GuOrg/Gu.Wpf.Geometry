@@ -6,33 +6,32 @@ namespace Gu.Wpf.Geometry
     using System.Linq;
     using System.Security;
 
+    /// <summary>
+    /// A <see cref="TypeConverter"/> for <see cref="PlacementOptions"/>.
+    /// </summary>
     public class PlacementOptionsConverter : TypeConverter
     {
         private static readonly char[] SeparatorChars = { ',', ' ' };
 
-        public override bool CanConvertFrom(
-            ITypeDescriptorContext typeDescriptorContext,
-            Type sourceType)
+        /// <inheritdoc/>
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
             return sourceType == typeof(string);
         }
 
-        public override bool CanConvertTo(
-            ITypeDescriptorContext typeDescriptorContext,
-            Type destinationType)
+        /// <inheritdoc/>
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
             return false;
         }
 
-        public override object ConvertFrom(
-            ITypeDescriptorContext typeDescriptorContext,
-            CultureInfo cultureInfo,
-            object source)
+        /// <inheritdoc/>
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            var text = source as string;
+            var text = value as string;
             if (text is null)
             {
-                return base.ConvertFrom(typeDescriptorContext, cultureInfo, source);
+                return base.ConvertFrom(context, culture, value);
             }
 
             try
@@ -53,12 +52,9 @@ namespace Gu.Wpf.Geometry
             }
         }
 
+        /// <inheritdoc/>
         [SecurityCritical]
-        public override object ConvertTo(
-            ITypeDescriptorContext typeDescriptorContext,
-            CultureInfo cultureInfo,
-            object value,
-            Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             throw new NotSupportedException();
         }

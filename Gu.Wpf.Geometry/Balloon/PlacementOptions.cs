@@ -4,12 +4,24 @@ namespace Gu.Wpf.Geometry
     using System.ComponentModel;
     using System.Windows;
 
+    /// <summary>
+    /// Placement options for <see cref="Balloon"/>.
+    /// </summary>
     [TypeConverter(typeof(PlacementOptionsConverter))]
     public sealed class PlacementOptions
     {
+        /// <summary> Both horizontal and vertical auto. </summary>
         public static readonly PlacementOptions Auto = new PlacementOptions(HorizontalPlacement.Auto, VerticalPlacement.Auto, 0);
+
+        /// <summary> Both horizontal and vertical centered. </summary>
         public static readonly PlacementOptions Center = new PlacementOptions(HorizontalPlacement.Center, VerticalPlacement.Center, 0);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlacementOptions"/> class.
+        /// </summary>
+        /// <param name="horizontal">The <see cref="HorizontalPlacement"/>.</param>
+        /// <param name="vertical">The <see cref="VerticalPlacement"/>.</param>
+        /// <param name="offset">The offset.</param>
         public PlacementOptions(HorizontalPlacement horizontal, VerticalPlacement vertical, double offset)
         {
             this.Vertical = vertical;
@@ -17,10 +29,19 @@ namespace Gu.Wpf.Geometry
             this.Offset = offset;
         }
 
+        /// <summary>
+        /// Gets the <see cref="HorizontalPlacement"/>.
+        /// </summary>
         public HorizontalPlacement Horizontal { get; }
 
+        /// <summary>
+        /// Gets the <see cref="VerticalPlacement"/>.
+        /// </summary>
         public VerticalPlacement Vertical { get; }
 
+        /// <summary>
+        /// Gets the offset.
+        /// </summary>
         public double Offset { get; }
 
         /// <inheritdoc/>
@@ -29,10 +50,15 @@ namespace Gu.Wpf.Geometry
             return $"{this.Horizontal} {this.Vertical} {this.Offset}";
         }
 
+        /// <summary>
+        /// Get the point on <paramref name="target"/>.
+        /// </summary>
+        /// <param name="placed">The balloon <see cref="Rect"/>.</param>
+        /// <param name="target">The target <see cref="Rect"/>.</param>
+        /// <returns>The point if found.</returns>
         public Point? GetPointOnTarget(Rect placed, Rect target)
         {
             var p = this.GetPointOnTarget(placed.CenterPoint(), target);
-
             return p;
         }
 

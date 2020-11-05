@@ -340,9 +340,9 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Gets <see cref="PlacementTarget"/> if set or <see cref="GetVisualParent"/>.
+        /// Gets <see cref="PlacementTarget"/> if set or GetVisualParent().
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The target <see cref="UIElement"/>.</returns>
         protected virtual UIElement? GetTarget()
         {
             return this.PlacementTarget ??

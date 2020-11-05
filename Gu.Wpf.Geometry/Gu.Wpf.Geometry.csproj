@@ -1,69 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-  <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
-    <UseWpf>true</UseWpf>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>Gu.Wpf.Geometry.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+		<UseWpf>true</UseWpf>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
+	<PropertyGroup>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.2.6</Version>
-    <Authors>Johan Larsson</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>Geometries for WPF.</Description>
-    <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>
-      2.2.6
-      netcoreapp3.1
-      nullable: enable
-    </PackageReleaseNotes>
-    <PackageTags>xaml wpf Balloon Gradient</PackageTags>
-    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>2.2.6</Version>
+		<Authors>Johan Larsson</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>Geometries for WPF.</Description>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageReleaseNotes>
+			2.2.6
+			netcoreapp3.1
+			nullable: enable
+		</PackageReleaseNotes>
+		<PackageTags>xaml wpf Balloon Gradient</PackageTags>
+		<PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Resource Include="Effects\AngularGradientEffect.ps" />
-    <Resource Include="Effects\DesaturateEffect.ps" />
-    <Resource Include="Effects\FadeEffect.ps" />
-    <Resource Include="Effects\HslWheelEffect.ps" />
-    <Resource Include="Effects\HsvWheelEffect.ps" />
-    <Resource Include="Effects\MaskEffect.ps" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Effects\AngularGradientEffect.ps" />
+		<Resource Include="Effects\DesaturateEffect.ps" />
+		<Resource Include="Effects\FadeEffect.ps" />
+		<Resource Include="Effects\HslWheelEffect.ps" />
+		<Resource Include="Effects\HsvWheelEffect.ps" />
+		<Resource Include="Effects\MaskEffect.ps" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
-    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
-  </ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="PublicAPI.Shipped.txt" />
+		<AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
-    <PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.51" PrivateAssets="all" />
-    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
-    <PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all" />
-    <PackageReference Include="WpfAnalyzers" Version="3.2.0" PrivateAssets="all" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
+		<PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.0.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.51" PrivateAssets="all" />
+		<PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
+		<PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all" />
+		<PackageReference Include="WpfAnalyzers" Version="3.2.0" PrivateAssets="all" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
-    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.154" PrivateAssets="all" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
+		<PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.154" PrivateAssets="all" />
+	</ItemGroup>
 </Project>

@@ -34,7 +34,7 @@
             <local:ZoomView />
         </TabItem>
 
-        <TabItem Header="ballon popup">
+        <TabItem Header="balloon popup">
             <local:BalloonPopupView />
         </TabItem>
 

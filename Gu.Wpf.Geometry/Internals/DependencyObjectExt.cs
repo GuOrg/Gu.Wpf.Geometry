@@ -3,9 +3,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Media;
 
-    public static class DependencyObjectExt
+    internal static class DependencyObjectExt
     {
-        public static UIElement? GetVisualParent(this DependencyObject dependencyObject)
+        internal static UIElement? GetVisualParent(this DependencyObject dependencyObject)
         {
             UIElement? element = null;
             DependencyObject reference = VisualTreeHelper.GetParent(dependencyObject);

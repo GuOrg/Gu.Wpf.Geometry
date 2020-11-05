@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.Effects
     using System.Windows.Media;
     using System.Windows.Media.Effects;
 
-    /// <summary>Fade to a colour by animating the strength.</summary>
+    /// <summary>Fade to a color by animating the strength.</summary>
     public class FadeEffect : ShaderEffect
     {
         /// <summary>Identifies the <see cref="Input"/> dependency property.</summary>
@@ -33,6 +33,9 @@ namespace Gu.Wpf.Geometry.Effects
             UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/FadeEffect.ps", UriKind.Absolute),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FadeEffect"/> class.
+        /// </summary>
         public FadeEffect()
         {
             this.PixelShader = Shader;

@@ -29,7 +29,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// The CornerRadius property allows users to control the roundness of the corners independently by
+        /// Gets or sets the <see cref="CornerRadius"/> property allows users to control the roundness of the corners independently by
         /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
         /// smoothly blend from corner to corner.
         /// </summary>
@@ -40,7 +40,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set the <see cref="Vector"/> specifying the connector of the <see cref="Balloon"/>.
+        /// Gets or sets the <see cref="Vector"/> specifying the connector of the <see cref="Balloon"/>.
         /// </summary>
         public Vector ConnectorOffset
         {
@@ -49,7 +49,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set the angle of the connector of the <see cref="Balloon"/>.
+        /// Gets or sets the angle of the connector of the <see cref="Balloon"/>.
         /// </summary>
         public double ConnectorAngle
         {
@@ -58,7 +58,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set PlacementTarget property of the <see cref="Balloon"/>.
+        /// Gets or sets PlacementTarget property of the <see cref="Balloon"/>.
         /// </summary>
         public UIElement PlacementTarget
         {
@@ -67,7 +67,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set <see cref="PlacementOptions"/> property of the <see cref="Balloon"/>.
+        /// Gets or sets <see cref="PlacementOptions"/> property of the <see cref="Balloon"/>.
         /// </summary>
         public PlacementOptions PlacementOptions
         {

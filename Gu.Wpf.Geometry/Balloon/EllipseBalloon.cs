@@ -83,7 +83,9 @@ namespace Gu.Wpf.Geometry
             {
                 if (!this.IsLoaded)
                 {
-                    this.Dispatcher.Invoke(this.UpdateConnectorOffset, DispatcherPriority.Loaded);
+#pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
+                    _ = this.Dispatcher.BeginInvoke(new Action(this.UpdateConnectorOffset), DispatcherPriority.Loaded);
+#pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
                     return;
                 }
 

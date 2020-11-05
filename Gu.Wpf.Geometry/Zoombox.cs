@@ -283,7 +283,9 @@ namespace Gu.Wpf.Geometry
 
             if (!this.InternalChild.IsArrangeValid)
             {
+#pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
                 _ = this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => this.ZoomUniform()));
+#pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
                 return;
             }
 
@@ -319,7 +321,9 @@ namespace Gu.Wpf.Geometry
 
             if (!this.InternalChild.IsArrangeValid)
             {
+#pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
                 _ = this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => this.ZoomUniformToFill()));
+#pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
                 return;
             }
 

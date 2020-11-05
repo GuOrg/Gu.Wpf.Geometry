@@ -5,6 +5,9 @@ namespace Gu.Wpf.Geometry
     using System.Linq;
     using System.Windows.Media;
 
+    /// <summary>
+    /// FlattenedFigure.
+    /// </summary>
     public partial class GradientPath
     {
         internal class FlattenedFigure

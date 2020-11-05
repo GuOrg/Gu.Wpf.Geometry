@@ -23,6 +23,7 @@ namespace Gu.Wpf.Geometry
 
         public double Offset { get; }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{this.Horizontal} {this.Vertical} {this.Offset}";

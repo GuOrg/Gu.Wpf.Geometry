@@ -9,7 +9,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Threading;
 
     /// <summary>
-    /// Base class for ballon shapes.
+    /// Base class for balloon shapes.
     /// </summary>
     public abstract class BalloonBase : Shape
     {
@@ -90,7 +90,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set the <see cref="Vector"/> specifying the connector of the <see cref="BalloonBase"/>.
+        /// Gets or sets the <see cref="Vector"/> specifying the connector of the <see cref="BalloonBase"/>.
         /// </summary>
         public Vector ConnectorOffset
         {
@@ -99,7 +99,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set the angle of the connector of the <see cref="BalloonBase"/>.
+        /// Gets or sets the angle of the connector of the <see cref="BalloonBase"/>.
         /// </summary>
         public double ConnectorAngle
         {
@@ -108,14 +108,17 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set PlacementTarget property of the <see cref="BalloonBase"/>.
+        /// Gets or sets PlacementTarget property of the <see cref="BalloonBase"/>.
         /// </summary>
-        public UIElement PlacementTarget
+        public UIElement? PlacementTarget
         {
-            get => (UIElement)this.GetValue(PlacementTargetProperty);
+            get => (UIElement?)this.GetValue(PlacementTargetProperty);
             set => this.SetValue(PlacementTargetProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets PlacementRectangle property of the balloon.
+        /// </summary>
         public Rect PlacementRectangle
         {
             get => (Rect)this.GetValue(PlacementRectangleProperty);
@@ -123,7 +126,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// Get or set <see cref="PlacementOptions"/> property of the <see cref="BalloonBase"/>.
+        /// Gets or sets <see cref="PlacementOptions"/> property of the <see cref="BalloonBase"/>.
         /// </summary>
         public PlacementOptions PlacementOptions
         {
@@ -131,10 +134,19 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(PlacementOptionsProperty, value);
         }
 
+        /// <summary>
+        /// Gets the <see cref="Geometry"/> that defines the balloon.
+        /// </summary>
         protected override Geometry DefiningGeometry => this.BoxGeometry ?? Geometry.Empty;
 
+        /// <summary>
+        /// Gets the <see cref="Geometry"/> that defines the connector.
+        /// </summary>
         protected Geometry? ConnectorGeometry { get; private set; }
 
+        /// <summary>
+        /// Gets the <see cref="Geometry"/> that defines the box.
+        /// </summary>
         protected Geometry? BoxGeometry { get; private set; }
 
         /// <inheritdoc />
@@ -175,6 +187,9 @@ namespace Gu.Wpf.Geometry
             this.InvalidateVisual();
         }
 
+        /// <summary>
+        /// Updates <see cref="BoxGeometry"/> and <see cref="ConnectorGeometry"/>.
+        /// </summary>
         protected virtual void UpdateCachedGeometries()
         {
             if (this.RenderSize == Size.Empty)
@@ -220,6 +235,10 @@ namespace Gu.Wpf.Geometry
             this.balloonGeometry = this.CreateGeometry(this.BoxGeometry, this.ConnectorGeometry);
         }
 
+        /// <summary>
+        /// Check if connector c an be created.
+        /// </summary>
+        /// <returns>True if conditions are satisfied.</returns>
         protected bool CanCreateConnectorGeometry()
         {
             return this.ConnectorOffset != default &&
@@ -227,15 +246,34 @@ namespace Gu.Wpf.Geometry
                    this.RenderSize.Height > 0;
         }
 
+        /// <summary>
+        /// Get or create the box geometry.
+        /// </summary>
+        /// <param name="renderSize">The <see cref="Size"/>.</param>
+        /// <returns>The <see cref="Geometry"/>.</returns>
         protected abstract Geometry GetOrCreateBoxGeometry(Size renderSize);
 
+        /// <summary>
+        /// Get or create the connector geometry.
+        /// </summary>
+        /// <param name="renderSize">The <see cref="Size"/>.</param>
+        /// <returns>The <see cref="Geometry"/>.</returns>
         protected abstract Geometry GetOrCreateConnectorGeometry(Size renderSize);
 
+        /// <summary>
+        /// Get or create the geometry.
+        /// </summary>
+        /// <param name="box">The box <see cref="Geometry"/>.</param>
+        /// <param name="connector">The connector <see cref="Geometry"/>.</param>
+        /// <returns>The <see cref="Geometry"/>.</returns>
         protected virtual Geometry CreateGeometry(Geometry box, Geometry connector)
         {
             return new CombinedGeometry(GeometryCombineMode.Union, box, connector);
         }
 
+        /// <summary>
+        /// Update the connector offset.
+        /// </summary>
         protected virtual void UpdateConnectorOffset()
         {
             var hasTarget =
@@ -294,7 +332,9 @@ namespace Gu.Wpf.Geometry
         /// </summary>
         /// <param name="sender">The <see cref="BalloonBase"/> that the change happened on.</param>
         /// <param name="e">The <see cref="EventArgs"/>.</param>
+#pragma warning disable CA2109 // Review visible event handlers
         protected virtual void OnLayoutUpdated(object? sender, EventArgs e)
+#pragma warning restore CA2109 // Review visible event handlers
         {
             this.UpdateConnectorOffset();
         }
@@ -309,13 +349,18 @@ namespace Gu.Wpf.Geometry
                    this.GetVisualParent();
         }
 
+        /// <summary>
+        /// Get the target <see cref="Rect"/>.
+        /// </summary>
+        /// <returns>The <see cref="Rect"/>.</returns>
         protected virtual Rect GetTargetRect()
         {
             var targetRect = Rect.Empty;
 
-            if (this.PlacementRectangle.IsEmpty)
+            if (this.PlacementRectangle.IsEmpty &&
+                this.PlacementTarget is { } placementTarget)
             {
-                targetRect = new Rect(new Point(0, 0).ToScreen(this.PlacementTarget), this.PlacementTarget.RenderSize).ToScreen(this);
+                targetRect = new Rect(new Point(0, 0).ToScreen(placementTarget), placementTarget.RenderSize).ToScreen(this);
             }
             else
             {

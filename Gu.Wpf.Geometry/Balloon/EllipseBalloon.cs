@@ -8,6 +8,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Media;
     using System.Windows.Threading;
 
+    /// <summary>
+    /// An elliptical balloon.
+    /// </summary>
     public class EllipseBalloon : BalloonBase
     {
         private static readonly DependencyProperty EllipseProperty = DependencyProperty.Register(
@@ -16,6 +19,7 @@ namespace Gu.Wpf.Geometry
             typeof(EllipseBalloon),
             new PropertyMetadata(default(Ellipse)));
 
+        /// <inheritdoc/>
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
             var ellipse = Ellipse.CreateFromSize(renderSize);
@@ -40,6 +44,7 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
+        /// <inheritdoc/>
         protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
             var ellipse = Ellipse.CreateFromSize(renderSize);
@@ -73,6 +78,7 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
+        /// <inheritdoc/>
         protected override void UpdateConnectorOffset()
         {
             var hasTarget =

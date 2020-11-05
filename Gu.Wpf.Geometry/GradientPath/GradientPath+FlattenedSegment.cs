@@ -4,6 +4,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Media;
 
+    /// <summary>
+    /// FlattenedSegment.
+    /// </summary>
     public partial class GradientPath
     {
         internal class FlattenedSegment

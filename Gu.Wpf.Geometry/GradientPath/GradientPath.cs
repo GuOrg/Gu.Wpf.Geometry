@@ -8,6 +8,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Media;
     using System.Windows.Shapes;
 
+    /// <summary>
+    /// Draws a path with gradient along or across.
+    /// </summary>
     public partial class GradientPath : FrameworkElement
     {
         /// <summary>Identifies the <see cref="Data"/> dependency property.</summary>
@@ -81,17 +84,26 @@ namespace Gu.Wpf.Geometry
         private readonly Pen pen = new Pen();
         private IReadOnlyList<FlattenedFigure>? flattenedFigures;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GradientPath"/> class.
+        /// </summary>
         public GradientPath()
         {
             this.GradientStops = new GradientStopCollection();
         }
 
+        /// <summary>
+        /// Gets or sets the defining <see cref="Geometry"/>.
+        /// </summary>
         public Geometry Data
         {
             get => (Geometry)this.GetValue(DataProperty);
             set => this.SetValue(DataProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets <see cref="GradientStopCollection "/>.  Default value is new FreezableDefaultValueFactory(GradientStopCollection.Empty).
+        /// </summary>
 #pragma warning disable CA2227 // Collection properties should be read only
         public GradientStopCollection GradientStops
 #pragma warning restore CA2227 // Collection properties should be read only
@@ -100,12 +112,18 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(GradientStopsProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="GradientMode"/>.
+        /// </summary>
         public GradientMode GradientMode
         {
             get => (GradientMode)this.GetValue(GradientModeProperty);
             set => this.SetValue(GradientModeProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="ColorInterpolationMode"/>.
+        /// </summary>
         public ColorInterpolationMode ColorInterpolationMode
         {
             get => (ColorInterpolationMode)this.GetValue(ColorInterpolationModeProperty);
@@ -113,7 +131,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// StrokeThickness property.
+        /// Gets or sets the stroke thickness.
         /// </summary>
         public double StrokeThickness
         {
@@ -122,7 +140,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// StrokeStartLineCap property.
+        /// Gets or sets stroke start <see cref="PenLineCap"/>.
         /// </summary>
         public PenLineCap StrokeStartLineCap
         {
@@ -131,7 +149,7 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <summary>
-        /// StrokeEndLineCap property.
+        /// Gets or sets stroke end <see cref="PenLineCap"/>.
         /// </summary>
         public PenLineCap StrokeEndLineCap
         {
@@ -139,6 +157,9 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(StrokeEndLineCapProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the tolerance.
+        /// </summary>
         public double Tolerance
         {
             get => (double)this.GetValue(ToleranceProperty);
@@ -183,11 +204,11 @@ namespace Gu.Wpf.Geometry
         }
 
         /// <inheritdoc />
-        protected override void OnRender(DrawingContext dc)
+        protected override void OnRender(DrawingContext drawingContext)
         {
-            if (dc is null)
+            if (drawingContext is null)
             {
-                throw new ArgumentNullException(nameof(dc));
+                throw new ArgumentNullException(nameof(drawingContext));
             }
 
             if (this.flattenedFigures is null ||
@@ -200,7 +221,7 @@ namespace Gu.Wpf.Geometry
             {
                 foreach (var segment in figure.Segments)
                 {
-                    dc.DrawGeometry(segment.Brush, null, segment.Geometry);
+                    drawingContext.DrawGeometry(segment.Brush, null, segment.Geometry);
                 }
             }
         }

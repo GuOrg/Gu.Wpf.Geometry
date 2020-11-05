@@ -174,7 +174,7 @@ override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateBoxGeometry(System.Windows.Si
 override Gu.Wpf.Geometry.EllipseBalloon.GetOrCreateConnectorGeometry(System.Windows.Size renderSize) -> System.Windows.Media.Geometry!
 override Gu.Wpf.Geometry.EllipseBalloon.UpdateConnectorOffset() -> void
 override Gu.Wpf.Geometry.GradientPath.MeasureOverride(System.Windows.Size availableSize) -> System.Windows.Size
-override Gu.Wpf.Geometry.GradientPath.OnRender(System.Windows.Media.DrawingContext! dc) -> void
+override Gu.Wpf.Geometry.GradientPath.OnRender(System.Windows.Media.DrawingContext! drawingContext) -> void
 override Gu.Wpf.Geometry.PlacementOptions.ToString() -> string!
 override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Type! sourceType) -> bool
 override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext! typeDescriptorContext, System.Type! destinationType) -> bool
@@ -192,7 +192,7 @@ override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonDown(System.Windows.Input.Mous
 override Gu.Wpf.Geometry.Zoombox.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs! e) -> void
 override Gu.Wpf.Geometry.Zoombox.OnMouseMove(System.Windows.Input.MouseEventArgs! e) -> void
 override Gu.Wpf.Geometry.Zoombox.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs! e) -> void
-override Gu.Wpf.Geometry.Zoombox.OnRender(System.Windows.Media.DrawingContext! dc) -> void
+override Gu.Wpf.Geometry.Zoombox.OnRender(System.Windows.Media.DrawingContext! drawingContext) -> void
 override Gu.Wpf.Geometry.Zoombox.VisualChildrenCount.get -> int
 static Gu.Wpf.Geometry.DependencyObjectExt.GetVisualParent(this System.Windows.DependencyObject! dependencyObject) -> System.Windows.UIElement?
 static Gu.Wpf.Geometry.ZoomCommands.Decrease.get -> System.Windows.Input.RoutedUICommand!

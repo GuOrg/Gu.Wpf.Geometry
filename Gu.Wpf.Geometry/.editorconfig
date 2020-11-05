@@ -5,3 +5,6 @@ dotnet_diagnostic.SA1633.severity = none
 
 # SA1313: Parameter names should begin with lower-case letter
 dotnet_diagnostic.SA1313.severity = none
+
+# SA1401: Fields should be private
+dotnet_diagnostic.SA1401.severity = none

@@ -6,6 +6,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
     using System.Windows.Media;
 
+    /// <summary>
+    /// A rectangular balloon.
+    /// </summary>
     public class BoxBalloon : BalloonBase
     {
         /// <summary>Identifies the <see cref="CornerRadius"/> dependency property.</summary>
@@ -24,12 +27,18 @@ namespace Gu.Wpf.Geometry
             typeof(BoxBalloon),
             new PropertyMetadata(Rect.Empty));
 
+        /// <summary>
+        /// Gets or sets the <see cref="CornerRadius"/> that allows users to control the roundness of the corners independently by
+        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
+        /// smoothly blend from corner to corner.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)this.GetValue(CornerRadiusProperty);
             set => this.SetValue(CornerRadiusProperty, value);
         }
 
+        /// <inheritdoc/>
         protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
         {
             var rect = new Rect(new Point(0, 0), renderSize);
@@ -88,6 +97,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
+        /// <inheritdoc/>
         protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
         {
             var rectangle = new Rect(new Point(0, 0), renderSize);
@@ -127,6 +137,7 @@ namespace Gu.Wpf.Geometry
             return geometry;
         }
 
+        /// <inheritdoc/>
         protected virtual CornerRadius AdjustedCornerRadius()
         {
             var cr = this.CornerRadius;

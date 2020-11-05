@@ -63,14 +63,14 @@ namespace Gu.Wpf.Geometry
             var sin = Math.Sin(angle);
             var a = this.RadiusX;
             var b = this.RadiusY;
-            var r2 = 1 / (cos * cos / (a * a) + sin * sin / (b * b));
+            var r2 = 1 / ((cos * cos / (a * a)) + (sin * sin / (b * b)));
             return Math.Sqrt(r2);
         }
 
         internal Point PointOnCircumference(Vector directionFromCenter)
         {
             var r = this.RadiusInDirection(directionFromCenter);
-            return this.CenterPoint + r * directionFromCenter.Normalized();
+            return this.CenterPoint + (r * directionFromCenter.Normalized());
         }
 
         internal bool Contains(Point p)

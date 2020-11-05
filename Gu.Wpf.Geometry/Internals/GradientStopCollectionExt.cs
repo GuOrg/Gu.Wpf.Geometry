@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System.Windows.Media;
 
@@ -63,14 +63,14 @@
             {
                 case ColorInterpolationMode.SRgbLinearInterpolation:
                     clr = Color.FromArgb(
-                        a: (byte)(wt1 * clr1.A + wt2 * clr2.A),
-                        r: (byte)(wt1 * clr1.R + wt2 * clr2.R),
-                        g: (byte)(wt1 * clr1.G + wt2 * clr2.G),
-                        b: (byte)(wt1 * clr1.B + wt2 * clr2.B));
+                        a: (byte)((wt1 * clr1.A) + (wt2 * clr2.A)),
+                        r: (byte)((wt1 * clr1.R) + (wt2 * clr2.R)),
+                        g: (byte)((wt1 * clr1.G) + (wt2 * clr2.G)),
+                        b: (byte)((wt1 * clr1.B) + (wt2 * clr2.B)));
                     break;
 
                 case ColorInterpolationMode.ScRgbLinearInterpolation:
-                    clr = clr1 * wt1 + clr2 * wt2;
+                    clr = (clr1 * wt1) + (clr2 * wt2);
                     break;
             }
 

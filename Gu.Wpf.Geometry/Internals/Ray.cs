@@ -3,7 +3,6 @@ namespace Gu.Wpf.Geometry
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Windows;
 
@@ -59,7 +58,7 @@ namespace Gu.Wpf.Geometry
         {
             var toPoint = this.Point.VectorTo(p);
             var dotProdcut = toPoint.DotProdcut(this.Direction);
-            var projected = this.Point + dotProdcut * this.Direction;
+            var projected = this.Point + (dotProdcut * this.Direction);
             return projected;
         }
 
@@ -104,8 +103,8 @@ namespace Gu.Wpf.Geometry
             if (perp is null)
             {
                 return this.Point.DistanceTo(circle.Center) < circle.Radius
-                    ? circle.Center + circle.Radius * this.Direction
-                    : circle.Center - circle.Radius * this.Direction;
+                    ? circle.Center + (circle.Radius * this.Direction)
+                    : circle.Center - (circle.Radius * this.Direction);
             }
 
             var pl = perp.Value.Length;
@@ -114,8 +113,8 @@ namespace Gu.Wpf.Geometry
                 return null;
             }
 
-            var tangentLength = Math.Sqrt(circle.Radius * circle.Radius - pl * pl);
-            var result = perp.Value.StartPoint - tangentLength * this.Direction;
+            var tangentLength = Math.Sqrt((circle.Radius * circle.Radius) - (pl * pl));
+            var result = perp.Value.StartPoint - (tangentLength * this.Direction);
             return this.IsPointOn(result)
                        ? (Point?)result
                        : null;
@@ -187,7 +186,7 @@ namespace Gu.Wpf.Geometry
             }
 
             var sI = Perp(v, w) / d;
-            var p = ray.Point + sI * u;
+            var p = ray.Point + (sI * u);
             if (mustBeBetweenStartAndEnd)
             {
                 if (ray.IsPointOn(p) && l2.IsPointOnLine(p))
@@ -203,7 +202,7 @@ namespace Gu.Wpf.Geometry
 
         private static double Perp(Vector u, Vector v)
         {
-            return u.X * v.Y - u.Y * v.X;
+            return (u.X * v.Y) - (u.Y * v.X);
         }
     }
 }

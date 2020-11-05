@@ -1,10 +1,9 @@
 namespace Gu.Wpf.Geometry.Benchmarks
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
+
     using BenchmarkDotNet.Attributes;
 
-    [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField")]
     public class LineBenchmarks
     {
         private static readonly Rect Rect = new Rect(0, 0, 10, 10);

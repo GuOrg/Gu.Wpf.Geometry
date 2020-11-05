@@ -8,6 +8,9 @@ namespace Gu.Wpf.Geometry
     using System.Windows.Shapes;
     using System.Windows.Threading;
 
+    /// <summary>
+    /// Base class for ballon shapes.
+    /// </summary>
     public abstract class BalloonBase : Shape
     {
         /// <summary>Identifies the <see cref="ConnectorOffset"/> dependency property.</summary>
@@ -46,7 +49,7 @@ namespace Gu.Wpf.Geometry
             typeof(BalloonBase),
             new PropertyMetadata(
                 Rect.Empty,
-                OnPlacementRectangleChanged));
+                (d, e) => ((BalloonBase)d).UpdateConnectorOffset()));
 
         /// <summary>Identifies the <see cref="PlacementOptions"/> dependency property.</summary>
         public static readonly DependencyProperty PlacementOptionsProperty = DependencyProperty.Register(
@@ -55,7 +58,7 @@ namespace Gu.Wpf.Geometry
             typeof(BalloonBase),
             new PropertyMetadata(
                 PlacementOptions.Auto,
-                OnPlacementOptionsChanged));
+                (d, e) => ((BalloonBase)d).OnLayoutUpdated(null, EventArgs.Empty)));
 
         protected static readonly DependencyProperty ConnectorVertexPointProperty = DependencyProperty.Register(
             "ConnectorVertexPoint",
@@ -83,18 +86,27 @@ namespace Gu.Wpf.Geometry
             StretchProperty.OverrideMetadata(typeof(BalloonBase), new FrameworkPropertyMetadata(Stretch.Fill));
         }
 
+        /// <summary>
+        /// Get or set the <see cref="Vector"/> specifying the connector of the <see cref="BalloonBase"/>.
+        /// </summary>
         public Vector ConnectorOffset
         {
             get => (Vector)this.GetValue(ConnectorOffsetProperty);
             set => this.SetValue(ConnectorOffsetProperty, value);
         }
 
+        /// <summary>
+        /// Get or set the angle of the connector of the <see cref="BalloonBase"/>.
+        /// </summary>
         public double ConnectorAngle
         {
             get => (double)this.GetValue(ConnectorAngleProperty);
             set => this.SetValue(ConnectorAngleProperty, value);
         }
 
+        /// <summary>
+        /// Get or set PlacementTarget property of the <see cref="BalloonBase"/>.
+        /// </summary>
         public UIElement PlacementTarget
         {
             get => (UIElement)this.GetValue(PlacementTargetProperty);
@@ -107,6 +119,9 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(PlacementRectangleProperty, value);
         }
 
+        /// <summary>
+        /// Get or set <see cref="PlacementOptions"/> property of the <see cref="BalloonBase"/>.
+        /// </summary>
         public PlacementOptions PlacementOptions
         {
             get => (PlacementOptions)this.GetValue(PlacementOptionsProperty);
@@ -311,12 +326,6 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private static void OnPlacementOptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var balloon = (BalloonBase)d;
-            balloon.OnLayoutUpdated(null, EventArgs.Empty);
-        }
-
         private static void OnPlacementTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var balloon = (BalloonBase)d;
@@ -334,12 +343,6 @@ namespace Gu.Wpf.Geometry
             {
                 WeakEventManager<UIElement, EventArgs>.AddHandler(newTarget, nameof(LayoutUpdated), balloon.OnLayoutUpdated);
             }
-        }
-
-        private static void OnPlacementRectangleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var balloon = (BalloonBase)d;
-            balloon.UpdateConnectorOffset();
         }
 
         private class PenCache

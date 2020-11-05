@@ -28,30 +28,47 @@ namespace Gu.Wpf.Geometry
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Balloon), new FrameworkPropertyMetadata(typeof(Balloon)));
         }
 
+        /// <summary>
+        /// The CornerRadius property allows users to control the roundness of the corners independently by
+        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
+        /// smoothly blend from corner to corner.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)this.GetValue(CornerRadiusProperty);
             set => this.SetValue(CornerRadiusProperty, value);
         }
 
+        /// <summary>
+        /// Get or set the <see cref="Vector"/> specifying the connector of the <see cref="Balloon"/>.
+        /// </summary>
         public Vector ConnectorOffset
         {
             get => (Vector)this.GetValue(ConnectorOffsetProperty);
             set => this.SetValue(ConnectorOffsetProperty, value);
         }
 
+        /// <summary>
+        /// Get or set the angle of the connector of the <see cref="Balloon"/>.
+        /// </summary>
         public double ConnectorAngle
         {
             get => (double)this.GetValue(ConnectorAngleProperty);
             set => this.SetValue(ConnectorAngleProperty, value);
         }
 
+        /// <summary>
+        /// Get or set PlacementTarget property of the <see cref="Balloon"/>.
+        /// </summary>
         public UIElement PlacementTarget
         {
             get => (UIElement)this.GetValue(PlacementTargetProperty);
             set => this.SetValue(PlacementTargetProperty, value);
         }
 
+        /// <summary>
+        /// Get or set <see cref="PlacementOptions"/> property of the <see cref="Balloon"/>.
+        /// </summary>
         public PlacementOptions PlacementOptions
         {
             get => (PlacementOptions)this.GetValue(PlacementOptionsProperty);

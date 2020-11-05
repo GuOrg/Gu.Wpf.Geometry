@@ -176,7 +176,7 @@ namespace Gu.Wpf.Geometry
         protected override int VisualChildrenCount => 1;
 
         /// <summary>
-        /// Returns enumerator to logical children.
+        /// Gets enumerator with logical children.
         /// </summary>
         protected override IEnumerator LogicalChildren
         {

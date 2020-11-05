@@ -1,3 +1,6 @@
+#### 2.2.7
+* tweak annotations
+
 #### 2.2.6
 * netcoreapp3.1
 * nullable: enable
@@ -21,5 +24,3 @@
 * BUGFIX: Nicer HLSL interpolation, should render nicer HslWheelEffect and HsvWheelEffect
 * FEATURE: StartAngle & CentralAngle for AngularGradientEffect, HslWheelEffect, HsvWheelEffect
 * BREAKING: Renamed AngularGradientEffect.CentralAngle, was ArcLength
-
-

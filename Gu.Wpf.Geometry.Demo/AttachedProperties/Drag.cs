@@ -17,7 +17,9 @@ namespace Gu.Wpf.Geometry.Demo
         private static Point mousePreviousPosition;
         private static Point elementPosition;
 
+#pragma warning disable CA1810 // Initialize reference type static fields inline
         static Drag()
+#pragma warning restore CA1810 // Initialize reference type static fields inline
         {
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(OnMouseLeftButtonDown));
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.MouseLeftButtonUpEvent, new MouseButtonEventHandler(OnMouseLeftButtonUp));

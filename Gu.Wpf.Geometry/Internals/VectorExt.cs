@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry
 {
     using System;
     using System.Globalization;
@@ -96,7 +96,7 @@
         {
             var ca = Math.Cos(radians);
             var sa = Math.Sin(radians);
-            return new Vector(ca * v.X - sa * v.Y, sa * v.X + ca * v.Y);
+            return new Vector((ca * v.X) - (sa * v.Y), (sa * v.X) + (ca * v.Y));
         }
 
         internal static Vector Normalized(this Vector v)

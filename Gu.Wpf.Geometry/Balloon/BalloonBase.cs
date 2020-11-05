@@ -60,18 +60,21 @@ namespace Gu.Wpf.Geometry
                 PlacementOptions.Auto,
                 (d, e) => ((BalloonBase)d).OnLayoutUpdated(null, EventArgs.Empty)));
 
+        /// <summary>Identifies the ConnectorVertexPoint dependency property.</summary>
         protected static readonly DependencyProperty ConnectorVertexPointProperty = DependencyProperty.Register(
             "ConnectorVertexPoint",
             typeof(Point),
             typeof(BalloonBase),
             new PropertyMetadata(default(Point)));
 
+        /// <summary>Identifies the ConnectorPoint1 dependency property.</summary>
         protected static readonly DependencyProperty ConnectorPoint1Property = DependencyProperty.Register(
             "ConnectorPoint1",
             typeof(Point),
             typeof(BalloonBase),
             new PropertyMetadata(default(Point)));
 
+        /// <summary>Identifies the ConnectorPoint2 dependency property.</summary>
         protected static readonly DependencyProperty ConnectorPoint2Property = DependencyProperty.Register(
             "ConnectorPoint2",
             typeof(Point),
@@ -286,11 +289,20 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        protected virtual void OnLayoutUpdated(object? _, EventArgs __)
+        /// <summary>
+        /// Called when properties causing layout update changes.
+        /// </summary>
+        /// <param name="sender">The <see cref="BalloonBase"/> that the change happened on.</param>
+        /// <param name="e">The <see cref="EventArgs"/>.</param>
+        protected virtual void OnLayoutUpdated(object? sender, EventArgs e)
         {
             this.UpdateConnectorOffset();
         }
 
+        /// <summary>
+        /// Gets <see cref="PlacementTarget"/> if set or <see cref="GetVisualParent"/>.
+        /// </summary>
+        /// <returns></returns>
         protected virtual UIElement? GetTarget()
         {
             return this.PlacementTarget ??

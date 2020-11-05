@@ -37,9 +37,9 @@ namespace Gu.Wpf.Geometry.Effects
         }
 
         /// <summary>
-        /// There has to be a property of type Brush called "Input". This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
+        /// Gets or sets the Brush called "Input" that is required by a shader.
+        /// This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
         /// </summary>
-        // ReSharper disable once UnusedMember.Global
         public Brush Input
         {
             get => (Brush)this.GetValue(InputProperty);
@@ -47,7 +47,7 @@ namespace Gu.Wpf.Geometry.Effects
         }
 
         /// <summary>
-        /// Desaturates an image.
+        /// Gets or sets the strangth that the image is desaturated with.
         /// The value can be between 0 and 1.
         /// 0 means the original image is returned.
         /// 1 means a monochrome image is produced.

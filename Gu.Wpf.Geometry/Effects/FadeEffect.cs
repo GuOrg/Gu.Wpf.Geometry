@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Effects
+namespace Gu.Wpf.Geometry.Effects
 {
     using System;
     using System.Windows;
@@ -42,7 +42,8 @@
         }
 
         /// <summary>
-        /// There has to be a property of type Brush called "Input". This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
+        /// Gets or sets the Brush called "Input" that is required by a shader.
+        /// This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
         /// </summary>
         public Brush Input
         {
@@ -50,14 +51,14 @@
             set => this.SetValue(InputProperty, value);
         }
 
-        /// <summary>The color used to tint the input.</summary>
+        /// <summary>Gets or sets the color used to tint the input.</summary>
         public double Strength
         {
             get => (double)this.GetValue(StrengthProperty);
             set => this.SetValue(StrengthProperty, value);
         }
 
-        /// <summary>The colour to fade to.</summary>
+        /// <summary>Gets or sets the color to fade to.</summary>
         public Color To
         {
             get => (Color)this.GetValue(ToProperty);

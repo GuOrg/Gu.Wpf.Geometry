@@ -75,7 +75,8 @@ namespace Gu.Wpf.Geometry.Effects
         }
 
         /// <summary>
-        /// There has to be a property of type Brush called "Input". This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
+        /// Gets or sets the Brush called "Input" that is required by a shader.
+        /// This property contains the input image and it is usually not set directly - it is set automatically when our effect is applied to a control.
         /// </summary>
         public Brush Input
         {

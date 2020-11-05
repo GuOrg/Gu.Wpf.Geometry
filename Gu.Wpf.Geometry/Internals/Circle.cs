@@ -37,7 +37,7 @@ namespace Gu.Wpf.Geometry
             var perp = line.PerpendicularLineTo(this.Center);
             if (perp is null)
             {
-                return this.Center - this.Radius * line.Direction;
+                return this.Center - (this.Radius * line.Direction);
             }
 
             var pl = perp.Value.Length;
@@ -46,15 +46,15 @@ namespace Gu.Wpf.Geometry
                 return null;
             }
 
-            var tangentLength = Math.Sqrt(this.Radius * this.Radius - pl * pl);
-            return perp.Value.StartPoint - tangentLength * line.Direction;
+            var tangentLength = Math.Sqrt((this.Radius * this.Radius) - (pl * pl));
+            return perp.Value.StartPoint - (tangentLength * line.Direction);
         }
 
         internal Point PointOnCircumference(Vector directionFromCenter)
         {
             var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
-            var x = this.Center.X + this.Radius * Math.Cos(a);
-            var y = this.Center.Y + this.Radius * Math.Sin(a);
+            var x = this.Center.X + (this.Radius * Math.Cos(a));
+            var y = this.Center.Y + (this.Radius * Math.Sin(a));
             return new Point(x, y);
         }
     }

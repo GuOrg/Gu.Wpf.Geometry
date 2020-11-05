@@ -112,18 +112,27 @@ namespace Gu.Wpf.Geometry
             set => this.SetValue(ColorInterpolationModeProperty, value);
         }
 
+        /// <summary>
+        /// StrokeThickness property.
+        /// </summary>
         public double StrokeThickness
         {
             get => (double)this.GetValue(StrokeThicknessProperty);
             set => this.SetValue(StrokeThicknessProperty, value);
         }
 
+        /// <summary>
+        /// StrokeStartLineCap property.
+        /// </summary>
         public PenLineCap StrokeStartLineCap
         {
             get => (PenLineCap)this.GetValue(StrokeStartLineCapProperty);
             set => this.SetValue(StrokeStartLineCapProperty, value);
         }
 
+        /// <summary>
+        /// StrokeEndLineCap property.
+        /// </summary>
         public PenLineCap StrokeEndLineCap
         {
             get => (PenLineCap)this.GetValue(StrokeEndLineCapProperty);
@@ -150,8 +159,8 @@ namespace Gu.Wpf.Geometry
 
         internal static LinearGradientBrush CreateParallelBrush(GradientStopCollection gradientStops, double accumLength, double totalLength, Line line)
         {
-            var sp = line.StartPoint - accumLength * line.Direction;
-            var ep = sp + totalLength * line.Direction;
+            var sp = line.StartPoint - (accumLength * line.Direction);
+            var ep = sp + (totalLength * line.Direction);
 
             return new LinearGradientBrush(gradientStops, sp, ep)
             {

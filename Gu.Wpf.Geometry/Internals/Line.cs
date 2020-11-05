@@ -128,7 +128,7 @@ namespace Gu.Wpf.Geometry
         {
             var toPoint = this.StartPoint.VectorTo(p);
             var dotProdcut = toPoint.DotProdcut(this.Direction);
-            var projected = this.StartPoint + dotProdcut * this.Direction;
+            var projected = this.StartPoint + (dotProdcut * this.Direction);
             return projected;
         }
 
@@ -203,7 +203,7 @@ namespace Gu.Wpf.Geometry
         {
             var toPoint = this.StartPoint.VectorTo(p);
             var dotProduct = toPoint.DotProdcut(this.Direction);
-            var pointOnLine = this.StartPoint + dotProduct * this.Direction;
+            var pointOnLine = this.StartPoint + (dotProduct * this.Direction);
             return pointOnLine.DistanceTo(p);
         }
 

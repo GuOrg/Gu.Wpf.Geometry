@@ -63,7 +63,7 @@ namespace Gu.Wpf.Geometry
                 {
                     var cr = this.AdjustedCornerRadius();
                     var p = cr.TopLeft > 0
-                        ? new Point(cr.TopLeft + this.StrokeThickness / 2, this.StrokeThickness / 2)
+                        ? new Point(cr.TopLeft + (this.StrokeThickness / 2), this.StrokeThickness / 2)
                         : new Point(this.StrokeThickness / 2, this.StrokeThickness / 2);
                     context.BeginFigure(p, isFilled: true, isClosed: true);
                     p = p.WithOffset(rect.Width - cr.TopLeft - cr.TopRight, 0);
@@ -197,10 +197,10 @@ namespace Gu.Wpf.Geometry
                         return FindTangentPoint(ray, rectangle, cornerRadius);
                     }
 
-                    return ip.Value + strokeThickness * ray.Direction;
+                    return ip.Value + (strokeThickness * ray.Direction);
                 }
 
-                return ip.Value + strokeThickness * ray.Direction;
+                return ip.Value + (strokeThickness * ray.Direction);
             }
 
             private static bool TryGetCorner(Point intersectionPoint, Rect rectangle, CornerRadius cornerRadius, out Circle corner)
@@ -265,7 +265,7 @@ namespace Gu.Wpf.Geometry
                     return corner.Center;
                 }
 
-                return corner.Center - corner.Radius * lineToCenter.Value.Direction;
+                return corner.Center - (corner.Radius * lineToCenter.Value.Direction);
             }
 
             private static Circle CreateTopLeft(Point p, double r) => new Circle(p.WithOffset(r, r), r);

@@ -1,71 +1,76 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-	<PropertyGroup>
-		<TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
-		<UseWpf>true</UseWpf>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <UseWpf>true</UseWpf>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
+  <PropertyGroup>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Geometry.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<Version>2.2.7</Version>
-		<Authors>Johan Larsson</Authors>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Description>Geometries for WPF.</Description>
-		<NeutralLanguage>en</NeutralLanguage>
-		<PackageReleaseNotes>
-			2.2.7
-			tweak annotations
-			2.2.6
-			netcoreapp3.1
-			nullable: enable
-		</PackageReleaseNotes>
-		<PackageTags>xaml wpf Balloon Gradient</PackageTags>
-		<PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Resource Include="Effects\AngularGradientEffect.ps" />
-		<Resource Include="Effects\DesaturateEffect.ps" />
-		<Resource Include="Effects\FadeEffect.ps" />
-		<Resource Include="Effects\HslWheelEffect.ps" />
-		<Resource Include="Effects\HsvWheelEffect.ps" />
-		<Resource Include="Effects\MaskEffect.ps" />
-	</ItemGroup>
+  <PropertyGroup>
+    <Version>2.2.7</Version>
+    <Authors>Johan Larsson</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Geometries for WPF.</Description>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>
+      2.2.7
+      tweak annotations
+      2.2.6
+      netcoreapp3.1
+      nullable: enable
+    </PackageReleaseNotes>
+    <PackageTags>xaml wpf Balloon Gradient</PackageTags>
+    <PackageProjectUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Geometry</RepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<AdditionalFiles Include="PublicAPI.Shipped.txt" />
-		<AdditionalFiles Include="PublicAPI.Unshipped.txt" />
-		<AdditionalFiles Include="stylecop.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <Resource Include="Effects\AngularGradientEffect.ps" />
+    <Resource Include="Effects\DesaturateEffect.ps" />
+    <Resource Include="Effects\FadeEffect.ps" />
+    <Resource Include="Effects\HslWheelEffect.ps" />
+    <Resource Include="Effects\HsvWheelEffect.ps" />
+    <Resource Include="Effects\MaskEffect.ps" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Gu.Analyzers" Version="1.8.4" PrivateAssets="all" />
-		<PackageReference Include="IDisposableAnalyzers" Version="3.4.8" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.55" PrivateAssets="all" />
-		<PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
-		<PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321" PrivateAssets="all" />
-		<PackageReference Include="WpfAnalyzers" Version="3.5.4" PrivateAssets="all" />
-	</ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
-		<PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Gu.Analyzers" Version="1.8.4" PrivateAssets="all" />
+    <PackageReference Include="IDisposableAnalyzers" Version="3.4.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.55" PrivateAssets="all" />
+    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321" PrivateAssets="all" />
+    <PackageReference Include="WpfAnalyzers" Version="3.5.4" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
+    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ namespace Gu.Wpf.Geometry.Demo.Converters
     using System.Windows.Markup;
 
     [ValueConversion(typeof(FrameworkElement), typeof(Rect))]
+    [MarkupExtensionReturnType(typeof(ElementToBoundsRectConverter))]
     public sealed class ElementToBoundsRectConverter : MarkupExtension, IValueConverter
     {
         public Type? AncestorType { get; set; }

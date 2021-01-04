@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Demo
+namespace Gu.Wpf.Geometry.Demo
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -16,7 +16,7 @@
 
         private void OnGradientModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.GradientPath == null)
+            if (this.GradientPath is null)
             {
                 return;
             }
@@ -27,7 +27,7 @@
 
         private void OnStartLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.GradientPath == null)
+            if (this.GradientPath is null)
             {
                 return;
             }
@@ -38,7 +38,7 @@
 
         private void OnEndLineCapRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.GradientPath == null)
+            if (this.GradientPath is null)
             {
                 return;
             }
@@ -49,7 +49,7 @@
 
         private void OnColorInterpolationModeRadioButtonChecked(object sender, RoutedEventArgs args)
         {
-            if (this.GradientPath == null)
+            if (this.GradientPath is null)
             {
                 return;
             }

@@ -8,3 +8,6 @@ dotnet_diagnostic.SA1313.severity = none
 
 # SA1401: Fields should be private
 dotnet_diagnostic.SA1401.severity = none
+
+# CA1825: Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = none

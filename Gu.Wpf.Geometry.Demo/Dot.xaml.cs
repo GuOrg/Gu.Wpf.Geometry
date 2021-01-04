@@ -6,11 +6,14 @@ namespace Gu.Wpf.Geometry.Demo
 
     public partial class Dot : UserControl
     {
+        /// <summary>Identifies the <see cref="Center"/> dependency property.</summary>
         public static readonly DependencyProperty CenterProperty = DependencyProperty.Register(
             nameof(Center),
             typeof(Point),
             typeof(Dot),
-            new PropertyMetadata(default(Point), OnCenterChanged));
+            new PropertyMetadata(
+                default(Point),
+                (obj, args) => ((Dot)obj).EllipseGeometry.SetCurrentValue(System.Windows.Media.EllipseGeometry.CenterProperty, (Point)args.NewValue)));
 
         private bool isDragging;
         private Point mouseDragStart;
@@ -27,32 +30,32 @@ namespace Gu.Wpf.Geometry.Demo
             set => this.SetValue(CenterProperty, value);
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs args)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(args);
+            base.OnMouseLeftButtonDown(e);
             this.isDragging = true;
-            this.mouseDragStart = args.GetPosition(this);
+            this.mouseDragStart = e.GetPosition(this);
             this.dragStartPos = this.Center;
             _ = this.CaptureMouse();
         }
 
-        protected override void OnMouseMove(MouseEventArgs args)
+        protected override void OnMouseMove(MouseEventArgs e)
         {
-            base.OnMouseMove(args);
+            base.OnMouseMove(e);
             if (!this.isDragging)
             {
                 return;
             }
 
-            var pos = args.GetPosition(this);
+            var pos = e.GetPosition(this);
             var offset = pos - this.mouseDragStart;
             var center = this.dragStartPos + offset;
             this.SetCurrentValue(CenterProperty, center);
         }
 
-        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs args)
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonUp(args);
+            base.OnMouseLeftButtonUp(e);
             if (!this.isDragging)
             {
                 return;
@@ -62,15 +65,10 @@ namespace Gu.Wpf.Geometry.Demo
             this.ReleaseMouseCapture();
         }
 
-        protected override void OnLostMouseCapture(MouseEventArgs args)
+        protected override void OnLostMouseCapture(MouseEventArgs e)
         {
             this.isDragging = false;
-            base.OnLostMouseCapture(args);
-        }
-
-        private static void OnCenterChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            ((Dot)obj).EllipseGeometry.SetCurrentValue(System.Windows.Media.EllipseGeometry.CenterProperty, (Point)args.NewValue);
+            base.OnLostMouseCapture(e);
         }
     }
 }

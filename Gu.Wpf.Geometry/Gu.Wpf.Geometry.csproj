@@ -62,7 +62,7 @@
     <PackageReference Include="IDisposableAnalyzers" Version="3.4.13" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.9.60" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.10.56" PrivateAssets="all" />
     <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.2" PrivateAssets="all" />
     <PackageReference Include="ReflectionAnalyzers" Version="0.1.22-dev" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321" PrivateAssets="all" />

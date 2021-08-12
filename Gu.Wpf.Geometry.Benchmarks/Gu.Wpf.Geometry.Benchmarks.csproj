@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
     <PackageReference Include="Gu.Analyzers" Version="1.8.5" PrivateAssets="all" />
     <PackageReference Include="IDisposableAnalyzers" Version="3.4.13" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.10.56" PrivateAssets="all" />

@@ -42,7 +42,12 @@ namespace Gu.Wpf.Geometry
             typeof(Zoombox),
             new PropertyMetadata(
                 default(Matrix),
-                (d, e) => ((MatrixTransform)((Zoombox)d).InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue)));
+                (d, e) =>
+                {
+                    var zb = (Zoombox)d;
+                    ((MatrixTransform)zb.InternalVisual.Transform).SetCurrentValue(MatrixTransform.MatrixProperty, (Matrix)e.NewValue);
+                    zb.InvalidateVisual();
+                }));
 
         private const double MinScaleDelta = 1E-6;
         private static readonly ScaleTransform ScaleTransform = new ScaleTransform();

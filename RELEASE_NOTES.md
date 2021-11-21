@@ -1,3 +1,6 @@
+#### 2.2.8
+* InvalidateVisual on ContentMatrixProperty change
+
 #### 2.2.7
 * tweak annotations
 

@@ -23,12 +23,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.2.7</Version>
+    <Version>2.2.8</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Geometries for WPF.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReleaseNotes>
+      2.2.8
+      InvalidateVisual on ContentMatrixProperty change
       2.2.7
       tweak annotations
       2.2.6

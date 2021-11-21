@@ -175,10 +175,10 @@ override Gu.Wpf.Geometry.EllipseBalloon.UpdateConnectorOffset() -> void
 override Gu.Wpf.Geometry.GradientPath.MeasureOverride(System.Windows.Size availableSize) -> System.Windows.Size
 override Gu.Wpf.Geometry.GradientPath.OnRender(System.Windows.Media.DrawingContext! drawingContext) -> void
 override Gu.Wpf.Geometry.PlacementOptions.ToString() -> string!
-override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext! context, System.Type! sourceType) -> bool
-override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext! context, System.Type! destinationType) -> bool
-override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext! context, System.Globalization.CultureInfo! culture, object! value) -> object!
-override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext! context, System.Globalization.CultureInfo! culture, object! value, System.Type! destinationType) -> object!
+override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Type! sourceType) -> bool
+override Gu.Wpf.Geometry.PlacementOptionsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
+override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object! value) -> object?
+override Gu.Wpf.Geometry.PlacementOptionsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type! destinationType) -> object!
 override Gu.Wpf.Geometry.PlacementOptionsExtension.ProvideValue(System.IServiceProvider! serviceProvider) -> object!
 override Gu.Wpf.Geometry.Zoombox.ArrangeOverride(System.Windows.Size arrangeSize) -> System.Windows.Size
 override Gu.Wpf.Geometry.Zoombox.Child.get -> System.Windows.UIElement?

@@ -36,6 +36,6 @@
     <PackageReference Include="PropertyChangedAnalyzers" Version="4.0.0" PrivateAssets="all" />
     <PackageReference Include="ReflectionAnalyzers" Version="0.3.0" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" PrivateAssets="all" />
-    <PackageReference Include="WpfAnalyzers" Version="4.0.0" PrivateAssets="all" />
+    <PackageReference Include="WpfAnalyzers" Version="4.0.1" PrivateAssets="all" />
   </ItemGroup>
 </Project>

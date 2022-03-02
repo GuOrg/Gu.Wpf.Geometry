@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWpf>true</UseWpf>
@@ -71,13 +71,4 @@
     <PackageReference Include="WpfAnalyzers" Version="4.0.2" PrivateAssets="all" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <!-- needed to build with RAA due to tooling bugs -->
-    <IncludePackageReferencesDuringMarkupCompilation>false</IncludePackageReferencesDuringMarkupCompilation>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160" PrivateAssets="all" />
-    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[6.0.0]" />
-  </ItemGroup>
 </Project>

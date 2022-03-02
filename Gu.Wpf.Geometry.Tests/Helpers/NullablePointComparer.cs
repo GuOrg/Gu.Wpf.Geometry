@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.Tests
 
     public sealed class NullablePointComparer : IEqualityComparer<Point?>
     {
-        public static readonly NullablePointComparer TwoDigits = new NullablePointComparer(2);
+        public static readonly NullablePointComparer TwoDigits = new(2);
 
         private readonly int digits;
 

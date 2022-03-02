@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System;
     using System.Diagnostics;
@@ -6,14 +6,14 @@
 
     using NUnit.Framework;
 
-    public class RayTests
+    public static class RayTests
     {
         [TestCase("-2,0; 1,0", "0,0; 1", "-1,0")]
         [TestCase("2,0; -1,0", "0,0; 1", "1,0")]
         [TestCase("0,2; 0,-1", "0,0; 1", "0,1")]
         [TestCase("0,-2; 0,1", "0,0; 1", "0,-1")]
         [TestCase("-2,0; -1,0", "0,0; 1", "null")]
-        public void FirstIntersectionWithCircle(string ls, string cs, string eps)
+        public static void FirstIntersectionWithCircle(string ls, string cs, string eps)
         {
             var ray = Ray.Parse(ls);
             var circle = Circle.Parse(cs);
@@ -25,7 +25,7 @@
         [TestCase("0,0; 1")]
         [TestCase("1,2; 3")]
         [TestCase("-1,-2; 3")]
-        public void FirstIntersectionWithCircleFromInsideRoundtrips(string cs)
+        public static void FirstIntersectionWithCircleFromInsideRoundtrips(string cs)
         {
             var circle = Circle.Parse(cs);
             var xv = new Vector(1, 0);
@@ -43,7 +43,7 @@
         [TestCase("1,2; 3")]
         [TestCase("-1,2; 3")]
         [TestCase("-1,-2; 3")]
-        public void FirstIntersectionWithCircleFromOutsideRoundtrips(string cs)
+        public static void FirstIntersectionWithCircleFromOutsideRoundtrips(string cs)
         {
             var circle = Circle.Parse(cs);
             var xv = new Vector(1, 0);
@@ -76,7 +76,7 @@
         [TestCase("0,-1; 0,1", "0,1; 1; 1", "0,0")]
         [TestCase("-2,0; -1,0", "0,0; 1; 1", "null")]
         [TestCase("-2,2; 1,0", "0,0; 1; 1", "null")]
-        public void FirstIntersectionWithEllipse(string rs, string es, string eps)
+        public static void FirstIntersectionWithEllipse(string rs, string es, string eps)
         {
             var ray = Ray.Parse(rs);
             var ellipse = Ellipse.Parse(es);
@@ -89,7 +89,7 @@
         [TestCase("0,0; 2; 3")]
         [TestCase("1,2; 3; 4")]
         [TestCase("-1,-2; 3; 4")]
-        public void FirstIntersectionWithEllipseFromInsideRoundtrips(string es)
+        public static void FirstIntersectionWithEllipseFromInsideRoundtrips(string es)
         {
             var ellipse = Ellipse.Parse(es);
             var xv = new Vector(1, 0);
@@ -106,7 +106,7 @@
         [TestCase("0,0; 1; 1")]
         [TestCase("1,2; 3; 4")]
         [TestCase("-1,-2; 3; 4")]
-        public void FirstIntersectionWithEllipseFromOutsideRoundtrips(string es)
+        public static void FirstIntersectionWithEllipseFromOutsideRoundtrips(string es)
         {
             var ellipse = Ellipse.Parse(es);
             var xv = new Vector(1, 0);
@@ -129,7 +129,7 @@
 
         [TestCase("0 0 1 1")]
         [TestCase("1 2 3 4")]
-        public void FirstIntersectionWithRectFromOutsideRoundtrips(string rs)
+        public static void FirstIntersectionWithRectFromOutsideRoundtrips(string rs)
         {
             var rect = Rect.Parse(rs);
             var xAxis = new Vector(1, 0);

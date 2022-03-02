@@ -5,6 +5,6 @@ namespace Gu.Wpf.Geometry.UiTests
 
     public static class RectangleExt
     {
-        public static Point TopLeft(this Rect rect) => new Point(rect.X, rect.Y);
+        public static Point TopLeft(this Rect rect) => new(rect.X, rect.Y);
     }
 }

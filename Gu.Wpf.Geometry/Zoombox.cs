@@ -50,8 +50,8 @@ namespace Gu.Wpf.Geometry
                 }));
 
         private const double MinScaleDelta = 1E-6;
-        private static readonly ScaleTransform ScaleTransform = new ScaleTransform();
-        private static readonly TranslateTransform TranslateTransform = new TranslateTransform();
+        private static readonly ScaleTransform ScaleTransform = new();
+        private static readonly TranslateTransform TranslateTransform = new();
 
         private ContainerVisual? internalVisual;
         private Point position;
@@ -213,7 +213,7 @@ namespace Gu.Wpf.Geometry
             }
         }
 
-        private Vector CurrentZoom => new Vector(this.ContentMatrix.M11, this.ContentMatrix.M22);
+        private Vector CurrentZoom => new(this.ContentMatrix.M11, this.ContentMatrix.M22);
 
         private UIElement? InternalChild
         {

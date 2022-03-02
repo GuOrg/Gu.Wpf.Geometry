@@ -282,13 +282,13 @@ namespace Gu.Wpf.Geometry
                 return corner.Center - (corner.Radius * lineToCenter.Value.Direction);
             }
 
-            private static Circle CreateTopLeft(Point p, double r) => new Circle(p.WithOffset(r, r), r);
+            private static Circle CreateTopLeft(Point p, double r) => new(p.WithOffset(r, r), r);
 
-            private static Circle CreateTopRight(Point p, double r) => new Circle(p.WithOffset(-r, r), r);
+            private static Circle CreateTopRight(Point p, double r) => new(p.WithOffset(-r, r), r);
 
-            private static Circle CreateBottomRight(Point p, double r) => new Circle(p.WithOffset(-r, -r), r);
+            private static Circle CreateBottomRight(Point p, double r) => new(p.WithOffset(-r, -r), r);
 
-            private static Circle CreateBottomLeft(Point p, double r) => new Circle(p.WithOffset(r, -r), r);
+            private static Circle CreateBottomLeft(Point p, double r) => new(p.WithOffset(r, -r), r);
         }
     }
 }

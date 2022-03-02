@@ -11,10 +11,10 @@ namespace Gu.Wpf.Geometry
     public sealed class PlacementOptions
     {
         /// <summary> Both horizontal and vertical auto. </summary>
-        public static readonly PlacementOptions Auto = new PlacementOptions(HorizontalPlacement.Auto, VerticalPlacement.Auto, 0);
+        public static readonly PlacementOptions Auto = new(HorizontalPlacement.Auto, VerticalPlacement.Auto, 0);
 
         /// <summary> Both horizontal and vertical centered. </summary>
-        public static readonly PlacementOptions Center = new PlacementOptions(HorizontalPlacement.Center, VerticalPlacement.Center, 0);
+        public static readonly PlacementOptions Center = new(HorizontalPlacement.Center, VerticalPlacement.Center, 0);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlacementOptions"/> class.

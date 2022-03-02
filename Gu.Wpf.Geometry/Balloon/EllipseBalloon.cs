@@ -192,7 +192,7 @@ namespace Gu.Wpf.Geometry
 
         private sealed class EllipseCenterConverter : IValueConverter
         {
-            internal static readonly EllipseCenterConverter Default = new EllipseCenterConverter();
+            internal static readonly EllipseCenterConverter Default = new();
 
             private EllipseCenterConverter()
             {
@@ -212,7 +212,7 @@ namespace Gu.Wpf.Geometry
 
         private sealed class EllipseRadiusXConverter : IValueConverter
         {
-            internal static readonly EllipseRadiusXConverter Default = new EllipseRadiusXConverter();
+            internal static readonly EllipseRadiusXConverter Default = new();
 
             private EllipseRadiusXConverter()
             {
@@ -232,7 +232,7 @@ namespace Gu.Wpf.Geometry
 
         private sealed class EllipseRadiusYConverter : IValueConverter
         {
-            internal static readonly EllipseRadiusYConverter Default = new EllipseRadiusYConverter();
+            internal static readonly EllipseRadiusYConverter Default = new();
 
             private EllipseRadiusYConverter()
             {

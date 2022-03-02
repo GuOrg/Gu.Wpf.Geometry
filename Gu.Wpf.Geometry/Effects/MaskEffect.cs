@@ -32,7 +32,7 @@ namespace Gu.Wpf.Geometry.Effects
         /// The uri should be something like pack://application:,,,/Gu.Wpf.Geometry;component/Effects/MaskEffect.ps
         /// The file MaskEffect.ps should have BuildAction: Resource.
         /// </summary>
-        private static readonly PixelShader Shader = new PixelShader
+        private static readonly PixelShader Shader = new()
         {
             UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/MaskEffect.ps", UriKind.Absolute),
         };

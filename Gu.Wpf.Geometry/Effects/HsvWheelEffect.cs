@@ -55,7 +55,7 @@ namespace Gu.Wpf.Geometry.Effects
                 -360D,
                 PixelShaderConstantCallback(4)));
 
-        private static readonly PixelShader Shader = new PixelShader
+        private static readonly PixelShader Shader = new()
         {
             UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/HsvWheelEffect.ps", UriKind.Absolute),
         };

@@ -5,7 +5,7 @@
     [System.Windows.Data.ValueConversion(typeof(CornerRadius), typeof(double))]
     internal sealed class CornerRadiusBottomLeftConverter : CornerRadiusConverter
     {
-        internal static readonly CornerRadiusBottomLeftConverter Default = new CornerRadiusBottomLeftConverter();
+        internal static readonly CornerRadiusBottomLeftConverter Default = new();
 
         private CornerRadiusBottomLeftConverter()
         {

@@ -80,7 +80,7 @@ namespace Gu.Wpf.Geometry
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((GradientPath)d).OnGeometryChanged()));
 
-        private readonly Pen pen = new Pen();
+        private readonly Pen pen = new();
         private IReadOnlyList<FlattenedFigure>? flattenedFigures;
 
         /// <summary>

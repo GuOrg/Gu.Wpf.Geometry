@@ -28,7 +28,7 @@ namespace Gu.Wpf.Geometry.Effects
             typeof(FadeEffect),
             new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
 
-        private static readonly PixelShader Shader = new PixelShader
+        private static readonly PixelShader Shader = new()
         {
             UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/FadeEffect.ps", UriKind.Absolute),
         };

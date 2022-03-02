@@ -13,7 +13,7 @@ namespace Gu.Wpf.Geometry.Demo
             typeof(Drag),
             new PropertyMetadata(default(bool)));
 
-        private static readonly WeakReference<UIElement?> DraggedItem = new WeakReference<UIElement?>(null);
+        private static readonly WeakReference<UIElement?> DraggedItem = new(null);
         private static Point mousePreviousPosition;
         private static Point elementPosition;
 

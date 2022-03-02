@@ -1,13 +1,13 @@
-﻿namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests
 {
     using System.Threading;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
-    public class ZoomboxTests
+    public static class ZoomboxTests
     {
         [Test]
-        public void RespectsMaxZoom()
+        public static void RespectsMaxZoom()
         {
             var box = new Zoombox { MaxZoom = 2 };
             Assert.AreEqual(true, ZoomCommands.Increase.CanExecute(2.0, box));
@@ -18,7 +18,7 @@
         }
 
         [Test]
-        public void IncreaseZoomIntParameter()
+        public static void IncreaseZoomIntParameter()
         {
             var box = new Zoombox();
             Assert.AreEqual(true, ZoomCommands.Increase.CanExecute(3, box));
@@ -28,7 +28,7 @@
         }
 
         [Test]
-        public void TruncatesToMaxZoom()
+        public static void TruncatesToMaxZoom()
         {
             var box = new Zoombox { MaxZoom = 2 };
             Assert.AreEqual(true, ZoomCommands.Increase.CanExecute(3.0, box));
@@ -39,7 +39,7 @@
         }
 
         [Test]
-        public void RespectsMinZoom()
+        public static void RespectsMinZoom()
         {
             var box = new Zoombox { MinZoom = 0.5 };
             Assert.AreEqual(true, ZoomCommands.Decrease.CanExecute(2.0, box));
@@ -50,7 +50,7 @@
         }
 
         [Test]
-        public void DecreaseZoomIntParameter()
+        public static void DecreaseZoomIntParameter()
         {
             var box = new Zoombox();
             Assert.AreEqual(true, ZoomCommands.Decrease.CanExecute(3, box));
@@ -60,7 +60,7 @@
         }
 
         [Test]
-        public void TruncatesToMinZoom()
+        public static void TruncatesToMinZoom()
         {
             var box = new Zoombox { MinZoom = 0.5 };
             Assert.AreEqual(true, ZoomCommands.Decrease.CanExecute(3.0, box));

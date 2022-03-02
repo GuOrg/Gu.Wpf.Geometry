@@ -22,11 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationTypes" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Gu.Analyzers" Version="2.0.2" PrivateAssets="all" />
     <PackageReference Include="Gu.Wpf.UiAutomation" Version="0.4.0" />
     <PackageReference Include="IDisposableAnalyzers" Version="4.0.1" PrivateAssets="all" />

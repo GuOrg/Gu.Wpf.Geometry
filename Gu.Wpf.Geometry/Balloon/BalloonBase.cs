@@ -81,7 +81,7 @@ namespace Gu.Wpf.Geometry
             typeof(BalloonBase),
             new PropertyMetadata(default(Point)));
 
-        private readonly PenCache penCache = new PenCache();
+        private readonly PenCache penCache = new();
         private Geometry? balloonGeometry;
 
         static BalloonBase()

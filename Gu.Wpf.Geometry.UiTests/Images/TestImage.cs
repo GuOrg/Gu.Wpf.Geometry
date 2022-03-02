@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
+    using System;
     using System.Drawing;
     using System.IO;
     using Gu.Wpf.UiAutomation;
@@ -18,12 +19,12 @@ namespace Gu.Wpf.Geometry.UiTests
 
             foreach (var file in Directory.EnumerateFiles(folder, oldName, SearchOption.AllDirectories))
             {
-                File.Move(file, file.Replace(oldName, newName));
+                File.Move(file, file.Replace(oldName, newName, StringComparison.Ordinal));
             }
 
             foreach (var file in Directory.EnumerateFiles(folder, "*.cs", SearchOption.AllDirectories))
             {
-                File.WriteAllText(file, File.ReadAllText(file).Replace(oldName, newName));
+                File.WriteAllText(file, File.ReadAllText(file).Replace(oldName, newName, StringComparison.Ordinal));
             }
         }
 
@@ -32,7 +33,7 @@ namespace Gu.Wpf.Geometry.UiTests
 #pragma warning restore IDE0060, CA1801  // Remove unused parameter
         {
             var fullFileName = Path.Combine(Path.GetTempPath(), resource);
-            _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
+            _ = Directory.CreateDirectory(Path.GetDirectoryName(fullFileName)!);
             actual.Save(fullFileName);
             TestContext.AddTestAttachment(fullFileName);
         }

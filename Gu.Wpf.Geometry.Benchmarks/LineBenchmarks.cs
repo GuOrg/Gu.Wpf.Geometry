@@ -6,8 +6,8 @@ namespace Gu.Wpf.Geometry.Benchmarks
 
     public class LineBenchmarks
     {
-        private static readonly Rect Rect = new Rect(0, 0, 10, 10);
-        private static readonly Line Line = new Line(new Point(-1, 1), new Point(1, 1));
+        private static readonly Rect Rect = new(0, 0, 10, 10);
+        private static readonly Line Line = new(new Point(-1, 1), new Point(1, 1));
 
         [Benchmark(Baseline = true)]
         public double Division()

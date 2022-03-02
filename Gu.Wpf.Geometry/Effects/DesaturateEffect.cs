@@ -21,7 +21,7 @@ namespace Gu.Wpf.Geometry.Effects
             typeof(DesaturateEffect),
             new UIPropertyMetadata(1.0, PixelShaderConstantCallback(0)));
 
-        private static readonly PixelShader Shader = new PixelShader
+        private static readonly PixelShader Shader = new()
         {
             UriSource = new Uri("pack://application:,,,/Gu.Wpf.Geometry;component/Effects/DesaturateEffect.ps", UriKind.Absolute),
         };

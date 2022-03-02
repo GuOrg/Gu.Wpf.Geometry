@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry
     [System.Windows.Data.ValueConversion(typeof(CornerRadius), typeof(double))]
     internal sealed class CornerRadiusTopRightConverter : CornerRadiusConverter
     {
-        internal static readonly CornerRadiusTopRightConverter Default = new CornerRadiusTopRightConverter();
+        internal static readonly CornerRadiusTopRightConverter Default = new();
 
         private CornerRadiusTopRightConverter()
         {

@@ -5,7 +5,7 @@ namespace Gu.Wpf.Geometry.Tests
 
     public sealed class VectorComparer : IEqualityComparer<Vector>
     {
-        public static readonly VectorComparer TwoDigits = new VectorComparer(2);
+        public static readonly VectorComparer TwoDigits = new(2);
 
         private readonly int digits;
 

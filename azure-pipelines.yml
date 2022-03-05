@@ -1,17 +1,14 @@
 pool:
   vmImage: 'windows-2022'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
 
-- task: VSBuild@1
-  displayName: Build
+- task: DotNetCoreCLI@2
+  displayName: 'build'
   inputs:
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/restore'
+    command: 'build'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  displayName: 'test'
   inputs:
-    configuration: '$(buildConfiguration)'
+    command: 'test'

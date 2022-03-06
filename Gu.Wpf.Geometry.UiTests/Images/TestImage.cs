@@ -10,6 +10,7 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         internal static readonly string Current = GetCurrent();
 
+        [Explicit]
         [Script]
         public static void Rename()
         {

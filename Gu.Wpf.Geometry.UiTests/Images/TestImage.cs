@@ -46,8 +46,7 @@ namespace Gu.Wpf.Geometry.UiTests
                 return "Win7";
             }
 
-            if (WindowsVersion.IsWindows10() ||
-                WindowsVersion.CurrentContains("Windows Server 2022"))
+            if (WindowsVersion.IsWindows10())
             {
                 return "Win10";
             }
@@ -55,6 +54,11 @@ namespace Gu.Wpf.Geometry.UiTests
             if (WindowsVersion.CurrentContains("Windows Server 2019"))
             {
                 return "WinServer2019";
+            }
+
+            if (WindowsVersion.CurrentContains("Windows Server 2022"))
+            {
+                return "WinServer2022";
             }
 
             return WindowsVersion.CurrentVersionProductName;

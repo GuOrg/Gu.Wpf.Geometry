@@ -1,7 +1,9 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
     using System.Windows.Media;
+
     using Gu.Wpf.UiAutomation;
+
     using NUnit.Framework;
 
     public static class GradientPathLineCapsWindowTests
@@ -28,7 +30,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindComboBox("LineCap").Select(lineCap.ToString());
             _ = window.FindComboBox("GradientMode").Select(gradientMode.ToString());
-            ImageAssert.AreEqual($"Images\\GradientPathLineCapsWindow\\{TestImage.Current}\\{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"), TestImage.OnFail);
+            TestImage.AreEqual("GradientPathLineCapsWindow", $"{gradientMode}_{lineCap}.png", window.FindGroupBox("Path"));
         }
     }
 }

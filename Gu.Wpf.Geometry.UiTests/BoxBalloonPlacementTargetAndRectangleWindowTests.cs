@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
     using Gu.Wpf.UiAutomation;
+
     using NUnit.Framework;
 
     public sealed class BoxBalloonPlacementTargetAndRectangleWindowTests
@@ -36,7 +37,7 @@ namespace Gu.Wpf.Geometry.UiTests
             var window = app.MainWindow;
             _ = window.FindListBox("Placements").Select(placement);
             var groupBox = window.FindGroupBox("Render");
-            ImageAssert.AreEqual($"Images\\BoxBalloonWindow\\{TestImage.Current}\\{placement}.png", groupBox, TestImage.OnFail);
+            TestImage.AreEqual("BoxBalloonWindow", $"{placement}.png", groupBox);
         }
     }
 }

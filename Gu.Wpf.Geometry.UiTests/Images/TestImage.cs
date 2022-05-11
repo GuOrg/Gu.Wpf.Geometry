@@ -10,6 +10,19 @@ namespace Gu.Wpf.Geometry.UiTests
     {
         internal static readonly string Current = GetCurrent();
 
+        public static void AreEqual(string directory, string fileName, UiElement element)
+        {
+            var fullFileName = $"Images\\{directory}\\{TestImage.Current}\\{fileName}";
+            if (File.Exists(fullFileName))
+            {
+                ImageAssert.AreEqual(fullFileName, element, OnFail);
+            }
+            else
+            {
+                ImageAssert.AreEqual($"Images\\{directory}\\{fileName}", element, OnFail);
+            }
+        }
+
         [Explicit]
         [Script]
         public static void Rename()
@@ -26,19 +39,6 @@ namespace Gu.Wpf.Geometry.UiTests
             foreach (var file in Directory.EnumerateFiles(folder, "*.cs", SearchOption.AllDirectories))
             {
                 File.WriteAllText(file, File.ReadAllText(file).Replace(oldName, newName, StringComparison.Ordinal));
-            }
-        }
-
-        public static void AreEqual(string directory, string fileName, UiElement element)
-        {
-            var fullFileName = $"Images\\{directory}\\{TestImage.Current}\\{fileName}";
-            if (File.Exists(fullFileName))
-            {
-                ImageAssert.AreEqual(fullFileName, element, OnFail);
-            }
-            else
-            {
-                ImageAssert.AreEqual($"Images\\{directory}\\{fileName}", element, OnFail);
             }
         }
 

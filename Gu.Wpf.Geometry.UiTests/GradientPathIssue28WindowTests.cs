@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
     using Gu.Wpf.UiAutomation;
+
     using NUnit.Framework;
 
     public static class GradientPathIssue28WindowTests
@@ -18,7 +19,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            ImageAssert.AreEqual($"Images\\GradientPathIssue28Window\\{TestImage.Current}\\ArcSegment.png", window.FindGroupBox("Path"), TestImage.OnFail);
+            TestImage.AreEqual("GradientPathIssue28Window", $"ArcSegment.png", window.FindGroupBox("Path"));
         }
     }
 }

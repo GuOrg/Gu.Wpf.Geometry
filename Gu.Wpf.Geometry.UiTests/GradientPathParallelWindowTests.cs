@@ -18,7 +18,7 @@ namespace Gu.Wpf.Geometry.UiTests
         {
             using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
             var window = app.MainWindow;
-            ImageAssert.AreEqual($"Images\\GradientPathParallelWindow\\{TestImage.Current}\\Path.png", window.FindGroupBox("Path"), TestImage.OnFail);
+            TestImage.AreEqual("GradientPathParallelWindow", $"Path.png", window.FindGroupBox("Path"));
         }
     }
 }

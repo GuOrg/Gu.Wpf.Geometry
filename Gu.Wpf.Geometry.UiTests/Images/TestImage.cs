@@ -29,6 +29,17 @@ namespace Gu.Wpf.Geometry.UiTests
             }
         }
 
+        public static void AreEqual(string directory, string fileName, UiElement element)
+        {
+            var fullFileName = $"Images\\{directory}\\{TestImage.Current}\\{fileName}";
+            if (File.Exists(fullFileName))
+            {
+                ImageAssert.AreEqual(fullFileName, element, OnFail);
+            }
+
+            ImageAssert.AreEqual($"Images\\{directory}\\{fileName}", element, OnFail);
+        }
+
 #pragma warning disable IDE0060, CA1801 // Remove unused parameter
         internal static void OnFail(Bitmap? expected, Bitmap actual, string resource)
 #pragma warning restore IDE0060, CA1801  // Remove unused parameter

@@ -24,7 +24,7 @@ namespace Gu.Wpf.Geometry.Demo
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(OnMouseLeftButtonDown));
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.MouseLeftButtonUpEvent, new MouseButtonEventHandler(OnMouseLeftButtonUp));
             EventManager.RegisterClassHandler(typeof(UIElement), UIElement.MouseMoveEvent, new MouseEventHandler(OnMouseMove));
-            EventManager.RegisterClassHandler(typeof(UIElement), UIElement.LostMouseCaptureEvent, new RoutedEventHandler(OnLostMouseCapture));
+            EventManager.RegisterClassHandler(typeof(UIElement), UIElement.LostMouseCaptureEvent, new MouseEventHandler(OnLostMouseCapture));
 
             static void OnMouseLeftButtonDown(object sender, MouseEventArgs e)
             {
@@ -64,9 +64,9 @@ namespace Gu.Wpf.Geometry.Demo
                 }
             }
 
-            static void OnLostMouseCapture(object sender, RoutedEventArgs e)
+            static void OnLostMouseCapture(object sender, MouseEventArgs e)
             {
-                if (DraggedItem.TryGetTarget(out UIElement _))
+                if (DraggedItem.TryGetTarget(out _))
                 {
                     DraggedItem.SetTarget(null);
                     ////element.ReleaseMouseCapture();

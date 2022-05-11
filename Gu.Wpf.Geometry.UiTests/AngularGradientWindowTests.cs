@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
     using Gu.Wpf.UiAutomation;
+
     using NUnit.Framework;
 
     public static class AngularGradientWindowTests
@@ -62,7 +63,7 @@ namespace Gu.Wpf.Geometry.UiTests
             window.FindSlider("StartAngle").Value = startAngle;
             window.FindSlider("CentralAngle").Value = centralAngle;
             var groupBox = window.FindGroupBox("Render");
-            TestImage.AreEqual("AngularGradientWindow",$"{startAngle} → {centralAngle}.png", groupBox);
+            TestImage.AreEqual("AngularGradientWindow", $"{startAngle} → {centralAngle}.png", groupBox);
         }
     }
 }

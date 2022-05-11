@@ -36,8 +36,10 @@ namespace Gu.Wpf.Geometry.UiTests
             {
                 ImageAssert.AreEqual(fullFileName, element, OnFail);
             }
-
-            ImageAssert.AreEqual($"Images\\{directory}\\{fileName}", element, OnFail);
+            else
+            {
+                ImageAssert.AreEqual($"Images\\{directory}\\{fileName}", element, OnFail);
+            }
         }
 
 #pragma warning disable IDE0060, CA1801 // Remove unused parameter

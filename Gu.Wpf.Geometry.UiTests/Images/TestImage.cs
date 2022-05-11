@@ -1,9 +1,10 @@
 namespace Gu.Wpf.Geometry.UiTests
 {
-    using System;
     using System.Drawing;
     using System.IO;
+
     using Gu.Wpf.UiAutomation;
+
     using NUnit.Framework;
 
     public static class TestImage
@@ -25,20 +26,25 @@ namespace Gu.Wpf.Geometry.UiTests
 
         [Explicit]
         [Script]
-        public static void Rename()
+        public static void Purge()
         {
-            var folder = @"C:\Git\_GuOrg\Gu.Wpf.Adorners\Gu.Wpf.Adorners.UiTests";
-            var oldName = "Red_border_default_visibility_width_100.png";
-            var newName = "Red_border_default_visibility_width_100.png";
-
-            foreach (var file in Directory.EnumerateFiles(folder, oldName, SearchOption.AllDirectories))
+            foreach (var dir in Directory.EnumerateDirectories(@"C:\Git\_GuOrg\Gu.Wpf.Geometry\Gu.Wpf.Geometry.UiTests\Images", "*.*", SearchOption.TopDirectoryOnly))
             {
-                File.Move(file, file.Replace(oldName, newName, StringComparison.Ordinal));
-            }
-
-            foreach (var file in Directory.EnumerateFiles(folder, "*.cs", SearchOption.AllDirectories))
-            {
-                File.WriteAllText(file, File.ReadAllText(file).Replace(oldName, newName, StringComparison.Ordinal));
+                foreach (var file in Directory.EnumerateFiles(dir, "*.png", SearchOption.TopDirectoryOnly))
+                {
+                    using var image = (Bitmap)Image.FromFile(file);
+                    foreach (var candidate in Directory.EnumerateFiles(dir, Path.GetFileName(file), SearchOption.AllDirectories))
+                    {
+                        if (candidate != file)
+                        {
+                            using var candidateImage = (Bitmap)Image.FromFile(candidate);
+                            if (ImageAssert.Equal(image, candidateImage))
+                            {
+                                File.Delete(candidate);
+                            }
+                        }
+                    }
+                }
             }
         }
 

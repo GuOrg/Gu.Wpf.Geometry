@@ -1,3 +1,6 @@
+#### 3.0.0
+* BREAKING: net48;net6.0-windows
+
 #### 2.2.8
 * InvalidateVisual on ContentMatrixProperty change
 

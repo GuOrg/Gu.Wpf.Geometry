@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
     <UseWpf>true</UseWpf>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
@@ -23,12 +23,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.2.8</Version>
+    <Version>3.0.0</Version>
     <Authors>Johan Larsson</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Geometries for WPF.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReleaseNotes>
+      3.0.0
+      BREAKING: net48;net6.0-windows
       2.2.8
       InvalidateVisual on ContentMatrixProperty change
       2.2.7

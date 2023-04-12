@@ -6,7 +6,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal struct Ellipse
+    internal readonly struct Ellipse
     {
         internal readonly Point CenterPoint;
         internal readonly double RadiusX;

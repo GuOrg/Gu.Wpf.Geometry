@@ -7,7 +7,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal struct Ray
+    internal readonly struct Ray
     {
         internal readonly Point Point;
         internal readonly Vector Direction;

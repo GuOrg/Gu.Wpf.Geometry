@@ -6,7 +6,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal struct Circle
+    internal readonly struct Circle
     {
         internal readonly Point Center;
         internal readonly double Radius;

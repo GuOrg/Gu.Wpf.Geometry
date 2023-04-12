@@ -52,7 +52,7 @@ namespace Gu.Wpf.Geometry
             return path;
         }
 
-        internal struct BindingBuilder
+        internal readonly struct BindingBuilder
         {
             private readonly DependencyObject target;
             private readonly DependencyProperty targetProperty;

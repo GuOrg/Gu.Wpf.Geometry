@@ -6,7 +6,7 @@ namespace Gu.Wpf.Geometry
     using System.Windows;
 
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal struct Line
+    internal readonly struct Line
     {
         internal readonly Point StartPoint;
         internal readonly Point EndPoint;

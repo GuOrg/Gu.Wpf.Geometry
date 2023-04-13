@@ -114,10 +114,11 @@ namespace Gu.Wpf.Geometry
 
                 var mp = ellipse.CenterPoint;
                 var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
-                Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
-                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
+
                 if (ip is null)
                 {
+                    Debug.Fail("Did not find an intersection, bug in the library");
+
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
                 }
@@ -177,10 +178,10 @@ namespace Gu.Wpf.Geometry
             private static Point FindTangentPoint(Ray toCenter, Ellipse ellipse)
             {
                 var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
-                Debug.Assert(toEllipseCenter != null, "Ray should not go through ellipse center here");
-                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (toEllipseCenter is null)
                 {
+                    Debug.Fail("Ray should not go through ellipse center here");
+
                     // this should never happen but failing silently
                     // the balloons should not throw much returning random point.
                     return ellipse.CenterPoint;

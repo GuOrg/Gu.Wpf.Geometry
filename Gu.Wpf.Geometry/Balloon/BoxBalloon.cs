@@ -240,10 +240,11 @@ namespace Gu.Wpf.Geometry
             private static Point FindTangentPoint(Ray ray, Rect rectangle, CornerRadius cornerRadius)
             {
                 var toMid = ray.PerpendicularLineTo(rectangle.CenterPoint());
-                Debug.Assert(toMid != null, "Cannot find tangent if line goes through center");
-                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
+
                 if (toMid is null)
                 {
+                    Debug.Fail("Cannot find tangent if line goes through center");
+
                     // failing silently in release
                     return rectangle.CenterPoint();
                 }
@@ -270,10 +271,10 @@ namespace Gu.Wpf.Geometry
                 }
 
                 var lineToCenter = ray.PerpendicularLineTo(corner.Center);
-                Debug.Assert(lineToCenter != null, "Ray cannot go through center here");
-                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (lineToCenter is null)
                 {
+                    Debug.Fail("Ray cannot go through center here");
+
                     // this should never happen but failing silently
                     // the balloons should not throw much.
                     return corner.Center;

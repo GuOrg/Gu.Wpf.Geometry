@@ -302,10 +302,11 @@ namespace Gu.Wpf.Geometry
 
                 var mp = selfRect.CenterPoint();
                 var ip = new Line(mp, tp.Value).ClosestIntersection(selfRect);
-                Debug.Assert(ip != null, "Did not find an intersection, bug in the library");
-                //// ReSharper disable once ConditionIsAlwaysTrueOrFalse I think we want it weird like this.
+
                 if (ip is null)
                 {
+                    Debug.Fail("Did not find an intersection, bug in the library");
+
                     // failing silently in release
                     this.InvalidateProperty(ConnectorOffsetProperty);
                 }

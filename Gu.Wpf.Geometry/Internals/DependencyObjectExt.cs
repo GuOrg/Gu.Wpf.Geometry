@@ -1,27 +1,26 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System.Windows;
+using System.Windows.Media;
+
+internal static class DependencyObjectExt
 {
-    using System.Windows;
-    using System.Windows.Media;
-
-    internal static class DependencyObjectExt
+    internal static UIElement? GetVisualParent(this DependencyObject dependencyObject)
     {
-        internal static UIElement? GetVisualParent(this DependencyObject dependencyObject)
+        UIElement? element = null;
+        DependencyObject reference = VisualTreeHelper.GetParent(dependencyObject);
+
+        while (reference != null)
         {
-            UIElement? element = null;
-            DependencyObject reference = VisualTreeHelper.GetParent(dependencyObject);
-
-            while (reference != null)
+            element = reference as UIElement;
+            if (element != null)
             {
-                element = reference as UIElement;
-                if (element != null)
-                {
-                    break;
-                }
-
-                reference = VisualTreeHelper.GetParent(reference);
+                break;
             }
 
-            return element;
+            reference = VisualTreeHelper.GetParent(reference);
         }
+
+        return element;
     }
 }

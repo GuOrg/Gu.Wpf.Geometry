@@ -1,31 +1,30 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System.Collections;
+
+internal class SingleChildEnumerator : IEnumerator
 {
-    using System.Collections;
+    private readonly int count;
+    private readonly object child;
 
-    internal class SingleChildEnumerator : IEnumerator
+    private int index = -1;
+
+    internal SingleChildEnumerator(object child)
     {
-        private readonly int count;
-        private readonly object child;
+        this.child = child;
+        this.count = child is null ? 0 : 1;
+    }
 
-        private int index = -1;
+    object? IEnumerator.Current => (this.index == 0) ? this.child : null;
 
-        internal SingleChildEnumerator(object child)
-        {
-            this.child = child;
-            this.count = child is null ? 0 : 1;
-        }
+    bool IEnumerator.MoveNext()
+    {
+        this.index++;
+        return this.index < this.count;
+    }
 
-        object? IEnumerator.Current => (this.index == 0) ? this.child : null;
-
-        bool IEnumerator.MoveNext()
-        {
-            this.index++;
-            return this.index < this.count;
-        }
-
-        void IEnumerator.Reset()
-        {
-            this.index = -1;
-        }
+    void IEnumerator.Reset()
+    {
+        this.index = -1;
     }
 }

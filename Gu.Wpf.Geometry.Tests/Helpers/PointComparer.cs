@@ -1,32 +1,31 @@
-namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests;
+
+using System.Collections.Generic;
+using System.Windows;
+
+public sealed class PointComparer : IEqualityComparer<Point>
 {
-    using System.Collections.Generic;
-    using System.Windows;
+    public static readonly PointComparer TwoDigits = new(2);
 
-    public sealed class PointComparer : IEqualityComparer<Point>
+    private readonly int digits;
+
+    public PointComparer(int digits)
     {
-        public static readonly PointComparer TwoDigits = new(2);
+        this.digits = digits;
+    }
 
-        private readonly int digits;
+    public static bool Equals(Point x, Point y, int decimalDigits)
+    {
+        return x.Round(decimalDigits) == y.Round(decimalDigits);
+    }
 
-        public PointComparer(int digits)
-        {
-            this.digits = digits;
-        }
+    public bool Equals(Point x, Point y)
+    {
+        return Equals(x, y, this.digits);
+    }
 
-        public static bool Equals(Point x, Point y, int decimalDigits)
-        {
-            return x.Round(decimalDigits) == y.Round(decimalDigits);
-        }
-
-        public bool Equals(Point x, Point y)
-        {
-            return Equals(x, y, this.digits);
-        }
-
-        public int GetHashCode(Point obj)
-        {
-            return obj.Round(this.digits).GetHashCode();
-        }
+    public int GetHashCode(Point obj)
+    {
+        return obj.Round(this.digits).GetHashCode();
     }
 }

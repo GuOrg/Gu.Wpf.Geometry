@@ -1,33 +1,32 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System;
+using System.Windows.Markup;
+
+/// <summary>
+/// <see cref="MarkupExtension"/> for creating <see cref="PlacementOptions"/>.
+/// </summary>
+[MarkupExtensionReturnType(typeof(PlacementOptions))]
+public class PlacementOptionsExtension : MarkupExtension
 {
-    using System;
-    using System.Windows.Markup;
+    /// <summary>
+    /// Gets or sets the <see cref="HorizontalPlacement"/>.
+    /// </summary>
+    public HorizontalPlacement Horizontal { get; set; }
 
     /// <summary>
-    /// <see cref="MarkupExtension"/> for creating <see cref="PlacementOptions"/>.
+    /// Gets or sets the <see cref="VerticalPlacement"/>.
     /// </summary>
-    [MarkupExtensionReturnType(typeof(PlacementOptions))]
-    public class PlacementOptionsExtension : MarkupExtension
+    public VerticalPlacement Vertical { get; set; }
+
+    /// <summary>
+    /// Gets or sets the offset.
+    /// </summary>
+    public double Offset { get; set; }
+
+    /// <inheritdoc/>
+    public override object ProvideValue(IServiceProvider serviceProvider)
     {
-        /// <summary>
-        /// Gets or sets the <see cref="HorizontalPlacement"/>.
-        /// </summary>
-        public HorizontalPlacement Horizontal { get; set; }
-
-        /// <summary>
-        /// Gets or sets the <see cref="VerticalPlacement"/>.
-        /// </summary>
-        public VerticalPlacement Vertical { get; set; }
-
-        /// <summary>
-        /// Gets or sets the offset.
-        /// </summary>
-        public double Offset { get; set; }
-
-        /// <inheritdoc/>
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return new PlacementOptions(this.Horizontal, this.Vertical, this.Offset);
-        }
+        return new PlacementOptions(this.Horizontal, this.Vertical, this.Offset);
     }
 }

@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.Geometry.Demo.Effects
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo.Effects;
 
-    public partial class HsvWheelView : UserControl
+using System.Windows.Controls;
+
+public partial class HsvWheelView : UserControl
+{
+    public HsvWheelView()
     {
-        public HsvWheelView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

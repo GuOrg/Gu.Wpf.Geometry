@@ -1,25 +1,24 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System;
+using System.Collections;
+
+internal sealed class EmptyEnumerator : IEnumerator
 {
-    using System;
-    using System.Collections;
+    internal static readonly IEnumerator Instance = new EmptyEnumerator();
 
-    internal sealed class EmptyEnumerator : IEnumerator
+    private EmptyEnumerator()
     {
-        internal static readonly IEnumerator Instance = new EmptyEnumerator();
+    }
 
-        private EmptyEnumerator()
-        {
-        }
+    object IEnumerator.Current => throw new InvalidOperationException();
 
-        object IEnumerator.Current => throw new InvalidOperationException();
+    void IEnumerator.Reset()
+    {
+    }
 
-        void IEnumerator.Reset()
-        {
-        }
-
-        public bool MoveNext()
-        {
-            return false;
-        }
+    public bool MoveNext()
+    {
+        return false;
     }
 }

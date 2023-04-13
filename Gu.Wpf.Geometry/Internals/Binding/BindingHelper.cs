@@ -1,112 +1,111 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Data;
+
+internal static class BindingHelper
 {
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Data;
+    private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new();
 
-    internal static class BindingHelper
+    internal static BindingBuilder Bind(
+        this DependencyObject target,
+        DependencyProperty targetProperty)
     {
-        private static readonly Dictionary<DependencyProperty, PropertyPath> PropertyPaths = new();
+        return new BindingBuilder(target, targetProperty);
+    }
 
-        internal static BindingBuilder Bind(
-            this DependencyObject target,
-            DependencyProperty targetProperty)
-        {
-            return new BindingBuilder(target, targetProperty);
-        }
-
-        internal static BindingExpression Bind(
-                DependencyObject target,
-                DependencyProperty targetProperty,
-                object source,
-                DependencyProperty sourceProperty)
-        {
-            return Bind(target, targetProperty, source, GetPath(sourceProperty));
-        }
-
-        internal static BindingExpression Bind(
+    internal static BindingExpression Bind(
             DependencyObject target,
             DependencyProperty targetProperty,
             object source,
-            PropertyPath path)
-        {
-            var binding = new Binding
-            {
-                Path = path,
-                Source = source,
-                Mode = BindingMode.OneWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-            };
-            return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
-        }
+            DependencyProperty sourceProperty)
+    {
+        return Bind(target, targetProperty, source, GetPath(sourceProperty));
+    }
 
-        internal static PropertyPath GetPath(DependencyProperty property)
+    internal static BindingExpression Bind(
+        DependencyObject target,
+        DependencyProperty targetProperty,
+        object source,
+        PropertyPath path)
+    {
+        var binding = new Binding
         {
-            if (PropertyPaths.TryGetValue(property, out var path))
-            {
-                return path;
-            }
+            Path = path,
+            Source = source,
+            Mode = BindingMode.OneWay,
+            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+        };
+        return (BindingExpression)BindingOperations.SetBinding(target, targetProperty, binding);
+    }
 
-            path = new PropertyPath(property);
-            PropertyPaths[property] = path;
+    internal static PropertyPath GetPath(DependencyProperty property)
+    {
+        if (PropertyPaths.TryGetValue(property, out var path))
+        {
             return path;
         }
 
-        internal readonly struct BindingBuilder
+        path = new PropertyPath(property);
+        PropertyPaths[property] = path;
+        return path;
+    }
+
+    internal readonly struct BindingBuilder
+    {
+        private readonly DependencyObject target;
+        private readonly DependencyProperty targetProperty;
+
+        internal BindingBuilder(DependencyObject target, DependencyProperty targetProperty)
         {
-            private readonly DependencyObject target;
-            private readonly DependencyProperty targetProperty;
+            this.target = target;
+            this.targetProperty = targetProperty;
+        }
 
-            internal BindingBuilder(DependencyObject target, DependencyProperty targetProperty)
+        internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty, IValueConverter? converter = null)
+        {
+            var sourcePath = GetPath(sourceProperty);
+            return this.OneWayTo(source, sourcePath, converter);
+        }
+
+        internal BindingExpression TwoWayTo(object source, DependencyProperty sourceProperty)
+        {
+            var sourcePath = GetPath(sourceProperty);
+            var binding = new Binding
             {
-                this.target = target;
-                this.targetProperty = targetProperty;
-            }
+                Source = source,
+                Path = sourcePath,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+            };
 
-            internal BindingExpression OneWayTo(object source, DependencyProperty sourceProperty, IValueConverter? converter = null)
+            return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
+        }
+
+        internal BindingExpression OneWayTo(object source)
+        {
+            var binding = new Binding
             {
-                var sourcePath = GetPath(sourceProperty);
-                return this.OneWayTo(source, sourcePath, converter);
-            }
+                Source = source,
+                Mode = BindingMode.OneWay,
+            };
 
-            internal BindingExpression TwoWayTo(object source, DependencyProperty sourceProperty)
+            return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
+        }
+
+        internal BindingExpression OneWayTo(object source, PropertyPath sourcePath, IValueConverter? converter = null)
+        {
+            var binding = new Binding
             {
-                var sourcePath = GetPath(sourceProperty);
-                var binding = new Binding
-                {
-                    Source = source,
-                    Path = sourcePath,
-                    Mode = BindingMode.TwoWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                };
+                Path = sourcePath,
+                Source = source,
+                Mode = BindingMode.OneWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Converter = converter,
+            };
 
-                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
-            }
-
-            internal BindingExpression OneWayTo(object source)
-            {
-                var binding = new Binding
-                {
-                    Source = source,
-                    Mode = BindingMode.OneWay,
-                };
-
-                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
-            }
-
-            internal BindingExpression OneWayTo(object source, PropertyPath sourcePath, IValueConverter? converter = null)
-            {
-                var binding = new Binding
-                {
-                    Path = sourcePath,
-                    Source = source,
-                    Mode = BindingMode.OneWay,
-                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                    Converter = converter,
-                };
-
-                return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
-            }
+            return (BindingExpression)BindingOperations.SetBinding(this.target, this.targetProperty, binding);
         }
     }
 }

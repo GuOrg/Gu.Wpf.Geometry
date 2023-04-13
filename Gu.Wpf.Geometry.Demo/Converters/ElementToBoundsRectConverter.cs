@@ -1,42 +1,41 @@
-namespace Gu.Wpf.Geometry.Demo.Converters
+namespace Gu.Wpf.Geometry.Demo.Converters;
+
+using System;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
+
+[ValueConversion(typeof(FrameworkElement), typeof(Rect))]
+[MarkupExtensionReturnType(typeof(ElementToBoundsRectConverter))]
+public sealed class ElementToBoundsRectConverter : MarkupExtension, IValueConverter
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Markup;
+    public Type? AncestorType { get; set; }
 
-    [ValueConversion(typeof(FrameworkElement), typeof(Rect))]
-    [MarkupExtensionReturnType(typeof(ElementToBoundsRectConverter))]
-    public sealed class ElementToBoundsRectConverter : MarkupExtension, IValueConverter
+    public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        public Type? AncestorType { get; set; }
-
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        var element = (FrameworkElement)value;
+        var parent = element?.Parent as FrameworkElement;
+        while (parent != null)
         {
-            var element = (FrameworkElement)value;
-            var parent = element?.Parent as FrameworkElement;
-            while (parent != null)
+            if (parent.GetType() == this.AncestorType)
             {
-                if (parent.GetType() == this.AncestorType)
-                {
-                    return element!.TransformToVisual(parent)
-                                  .TransformBounds(new Rect(element.DesiredSize));
-                }
-
-                parent = parent.Parent as FrameworkElement;
+                return element!.TransformToVisual(parent)
+                              .TransformBounds(new Rect(element.DesiredSize));
             }
 
-            throw new InvalidOperationException("Did not find parent.");
+            parent = parent.Parent as FrameworkElement;
         }
 
-        object IValueConverter.ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new System.NotSupportedException($"{nameof(ElementToBoundsRectConverter)} can only be used in OneWay bindings");
-        }
+        throw new InvalidOperationException("Did not find parent.");
+    }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
+    object IValueConverter.ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        throw new System.NotSupportedException($"{nameof(ElementToBoundsRectConverter)} can only be used in OneWay bindings");
+    }
+
+    public override object ProvideValue(IServiceProvider serviceProvider)
+    {
+        return this;
     }
 }

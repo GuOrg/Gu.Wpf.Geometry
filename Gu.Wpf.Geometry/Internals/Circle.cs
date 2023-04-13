@@ -1,61 +1,60 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows;
+
+[DebuggerDisplay("{DebuggerDisplay,nq}")]
+internal readonly struct Circle
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Windows;
+    internal readonly Point Center;
+    internal readonly double Radius;
 
-    [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal readonly struct Circle
+    internal Circle(Point center, double radius)
     {
-        internal readonly Point Center;
-        internal readonly double Radius;
+        this.Center = center;
+        this.Radius = radius;
+    }
 
-        internal Circle(Point center, double radius)
+    private string DebuggerDisplay => $"{this.Center.ToString("F1")} radius: {this.Radius.ToString("F1", CultureInfo.InvariantCulture)}";
+
+    internal static Circle Parse(string text)
+    {
+        var strings = text.Split(';');
+        if (strings.Length != 2)
         {
-            this.Center = center;
-            this.Radius = radius;
+            throw new FormatException("Could not parse a Circle from the string.");
         }
 
-        private string DebuggerDisplay => $"{this.Center.ToString("F1")} radius: {this.Radius.ToString("F1", CultureInfo.InvariantCulture)}";
+        var cp = Point.Parse(strings[0]);
+        var r = double.Parse(strings[1], CultureInfo.InvariantCulture);
+        return new Circle(cp, r);
+    }
 
-        internal static Circle Parse(string text)
+    internal Point? ClosestIntersection(Line line)
+    {
+        var perp = line.PerpendicularLineTo(this.Center);
+        if (perp is null)
         {
-            var strings = text.Split(';');
-            if (strings.Length != 2)
-            {
-                throw new FormatException("Could not parse a Circle from the string.");
-            }
-
-            var cp = Point.Parse(strings[0]);
-            var r = double.Parse(strings[1], CultureInfo.InvariantCulture);
-            return new Circle(cp, r);
+            return this.Center - (this.Radius * line.Direction);
         }
 
-        internal Point? ClosestIntersection(Line line)
+        var pl = perp.Value.Length;
+        if (pl > this.Radius)
         {
-            var perp = line.PerpendicularLineTo(this.Center);
-            if (perp is null)
-            {
-                return this.Center - (this.Radius * line.Direction);
-            }
-
-            var pl = perp.Value.Length;
-            if (pl > this.Radius)
-            {
-                return null;
-            }
-
-            var tangentLength = Math.Sqrt((this.Radius * this.Radius) - (pl * pl));
-            return perp.Value.StartPoint - (tangentLength * line.Direction);
+            return null;
         }
 
-        internal Point PointOnCircumference(Vector directionFromCenter)
-        {
-            var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
-            var x = this.Center.X + (this.Radius * Math.Cos(a));
-            var y = this.Center.Y + (this.Radius * Math.Sin(a));
-            return new Point(x, y);
-        }
+        var tangentLength = Math.Sqrt((this.Radius * this.Radius) - (pl * pl));
+        return perp.Value.StartPoint - (tangentLength * line.Direction);
+    }
+
+    internal Point PointOnCircumference(Vector directionFromCenter)
+    {
+        var a = Math.Atan2(directionFromCenter.Y, directionFromCenter.X);
+        var x = this.Center.X + (this.Radius * Math.Cos(a));
+        var y = this.Center.Y + (this.Radius * Math.Sin(a));
+        return new Point(x, y);
     }
 }

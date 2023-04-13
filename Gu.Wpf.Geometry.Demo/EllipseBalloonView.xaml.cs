@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.Geometry.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo;
 
-    /// <summary>
-    /// Interaction logic for EllipseBalloonView.xaml.
-    /// </summary>
-    public partial class EllipseBalloonView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for EllipseBalloonView.xaml.
+/// </summary>
+public partial class EllipseBalloonView : UserControl
+{
+    public EllipseBalloonView()
     {
-        public EllipseBalloonView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

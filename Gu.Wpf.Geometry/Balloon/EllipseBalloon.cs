@@ -1,254 +1,253 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Threading;
+
+/// <summary>
+/// An elliptical balloon.
+/// </summary>
+public class EllipseBalloon : BalloonBase
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Media;
-    using System.Windows.Threading;
+    private static readonly DependencyProperty EllipseProperty = DependencyProperty.Register(
+        "Ellipse",
+        typeof(Ellipse),
+        typeof(EllipseBalloon),
+        new PropertyMetadata(default(Ellipse)));
 
-    /// <summary>
-    /// An elliptical balloon.
-    /// </summary>
-    public class EllipseBalloon : BalloonBase
+    /// <inheritdoc/>
+    protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
     {
-        private static readonly DependencyProperty EllipseProperty = DependencyProperty.Register(
-            "Ellipse",
-            typeof(Ellipse),
-            typeof(EllipseBalloon),
-            new PropertyMetadata(default(Ellipse)));
-
-        /// <inheritdoc/>
-        protected override Geometry GetOrCreateBoxGeometry(Size renderSize)
+        var ellipse = Ellipse.CreateFromSize(renderSize);
+        this.SetCurrentValue(EllipseProperty, ellipse);
+        if (ellipse.RadiusX <= 0 || ellipse.RadiusY <= 0)
         {
-            var ellipse = Ellipse.CreateFromSize(renderSize);
-            this.SetCurrentValue(EllipseProperty, ellipse);
-            if (ellipse.RadiusX <= 0 || ellipse.RadiusY <= 0)
-            {
-                return Geometry.Empty;
-            }
-
-            if (this.BoxGeometry is EllipseGeometry)
-            {
-                return this.BoxGeometry;
-            }
-
-            var geometry = new EllipseGeometry();
-            _ = geometry.Bind(EllipseGeometry.CenterProperty)
-                        .OneWayTo(this, EllipseProperty, EllipseCenterConverter.Default);
-            _ = geometry.Bind(EllipseGeometry.RadiusXProperty)
-                        .OneWayTo(this, EllipseProperty, EllipseRadiusXConverter.Default);
-            _ = geometry.Bind(EllipseGeometry.RadiusYProperty)
-                        .OneWayTo(this, EllipseProperty, EllipseRadiusYConverter.Default);
-            return geometry;
+            return Geometry.Empty;
         }
 
-        /// <inheritdoc/>
-        protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
+        if (this.BoxGeometry is EllipseGeometry)
         {
-            var ellipse = Ellipse.CreateFromSize(renderSize);
-            this.SetCurrentValue(EllipseProperty, ellipse);
-            if (ellipse.IsZero)
-            {
-                return Geometry.Empty;
-            }
-
-            var direction = this.ConnectorOffset;
-            var ip = ellipse.PointOnCircumference(direction);
-            var vertexPoint = ip + this.ConnectorOffset;
-            var ray = new Ray(vertexPoint, this.ConnectorOffset.Negated());
-
-            var p1 = ConnectorPoint.Find(ray, this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
-            var p2 = ConnectorPoint.Find(ray, -this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
-
-            this.SetCurrentValue(ConnectorVertexPointProperty, vertexPoint);
-            this.SetCurrentValue(ConnectorPoint1Property, p1);
-            this.SetCurrentValue(ConnectorPoint2Property, p2);
-            if (this.ConnectorGeometry is PathGeometry)
-            {
-                return this.ConnectorGeometry;
-            }
-
-            var figure = this.CreatePathFigureStartingAt(ConnectorPoint1Property);
-            figure.Segments.Add(this.CreateLineSegmentTo(ConnectorVertexPointProperty));
-            figure.Segments.Add(this.CreateLineSegmentTo(ConnectorPoint2Property));
-            var geometry = new PathGeometry();
-            geometry.Figures.Add(figure);
-            return geometry;
+            return this.BoxGeometry;
         }
 
-        /// <inheritdoc/>
-        protected override void UpdateConnectorOffset()
-        {
-            var hasTarget =
-                this.PlacementTarget?.IsVisible == true ||
-                !this.PlacementRectangle.IsEmpty;
+        var geometry = new EllipseGeometry();
+        _ = geometry.Bind(EllipseGeometry.CenterProperty)
+                    .OneWayTo(this, EllipseProperty, EllipseCenterConverter.Default);
+        _ = geometry.Bind(EllipseGeometry.RadiusXProperty)
+                    .OneWayTo(this, EllipseProperty, EllipseRadiusXConverter.Default);
+        _ = geometry.Bind(EllipseGeometry.RadiusYProperty)
+                    .OneWayTo(this, EllipseProperty, EllipseRadiusYConverter.Default);
+        return geometry;
+    }
 
-            if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
+    /// <inheritdoc/>
+    protected override Geometry GetOrCreateConnectorGeometry(Size renderSize)
+    {
+        var ellipse = Ellipse.CreateFromSize(renderSize);
+        this.SetCurrentValue(EllipseProperty, ellipse);
+        if (ellipse.IsZero)
+        {
+            return Geometry.Empty;
+        }
+
+        var direction = this.ConnectorOffset;
+        var ip = ellipse.PointOnCircumference(direction);
+        var vertexPoint = ip + this.ConnectorOffset;
+        var ray = new Ray(vertexPoint, this.ConnectorOffset.Negated());
+
+        var p1 = ConnectorPoint.Find(ray, this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
+        var p2 = ConnectorPoint.Find(ray, -this.ConnectorAngle / 2, this.StrokeThickness, ellipse);
+
+        this.SetCurrentValue(ConnectorVertexPointProperty, vertexPoint);
+        this.SetCurrentValue(ConnectorPoint1Property, p1);
+        this.SetCurrentValue(ConnectorPoint2Property, p2);
+        if (this.ConnectorGeometry is PathGeometry)
+        {
+            return this.ConnectorGeometry;
+        }
+
+        var figure = this.CreatePathFigureStartingAt(ConnectorPoint1Property);
+        figure.Segments.Add(this.CreateLineSegmentTo(ConnectorVertexPointProperty));
+        figure.Segments.Add(this.CreateLineSegmentTo(ConnectorPoint2Property));
+        var geometry = new PathGeometry();
+        geometry.Figures.Add(figure);
+        return geometry;
+    }
+
+    /// <inheritdoc/>
+    protected override void UpdateConnectorOffset()
+    {
+        var hasTarget =
+            this.PlacementTarget?.IsVisible == true ||
+            !this.PlacementRectangle.IsEmpty;
+
+        if (this.IsVisible && this.RenderSize.Width > 0 && hasTarget)
+        {
+            if (!this.IsLoaded)
             {
-                if (!this.IsLoaded)
-                {
 #pragma warning disable VSTHRD001 // Avoid legacy thread switching APIs
-                    _ = this.Dispatcher.BeginInvoke(new Action(this.UpdateConnectorOffset), DispatcherPriority.Loaded);
+                _ = this.Dispatcher.BeginInvoke(new Action(this.UpdateConnectorOffset), DispatcherPriority.Loaded);
 #pragma warning restore VSTHRD001 // Avoid legacy thread switching APIs
-                    return;
-                }
+                return;
+            }
 
-                var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
-                var targetRect = this.GetTargetRect();
-                var ellipse = new Ellipse(selfRect);
+            var selfRect = new Rect(new Point(0, 0).ToScreen(this), this.RenderSize).ToScreen(this);
+            var targetRect = this.GetTargetRect();
+            var ellipse = new Ellipse(selfRect);
 
-                var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
-                if (tp is null || ellipse.Contains(tp.Value))
-                {
-                    this.InvalidateProperty(ConnectorOffsetProperty);
-                    return;
-                }
+            var tp = this.PlacementOptions?.GetPointOnTarget(selfRect, targetRect);
+            if (tp is null || ellipse.Contains(tp.Value))
+            {
+                this.InvalidateProperty(ConnectorOffsetProperty);
+                return;
+            }
 
-                if (ellipse.Contains(tp.Value))
-                {
-                    this.SetCurrentValue(ConnectorOffsetProperty, new Vector(0, 0));
-                    return;
-                }
+            if (ellipse.Contains(tp.Value))
+            {
+                this.SetCurrentValue(ConnectorOffsetProperty, new Vector(0, 0));
+                return;
+            }
 
-                var mp = ellipse.CenterPoint;
-                var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
+            var mp = ellipse.CenterPoint;
+            var ip = new Ray(mp, mp.VectorTo(tp.Value)).FirstIntersectionWith(ellipse);
 
-                if (ip is null)
-                {
-                    Debug.Fail("Did not find an intersection, bug in the library");
+            if (ip is null)
+            {
+                Debug.Fail("Did not find an intersection, bug in the library");
 
-                    // failing silently in release
-                    this.InvalidateProperty(ConnectorOffsetProperty);
-                }
-                else
-                {
-                    var v = tp.Value - ip.Value;
-
-                    // ReSharper disable once CompareOfFloatsByEqualityOperator
-                    if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
-                    {
-                        v -= this.PlacementOptions.Offset * v.Normalized();
-                    }
-
-                    this.SetCurrentValue(ConnectorOffsetProperty, v);
-                }
+                // failing silently in release
+                this.InvalidateProperty(ConnectorOffsetProperty);
             }
             else
             {
-                this.InvalidateProperty(ConnectorOffsetProperty);
-            }
-        }
+                var v = tp.Value - ip.Value;
 
-        private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
-        {
-            var figure = new PathFigure { IsClosed = true };
-            _ = figure.Bind(PathFigure.StartPointProperty)
-                      .OneWayTo(this, property);
-            return figure;
-        }
-
-        private LineSegment CreateLineSegmentTo(DependencyProperty property)
-        {
-            var lineSegment = new LineSegment { IsStroked = true };
-            _ = lineSegment.Bind(LineSegment.PointProperty)
-                           .OneWayTo(this, property);
-            return lineSegment;
-        }
-
-        private static class ConnectorPoint
-        {
-            internal static Point Find(Ray ray, double angle, double strokeThickness, Ellipse ellipse)
-            {
-                return Find(ray.Rotate(angle), strokeThickness, ellipse);
-            }
-
-            private static Point Find(Ray ray, double strokeThickness, Ellipse ellipse)
-            {
-                var ip = ray.FirstIntersectionWith(ellipse);
-                if (ip != null)
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (this.PlacementOptions != null && v.Length > 0 && this.PlacementOptions.Offset != 0)
                 {
-                    return ip.Value + (strokeThickness * ray.Direction);
+                    v -= this.PlacementOptions.Offset * v.Normalized();
                 }
 
-                return FindTangentPoint(ray, ellipse);
-            }
-
-            private static Point FindTangentPoint(Ray toCenter, Ellipse ellipse)
-            {
-                var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
-                if (toEllipseCenter is null)
-                {
-                    Debug.Fail("Ray should not go through ellipse center here");
-
-                    // this should never happen but failing silently
-                    // the balloons should not throw much returning random point.
-                    return ellipse.CenterPoint;
-                }
-
-                return ellipse.PointOnCircumference(toEllipseCenter.Value.Direction.Negated());
+                this.SetCurrentValue(ConnectorOffsetProperty, v);
             }
         }
-
-        private sealed class EllipseCenterConverter : IValueConverter
+        else
         {
-            internal static readonly EllipseCenterConverter Default = new();
+            this.InvalidateProperty(ConnectorOffsetProperty);
+        }
+    }
 
-            private EllipseCenterConverter()
-            {
-            }
+    private PathFigure CreatePathFigureStartingAt(DependencyProperty property)
+    {
+        var figure = new PathFigure { IsClosed = true };
+        _ = figure.Bind(PathFigure.StartPointProperty)
+                  .OneWayTo(this, property);
+        return figure;
+    }
 
-            public object Convert(object value, Type _, object __, CultureInfo ___)
-            {
-                // ReSharper disable once PossibleNullReferenceException
-                return ((Ellipse)value).CenterPoint;
-            }
+    private LineSegment CreateLineSegmentTo(DependencyProperty property)
+    {
+        var lineSegment = new LineSegment { IsStroked = true };
+        _ = lineSegment.Bind(LineSegment.PointProperty)
+                       .OneWayTo(this, property);
+        return lineSegment;
+    }
 
-            public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
-            {
-                throw new NotSupportedException();
-            }
+    private static class ConnectorPoint
+    {
+        internal static Point Find(Ray ray, double angle, double strokeThickness, Ellipse ellipse)
+        {
+            return Find(ray.Rotate(angle), strokeThickness, ellipse);
         }
 
-        private sealed class EllipseRadiusXConverter : IValueConverter
+        private static Point Find(Ray ray, double strokeThickness, Ellipse ellipse)
         {
-            internal static readonly EllipseRadiusXConverter Default = new();
-
-            private EllipseRadiusXConverter()
+            var ip = ray.FirstIntersectionWith(ellipse);
+            if (ip != null)
             {
+                return ip.Value + (strokeThickness * ray.Direction);
             }
 
-            public object Convert(object value, Type _, object __, CultureInfo ___)
-            {
-                // ReSharper disable once PossibleNullReferenceException
-                return ((Ellipse)value).RadiusX;
-            }
-
-            public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
-            {
-                throw new NotSupportedException();
-            }
+            return FindTangentPoint(ray, ellipse);
         }
 
-        private sealed class EllipseRadiusYConverter : IValueConverter
+        private static Point FindTangentPoint(Ray toCenter, Ellipse ellipse)
         {
-            internal static readonly EllipseRadiusYConverter Default = new();
-
-            private EllipseRadiusYConverter()
+            var toEllipseCenter = toCenter.PerpendicularLineTo(ellipse.CenterPoint);
+            if (toEllipseCenter is null)
             {
+                Debug.Fail("Ray should not go through ellipse center here");
+
+                // this should never happen but failing silently
+                // the balloons should not throw much returning random point.
+                return ellipse.CenterPoint;
             }
 
-            public object Convert(object value, Type _, object __, CultureInfo ___)
-            {
-                // ReSharper disable once PossibleNullReferenceException
-                return ((Ellipse)value).RadiusY;
-            }
+            return ellipse.PointOnCircumference(toEllipseCenter.Value.Direction.Negated());
+        }
+    }
 
-            public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
-            {
-                throw new NotSupportedException();
-            }
+    private sealed class EllipseCenterConverter : IValueConverter
+    {
+        internal static readonly EllipseCenterConverter Default = new();
+
+        private EllipseCenterConverter()
+        {
+        }
+
+        public object Convert(object value, Type _, object __, CultureInfo ___)
+        {
+            // ReSharper disable once PossibleNullReferenceException
+            return ((Ellipse)value).CenterPoint;
+        }
+
+        public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    private sealed class EllipseRadiusXConverter : IValueConverter
+    {
+        internal static readonly EllipseRadiusXConverter Default = new();
+
+        private EllipseRadiusXConverter()
+        {
+        }
+
+        public object Convert(object value, Type _, object __, CultureInfo ___)
+        {
+            // ReSharper disable once PossibleNullReferenceException
+            return ((Ellipse)value).RadiusX;
+        }
+
+        public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    private sealed class EllipseRadiusYConverter : IValueConverter
+    {
+        internal static readonly EllipseRadiusYConverter Default = new();
+
+        private EllipseRadiusYConverter()
+        {
+        }
+
+        public object Convert(object value, Type _, object __, CultureInfo ___)
+        {
+            // ReSharper disable once PossibleNullReferenceException
+            return ((Ellipse)value).RadiusY;
+        }
+
+        public object ConvertBack(object _, Type __, object ___, CultureInfo ____)
+        {
+            throw new NotSupportedException();
         }
     }
 }

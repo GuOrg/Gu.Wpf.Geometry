@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.Geometry.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo;
 
-    public partial class BalloonControlView : UserControl
+using System.Windows.Controls;
+
+public partial class BalloonControlView : UserControl
+{
+    public BalloonControlView()
     {
-        public BalloonControlView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.Geometry.Demo
-{
-    using System.Windows;
+﻿namespace Gu.Wpf.Geometry.Demo;
 
-    public partial class MainWindow : Window
+using System.Windows;
+
+public partial class MainWindow : Window
+{
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

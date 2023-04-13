@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.Geometry.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo;
 
-    /// <summary>
-    /// Interaction logic for SimpleView.xaml.
-    /// </summary>
-    public partial class SimpleView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for SimpleView.xaml.
+/// </summary>
+public partial class SimpleView : UserControl
+{
+    public SimpleView()
     {
-        public SimpleView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

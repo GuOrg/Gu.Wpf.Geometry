@@ -1,16 +1,15 @@
-﻿namespace Gu.Wpf.Geometry
+﻿namespace Gu.Wpf.Geometry;
+
+using System.Windows;
+
+[System.Windows.Data.ValueConversion(typeof(CornerRadius), typeof(double))]
+internal sealed class CornerRadiusBottomLeftConverter : CornerRadiusConverter
 {
-    using System.Windows;
+    internal static readonly CornerRadiusBottomLeftConverter Default = new();
 
-    [System.Windows.Data.ValueConversion(typeof(CornerRadius), typeof(double))]
-    internal sealed class CornerRadiusBottomLeftConverter : CornerRadiusConverter
+    private CornerRadiusBottomLeftConverter()
     {
-        internal static readonly CornerRadiusBottomLeftConverter Default = new();
-
-        private CornerRadiusBottomLeftConverter()
-        {
-        }
-
-        protected override double GetRadius(CornerRadius cornerRadius) => cornerRadius.BottomLeft;
     }
+
+    protected override double GetRadius(CornerRadius cornerRadius) => cornerRadius.BottomLeft;
 }

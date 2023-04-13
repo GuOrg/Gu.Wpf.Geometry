@@ -1,9 +1,8 @@
-namespace Gu.Wpf.Geometry.UiTests
-{
-    using NUnit.Framework;
+namespace Gu.Wpf.Geometry.UiTests;
 
-    [System.Diagnostics.Conditional("DEBUG")]
-    public sealed class ScriptAttribute : TestAttribute
-    {
-    }
+using NUnit.Framework;
+
+[System.Diagnostics.Conditional("DEBUG")]
+public sealed class ScriptAttribute : TestAttribute
+{
 }

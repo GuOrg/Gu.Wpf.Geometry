@@ -1,25 +1,24 @@
-namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests;
+
+using Gu.Wpf.UiAutomation;
+
+using NUnit.Framework;
+
+public static class GradientPathIssue28WindowTests
 {
-    using Gu.Wpf.UiAutomation;
+    private const string WindowName = "GradientPathIssue28Window";
 
-    using NUnit.Framework;
-
-    public static class GradientPathIssue28WindowTests
+    [OneTimeTearDown]
+    public static void OneTimeTearDown()
     {
-        private const string WindowName = "GradientPathIssue28Window";
+        Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
+    }
 
-        [OneTimeTearDown]
-        public static void OneTimeTearDown()
-        {
-            Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
-        }
-
-        [Test]
-        public static void ArcSegmentIssue28()
-        {
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-            var window = app.MainWindow;
-            TestImage.AreEqual("GradientPathIssue28Window", $"ArcSegment.png", window.FindGroupBox("Path"));
-        }
+    [Test]
+    public static void ArcSegmentIssue28()
+    {
+        using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+        var window = app.MainWindow;
+        TestImage.AreEqual("GradientPathIssue28Window", $"ArcSegment.png", window.FindGroupBox("Path"));
     }
 }

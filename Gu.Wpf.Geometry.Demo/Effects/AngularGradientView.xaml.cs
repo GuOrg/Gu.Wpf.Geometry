@@ -1,12 +1,11 @@
-﻿namespace Gu.Wpf.Geometry.Demo.Effects
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo.Effects;
 
-    public partial class AngularGradientView : UserControl
+using System.Windows.Controls;
+
+public partial class AngularGradientView : UserControl
+{
+    public AngularGradientView()
     {
-        public AngularGradientView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

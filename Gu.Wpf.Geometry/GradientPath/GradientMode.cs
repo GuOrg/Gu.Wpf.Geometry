@@ -1,18 +1,17 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+/// <summary>
+/// Specifies how <see cref="GradientPath"/> is rendered.
+/// </summary>
+public enum GradientMode
 {
     /// <summary>
-    /// Specifies how <see cref="GradientPath"/> is rendered.
+    /// Gradient across the path.
     /// </summary>
-    public enum GradientMode
-    {
-        /// <summary>
-        /// Gradient across the path.
-        /// </summary>
-        Perpendicular,
+    Perpendicular,
 
-        /// <summary>
-        /// Gradient along the path.
-        /// </summary>
-        Parallel,
-    }
+    /// <summary>
+    /// Gradient along the path.
+    /// </summary>
+    Parallel,
 }

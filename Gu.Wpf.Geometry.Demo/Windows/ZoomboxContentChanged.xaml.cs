@@ -1,18 +1,17 @@
-namespace Gu.Wpf.Geometry.Demo.Windows
+namespace Gu.Wpf.Geometry.Demo.Windows;
+
+using System.Windows;
+using System.Windows.Data;
+
+public partial class ZoomboxContentChanged : Window
 {
-    using System.Windows;
-    using System.Windows.Data;
-
-    public partial class ZoomboxContentChanged : Window
+    public ZoomboxContentChanged()
     {
-        public ZoomboxContentChanged()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
+    }
 
-        private void OnTargetUpdated(object sender, DataTransferEventArgs e)
-        {
-            this.Zoombox.ZoomUniform();
-        }
+    private void OnTargetUpdated(object sender, DataTransferEventArgs e)
+    {
+        this.Zoombox.ZoomUniform();
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace Gu.Wpf.Geometry
+﻿namespace Gu.Wpf.Geometry;
+
+internal enum Quadrant
 {
-    internal enum Quadrant
-    {
-        NegativeXPositiveY,
-        PositiveXPositiveY,
-        PositiveXNegativeY,
-        NegativeXNegativeY,
-    }
+    NegativeXPositiveY,
+    PositiveXPositiveY,
+    PositiveXNegativeY,
+    NegativeXNegativeY,
 }

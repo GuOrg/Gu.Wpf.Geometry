@@ -1,22 +1,21 @@
-namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests;
+
+using System.Linq;
+using System.Windows.Markup;
+
+using NUnit.Framework;
+
+public static class NamespacesTests
 {
-    using System.Linq;
-    using System.Windows.Markup;
+    private const string Uri = "http://gu.se/Geometry";
 
-    using NUnit.Framework;
-
-    public static class NamespacesTests
+    [Test]
+    public static void XmlnsPrefix()
     {
-        private const string Uri = "http://gu.se/Geometry";
-
-        [Test]
-        public static void XmlnsPrefix()
+        var attributes = typeof(GradientPath).Assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
+        foreach (var attribute in attributes)
         {
-            var attributes = typeof(GradientPath).Assembly.CustomAttributes.Where(x => x.AttributeType == typeof(XmlnsPrefixAttribute));
-            foreach (var attribute in attributes)
-            {
-                Assert.AreEqual(Uri, attribute.ConstructorArguments[0].Value);
-            }
+            Assert.AreEqual(Uri, attribute.ConstructorArguments[0].Value);
         }
     }
 }

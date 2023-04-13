@@ -1,15 +1,14 @@
-﻿namespace Gu.Wpf.Geometry.Demo
-{
-    using System.Windows.Controls;
+﻿namespace Gu.Wpf.Geometry.Demo;
 
-    /// <summary>
-    /// Interaction logic for IntersectionView.xaml.
-    /// </summary>
-    public partial class IntersectionView : UserControl
+using System.Windows.Controls;
+
+/// <summary>
+/// Interaction logic for IntersectionView.xaml.
+/// </summary>
+public partial class IntersectionView : UserControl
+{
+    public IntersectionView()
     {
-        public IntersectionView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

@@ -1,13 +1,12 @@
 // ReSharper disable All
-namespace Gu.Wpf.Geometry.Benchmarks
-{
-    using BenchmarkDotNet.Running;
+namespace Gu.Wpf.Geometry.Benchmarks;
 
-    public static class Program
+using BenchmarkDotNet.Running;
+
+public static class Program
+{
+    public static void Main()
     {
-        public static void Main()
-        {
-            _ = BenchmarkRunner.Run<LineBenchmarks>();
-        }
+        _ = BenchmarkRunner.Run<LineBenchmarks>();
     }
 }

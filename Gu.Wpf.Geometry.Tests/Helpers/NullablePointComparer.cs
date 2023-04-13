@@ -1,37 +1,36 @@
-namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests;
+
+using System.Collections.Generic;
+using System.Windows;
+
+public sealed class NullablePointComparer : IEqualityComparer<Point?>
 {
-    using System.Collections.Generic;
-    using System.Windows;
+    public static readonly NullablePointComparer TwoDigits = new(2);
 
-    public sealed class NullablePointComparer : IEqualityComparer<Point?>
+    private readonly int digits;
+
+    public NullablePointComparer(int digits)
     {
-        public static readonly NullablePointComparer TwoDigits = new(2);
+        this.digits = digits;
+    }
 
-        private readonly int digits;
-
-        public NullablePointComparer(int digits)
+    public bool Equals(Point? x, Point? y)
+    {
+        if (x is null && y is null)
         {
-            this.digits = digits;
+            return true;
         }
 
-        public bool Equals(Point? x, Point? y)
+        if (x is null || y is null)
         {
-            if (x is null && y is null)
-            {
-                return true;
-            }
-
-            if (x is null || y is null)
-            {
-                return false;
-            }
-
-            return PointComparer.Equals(x.Value, y.Value, this.digits);
+            return false;
         }
 
-        public int GetHashCode(Point? obj)
-        {
-            return obj?.Round(this.digits).GetHashCode() ?? 0;
-        }
+        return PointComparer.Equals(x.Value, y.Value, this.digits);
+    }
+
+    public int GetHashCode(Point? obj)
+    {
+        return obj?.Round(this.digits).GetHashCode() ?? 0;
     }
 }

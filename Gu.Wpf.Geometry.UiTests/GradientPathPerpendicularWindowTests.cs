@@ -1,25 +1,24 @@
-namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests;
+
+using Gu.Wpf.UiAutomation;
+
+using NUnit.Framework;
+
+public static class GradientPathPerpendicularWindowTests
 {
-    using Gu.Wpf.UiAutomation;
+    private const string WindowName = "GradientPathPerpendicularWindow";
 
-    using NUnit.Framework;
-
-    public static class GradientPathPerpendicularWindowTests
+    [OneTimeTearDown]
+    public static void OneTimeTearDown()
     {
-        private const string WindowName = "GradientPathPerpendicularWindow";
+        Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
+    }
 
-        [OneTimeTearDown]
-        public static void OneTimeTearDown()
-        {
-            Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
-        }
-
-        [Test]
-        public static void Renders()
-        {
-            using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-            var window = app.MainWindow;
-            TestImage.AreEqual("GradientPathPerpendicularWindow", $"Path.png", window.FindGroupBox("Path"));
-        }
+    [Test]
+    public static void Renders()
+    {
+        using var app = Application.Launch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+        var window = app.MainWindow;
+        TestImage.AreEqual("GradientPathPerpendicularWindow", $"Path.png", window.FindGroupBox("Path"));
     }
 }

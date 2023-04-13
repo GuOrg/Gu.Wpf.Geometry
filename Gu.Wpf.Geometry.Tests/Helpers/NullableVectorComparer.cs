@@ -1,37 +1,36 @@
-namespace Gu.Wpf.Geometry.Tests
+namespace Gu.Wpf.Geometry.Tests;
+
+using System.Collections.Generic;
+using System.Windows;
+
+public sealed class NullableVectorComparer : IEqualityComparer<Vector?>
 {
-    using System.Collections.Generic;
-    using System.Windows;
+    public static readonly NullableVectorComparer TwoDigits = new(2);
 
-    public sealed class NullableVectorComparer : IEqualityComparer<Vector?>
+    private readonly int digits;
+
+    public NullableVectorComparer(int digits)
     {
-        public static readonly NullableVectorComparer TwoDigits = new(2);
+        this.digits = digits;
+    }
 
-        private readonly int digits;
-
-        public NullableVectorComparer(int digits)
+    public bool Equals(Vector? x, Vector? y)
+    {
+        if (x is null && y is null)
         {
-            this.digits = digits;
+            return true;
         }
 
-        public bool Equals(Vector? x, Vector? y)
+        if (x is null || y is null)
         {
-            if (x is null && y is null)
-            {
-                return true;
-            }
-
-            if (x is null || y is null)
-            {
-                return false;
-            }
-
-            return VectorComparer.Equals(x.Value, y.Value, this.digits);
+            return false;
         }
 
-        public int GetHashCode(Vector? obj)
-        {
-            return obj?.Round(this.digits).GetHashCode() ?? 0;
-        }
+        return VectorComparer.Equals(x.Value, y.Value, this.digits);
+    }
+
+    public int GetHashCode(Vector? obj)
+    {
+        return obj?.Round(this.digits).GetHashCode() ?? 0;
     }
 }

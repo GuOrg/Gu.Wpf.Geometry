@@ -1,10 +1,9 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+internal enum Axis
 {
-    internal enum Axis
-    {
-        PositiveX,
-        NegativeX,
-        PositiveY,
-        NegativeY,
-    }
+    PositiveX,
+    NegativeX,
+    PositiveY,
+    NegativeY,
 }

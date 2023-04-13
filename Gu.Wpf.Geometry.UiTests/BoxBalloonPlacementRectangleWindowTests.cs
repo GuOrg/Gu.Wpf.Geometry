@@ -1,48 +1,47 @@
-namespace Gu.Wpf.Geometry.UiTests
+namespace Gu.Wpf.Geometry.UiTests;
+
+using Gu.Wpf.UiAutomation;
+
+using NUnit.Framework;
+
+public sealed class BoxBalloonPlacementRectangleWindowTests
 {
-    using Gu.Wpf.UiAutomation;
+    private const string WindowName = "BoxBalloonPlacementRectangleWindow";
 
-    using NUnit.Framework;
-
-    public sealed class BoxBalloonPlacementRectangleWindowTests
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
     {
-        private const string WindowName = "BoxBalloonPlacementRectangleWindow";
+        Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
+    }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+    [TestCase("Auto Auto 0")]
+    [TestCase("Auto Auto 5")]
+    [TestCase("Auto Auto -5")]
+    [TestCase("Center Center 0")]
+    [TestCase("Center Center 5")]
+    [TestCase("Center Center -5")]
+    [TestCase("Left Top 0")]
+    [TestCase("Center Top 0")]
+    [TestCase("Right Top 0")]
+    [TestCase("Left Bottom 0")]
+    [TestCase("Center Bottom 0")]
+    [TestCase("Right Bottom 0")]
+    [TestCase("Auto Center 0")]
+    [TestCase("Left Auto 0")]
+    [TestCase("Right Auto 0")]
+    [TestCase("Auto Top 0")]
+    [TestCase("Auto Bottom 0")]
+    public void Renders(string placement)
+    {
+        if (WindowsVersion.CurrentContains("Server"))
         {
-            Application.KillLaunched("Gu.Wpf.Geometry.Demo.exe");
+            Assert.Inconclusive("For some reason one pixel off here. Don't have the energy to chase it now.");
         }
 
-        [TestCase("Auto Auto 0")]
-        [TestCase("Auto Auto 5")]
-        [TestCase("Auto Auto -5")]
-        [TestCase("Center Center 0")]
-        [TestCase("Center Center 5")]
-        [TestCase("Center Center -5")]
-        [TestCase("Left Top 0")]
-        [TestCase("Center Top 0")]
-        [TestCase("Right Top 0")]
-        [TestCase("Left Bottom 0")]
-        [TestCase("Center Bottom 0")]
-        [TestCase("Right Bottom 0")]
-        [TestCase("Auto Center 0")]
-        [TestCase("Left Auto 0")]
-        [TestCase("Right Auto 0")]
-        [TestCase("Auto Top 0")]
-        [TestCase("Auto Bottom 0")]
-        public void Renders(string placement)
-        {
-            if (WindowsVersion.CurrentContains("Server"))
-            {
-                Assert.Inconclusive("For some reason one pixel off here. Don't have the energy to chase it now.");
-            }
-
-            using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
-            var window = app.MainWindow;
-            _ = window.FindListBox("Placements").Select(placement);
-            var groupBox = window.FindGroupBox("Render");
-            TestImage.AreEqual("BoxBalloonWindow", $"{placement}.png", groupBox);
-        }
+        using var app = Application.AttachOrLaunch("Gu.Wpf.Geometry.Demo.exe", WindowName);
+        var window = app.MainWindow;
+        _ = window.FindListBox("Placements").Select(placement);
+        var groupBox = window.FindGroupBox("Render");
+        TestImage.AreEqual("BoxBalloonWindow", $"{placement}.png", groupBox);
     }
 }

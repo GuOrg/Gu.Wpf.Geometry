@@ -1,254 +1,253 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows;
+
+[DebuggerDisplay("{DebuggerDisplay,nq}")]
+internal readonly struct Line
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Windows;
+    internal readonly Point StartPoint;
+    internal readonly Point EndPoint;
 
-    [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    internal readonly struct Line
+    internal Line(Point startPoint, Point endPoint)
     {
-        internal readonly Point StartPoint;
-        internal readonly Point EndPoint;
+        this.StartPoint = startPoint;
+        this.EndPoint = endPoint;
+    }
 
-        internal Line(Point startPoint, Point endPoint)
+    internal Point MidPoint
+    {
+        get
         {
-            this.StartPoint = startPoint;
-            this.EndPoint = endPoint;
+            var x = (this.StartPoint.X + this.EndPoint.X) / 2;
+            var y = (this.StartPoint.Y + this.EndPoint.Y) / 2;
+            return new Point(x, y);
         }
+    }
 
-        internal Point MidPoint
-        {
-            get
-            {
-                var x = (this.StartPoint.X + this.EndPoint.X) / 2;
-                var y = (this.StartPoint.Y + this.EndPoint.Y) / 2;
-                return new Point(x, y);
-            }
-        }
+    internal double Length => (this.EndPoint - this.StartPoint).Length;
 
-        internal double Length => (this.EndPoint - this.StartPoint).Length;
-
-        internal Vector Direction
-        {
-            get
-            {
-                var v = this.EndPoint - this.StartPoint;
-                v.Normalize();
-                return v;
-            }
-        }
-
-        internal Vector PerpendicularDirection
-        {
-            get
-            {
-                var direction = this.Direction;
-                return new Vector(direction.Y, -direction.X);
-            }
-        }
-
-        private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length:F1}";
-
-        public override string ToString() => this.ToString(string.Empty);
-
-        internal static Line Parse(string text)
-        {
-            var strings = text.Split(';');
-            if (strings.Length != 2)
-            {
-                throw new FormatException("Could not parse a Line from the string.");
-            }
-
-            var sp = Point.Parse(strings[0]);
-            var ep = Point.Parse(strings[1]);
-            return new Line(sp, ep);
-        }
-
-        internal string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
-
-        internal Line RotateAroundStartPoint(double angleInDegrees)
+    internal Vector Direction
+    {
+        get
         {
             var v = this.EndPoint - this.StartPoint;
-            v = v.Rotate(angleInDegrees);
-            var ep = this.StartPoint + v;
-            return new Line(this.StartPoint, ep);
+            v.Normalize();
+            return v;
+        }
+    }
+
+    internal Vector PerpendicularDirection
+    {
+        get
+        {
+            var direction = this.Direction;
+            return new Vector(direction.Y, -direction.X);
+        }
+    }
+
+    private string DebuggerDisplay => $"{this.StartPoint.ToString("F1")} -> {this.EndPoint.ToString("F1")} length: {this.Length:F1}";
+
+    public override string ToString() => this.ToString(string.Empty);
+
+    internal static Line Parse(string text)
+    {
+        var strings = text.Split(';');
+        if (strings.Length != 2)
+        {
+            throw new FormatException("Could not parse a Line from the string.");
         }
 
-        internal Line Flip()
+        var sp = Point.Parse(strings[0]);
+        var ep = Point.Parse(strings[1]);
+        return new Line(sp, ep);
+    }
+
+    internal string ToString(string format) => $"{this.StartPoint.ToString(format)}; {this.EndPoint.ToString(format)}";
+
+    internal Line RotateAroundStartPoint(double angleInDegrees)
+    {
+        var v = this.EndPoint - this.StartPoint;
+        v = v.Rotate(angleInDegrees);
+        var ep = this.StartPoint + v;
+        return new Line(this.StartPoint, ep);
+    }
+
+    internal Line Flip()
+    {
+        return new Line(this.EndPoint, this.StartPoint);
+    }
+
+    internal Line Offset(double distance)
+    {
+        var v = this.PerpendicularDirection;
+        var sp = this.StartPoint.WithOffset(v, distance);
+        var ep = this.EndPoint.WithOffset(v, distance);
+        return new Line(sp, ep);
+    }
+
+    internal bool IsPointOnLine(Point p)
+    {
+        if (this.StartPoint.DistanceTo(p) < Constants.Tolerance)
         {
-            return new Line(this.EndPoint, this.StartPoint);
+            return true;
         }
 
-        internal Line Offset(double distance)
+        var v = p - this.StartPoint;
+        var angleBetween = Vector.AngleBetween(this.Direction, v);
+        if (Math.Abs(angleBetween) > Constants.Tolerance)
         {
-            var v = this.PerpendicularDirection;
-            var sp = this.StartPoint.WithOffset(v, distance);
-            var ep = this.EndPoint.WithOffset(v, distance);
-            return new Line(sp, ep);
+            return false;
         }
 
-        internal bool IsPointOnLine(Point p)
+        return v.Length <= this.Length + Constants.Tolerance;
+    }
+
+    internal Point? TrimTo(Point p)
+    {
+        if (this.IsPointOnLine(p))
         {
-            if (this.StartPoint.DistanceTo(p) < Constants.Tolerance)
-            {
-                return true;
-            }
-
-            var v = p - this.StartPoint;
-            var angleBetween = Vector.AngleBetween(this.Direction, v);
-            if (Math.Abs(angleBetween) > Constants.Tolerance)
-            {
-                return false;
-            }
-
-            return v.Length <= this.Length + Constants.Tolerance;
+            return p;
         }
 
-        internal Point? TrimTo(Point p)
+        var v = this.StartPoint.VectorTo(p);
+        if (Math.Abs(v.AngleTo(this.Direction) % 180) > Constants.Tolerance)
         {
-            if (this.IsPointOnLine(p))
+            return null;
+        }
+
+        var dp = v.DotProdcut(this.Direction);
+        return dp < 0
+                   ? this.StartPoint
+                   : this.EndPoint;
+    }
+
+    internal Point Project(Point p)
+    {
+        var toPoint = this.StartPoint.VectorTo(p);
+        var dotProdcut = toPoint.DotProdcut(this.Direction);
+        var projected = this.StartPoint + (dotProdcut * this.Direction);
+        return projected;
+    }
+
+    internal Line? TrimOrExtendEndWith(Line other)
+    {
+        if (this.EndPoint.DistanceTo(other.StartPoint) < Constants.Tolerance)
+        {
+            return this;
+        }
+
+        var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
+        if (ip is null)
+        {
+            return this;
+        }
+
+        return new Line(this.StartPoint, ip.Value);
+    }
+
+    internal Line? TrimOrExtendStartWith(Line other)
+    {
+        if (this.StartPoint.DistanceTo(other.EndPoint) < Constants.Tolerance)
+        {
+            return this;
+        }
+
+        var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
+        if (ip is null)
+        {
+            return null;
+        }
+
+        return new Line(ip.Value, this.EndPoint);
+    }
+
+    internal Point? IntersectWith(Line other, bool mustBeBetweenStartAndEnd)
+    {
+        return IntersectionPoint(this, other, mustBeBetweenStartAndEnd);
+    }
+
+    internal Point? ClosestIntersection(Rect rectangle)
+    {
+        var quadrant = rectangle.Contains(this.StartPoint)
+            ? this.Direction.Quadrant()
+            : this.Direction.Negated().Quadrant();
+
+        return quadrant switch
+        {
+            Quadrant.NegativeXPositiveY
+            => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+               IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
+            Quadrant.PositiveXPositiveY
+            => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+               IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
+            Quadrant.PositiveXNegativeY
+            => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
+               IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
+            Quadrant.NegativeXNegativeY
+            => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
+               IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
+            _ => throw new InvalidEnumArgumentException("Unhandled Quadrant."),
+        };
+    }
+
+    internal double DistanceTo(Point p)
+    {
+        return this.Project(p)
+                   .DistanceTo(p);
+    }
+
+    internal double DistanceToPointOnLine(Point p)
+    {
+        var toPoint = this.StartPoint.VectorTo(p);
+        var dotProduct = toPoint.DotProdcut(this.Direction);
+        var pointOnLine = this.StartPoint + (dotProduct * this.Direction);
+        return pointOnLine.DistanceTo(p);
+    }
+
+    internal Line? PerpendicularLineTo(Point p)
+    {
+        if (this.IsPointOnLine(p))
+        {
+            return null;
+        }
+
+        var startPoint = this.Project(p);
+        return new Line(startPoint, p);
+    }
+
+    // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()
+    private static Point? IntersectionPoint(Line l1, Line l2, bool mustBeBetweenStartAndEnd)
+    {
+        var u = l1.Direction;
+        var v = l2.Direction;
+        var w = l1.StartPoint - l2.StartPoint;
+        var d = Perp(u, v);
+        if (Math.Abs(d) < Constants.Tolerance)
+        {
+            // parallel lines
+            return null;
+        }
+
+        var sI = Perp(v, w) / d;
+        var p = l1.StartPoint + (sI * u);
+        if (mustBeBetweenStartAndEnd)
+        {
+            if (l1.IsPointOnLine(p) && l2.IsPointOnLine(p))
             {
                 return p;
             }
 
-            var v = this.StartPoint.VectorTo(p);
-            if (Math.Abs(v.AngleTo(this.Direction) % 180) > Constants.Tolerance)
-            {
-                return null;
-            }
-
-            var dp = v.DotProdcut(this.Direction);
-            return dp < 0
-                       ? this.StartPoint
-                       : this.EndPoint;
+            return null;
         }
 
-        internal Point Project(Point p)
-        {
-            var toPoint = this.StartPoint.VectorTo(p);
-            var dotProdcut = toPoint.DotProdcut(this.Direction);
-            var projected = this.StartPoint + (dotProdcut * this.Direction);
-            return projected;
-        }
+        return p;
+    }
 
-        internal Line? TrimOrExtendEndWith(Line other)
-        {
-            if (this.EndPoint.DistanceTo(other.StartPoint) < Constants.Tolerance)
-            {
-                return this;
-            }
-
-            var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
-            if (ip is null)
-            {
-                return this;
-            }
-
-            return new Line(this.StartPoint, ip.Value);
-        }
-
-        internal Line? TrimOrExtendStartWith(Line other)
-        {
-            if (this.StartPoint.DistanceTo(other.EndPoint) < Constants.Tolerance)
-            {
-                return this;
-            }
-
-            var ip = IntersectionPoint(this, other, mustBeBetweenStartAndEnd: false);
-            if (ip is null)
-            {
-                return null;
-            }
-
-            return new Line(ip.Value, this.EndPoint);
-        }
-
-        internal Point? IntersectWith(Line other, bool mustBeBetweenStartAndEnd)
-        {
-            return IntersectionPoint(this, other, mustBeBetweenStartAndEnd);
-        }
-
-        internal Point? ClosestIntersection(Rect rectangle)
-        {
-            var quadrant = rectangle.Contains(this.StartPoint)
-                ? this.Direction.Quadrant()
-                : this.Direction.Negated().Quadrant();
-
-            return quadrant switch
-            {
-                Quadrant.NegativeXPositiveY
-                => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
-                   IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
-                Quadrant.PositiveXPositiveY
-                => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
-                   IntersectionPoint(rectangle.BottomLine(), this, mustBeBetweenStartAndEnd: true),
-                Quadrant.PositiveXNegativeY
-                => IntersectionPoint(rectangle.RightLine(), this, mustBeBetweenStartAndEnd: true) ??
-                   IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
-                Quadrant.NegativeXNegativeY
-                => IntersectionPoint(rectangle.LeftLine(), this, mustBeBetweenStartAndEnd: true) ??
-                   IntersectionPoint(rectangle.TopLine(), this, mustBeBetweenStartAndEnd: true),
-                _ => throw new InvalidEnumArgumentException("Unhandled Quadrant."),
-            };
-        }
-
-        internal double DistanceTo(Point p)
-        {
-            return this.Project(p)
-                       .DistanceTo(p);
-        }
-
-        internal double DistanceToPointOnLine(Point p)
-        {
-            var toPoint = this.StartPoint.VectorTo(p);
-            var dotProduct = toPoint.DotProdcut(this.Direction);
-            var pointOnLine = this.StartPoint + (dotProduct * this.Direction);
-            return pointOnLine.DistanceTo(p);
-        }
-
-        internal Line? PerpendicularLineTo(Point p)
-        {
-            if (this.IsPointOnLine(p))
-            {
-                return null;
-            }
-
-            var startPoint = this.Project(p);
-            return new Line(startPoint, p);
-        }
-
-        // http://geomalgorithms.com/a05-_intersect-1.html#intersect2D_2Segments()
-        private static Point? IntersectionPoint(Line l1, Line l2, bool mustBeBetweenStartAndEnd)
-        {
-            var u = l1.Direction;
-            var v = l2.Direction;
-            var w = l1.StartPoint - l2.StartPoint;
-            var d = Perp(u, v);
-            if (Math.Abs(d) < Constants.Tolerance)
-            {
-                // parallel lines
-                return null;
-            }
-
-            var sI = Perp(v, w) / d;
-            var p = l1.StartPoint + (sI * u);
-            if (mustBeBetweenStartAndEnd)
-            {
-                if (l1.IsPointOnLine(p) && l2.IsPointOnLine(p))
-                {
-                    return p;
-                }
-
-                return null;
-            }
-
-            return p;
-        }
-
-        private static double Perp(Vector u, Vector v)
-        {
-            return (u.X * v.Y) - (u.Y * v.X);
-        }
+    private static double Perp(Vector u, Vector v)
+    {
+        return (u.X * v.Y) - (u.Y * v.X);
     }
 }

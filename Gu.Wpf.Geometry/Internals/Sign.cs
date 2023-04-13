@@ -1,8 +1,7 @@
-namespace Gu.Wpf.Geometry
+namespace Gu.Wpf.Geometry;
+
+internal enum Sign
 {
-    internal enum Sign
-    {
-        Negative = -1,
-        Positive = 1,
-    }
+    Negative = -1,
+    Positive = 1,
 }

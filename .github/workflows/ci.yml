@@ -1,0 +1,18 @@
+name: ci
+
+on: [push]
+    
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup
+        uses: actions/setup-dotnet@v3
+      - name: restore
+        run: dotnet restore
+      - name: build
+        run: dotnet build --configuration Release --no-restore
+      - name: test
+        run: dotnet test --configuration Release --no-build 
